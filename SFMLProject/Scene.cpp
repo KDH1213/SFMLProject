@@ -162,10 +162,9 @@ void Scene::Render(sf::RenderWindow& window)
 				if (!object->IsActive())
 					continue;
 
-				if ((cameraSize.x + object->GetScale().x) * 0.5f > abs(cameraPosition.x - object->GetPosition().x)
-					&& (cameraSize.y + object->GetScale().y) * 0.5f > abs(cameraPosition.y - object->GetPosition().y))
-					object->Render(window);
-				
+				object->Render(window);
+				/*if ((cameraSize.x + object->GetScale().x) * 0.5f > abs(cameraPosition.x - object->GetPosition().x)
+					&& (cameraSize.y + object->GetScale().y) * 0.5f > abs(cameraPosition.y - object->GetPosition().y))*/				
 			}
 		}
 	}
@@ -301,6 +300,16 @@ sf::Vector2f Scene::ScreenToWorld(sf::Vector2i screenPos)
 sf::Vector2i Scene::WorldToScreen(sf::Vector2f screenPos)
 {
 	return WindowManager::GetInstance().GetRenderWindow()->mapCoordsToPixel(screenPos, mainCamera->GetView());
+}
+
+sf::Vector2f Scene::ScreenToFreeViewWorld(sf::Vector2i screenPos)
+{
+	return WindowManager::GetInstance().GetRenderWindow()->mapPixelToCoords(screenPos, freeCamera->GetView());
+}
+
+sf::Vector2i Scene::FreeViewWorldToScreen(sf::Vector2f screenPos)
+{
+	return WindowManager::GetInstance().GetRenderWindow()->mapCoordsToPixel(screenPos, freeCamera->GetView());
 }
 
 sf::Vector2f Scene::ScreenToUI(sf::Vector2i screenPos)

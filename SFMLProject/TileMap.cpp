@@ -100,6 +100,7 @@ void TileMap::SetTileInfo(std::string textId, const sf::Vector2u& cellCount, con
 				int vertexIndex = quadIndex * 4 + k;
 				vertexArray[vertexIndex].position = quadPosition + positionOffset[k];
 				vertexArray[vertexIndex].texCoords = sf::Vector2f::zero;
+				vertexArray[vertexIndex].color = sf::Color::Transparent;
 				// vertexArray[vertexIndex].texCoords.x += (float)textureIndex.x * (float)textureTileSize.x;
 				// vertexArray[vertexIndex].texCoords.y += (float)textureIndex.y * (float)textureTileSize.y;
 			}
@@ -181,6 +182,7 @@ void TileMap::ChangeTile(int currentIndexX, int currentIndexY, int tileUvPosX, i
 		vertexArray[index + i].texCoords = textUv[i];
 		vertexArray[index + i].texCoords.x += textureTileSize.x * tileUvPosX;
 		vertexArray[index + i].texCoords.y += textureTileSize.y * tileUvPosY;
+		vertexArray[index + i].color = sf::Color::White;
 	}
 }
 
@@ -190,6 +192,17 @@ void TileMap::Render(sf::RenderWindow& window)
 	renderState.transform = transform;
 
 	window.draw(vertexArray, renderState);
+
+	if (SceneManager::GetInstance().GetCurrentScene()->IsFreeView())
+	{
+		sf::RectangleShape outlineRect;
+		outlineRect.setFillColor(sf::Color::Transparent);
+		outlineRect.setOutlineColor(sf::Color::Green);
+		outlineRect.setOutlineThickness(2);
+		outlineRect.setSize(GetGlobalBounds().getSize());
+		outlineRect.setPosition(GetPosition());
+		window.draw(outlineRect);
+	}
 }
 
 bool TileMap::SaveCsv(const std::string& filePath) const

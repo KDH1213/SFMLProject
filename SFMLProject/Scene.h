@@ -21,12 +21,15 @@ protected:
 public:
 	sf::Vector2f ScreenToWorld(sf::Vector2i screenPos);
 	sf::Vector2i WorldToScreen(sf::Vector2f screenPos);
+	sf::Vector2f ScreenToFreeViewWorld(sf::Vector2i screenPos);
+	sf::Vector2i FreeViewWorldToScreen(sf::Vector2f screenPos);
 
 	sf::Vector2f ScreenToUI(sf::Vector2i screenPos);
 	sf::Vector2i UIToScreen(sf::Vector2f screenPos);
 	sf::Vector2f ScreenToWorld(const sf::View& view, sf::Vector2i screenPos);
 	sf::Vector2i WorldToScreen(const sf::View& view, sf::Vector2f screenPos);
 
+	bool IsFreeView() { return isFreeView; }
 public:
 	virtual GameObject* AddGameObject(GameObject* obj, LayerType layer);
 	virtual void RemoveGameObject(GameObject* obj);
@@ -38,7 +41,6 @@ public:
 	virtual GameObject* FindGameObject(const std::string& name);
 	virtual int FindGameObjectAll(const std::string& name, std::vector<GameObject*>& vector);
 	
-
 	const std::vector<std::vector<GameObject*>>& GetObjectVectors() { return gameObjectVectors; }
 	const std::vector<GameObject*>& GetObjectVector(LayerType layer) { return gameObjectVectors[(int)layer]; }
 

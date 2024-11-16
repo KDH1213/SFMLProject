@@ -48,7 +48,8 @@ enum class Origins
 enum class LayerType
 {
 	Default,
-
+	TileMap,
+	BackGround,
 	Player,
 	Enemy,
 	PlayerBullet,

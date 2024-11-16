@@ -10,7 +10,7 @@
 
 int AnimationToolGUI::frameID = 0;
 static int iAnimIndexSize = 0;
-static int itemCurrentIndex = 0; // Here we store our selection data as an index.
+static int itemCurrentIndex = 0;
 AnimationToolGUI::AnimationToolGUI()
 	: GUI("AnimationTool")
 	, accTime(0.f)
@@ -50,10 +50,7 @@ void AnimationToolGUI::Update()
 
     textureVector.clear();
     auto map = ResourcesManager<sf::Texture>::GetInstance().GetResourcesMap();
-
-    //auto iter = map.begin();
-
-    for (auto iter : map)
+    for (auto& iter : map)
     {
         textureVector.push_back(iter.second->GetKey());
     }

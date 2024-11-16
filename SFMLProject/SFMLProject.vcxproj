@@ -227,6 +227,7 @@
     <ClCompile Include="StringTable.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="TestPlayer.cpp" />
+    <ClCompile Include="TileMapControllerGUI.cpp" />
     <ClCompile Include="TileMap.cpp" />
     <ClCompile Include="TileMapController.cpp" />
     <ClCompile Include="TileMapGUI.cpp" />
@@ -307,6 +308,7 @@
     <ClInclude Include="StringTable.h" />
     <ClInclude Include="Test.h" />
     <ClInclude Include="TestPlayer.h" />
+    <ClInclude Include="TileMapControllerGUI.h" />
     <ClInclude Include="TileMap.h" />
     <ClInclude Include="TileMapController.h" />
     <ClInclude Include="TileMapGUI.h" />

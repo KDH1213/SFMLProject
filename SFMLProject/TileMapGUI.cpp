@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "TileMapGUI.h"
-// #include "imgui.h"
 #include "TileMap.h"
 #include "Scene.h"
 
@@ -53,14 +52,14 @@ void TileMapGUI::Update()
 
 	}
 
-
 	ImVec2 pos = ImGui::GetCursorScreenPos();
 	//ImVec2 uv_min = ImVec2(0.0f, 0.0f);                 // Top-left
 	//ImVec2 uv_max = ImVec2(1.0f, 1.0f);                 // Lower-right
 	//ImVec4 tint_col = use_text_color_for_tint ? ImGui::GetStyleColorVec4(ImGuiCol_Text) : ImVec4(1.0f, 1.0f, 1.0f, 1.0f); // No tint
 	//ImVec4 border_col = ImGui::GetStyleColorVec4(ImGuiCol_Border);
 
-	ImGui::Image(*texture, { textureSize.x, textureSize.y });
+	if(texture != nullptr)
+		ImGui::Image(*texture, { textureSize.x, textureSize.y });
 	OnTileMapEditor();
 
 	ImGui::EndChild();
@@ -112,10 +111,9 @@ void TileMapGUI::OnTileMapEditor()
 			for (int j = 0; j < widthCount; ++j)
 			{
 				ImGui::PushID((i * widthCount) + j);
-				if ((i * widthCount) + j)
-					ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(1.f, 1.f));
+				ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(1.f, 1.f));
 
-				if (ImGui::ImageButton((name + std::to_string((i * widthCount) + j)).c_str(), texture->getNativeHandle(), { 50.f, 50.f },
+				if (ImGui::ImageButton((name + std::to_string((i * widthCount) + j)).c_str(), texture->getNativeHandle(), { 30.f, 30.f },
 					{ tileUvSize.x * j,tileUvSize.y * i}, {tileUvSize.x * (j + 1) ,tileUvSize.y * (i + 1) }, bg_col, tint_col))
 				{
 					// sf::Vector2f mousePosition = SceneManager::GetInstance().GetCurrentScene()->ScreenToWorld(ImGui::GetMousePos());
@@ -124,8 +122,10 @@ void TileMapGUI::OnTileMapEditor()
 					isSelect = true;
 				}
 
-				if ((i * widthCount) + j)
-					ImGui::PopStyleVar();
+				if (j != widthCount - 1)
+					ImGui::SameLine();
+
+				ImGui::PopStyleVar();
 				ImGui::PopID();
 
 			}
@@ -135,7 +135,7 @@ void TileMapGUI::OnTileMapEditor()
 		{
 			if (InputManager::GetInstance().GetKeyPressed(sf::Mouse::Left))
 			{
-				auto currentPos = SceneManager::GetInstance().GetCurrentScene()->ScreenToWorld(InputManager::GetInstance().GetMousePosition());
+				auto currentPos = SceneManager::GetInstance().GetCurrentScene()->IsFreeView() ? SceneManager::GetInstance().GetCurrentScene()->ScreenToFreeViewWorld(InputManager::GetInstance().GetMousePosition()) : SceneManager::GetInstance().GetCurrentScene()->ScreenToWorld(InputManager::GetInstance().GetMousePosition());
 				auto tileMapPos = tileMap->GetGlobalBounds();
 
 				if (tileMapPos.left < currentPos.x && tileMapPos.top < currentPos.y

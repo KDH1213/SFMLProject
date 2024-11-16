@@ -79,9 +79,6 @@
     <Filter Include="Contants\Player">
       <UniqueIdentifier>{da450f9f-2676-436b-8904-480965c27d5d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contants\Bullet">
-      <UniqueIdentifier>{ad83cf75-fdd1-4388-bfe9-cf3241f03954}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Manager\0. Framework">
       <UniqueIdentifier>{79b74483-ecd5-4f20-b650-51e47259682e}</UniqueIdentifier>
     </Filter>
@@ -150,6 +147,15 @@
     </Filter>
     <Filter Include="Contants\Player\PlayerState">
       <UniqueIdentifier>{6f9243a3-ec4b-41e5-8989-63b1ce601bda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Test">
+      <UniqueIdentifier>{9089be30-7d83-488f-8a24-3030a93e7a05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\TileMapController">
+      <UniqueIdentifier>{72c7193e-6851-435a-bcc9-9b8e1053271f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Imgui\GUI\CompoentGUI\TileMapController">
+      <UniqueIdentifier>{c2dba539-2631-4ab4-9169-2a89a1e46df7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -231,9 +237,6 @@
     <ClCompile Include="Animator.cpp">
       <Filter>Core\6. Componet\2. Animator</Filter>
     </ClCompile>
-    <ClCompile Include="Test.cpp">
-      <Filter>Contants</Filter>
-    </ClCompile>
     <ClCompile Include="CameraManger.cpp">
       <Filter>Manager\8. CameraManger</Filter>
     </ClCompile>
@@ -251,9 +254,6 @@
     </ClCompile>
     <ClCompile Include="PhysicsManager.cpp">
       <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="TestPlayer.cpp">
-      <Filter>Contants</Filter>
     </ClCompile>
     <ClCompile Include="Rigidbody.cpp">
       <Filter>Core\6. Componet\5. RigidBody</Filter>
@@ -354,8 +354,17 @@
     <ClCompile Include="Player.cpp">
       <Filter>Contants\Player</Filter>
     </ClCompile>
+    <ClCompile Include="Test.cpp">
+      <Filter>Contants\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="TestPlayer.cpp">
+      <Filter>Contants\Test</Filter>
+    </ClCompile>
     <ClCompile Include="TileMapController.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>Contants\TileMapController</Filter>
+    </ClCompile>
+    <ClCompile Include="TileMapControllerGUI.cpp">
+      <Filter>Contants\Imgui\GUI\CompoentGUI\TileMapController</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -443,9 +452,6 @@
     <ClInclude Include="Animator.h">
       <Filter>Core\6. Componet\2. Animator</Filter>
     </ClInclude>
-    <ClInclude Include="Test.h">
-      <Filter>Contants</Filter>
-    </ClInclude>
     <ClInclude Include="CameraManger.h">
       <Filter>Manager\8. CameraManger</Filter>
     </ClInclude>
@@ -463,9 +469,6 @@
     </ClInclude>
     <ClInclude Include="PhysicsManager.h">
       <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="TestPlayer.h">
-      <Filter>Contants</Filter>
     </ClInclude>
     <ClInclude Include="Rigidbody.h">
       <Filter>Core\6. Componet\5. RigidBody</Filter>
@@ -578,8 +581,17 @@
     <ClInclude Include="Player.h">
       <Filter>Contants\Player</Filter>
     </ClInclude>
+    <ClInclude Include="TestPlayer.h">
+      <Filter>Contants\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Test.h">
+      <Filter>Contants\Test</Filter>
+    </ClInclude>
     <ClInclude Include="TileMapController.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>Contants\TileMapController</Filter>
+    </ClInclude>
+    <ClInclude Include="TileMapControllerGUI.h">
+      <Filter>Contants\Imgui\GUI\CompoentGUI\TileMapController</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

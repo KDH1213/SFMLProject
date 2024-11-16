@@ -3,9 +3,10 @@
 
 #include "imgui.h"
 #include "TileMap.h"
+#include "TileMapController.h"
 
 #include "ComponentGUI.h"
-
+#include "TileMapControllerGUI.h"
 #include "TileMapGUI.h"
 #include "ColliderGUI.h"
 #include "AnimationGUI.h"
@@ -26,6 +27,7 @@ void InspectorGUI::Init()
 	componetGUIvector.push_back(new AnimationGUI);
 	componetGUIvector.push_back(new ColliderGUI);
 	componetGUIvector.push_back(new TileMapGUI);
+	componetGUIvector.push_back(new TileMapControllerGUI);
 }
 
 void InspectorGUI::Update()
@@ -76,6 +78,10 @@ void InspectorGUI::SetObject(GameObject* object)
 	else
 		componetGUIvector[(int)ComponentGUIType::TileMap]->SetObject(nullptr);
 
+	if (dynamic_cast<TileMapController*>(targetObject) != nullptr)
+		componetGUIvector[(int)ComponentGUIType::TileMapController]->SetObject(targetObject);
+	else
+		componetGUIvector[(int)ComponentGUIType::TileMapController]->SetObject(nullptr);
 }
 
 void InspectorGUI::TransformInfo()

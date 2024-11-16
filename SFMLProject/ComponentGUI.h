@@ -5,6 +5,7 @@ enum class ComponentGUIType
 	Animator,
 	Collider,
 	TileMap,
+	TileMapController,
 
 	End
 };
