@@ -7,8 +7,12 @@ class InspectorGUI;
 class HierachyGUI : public GUI
 {
 protected:
-	Scene*			currentScene;
-	InspectorGUI*	currentObjectInspector;
+	Scene*					currentScene;
+	InspectorGUI*			currentObjectInspector;
+	GUI*					animationToolGUI;
+	GUI*					wallCollisionToolGUI;
+	bool					isOnAnimationTool;
+	bool					isOnWallCollisionTool;
 
 public:
 	virtual void Init();

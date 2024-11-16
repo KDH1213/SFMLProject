@@ -5,9 +5,8 @@ class AnimationGUI : public ComponentGUI
 {
 protected:
 	Animator*			animator;
-	AnimationToolGUI*	animationTool;
-
-	bool				useAnimationTool;
+	// AnimationToolGUI*	animationTool;
+	// bool				useAnimationTool;
 public:
 	virtual void Update();
 	void SetObject(GameObject* object);

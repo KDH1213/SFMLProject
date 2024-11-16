@@ -16,10 +16,16 @@ InspectorGUI::InspectorGUI(const std::string& name)
 	: GUI(name)
 	, targetObject(nullptr)
 {
+	
 }
 
 InspectorGUI::~InspectorGUI()
 {
+	for (auto& componet : componetGUIvector)
+	{
+		delete componet;
+	}
+	componetGUIvector.clear();
 }
 
 void InspectorGUI::Init()
@@ -55,6 +61,7 @@ void InspectorGUI::Update()
 	{
 		componet->Update();
 	}
+
 
 	ImGui::End();
 }
@@ -124,19 +131,6 @@ void InspectorGUI::TransformInfo()
 		targetObject->SetOrigin(origin);
 	}
 
-	static const OriginEnumDesc originEnum[] =
-	{
-		{ Origins::TopLeft , "TopLeft"}
-		,{ Origins::TopCenter , "TopCenter"}
-		,{ Origins::TopRight , "TopRight"}
-		,{ Origins::MiddleLeft , "MiddleLeft"}
-		,{ Origins::MiddleCenter , "MiddleCenter"}
-		, { Origins::MiddleRight , "MiddleRight"}
-		,{ Origins::BottomLeft , "BottomLeft"}
-		,{ Origins::BottomCenter , "BottomCenter"}
-		,{ Origins::BottomRight , "BottomRight"}
-		,{ Origins::Custom , "Custom"}
-	};
 
 	int idx;
 	for (idx = 0; idx < (int)Origins::Custom; ++idx)

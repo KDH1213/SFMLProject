@@ -5,18 +5,30 @@
 #include "imgui.h"
 #include "InspectorGUI.h"
 
+#include "AnimationToolGUI.h"
+#include "WallCollisionObjectEditor.h"
+
 HierachyGUI::HierachyGUI(const std::string& name)
 	: GUI(name)
     , currentScene(nullptr)
     , currentObjectInspector(nullptr)
+    , isOnAnimationTool(false)
+    , isOnWallCollisionTool(false)
+    , animationToolGUI(nullptr)
+    , wallCollisionToolGUI(nullptr)
 {
 }
 
 HierachyGUI::~HierachyGUI()
 {
+    if (animationToolGUI != nullptr)
+        delete animationToolGUI;
+
 }
 void HierachyGUI::Init()
 {
+    animationToolGUI = new AnimationToolGUI;
+    wallCollisionToolGUI = new WallCollisionObjectEditor;
 }
 
 void HierachyGUI::Update()
@@ -48,6 +60,21 @@ void HierachyGUI::Update()
             ++currentPos;
         }
     }
+
+
+    if (ImGui::Button("OnAnimaitonToolEditor", { 100, 20.f }))
+        isOnAnimationTool = !isOnAnimationTool;
+
+    if (isOnAnimationTool)
+        animationToolGUI->Update();
+
+    ImGui::SameLine();
+    if (ImGui::Button("OnWallCollisionTool", { 100, 20.f }))
+        isOnWallCollisionTool = !isOnWallCollisionTool;
+
+    if (isOnWallCollisionTool)
+        wallCollisionToolGUI->Update();
+    
 
 	ImGui::End();
 }

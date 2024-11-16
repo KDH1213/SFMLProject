@@ -5,14 +5,14 @@
 AnimationGUI::AnimationGUI()
 	: ComponentGUI(ComponentGUIType::Animator)
 	, animator(nullptr)
-	, useAnimationTool(true)
+	// , useAnimationTool(true)
 {
-	animationTool = new AnimationToolGUI;
+	// animationTool = new AnimationToolGUI;
 }
 
 AnimationGUI::~AnimationGUI()
 {
-	delete animationTool;
+	// delete animationTool;
 }
 
 void AnimationGUI::Update()
@@ -20,10 +20,10 @@ void AnimationGUI::Update()
 	if (animator == nullptr)
 		return;
 	ImGui::Text("Animation"); ImGui::SameLine();
-	ImGui::BeginChild("##Animation", { 300.f,300.f });
+	ImGui::BeginChild("##Animation");
 
-	if (useAnimationTool)
-		animationTool->Update();
+	/*if (useAnimationTool)
+		animationTool->Update();*/
 
 	ImGui::EndChild();
 }
