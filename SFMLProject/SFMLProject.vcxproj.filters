@@ -184,6 +184,9 @@
     <Filter Include="Contants\Enemy\Goomba\State">
       <UniqueIdentifier>{9ee46451-75ea-4bf3-a0b9-5101761e9e43}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contants\Block">
+      <UniqueIdentifier>{a2dc21ae-d5e8-4f71-a6fd-ac08af4cb4c3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -422,6 +425,15 @@
     </ClCompile>
     <ClCompile Include="Goomba.cpp">
       <Filter>Contants\Enemy\Goomba</Filter>
+    </ClCompile>
+    <ClCompile Include="BlockObject.cpp">
+      <Filter>Contants\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemBlockObject.cpp">
+      <Filter>Contants\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="BrickBlockObject.cpp">
+      <Filter>Contants\Block</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -679,6 +691,15 @@
     </ClInclude>
     <ClInclude Include="Goomba.h">
       <Filter>Contants\Enemy\Goomba</Filter>
+    </ClInclude>
+    <ClInclude Include="BlockObject.h">
+      <Filter>Contants\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="BrickBlockObject.h">
+      <Filter>Contants\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemBlockObject.h">
+      <Filter>Contants\Block</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -115,3 +115,22 @@ enum class ObjectType
 	Wall,
 	Item,
 };
+
+enum class BlockType
+{
+	Default,
+	Item,
+	Brick,
+	Secret,
+	ItemBrick,
+};
+
+enum class ItemType
+{
+	Coin,
+	MushRoom,
+	Flower,
+	Star,
+
+	End
+};
