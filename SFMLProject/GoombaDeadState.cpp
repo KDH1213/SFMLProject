@@ -20,10 +20,18 @@ void GoombaDeadState::Start()
 
 void GoombaDeadState::Enter()
 {
+	for (auto& startEvent : stateStartEvents)
+	{
+		startEvent();
+	}
 }
 
 void GoombaDeadState::Exit()
 {
+	for (auto& endEvent : stateEndEvents)
+	{
+		endEvent();
+	}
 }
 
 void GoombaDeadState::Update(float deltaTime)

@@ -29,6 +29,7 @@ public:
 	void SetOrigin(const sf::Vector2f& newOrigin) override;
 
 	const sf::Vector2f& GetMoveDirection() { return moveDirection; }
+	void SetMoveDirection(const sf::Vector2f& direction) { moveDirection = direction; }
 public:
 	void CreateAnimator() override;
 	float GetSpeed() { return currentStatus.speed; }

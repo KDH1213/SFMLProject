@@ -29,6 +29,8 @@ public:
 	void SetMaxDropSpeed(float speed) { maxDropSpeed = speed; }
 	float GetMaxDropSpeed() { return maxDropSpeed; }
 
+	float GetCurrentDropSpeed() { return dropSpeed; }
+
 	void SetOwner(GameObject* owner) { this->owner = owner; }
 	GameObject* GetOwner() { return owner; }
 

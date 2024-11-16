@@ -22,8 +22,6 @@ Player::Player(const std::string& name)
 
 Player::~Player()
 {
-	if (rigidBody != nullptr)
-		delete rigidBody;
 }
 
 void Player::Awake()
@@ -55,10 +53,10 @@ void Player::InputJump()
 
 void Player::TakeDamage()
 {
-	--currentStatus.hp;
+	/*--currentStatus.hp;
 
 	if (currentStatus.hp == 0)
-		fsm.ChangeState(PlayerStateType::Dead);
+		fsm.ChangeState(PlayerStateType::Dead);*/
 }
 
 void Player::OnFlipX()

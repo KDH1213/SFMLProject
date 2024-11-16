@@ -8,11 +8,15 @@
 
 Enemy::Enemy(const std::string& name)
     : GameObject(name)
-    , currentStatus(1, 300.f, 0.f, 0.f)
+    , currentStatus(1, 100.f, 0.f, 0.f)
     , isDead(false)
     , isFlipX(false)
     , fsm(nullptr)
-{     
+    , moveDirection(sf::Vector2f::left)
+    , currentState(EnemyStateType::Idle)
+{
+    rigidBody = new Rigidbody(this);
+    rigidBody->SetGround(true);
 }
 
 Enemy::~Enemy()
@@ -100,16 +104,19 @@ void Enemy::Start()
 void Enemy::Update(const float& deltaTime)
 {
     fsm->Update(deltaTime);
+    rigidBody->Update(deltaTime);
 }
 
 void Enemy::FixedUpdate(const float& deltaTime)
 {
     fsm->FixedUpdate(deltaTime);
+    rigidBody->FixedUpdate(deltaTime);
 }
 
 void Enemy::LateUpdate(const float& deltaTime)
 {
     fsm->LateUpdate(deltaTime);
+    rigidBody->LateUpdate(deltaTime);
 }
 
 void Enemy::Render(sf::RenderWindow& renderWindow)

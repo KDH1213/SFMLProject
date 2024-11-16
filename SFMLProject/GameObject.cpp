@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "Collider.h"
 #include "Animator.h"
+#include "Rigidbody.h"
 
 int GameObject::instanceID = 0;
 
@@ -15,13 +16,8 @@ GameObject::GameObject(const std::string& name)
 	, iD(instanceID++)
 	, isDestory(false)
 	, animator(nullptr)
+	, rigidBody(nullptr)
 {
-}
-
-GameObject::~GameObject()
-{
-	if (collider != nullptr)
-		delete collider;
 }
 
 GameObject::GameObject(const GameObject& other)
@@ -36,9 +32,19 @@ GameObject::GameObject(const GameObject& other)
 	, isDestory(false)
 	, animator(nullptr)
 	, iD(instanceID++)
+	, rigidBody(nullptr)
 {
 	if (other.collider != nullptr)
 		collider = new Collider(*other.collider);
+}
+
+GameObject::~GameObject()
+{
+	if (collider != nullptr)
+		delete collider;
+
+	if (rigidBody != nullptr)
+		delete rigidBody;
 }
 
 void GameObject::SetDestory(bool destory)

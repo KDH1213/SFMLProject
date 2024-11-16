@@ -1,16 +1,23 @@
 #pragma once
 #include "EnemyBaseState.h"
+
+class Rigidbody;
+
 class GoombaScoutState : public EnemyBaseState
 {
+protected:
+	Rigidbody*		rigidbody;
+	sf::Vector2f	moveDirection;
+	float			speed;
+
 public:
 	void Awake() override;
 	void Start() override;
 
 	void Enter() override;
 	void Exit() override;
-	void Update(float deltaTime) override;
+
 	void FixedUpdate(float fixedDeltaTime) override;
-	void LateUpdate(float deltaTime) override;
 public:
 	GoombaScoutState(EnemyFSM* fsm);
 	~GoombaScoutState();
