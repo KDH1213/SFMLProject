@@ -15,6 +15,7 @@
 
 #include "Player.h"
 #include "TileMapController.h"
+#include "Goomba.h"
 
 void SceneDev1::Init()
 {
@@ -44,18 +45,21 @@ void SceneDev1::Enter()
 
 	Player* testPlayer = AddGameObject(new Player("Player"),LayerType::Player);
 	testPlayer->Awake();
-	testPlayer->CreateAnimator();
+	//testPlayer->CreateAnimator();
 
-	auto animator = testPlayer->GetAnimator();
-	animator->AddAnimation(&ResourcesManager<Animation>::GetInstance().Get("marioIdle"), "marioIdle");
+	//auto animator = testPlayer->GetAnimator();
+	//animator->AddAnimation(&ResourcesManager<Animation>::GetInstance().Get("marioIdle"), "marioIdle");
 	mainCamera->SetFollowTarget(testPlayer, true);
+
+	Goomba* enemy = AddGameObject(new Goomba(), LayerType::Enemy);
+	enemy->SetPosition(testPlayer->GetPosition() + sf::Vector2f::left * 20.f);
 	// mainCamera->SetCameraLimitRect({ -2000.f, 2000.f, -2000.f, 2000.f });
 
 	//TileMap* tile = AddGameObject(new TileMap("tiles", "Map"), LayerType::TileMap);
 	//tile->SetTileInfo("tiles", { 30,30 }, { 64.f,64.f }, { 32,32 });
 	//tile->SaveCsv("TileMap/test.csv");
 	//tile->LoadCsv("TileMap/test.csv");
-	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Default, ColliderLayer::Default);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Enemy, ColliderLayer::Player);
 
 	TileMapController* tileMapController = AddGameObject(new TileMapController("TileMapController"), LayerType::Default);
 

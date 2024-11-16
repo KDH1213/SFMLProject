@@ -23,7 +23,7 @@ void SpriteGameObject::SetScale(const sf::Vector2f& scale)
 
 	if (collider != nullptr)
 	{
-		collider->SetScale((sf::Vector2f)sprite.getTexture()->getSize() * scale );
+		collider->SetOwnerScale((sf::Vector2f)sprite.getTexture()->getSize() * scale );
 	}
 }
 

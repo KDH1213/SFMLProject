@@ -167,10 +167,18 @@
     <ClCompile Include="ComponentGUI.cpp" />
     <ClCompile Include="DataTable.cpp" />
     <ClCompile Include="DataTableManager.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyBaseState.cpp" />
+    <ClCompile Include="EnemyFSM.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Framework.cpp" />
     <ClCompile Include="FSMController.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Goomba.cpp" />
+    <ClCompile Include="GoombaDeadState.cpp" />
+    <ClCompile Include="GoombaFSM.cpp" />
+    <ClCompile Include="GoombaIdleState.cpp" />
+    <ClCompile Include="GoombaScoutState.cpp" />
     <ClCompile Include="GUI.cpp" />
     <ClCompile Include="HierachyGUI.cpp" />
     <ClCompile Include="ImguiManger.cpp" />
@@ -238,6 +246,8 @@
     <ClCompile Include="UITextGameObject.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="Variables.cpp" />
+    <ClCompile Include="WallCollisionObject.cpp" />
+    <ClCompile Include="WallCollisionObjectEditor.cpp" />
     <ClCompile Include="WindowManager.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
     </ClCompile>
@@ -262,10 +272,18 @@
     <ClInclude Include="DataTable.h" />
     <ClInclude Include="DataTableManager.h" />
     <ClInclude Include="Defines.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyBaseState.h" />
+    <ClInclude Include="EnemyFSM.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Framework.h" />
     <ClInclude Include="FSMController.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Goomba.h" />
+    <ClInclude Include="GoombaDeadState.h" />
+    <ClInclude Include="GoombaFSM.h" />
+    <ClInclude Include="GoombaIdleState.h" />
+    <ClInclude Include="GoombaScoutState.h" />
     <ClInclude Include="GUI.h" />
     <ClInclude Include="HierachyGUI.h" />
     <ClInclude Include="ImguiManger.h" />
@@ -317,6 +335,8 @@
     <ClInclude Include="UITextGameObject.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Variables.h" />
+    <ClInclude Include="WallCollisionObject.h" />
+    <ClInclude Include="WallCollisionObjectEditor.h" />
     <ClInclude Include="WindowManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -54,7 +54,7 @@ void GameObject::SetScale(const sf::Vector2f& scale)
 {
 	this->scale = scale;
 	if (collider != nullptr)
-		collider->SetScale(scale);
+		collider->SetOwnerScale(scale);
 }
 
 void GameObject::SetRotation(float angle)
