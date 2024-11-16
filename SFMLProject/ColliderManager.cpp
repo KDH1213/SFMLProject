@@ -97,7 +97,7 @@ void ColliderManager::LayerCollision(int left, int right)
             //if (!colliderVector[left][i]->GetActive() || !colliderVector[right][j]->GetActive())
             //    continue;
 
-            if (colliderVector[i] == colliderVector[j])
+            if (colliderVector[left][i] == colliderVector[right][j])
                 continue;
 
             auto leftID = colliderVector[left][i]->GetID() < colliderVector[right][j]->GetID() ? colliderVector[left][i]->GetID() : colliderVector[right][j]->GetID();

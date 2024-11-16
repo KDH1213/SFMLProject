@@ -19,6 +19,8 @@ Collision::Collision(ColliderType colliderType)
 	: colliderType(colliderType)
 	, collisionCount(0)
 	, rotation(0.f)
+	, scale(sf::Vector2f::one)
+	, originsPreset(Origins::MiddleCenter)
 {
 	//
 }

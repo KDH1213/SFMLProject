@@ -46,7 +46,7 @@ void CollisionRectangle::Reset()
 { 
 	rectanleRender.setSize(scale);
 	rectanleRender.setPosition(position);
-	SetOrigin(Origins::MiddleCenter);
+	SetOrigin(originsPreset);
 }
 
 void CollisionRectangle::SetScale(const sf::Vector2f& scale)
@@ -54,6 +54,8 @@ void CollisionRectangle::SetScale(const sf::Vector2f& scale)
 	this->scale = scale;
 	//rectanglePosition.SetSize(scale);
 	rectanleRender.setSize(scale);
+
+	SetOrigin(originsPreset);
 }
 
 void CollisionRectangle::SetPosition(const sf::Vector2f& pos)

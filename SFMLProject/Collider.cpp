@@ -13,6 +13,7 @@ Collider::Collider(ColliderType colliderType, ColliderLayer colliderLayer, sf::V
 	, collisionCount(0)
 	, iD(globalCount++)
 	, isDestory(false)
+	, colliderScale(size)
 {
 	CreateCollision(colliderType, offset, size);
 }
@@ -69,11 +70,32 @@ void Collider::SetPosition(const sf::Vector2f& pos)
 
 void Collider::SetOrigin(const sf::Vector2f& origin)
 {
+	collision->SetOrigin(origin);
 }
 
 void Collider::SetOrigin(const Origins& origins)
 {
 	collision->SetOrigin(origins);
+}
+
+Origins Collider::GetOrigins()
+{
+	return collision->GetOrigins();
+} 
+
+sf::Vector2f Collider::GetOrigin()
+{
+	return collision->GetOrigin();
+}
+
+sf::FloatRect Collider::GetLocalBounds()
+{
+	return collision->GetLocalBounds();
+}
+
+sf::FloatRect Collider::GetGlobalBounds()
+{
+	return collision->GetGlobalBounds();
 }
 
 sf::Vector2f Collider::GetPosition()
@@ -84,6 +106,13 @@ sf::Vector2f Collider::GetPosition()
 sf::Vector2f Collider::GetScale()
 {
 	return collision->GetScale();
+}
+
+void Collider::SetOwnerScale(const sf::Vector2f& size)
+{
+	ownerScale = size;
+	ownerScale = { abs(ownerScale.x), abs(ownerScale.y) };
+	SetScale(colliderScale * ownerScale);
 }
 
 void Collider::SetRotation(float angle)
@@ -97,8 +126,9 @@ float Collider::GetRotation()
 	return collision->GetRotation();
 }
 
-void Collider::SetScale(sf::Vector2f size)
+void Collider::SetScale(const sf::Vector2f& size)
 {
+	colliderScale = size;
 	collision->SetScale(size);
 }
 

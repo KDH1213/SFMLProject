@@ -1,5 +1,7 @@
 #pragma once
 
+
+
 class Collision;
 
 class Collider
@@ -10,9 +12,11 @@ private:
 	sf::Vector2f	position;
 	sf::Vector2f	offsetPosition;
 	sf::Vector2f	colliderScale;
+
+	sf::Vector2f	ownerScale;
 	float			colliderRotation;
 
-	GameObject* owner;
+	GameObject*		owner;
 	ColliderLayer	colliderLayer;
 
 	Collision*		collision;
@@ -30,6 +34,12 @@ public:
 	ColliderLayer GetColliderLayer() { return colliderLayer; }
 	uint64_t GetID() const { return iD; }
 
+	void SetOwner(GameObject* owner) { this->owner = owner; }
+	GameObject* GetOwner() { return owner; }
+
+	const std::vector<Collider*>& GetCollisionTarget() { return collisionTargetVector; }
+public:
+
 	bool GetActive() const { return active; }
 	void SetActive(bool active) { this->active = active; }
 
@@ -42,8 +52,10 @@ public:
 	void SetOffsetPosition(const sf::Vector2f& offset);
 	sf::Vector2f GetOffsetPosition() { return offsetPosition; }
 
-	void SetScale(sf::Vector2f size);
+	void SetScale(const sf::Vector2f& size);
 	sf::Vector2f GetScale();
+
+	void SetOwnerScale(const sf::Vector2f& size);
 
 	void SetRotation(float angle);
 	float GetRotation();
@@ -51,10 +63,11 @@ public:
 	void SetOrigin(const sf::Vector2f& origin);
 	void SetOrigin(const Origins& origins);
 
-	void SetOwner(GameObject* owner) { this->owner = owner; }
-	GameObject* GetOwner() { return owner; }
+	Origins GetOrigins();
+	sf::Vector2f GetOrigin();
 
-	const std::vector<Collider*>& GetCollisionTarget() { return collisionTargetVector; }
+	virtual sf::FloatRect GetLocalBounds();
+	virtual sf::FloatRect GetGlobalBounds();
 
 public:
 	void Reset();

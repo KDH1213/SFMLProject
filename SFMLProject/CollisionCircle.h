@@ -19,6 +19,9 @@ public:
 	void SetOrigin(const sf::Vector2f& origin);
 	void SetOrigin(const Origins& origins) override;
 
+	sf::FloatRect GetLocalBounds() { return collisionCircle.getLocalBounds(); }
+	sf::FloatRect GetGlobalBounds() { return collisionCircle.getGlobalBounds(); }
+
 public:
 	void Init() override;
 	void Reset() override;
