@@ -1,26 +1,22 @@
 #pragma once
+
 #include "GameObject.h"
-#include "PlayerFSM.h"
+#include "EnemyFSM.h"
 
-class Rigidbody;
-
-class Player : public GameObject
+class Enemy : public GameObject
 {
 protected:
-	sf::Sprite	sprite;
-	PlayerFSM	fsm;
+	sf::Sprite		sprite;
 
+	EnemyFSM*		fsm;
 	sf::Vector2f	moveDirection;
 	DefaultStatus	currentStatus;
+	EnemyStateType	currentState;
 
-	bool			isJump;
-	bool			isHit;
 	bool			isDead;
 	bool			isFlipX;
 
 public:
-	void InputMove();
-	void InputJump();
 	void TakeDamage();
 	void OnFlipX();
 	bool IsFlipX() { return isFlipX; }
@@ -50,8 +46,8 @@ public:
 	sf::FloatRect GetLocalBounds() const;
 	sf::FloatRect GetGlobalBounds() const;
 public:
-	Player(const std::string& name = "Player");
-	virtual ~Player();
-	Player& operator= (const Player& other) = delete;
+	Enemy(const std::string& name = "Enemy");
+	virtual ~Enemy();
+	Enemy& operator= (const Enemy& other) = delete;
 };
 

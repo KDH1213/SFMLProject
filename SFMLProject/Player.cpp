@@ -116,7 +116,7 @@ void Player::SetScale(const sf::Vector2f& scale)
 {
 	this->scale = scale;
 	sprite.setScale(scale);
-	collider->SetScale(scale);
+	collider->SetOwnerScale(scale);
 }
 
 void Player::SetRotation(float angle)

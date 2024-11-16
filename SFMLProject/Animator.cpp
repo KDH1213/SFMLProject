@@ -199,14 +199,14 @@ bool Animator::LoadCsv(const std::string& filePath)
 
 	std::string animationCsvPath;
 	std::string animationId;
-	for (int i = 2; i < doc.GetRowCount(); ++i)
+	for (int i = 1; i < doc.GetRowCount(); ++i)
 	{
 		auto row = doc.GetRow<std::string>(i);
 		animationCsvPath = row[0];
 		animationId = row[1];
 
 		ResourcesManager<Animation>::GetInstance().Load(animationId, animationCsvPath);
-		Animation* animation = &ResourcesManager<Animation>::GetInstance().Get(animationId);
+		Animation* animation = new Animation(ResourcesManager<Animation>::GetInstance().Get(animationId));
 		AddAnimation(animation, animationId);
 	}
 	return true;

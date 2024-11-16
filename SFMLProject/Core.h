@@ -50,6 +50,8 @@ enum class LayerType
 	Default,
 	TileMap,
 	BackGround,
+	Block,
+	Item,
 	Player,
 	Enemy,
 	PlayerBullet,
@@ -64,6 +66,9 @@ enum class LayerType
 enum class ColliderLayer
 {
 	Default,
+	Wall,
+	Block,
+	Item,
 	Player,
 	Enemy,
 	PlayerBullet,
@@ -93,4 +98,20 @@ enum class PlayerStateType
 	Dead,
 
 	End
+};
+
+enum class EnemyStateType
+{
+	Idle, 
+	Scout,
+	Chase,
+	Hit,
+	Dead,
+	End
+};
+
+enum class ObjectType
+{
+	Wall,
+	Item,
 };
