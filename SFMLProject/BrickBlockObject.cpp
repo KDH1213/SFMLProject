@@ -56,3 +56,23 @@ void BrickBlockObject::OnCollisionStay(Collider* target)
 void BrickBlockObject::OnCollisionEnd(Collider* target)
 {
 }
+
+bool BrickBlockObject::Save() const
+{
+	return false;
+}
+
+bool BrickBlockObject::Load()
+{
+	return false;
+}
+
+bool BrickBlockObject::SaveCsv(const std::string& filePath) const
+{
+	return false;
+}
+
+bool BrickBlockObject::LoadCsv(const std::string& filePath)
+{
+	return false;
+}

@@ -4,12 +4,29 @@
 
 class Player;
 
-class BlockObject : public SpriteGameObject
+class BlockObject : public GameObject
 {
 protected:
-	BlockType		type;
-	Player*			player;
+	sf::RectangleShape	render;
+	BlockType			type;
+	Player*				player;
 
+	sf::IntRect			textureUvRect;
+	sf::Vector2u		rectSize;
+	std::string			textureID;
+
+public:
+	void Start() override;
+
+	virtual void SetUvRect(const sf::IntRect uvRect);
+	void SetScale(const sf::Vector2f& scale) override;
+	sf::Vector2f GetScale() const override;
+
+	void SetRotation(float angle) override;
+	void SetPosition(const sf::Vector2f& pos) override;
+	void SetOrigin(Origins preset) override;
+	void SetOrigin(const sf::Vector2f& newOrigin) override;
+	void Render(sf::RenderWindow& renderWindow) override;
 public:
 	virtual void OnCollisionEnter(Collider* target);
 	virtual void OnCollisionStay(Collider* target);

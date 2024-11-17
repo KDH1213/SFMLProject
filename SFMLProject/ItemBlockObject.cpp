@@ -1,9 +1,28 @@
 #include "stdafx.h"
 #include "ItemBlockObject.h"
 
+bool ItemBlockObject::Save() const
+{
+	return false;
+}
+
+bool ItemBlockObject::Load()
+{
+	return false;
+}
+
+bool ItemBlockObject::SaveCsv(const std::string& filePath) const
+{
+	return false;
+}
+
+bool ItemBlockObject::LoadCsv(const std::string& filePath)
+{
+	return false;
+}
+
 ItemBlockObject::ItemBlockObject(ItemType type, const std::string& texId, const std::string& changeTexId, const std::string& name)
 	: BlockObject(BlockType::Item, texId, name)
-	, changeTextureID(changeTexId)
 	, itemType(type)
 	, itemCount(1)
 {

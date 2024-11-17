@@ -7,6 +7,12 @@ public:
 	virtual void OnCollisionStay(Collider* target);
 	virtual void OnCollisionEnd(Collider* target);
 
+
+public:
+	bool Save() const override;
+	bool Load() override;
+	bool SaveCsv(const std::string& filePath) const override;
+	bool LoadCsv(const std::string& filePath) override;
 public:
 	BrickBlockObject(const std::string& texId, const std::string& name = "BrickBlock");
 	virtual ~BrickBlockObject() = default;
