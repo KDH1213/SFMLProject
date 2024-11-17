@@ -10,6 +10,9 @@ protected:
 	sf::Sprite*									sprite;
 	sf::IntRect									uvRect;
 
+	sf::Vector2f								rectSize;
+	sf::Vector2f								scale;
+
 	GameObject*									owner;
 	bool										isPlaying;
 
@@ -26,12 +29,15 @@ public:
 	void ChangeAnimation(const std::string& animationName, bool isRepeat = false);
 	void Render(sf::RenderWindow& renderWindow);
 	void SetCurrentFrameRect(const sf::IntRect& rect);
-	void SetCurrentFrameSize(const sf::Vector2u& size);
+	void SetCurrentFrameInfo(const sf::Vector2u& size, const sf::IntRect& rect);
 	sf::Sprite& GetCurrentSprite() { return *sprite; }
 
 
 	void SetOrigin(Origins preset);
 	void SetOrigin(const sf::Vector2f& newOrigin);
+
+	void SetScale(const sf::Vector2f& scale);
+	sf::Vector2f GetScale() { return rectSize;	}
 
 	void Test1();
 	void Test2();

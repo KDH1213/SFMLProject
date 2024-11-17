@@ -86,7 +86,7 @@ void Animator::ChangeAnimation(const std::string& animationName, bool isRepeat)
 	currentAnimation->SetRepeat(false);
 	currentAnimation = animation->second;
 
-	sprite->setTexture(*currentAnimation->GetTexture(), true);
+	sprite->setTexture(*currentAnimation->GetTexture());
 	currentAnimation->Play(isRepeat);
 }
 
@@ -106,13 +106,21 @@ void Animator::Render(sf::RenderWindow& renderWindow)
 void Animator::SetCurrentFrameRect(const sf::IntRect& rect)
 {
 	uvRect = rect;
+
+
+	// owner->GetScale() * 
+	// sprite->setScale()
 	// Utils::SetOrigin(*sprite, uvRect, owner->GetOrigins());
 	sprite->setTextureRect(uvRect);
 }
 
-void Animator::SetCurrentFrameSize(const sf::Vector2u& size)
+void Animator::SetCurrentFrameInfo(const sf::Vector2u& size, const sf::IntRect& rect)
 {
-	//sprite->setOrigin((sf::Vector2f)size * 0.5f);
+	uvRect = rect;
+	rectSize = {(float)( size.x / uvRect.width) , (float)(size.y / uvRect.height )};
+	sprite->setScale(rectSize * owner->GetScale());
+
+	sprite->setTextureRect(uvRect);
 	Utils::SetOrigin(*sprite, uvRect, owner->GetOrigins());
 }
 
@@ -129,6 +137,12 @@ void Animator::SetOrigin(const sf::Vector2f& newOrigin)
 	/*origins = Origins::Custom;
 	originPosition = newOrigin;*/
 	sprite->setOrigin(newOrigin);
+}
+
+void Animator::SetScale(const sf::Vector2f& scale)
+{
+	this->scale = scale * rectSize;
+	sprite->setScale(this->scale);
 }
 
 void Animator::Test1()

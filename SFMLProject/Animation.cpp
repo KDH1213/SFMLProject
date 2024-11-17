@@ -142,10 +142,10 @@ void Animation::Play(bool isRepeat)
 	this->isRepeat = isRepeat;
 	isPlaying = true;
 
+	animator->SetCurrentFrameInfo(frameInfoVector[0].rectSize, frameInfoVector[0].uvRect);
 	if (animator != nullptr)
 	{
-		animator->SetCurrentFrameSize(frameInfoVector[0].rectSize);
-		animator->SetCurrentFrameRect(frameInfoVector[0].uvRect);
+		//animator->SetCurrentFrameRect();
 	}
 }
 
@@ -185,7 +185,9 @@ void Animation::Update(float deltaTime)
 			}
 
 		}
-		animator->SetCurrentFrameRect(frameInfoVector[currentIndex].uvRect);
+
+		animator->SetCurrentFrameInfo(frameInfoVector[currentIndex].rectSize, frameInfoVector[currentIndex].uvRect);
+		//animator->SetCurrentFrameRect(frameInfoVector[currentIndex].uvRect);
 	}
 }
 
