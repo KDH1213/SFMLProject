@@ -113,7 +113,8 @@ void Player::SetPosition(const sf::Vector2f& pos)
 void Player::SetScale(const sf::Vector2f& scale)
 {
 	this->scale = scale;
-	sprite.setScale(scale);
+
+	animator->SetScale(scale);
 	collider->SetOwnerScale(scale);
 }
 
