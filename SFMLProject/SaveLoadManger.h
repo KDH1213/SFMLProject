@@ -7,7 +7,7 @@ class SaveLoadManager : public Singleton<SaveLoadManager>
 	friend class Singleton<SaveLoadManager>;
 
 protected:
-	std::string tempSavePath = "save.json";
+	std::string tempSavePath = "save1.json";
 
 
 public:

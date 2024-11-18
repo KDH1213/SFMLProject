@@ -13,6 +13,9 @@ public:
 	void Release() override;
 	void Update(float deltaTime) override;
 	void Render(sf::RenderWindow& window)override;
+
+	void Save() override;
+	void Load() override;
 public:
 	SceneDev1();
 	~SceneDev1();

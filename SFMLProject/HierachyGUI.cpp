@@ -7,6 +7,7 @@
 
 #include "AnimationToolGUI.h"
 #include "WallCollisionObjectEditor.h"
+#include "Scene.h"
 
 HierachyGUI::HierachyGUI(const std::string& name)
 	: GUI(name)
@@ -74,8 +75,18 @@ void HierachyGUI::Update()
 
     if (isOnWallCollisionTool)
         wallCollisionToolGUI->Update();
-    
 
+
+	ImGui::SameLine();
+	if (ImGui::Button("Save", { 100, 20.f }))
+	{
+        SceneManager::GetInstance().GetCurrentScene()->Save();
+	}
+	ImGui::SameLine();
+	if (ImGui::Button("Load", { 100, 20.f }))
+	{
+        SceneManager::GetInstance().GetCurrentScene()->Load();
+	}
 	ImGui::End();
 }
 

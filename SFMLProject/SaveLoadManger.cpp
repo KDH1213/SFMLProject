@@ -39,12 +39,12 @@ SaveDataVC SaveLoadManager::Load()
 	}
 	f.close();
 
-	while (saveData->version < 2)
+	/*while (saveData->version < 2)
 	{
 		SaveData* oldData = saveData;
 		saveData = saveData->VersionUp();
 		delete oldData;
-	}
+	}*/
 
 	SaveDataVC ret(*((SaveDataVC*)saveData));
 	delete saveData;

@@ -3,12 +3,14 @@
 namespace sf
 {
 	NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(sf::Vector2f, x, y);
+	NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(sf::Vector2u, x, y);
 	NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(sf::IntRect, left, top, width, height);
 }
 
 #include "PlayerSaveData.h"
 #include "BlockSaveData.h"
 #include "WallCollisionSaveData.h"
+#include "TileMapSaveData.h"
 
 struct SaveData
 {
@@ -18,6 +20,7 @@ public:
 	std::vector<BlockSaveData>			blockSaveDatas;
 	std::vector<ItemBlockSaveData>		itemBlockSaveDatas;
 	std::vector<WallCollisionSaveData>	wallCollisionSaveDatas;
+	TileMapSaveData						tileMapSaveData;
 
 	virtual SaveData* VersionUp() = 0;
 };
@@ -28,7 +31,7 @@ public:
 
 public:
 	SaveData* VersionUp() override;
-	NLOHMANN_DEFINE_TYPE_INTRUSIVE(SaveDataV1, version, playerData, blockSaveDatas, itemBlockSaveDatas, wallCollisionSaveDatas);
+	NLOHMANN_DEFINE_TYPE_INTRUSIVE(SaveDataV1, version, playerData, blockSaveDatas, itemBlockSaveDatas, wallCollisionSaveDatas, tileMapSaveData);
 
 public:
 	SaveDataV1() { version = 1; }

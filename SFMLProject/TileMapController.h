@@ -1,13 +1,14 @@
 #pragma once
 
 
+#include "TileMapSaveData.h"
+
 class TileMap;
 
 class TileMapController : public GameObject
 {
 protected:
 	std::vector<TileMap*>	tileMaps;
-
 	std::string				spriteSheetId;
 	sf::Vector2u			cellCount;
 	sf::Vector2f			cellSize;
@@ -31,6 +32,9 @@ public:
 
 	bool SaveCsv(const std::string& filePath) const override;
 	bool LoadCsv(const std::string& filePath) override;
+
+	TileMapSaveData GetTileMapSaveData() const;
+	void LoadTileMapSaveData(const TileMapSaveData& data);
 
 	sf::FloatRect GetLocalBounds() const override;
 	sf::FloatRect GetGlobalBounds() const override;

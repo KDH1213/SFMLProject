@@ -20,6 +20,11 @@
 #include "ItemBlockObject.h"
 #include "Collider.h"
 
+#include "PlayerSaveData.h"
+#include "BlockSaveData.h"
+#include "WallCollisionSaveData.h"
+#include "WallCollisionObject.h"
+
 void SceneDev1::Init()
 {
 	Scene::Init();
@@ -98,6 +103,62 @@ void SceneDev1::Update(float dt)
 void SceneDev1::Render(sf::RenderWindow& window)
 {
 	Scene::Render(window);
+}
+
+void SceneDev1::Save()
+{
+	SaveDataVC data;
+
+	data.playerData = ((Player*)FindGameObject("Player"))->GetPlayerSaveData();
+
+	for (auto& gameObjects : gameObjectVectors)
+	{
+		for (auto& gameObject : gameObjects)
+		{
+			auto tileMapController = dynamic_cast<TileMapController*>(gameObject);
+			if (tileMapController != nullptr)
+			{
+				data.tileMapSaveData = tileMapController->GetTileMapSaveData();
+			}
+
+			auto wallCollision = dynamic_cast<WallCollisionObject*>(gameObject);
+			if (wallCollision != nullptr)
+			{
+				data.wallCollisionSaveDatas.push_back(wallCollision->GetWallCollisionSaveData());
+			}
+
+			auto blockObject = dynamic_cast<BlockObject*>(gameObject);
+			if (wallCollision != nullptr)
+			{
+				data.blockSaveDatas.push_back(blockObject->GetBlockSaveDate());
+			}
+		}
+	}
+	SaveLoadManager::GetInstance().Save(data);
+}
+
+void SceneDev1::Load()
+{
+	SaveDataVC data = SaveLoadManager::GetInstance().Load();
+
+	Player* player = new Player();
+	player->LoadData(data.playerData);
+	player->Start();
+	AddGameObject(player, LayerType::Player);
+
+	for (const auto& data : data.blockSaveDatas)
+	{
+		BlockObject* newBlock = new BlockObject(BlockType::Default, "");
+		newBlock->LoadBlockSaveData(data);
+		newBlock->Start();
+		AddGameObject(newBlock, LayerType::Block);
+	}
+
+	TileMapController* tileMapController = new TileMapController("");
+	tileMapController->LoadTileMapSaveData(data.tileMapSaveData);
+
+	tileMapController->Start();
+	AddGameObject(tileMapController, LayerType::Default);
 }
 
 SceneDev1::SceneDev1()

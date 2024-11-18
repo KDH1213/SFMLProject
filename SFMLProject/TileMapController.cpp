@@ -64,8 +64,8 @@ bool TileMapController::SaveCsv(const std::string& filePath) const
         tileMapsSavePaths.push_back("tileMap/" + name + tileMap->GetName() + std::to_string(count) + ".csv");
         tileMap->SaveCsv("tileMap/" + name + tileMap->GetName() + std::to_string(count++) + ".csv");
     }
-
     outFile << "TileMapPath" << std::endl;
+    outFile << name << std::endl;
     for (auto& tileMapsSavePath : tileMapsSavePaths)
     {
         outFile << tileMapsSavePath << std::endl;
@@ -78,7 +78,9 @@ bool TileMapController::LoadCsv(const std::string& filePath)
 {
     rapidcsv::Document doc(filePath);
 
-    for (int i = 0; i < doc.GetRowCount(); ++i)
+    name = doc.GetCell<std::string>(0, 0);
+
+    for (int i = 1; i < doc.GetRowCount(); ++i)
     {
         auto row = doc.GetRow<std::string>(i);
         TileMap* tileMap = new TileMap("","TileMap");
@@ -88,6 +90,22 @@ bool TileMapController::LoadCsv(const std::string& filePath)
     }
 
     return true;
+}
+
+TileMapSaveData TileMapController::GetTileMapSaveData() const
+{
+    return TileMapSaveData({ GetGameObjectSaveData(), spriteSheetId, cellCount, cellSize, textureTileSize });
+}
+
+void TileMapController::LoadTileMapSaveData(const TileMapSaveData& data)
+{
+    LoadGameObjectData(data.gameObjectSaveData);
+    cellCount = data.cellCount;
+    cellSize = data.cellSize;
+    spriteSheetId = data.spriteSheetId;
+    textureTileSize = data.textureTileSize;
+
+    LoadCsv("tileMap/" + name + ".csv");
 }
 
 sf::FloatRect TileMapController::GetLocalBounds() const

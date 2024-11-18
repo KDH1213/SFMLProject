@@ -9,7 +9,9 @@ public:
 	void Exit() override;
 	void Release() override;
 	void Update(float dt) override;
-	void Render(sf::RenderWindow& window)override;
+	void Render(sf::RenderWindow& window)override; 
+	void Save() override;
+	void Load() override;
 public:
 	SceneDev2();
 	~SceneDev2();

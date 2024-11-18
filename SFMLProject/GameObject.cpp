@@ -161,6 +161,7 @@ GameObjectSaveData GameObject::GetGameObjectSaveData() const
 
 void GameObject::LoadGameObjectData(const GameObjectSaveData& data)
 {
+	name = data.name;
 	position = data.position;
 	rotation = data.rotation;
 	scale = data.scale;

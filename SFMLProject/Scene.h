@@ -58,6 +58,9 @@ public:
 	virtual void FixedUpdate(float fixedDeltaTime);
 	virtual void Render(sf::RenderWindow& window);
 
+	virtual void Save() = 0;
+	virtual void Load() = 0;
+
 public:
 	Scene(const SceneIds id);
 	virtual ~Scene();

@@ -55,6 +55,14 @@ void SceneDev2::Render(sf::RenderWindow& window)
 	Scene::Render(window);
 }
 
+void SceneDev2::Save()
+{
+}
+
+void SceneDev2::Load()
+{
+}
+
 SceneDev2::SceneDev2()
 	: Scene(SceneIds::SceneDev2)
 {

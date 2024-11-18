@@ -13,5 +13,5 @@ struct GameObjectSaveData
 	bool				active;
 	int					sortingOrder;
 
-	NLOHMANN_DEFINE_TYPE_INTRUSIVE(GameObjectSaveData, name, position, scale, origin, originPreset, active, sortingOrder);
+	NLOHMANN_DEFINE_TYPE_INTRUSIVE(GameObjectSaveData, name, position, rotation, scale, origin, originPreset, active, sortingOrder);
 };
