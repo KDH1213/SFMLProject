@@ -43,7 +43,7 @@ void SceneDev1::Enter()
 	TEXTURE_MANAGER.Load("Items", "graphics/Items.png");
 	TEXTURE_MANAGER.Load("tiles", "graphics/tiles.png");
 	TEXTURE_MANAGER.Load("tile_set", "graphics/tile_set.png");
-	TEXTURE_MANAGER.Load("characters", "graphics/characters.gif");
+	TEXTURE_MANAGER.Load("mario_bros", "graphics/mario_bros.png");
 
 	ResourcesManager<sf::Font>::GetInstance().Load("KOMIKAP", "fonts/KOMIKAP_.ttf");
 	ResourcesManager<Animation>::GetInstance().Load("marioIdle", "animations/marioIdle.csv");

@@ -1,4 +1,4 @@
-TEXTUREID,ANIMAIONID,REPEAT(0: true, 1: false)
-characters,marioBreak,0
-
-,64,128,350,0,16,32,0.100000
+TEXTUREID,ANIMAIONID,REPEAT(0: true, 1: false),,,,
+mario_bros,marioBreak,0,,,,,
+,,,,,,,
+mario_bros,64,128,144,0,16,32,0.1

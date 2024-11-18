@@ -1,4 +1,4 @@
-TEXTUREID,ANIMAIONID,REPEAT(0: true, 1: false)
-characters,marioJump,0
-
-,64,128,369,0,16,32,0.297000
+TEXTUREID,ANIMAIONID,REPEAT(0: true, 1: false),,,,
+mario_bros,marioJump,0,,,,,
+,,,,,,,
+,64,128,144,0,16,32,0.297
