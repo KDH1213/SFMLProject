@@ -20,8 +20,11 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
+
 #include "Singleton.h"
 
+#include "json.hpp"
+using json = nlohmann::json;
 #include "InputManager.h"
 #include "ResourcesManager.h"
 #include "TimeManager.h"
@@ -30,6 +33,7 @@
 #include "SceneManager.h"
 #include "Scene.h"
 #include "SoundManger.h"
+#include "SaveLoadManger.h"
 
 #include "Defines.h"
 #include "Utils.h"

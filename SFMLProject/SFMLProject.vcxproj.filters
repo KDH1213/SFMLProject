@@ -190,6 +190,12 @@
     <Filter Include="Contants\0. Editor\Imgui\GUI\CompoentGUI\Block">
       <UniqueIdentifier>{3c7d1991-839a-4a41-877d-8e4bcbffe3fd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Manager\10. SaveLoadManger">
+      <UniqueIdentifier>{df57a131-b81b-4d00-94cb-8957cf4ac4ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\10. SaveLoadManger\SaveData">
+      <UniqueIdentifier>{a8a2c5cf-732c-45e8-9bb8-6dde62c938ce}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -440,6 +446,12 @@
     </ClCompile>
     <ClCompile Include="BlockGUI.cpp">
       <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveLoadManger.cpp">
+      <Filter>Manager\10. SaveLoadManger</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveData.cpp">
+      <Filter>Manager\10. SaveLoadManger\SaveData</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -709,6 +721,15 @@
     </ClInclude>
     <ClInclude Include="BlockGUI.h">
       <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveLoadManger.h">
+      <Filter>Manager\10. SaveLoadManger</Filter>
+    </ClInclude>
+    <ClInclude Include="json.hpp">
+      <Filter>Core\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveData.h">
+      <Filter>Manager\10. SaveLoadManger\SaveData</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
