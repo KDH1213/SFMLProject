@@ -118,29 +118,33 @@ void BlockObject::OnCollisionStay(Collider* target)
 		Rectangle rect(collider->GetPosition(), collider->GetScale());
 		Rectangle targetRect(target->GetPosition(), target->GetScale());
 
-		if (rect.topPosition != targetRect.bottomPosition)
-		{
-			if (position.x < player->GetPosition().x && player->GetRigidbody()->GetCurrentVelocity().x < 0.f)
-			{
-				player->SetPosition({ rect.rightPosition + target->GetScale().x * 0.5f, player->GetPosition().y });
-				targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
-			}
-			else if (position.x > player->GetPosition().x && player->GetRigidbody()->GetCurrentVelocity().x > 0.f)
-			{
-				targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
-				player->SetPosition({ rect.leftPosition - target->GetScale().x * 0.5f, player->GetPosition().y });
-			}
-		}
+		sf::Vector2f prevPosition = player->GetRigidbody()->GetCurrentVelocity() * TimeManager::GetInstance().GetFixedDeletaTime();
 
-	
 
-		if (rect.topPosition == targetRect.bottomPosition && !targetRigidbody->IsGround())
+		if (rect.topPosition == targetRect.bottomPosition)
 		{
 			if (position.x < player->GetPosition().x && player->GetRigidbody()->GetCurrentVelocity().x < 0.f)
 				targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
 			else if (position.x > player->GetPosition().x && player->GetRigidbody()->GetCurrentVelocity().x > 0.f)
 				targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
 		}
+		else
+		{ 
+			if (rect.bottomPosition > targetRect.topPosition)
+			{
+				if (position.x < player->GetPosition().x && player->GetRigidbody()->GetCurrentVelocity().x < 0.f)
+				{
+					player->SetPosition({ rect.rightPosition + target->GetScale().x * 0.5f, player->GetPosition().y });
+					targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
+				}
+				else if (position.x > player->GetPosition().x && player->GetRigidbody()->GetCurrentVelocity().x > 0.f)
+				{
+					targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
+					player->SetPosition({ rect.leftPosition - target->GetScale().x * 0.5f, player->GetPosition().y });
+				}
+			}
+		}
+		
 	}
 
 }
