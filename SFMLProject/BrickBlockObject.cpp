@@ -19,7 +19,7 @@ void BrickBlockObject::OnCollisionEnter(Collider* target)
 
 		Rectangle rect(collider->GetPosition(), collider->GetScale());
 		Rectangle targetRect(targetPosition, target->GetScale());
-		float prevPositionY = (target->GetOwner()->GetRigidbody()->GetCurrentVelocity().y + target->GetOwner()->GetRigidbody()->GetCurrentDropSpeed()) * TimeManager::GetInstance().GetFixedDeletaTime() * player->GetSpeed();
+		float prevPositionY = player->GetRigidbody()->GetCurrentVelocity().y * TimeManager::GetInstance().GetFixedDeletaTime();
 
 		if (rect.topPosition > targetRect.bottomPosition - prevPositionY)
 		{
@@ -27,7 +27,9 @@ void BrickBlockObject::OnCollisionEnter(Collider* target)
 			player->SetPosition({ targetPosition.x , rect.topPosition - target->GetScale().y * 0.5f });
 		}
 		else if (rect.bottomPosition < targetRect.topPosition - prevPositionY)
+		{
 			SetDestory(true);
+		}
 	}
 }
 
@@ -37,13 +39,36 @@ void BrickBlockObject::OnCollisionStay(Collider* target)
 	{
 		Rigidbody* targetRigidbody = player->GetRigidbody();
 
-		if (!targetRigidbody->IsGround())
+		Rectangle rect(collider->GetPosition(), collider->GetScale());
+		Rectangle targetRect(target->GetPosition(), target->GetScale());
+
+		sf::Vector2f prevPosition = player->GetRigidbody()->GetCurrentVelocity() * TimeManager::GetInstance().GetFixedDeletaTime();
+
+
+		if (rect.topPosition == targetRect.bottomPosition)
 		{
-			if(position.x < player->GetPosition().x && player->GetRigidbody()->GetCurrentVelocity().x < 0.f)
+			if (position.x < player->GetPosition().x && player->GetRigidbody()->GetCurrentVelocity().x < 0.f)
 				targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
 			else if (position.x > player->GetPosition().x && player->GetRigidbody()->GetCurrentVelocity().x > 0.f)
 				targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
 		}
+		else
+		{
+			if (rect.bottomPosition > targetRect.topPosition)
+			{
+				if (position.x < player->GetPosition().x && player->GetRigidbody()->GetCurrentVelocity().x < 0.f)
+				{
+					player->SetPosition({ rect.rightPosition + target->GetScale().x * 0.5f, player->GetPosition().y });
+					targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
+				}
+				else if (position.x > player->GetPosition().x && player->GetRigidbody()->GetCurrentVelocity().x > 0.f)
+				{
+					targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
+					player->SetPosition({ rect.leftPosition - target->GetScale().x * 0.5f, player->GetPosition().y });
+				}
+			}
+		}
+
 	}
 
 	/*if (target->GetColliderLayer() == ColliderLayer::Wall || target->GetColliderLayer() == ColliderLayer::Enemy

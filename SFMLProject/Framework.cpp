@@ -21,6 +21,7 @@ void Framework::Update()
 	{
 		InputManager::GetInstance().UpDownCheck();
 		TimeManager::GetInstance().Update();
+		ColliderManager::GetInstance().DestoryColliderCheck();
 
 		while (renderWindow->pollEvent(event))
 		{

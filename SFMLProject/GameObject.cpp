@@ -52,7 +52,7 @@ void GameObject::SetDestory(bool destory)
 	isDestory = destory;
 	if (destory && collider != nullptr)
 	{
-		//collider->SetDestory(isDestory);
+		collider->OnDestory();
 	}
 }
 

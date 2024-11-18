@@ -49,6 +49,7 @@ void Collider::OnDestory()
 {
 	isDestory = true;
 	SetActive(false);
+	ColliderManager::GetInstance().SetDestoryCollider(this);
 }
 
 bool Collider::IsDestory()

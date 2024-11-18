@@ -94,8 +94,8 @@ void ColliderManager::LayerCollision(int left, int right)
     {
         for (int j = 0; j < rightSize; ++j)
         {
-            //if (!colliderVector[left][i]->GetActive() || !colliderVector[right][j]->GetActive())
-            //    continue;
+            if (!colliderVector[left][i]->GetActive() || !colliderVector[right][j]->GetActive())
+                continue;
 
             if (colliderVector[left][i] == colliderVector[right][j])
                 continue;
