@@ -35,16 +35,12 @@ void SceneDev1::Enter()
 	CameraManger::GetInstance().SetCamera(mainCamera);
 	CameraManger::GetInstance().SetCamera(uICamera);
 
-	TEXTURE_MANAGER.Load("Background", "graphics/Background_Cave_mix.png");
-	TEXTURE_MANAGER.Load("Char", "graphics/CharRun.png");
 	TEXTURE_MANAGER.Load("Player", "graphics/player.png");
-	TEXTURE_MANAGER.Load("PlayerMove", "graphics/PC_Move.png");
-	TEXTURE_MANAGER.Load("PlayerDash", "graphics/PC_Dash.png");
-	TEXTURE_MANAGER.Load("background", "graphics/background_sheet.png");
 
 	TEXTURE_MANAGER.Load("enemies", "graphics/enemies.png");
-	TEXTURE_MANAGER.Load("background", "graphics/background_sheet.png");
-	TEXTURE_MANAGER.Load("mario_bros", "graphics/mario_bros.png");
+
+	TEXTURE_MANAGER.Load("enemies", "graphics/enemies.png");
+	TEXTURE_MANAGER.Load("Items", "graphics/Items.png");
 	TEXTURE_MANAGER.Load("tiles", "graphics/tiles.png");
 	TEXTURE_MANAGER.Load("tile_set", "graphics/tile_set.png");
 	TEXTURE_MANAGER.Load("characters", "graphics/characters.gif");

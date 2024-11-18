@@ -211,6 +211,9 @@
     <Filter Include="Contants\Object\GameObject">
       <UniqueIdentifier>{2bf2f865-c382-47d6-8da9-93b6060f9507}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contants\0. Editor\Imgui\GUI\ToolGUI\Object">
+      <UniqueIdentifier>{7590d7cc-3fb9-45a9-afef-e97d7206b01e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -491,6 +494,9 @@
     </ClCompile>
     <ClCompile Include="TrickColliderObject.cpp">
       <Filter>Contants\Object\WallCollisionObject</Filter>
+    </ClCompile>
+    <ClCompile Include="CreateObjectTool.cpp">
+      <Filter>Contants\0. Editor\Imgui\GUI\ToolGUI\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -793,6 +799,9 @@
     </ClInclude>
     <ClInclude Include="TrickColliderObject.h">
       <Filter>Contants\Object\WallCollisionObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CreateObjectTool.h">
+      <Filter>Contants\0. Editor\Imgui\GUI\ToolGUI\Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

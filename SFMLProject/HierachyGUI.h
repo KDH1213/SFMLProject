@@ -11,8 +11,11 @@ protected:
 	InspectorGUI*			currentObjectInspector;
 	GUI*					animationToolGUI;
 	GUI*					wallCollisionToolGUI;
+	GUI*					createObjectTool;
+
 	bool					isOnAnimationTool;
 	bool					isOnWallCollisionTool;
+	bool					isOnCreateObjectTool;
 
 public:
 	virtual void Init();

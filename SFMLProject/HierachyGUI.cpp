@@ -7,16 +7,19 @@
 
 #include "AnimationToolGUI.h"
 #include "CollisionObjectEditor.h"
+#include "CreateObjectTool.h"
 #include "Scene.h"
 
 HierachyGUI::HierachyGUI(const std::string& name)
-	: GUI(name)
+    : GUI(name)
     , currentScene(nullptr)
     , currentObjectInspector(nullptr)
     , isOnAnimationTool(false)
     , isOnWallCollisionTool(false)
     , animationToolGUI(nullptr)
     , wallCollisionToolGUI(nullptr)
+    , createObjectTool(nullptr)
+    , isOnCreateObjectTool(false)
 {
 }
 
@@ -25,11 +28,20 @@ HierachyGUI::~HierachyGUI()
     if (animationToolGUI != nullptr)
         delete animationToolGUI;
 
+    if (wallCollisionToolGUI != nullptr)
+        delete wallCollisionToolGUI;
+
+    if (createObjectTool != nullptr)
+        delete createObjectTool;
 }
+
 void HierachyGUI::Init()
 {
     animationToolGUI = new AnimationToolGUI;
     wallCollisionToolGUI = new CollisionObjectEditor;
+    createObjectTool = new CreateObjectTool;
+
+    createObjectTool->Init();
 }
 
 void HierachyGUI::Update()
@@ -76,7 +88,13 @@ void HierachyGUI::Update()
     if (isOnWallCollisionTool)
         wallCollisionToolGUI->Update();
 
+    ImGui::SameLine();
+    if (ImGui::Button("OnCreateObjectTool", { 100, 20.f }))
+        isOnCreateObjectTool = !isOnCreateObjectTool;
 
+    if (isOnCreateObjectTool)
+        createObjectTool->Update();
+    
 	ImGui::SameLine();
 	if (ImGui::Button("Save", { 100, 20.f }))
 	{
