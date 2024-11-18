@@ -3,10 +3,63 @@
 #include "Collider.h"
 #include "Player.h"
 #include "Rigidbody.h"
+#include "Enemy.h"
 
 BrickBlockObject::BrickBlockObject(const std::string& texId, const std::string& name)
 	: BlockObject(BlockType::Brick, texId, name)
+	, isHit(false)
+	, hitMoveDistance(32.f)
+	, moveSpeed(500.f)
+	, isReturn(false)
+	, currentMoveTime(0.f)
 {
+}
+
+void BrickBlockObject::OnBreak()
+{
+	SetDestory(true);
+}
+
+void BrickBlockObject::OnHitMove()
+{
+	if (!isHit)
+	{
+		isHit = true;
+		startPosition = position;
+		endPosition = position;
+		endPosition.y -= hitMoveDistance;
+		currentMoveTime = 0.f;
+	}
+
+	isReturn = false;
+}
+
+void BrickBlockObject::Update(const float& deltaTime)
+{
+	if (isHit)
+	{
+		position.y += moveSpeed * deltaTime * (isReturn ? 1.f : -1.f);
+		// currentMoveTime += deltaTime;
+
+		if (!isReturn)
+		{
+			if (position.y <= endPosition.y)
+			{
+				position.y = endPosition.y;
+				isReturn = true;
+			}
+		}
+		else
+		{
+			if (position.y >= startPosition.y)
+			{
+				position.y = startPosition.y;
+				isHit = false;
+			}
+		}
+
+		SetPosition(position);
+	}
 }
 
 void BrickBlockObject::OnCollisionEnter(Collider* target)
@@ -28,7 +81,24 @@ void BrickBlockObject::OnCollisionEnter(Collider* target)
 		}
 		else if (rect.bottomPosition < targetRect.topPosition - prevPositionY)
 		{
-			SetDestory(true);
+			auto targets = collider->GetCollisionTargets();
+
+			for (auto& target : targets)
+			{
+				Enemy* enemy = dynamic_cast<Enemy*>(target);
+				if(enemy != nullptr)
+					enemy->TakeDamage();
+			}
+
+
+			OnHitMove();
+			player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x, 0.f });
+			/*if (player->GetCurrentHP() == 1)
+			{
+				OnHitMove();
+			}
+			else
+				OnBreak();*/
 		}
 	}
 }

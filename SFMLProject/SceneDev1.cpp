@@ -72,6 +72,9 @@ void SceneDev1::Enter()
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Enemy, ColliderLayer::Player);
 
 	BlockObject* block = AddGameObject(new BlockObject(BlockType::Brick ,"tile_set"), LayerType::Block);
+
+	BrickBlockObject* brickBlock = AddGameObject(new BrickBlockObject("tile_set"), LayerType::Block);
+	brickBlock->SetPosition({ 100.f, -150.f });
 	//  ItemBlockObject* block = AddGameObject(new ItemBlockObject(ItemType::MushRoom, "tile_set", "tile_set"), LayerType::Block);
 
 	TileMapController* tileMapController = AddGameObject(new TileMapController("TileMapController"), LayerType::Default);

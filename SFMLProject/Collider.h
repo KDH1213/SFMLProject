@@ -37,7 +37,7 @@ public:
 	void SetOwner(GameObject* owner) { this->owner = owner; }
 	GameObject* GetOwner() { return owner; }
 
-	const std::vector<Collider*>& GetCollisionTarget() { return collisionTargetVector; }
+	const std::vector<Collider*>& GetCollisionTargets() { return collisionTargetVector; }
 public:
 
 	bool GetActive() const { return active; }

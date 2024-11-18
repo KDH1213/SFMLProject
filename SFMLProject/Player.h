@@ -38,11 +38,12 @@ public:
 
 	const sf::Vector2f& GetMoveDirection() { return moveDirection; }
 
-	bool IsHit() { return isHit; }
 public:
 	void CreateAnimator() override;
-	float GetSpeed() { return currentStatus.speed; }
 
+	bool IsHit() const { return isHit; }
+	int GetCurrentHP() const { return currentStatus.hp; }
+	float GetSpeed() { return currentStatus.speed; }
 
 public:
 	void Awake() override;

@@ -103,9 +103,7 @@ void BlockObject::OnCollisionEnter(Collider* target)
 		}
 		else if (rect.bottomPosition < targetRect.topPosition - prevPositionY)
 		{
-			SetDestory(true);
-			// player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x, 0.f });
-
+			player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x, 0.f });
 		}
 	}
 }

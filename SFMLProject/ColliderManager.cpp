@@ -62,7 +62,7 @@ void ColliderManager::DestoryColliderCheck()
 {
     for (auto& destoryCollider : destoryVector)
     {
-        auto targetVector = destoryCollider->GetCollisionTarget();
+        auto targetVector = destoryCollider->GetCollisionTargets();
 
         for (auto& targetCollider : targetVector)
         {
