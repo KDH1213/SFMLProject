@@ -11,19 +11,25 @@ protected:
 	BlockType			type;
 	Player*				player;
 
-	sf::IntRect			textureUvRect;
-	sf::Vector2u		rectSize;
+	sf::IntRect			textureUVRect;
+	sf::Vector2f		rectSize;
 	std::string			textureID;
 
 public:
-	void Start() override;
 
-	virtual void SetUvRect(const sf::IntRect uvRect);
+	virtual void SetUVRect(const sf::IntRect uvRect);
 	void SetScale(const sf::Vector2f& scale) override;
-	sf::Vector2f GetScale() const override;
-
 	void SetRotation(float angle) override;
 	void SetPosition(const sf::Vector2f& pos) override;
+	sf::Vector2f GetScale() const override;
+
+	void SetSize(const sf::Vector2f& size);
+	virtual sf::IntRect GetTextureUVRect() { return textureUVRect; }
+	virtual sf::Vector2f GetRectSize() { return rectSize; }
+
+	const std::string& GetTextureID() const { return textureID; }
+
+	void Start() override;
 	void SetOrigin(Origins preset) override;
 	void SetOrigin(const sf::Vector2f& newOrigin) override;
 	void Render(sf::RenderWindow& renderWindow) override;
@@ -32,6 +38,8 @@ public:
 	virtual void OnCollisionStay(Collider* target);
 	virtual void OnCollisionEnd(Collider* target);
 
+	sf::FloatRect GetLocalBounds() const;
+	sf::FloatRect GetGlobalBounds() const;
 public:
 	bool Save() const override;
 	bool Load() override;

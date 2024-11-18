@@ -18,8 +18,8 @@ void ColliderGUI::Update()
 {
 	if (collider == nullptr)
 		return;
-	ImGui::Text("Collider"); ImGui::SameLine();
-	ImGui::BeginChild("##Collider");
+	ImGui::Text("Collider");
+	ImGui::BeginChild("##Collider", {300.f,100.f});
 
 	sf::Vector2f offsetPosition = collider->GetOffsetPosition();
 	float offsetPos[2] = { offsetPosition.x, offsetPosition.y };

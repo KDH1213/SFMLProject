@@ -4,12 +4,14 @@
 #include "imgui.h"
 #include "TileMap.h"
 #include "TileMapController.h"
+#include "BlockObject.h"
 
 #include "ComponentGUI.h"
 #include "TileMapControllerGUI.h"
 #include "TileMapGUI.h"
 #include "ColliderGUI.h"
 #include "AnimationGUI.h"
+#include "BlockGUI.h"
 
 
 InspectorGUI::InspectorGUI(const std::string& name)
@@ -34,6 +36,7 @@ void InspectorGUI::Init()
 	componetGUIvector.push_back(new ColliderGUI);
 	componetGUIvector.push_back(new TileMapGUI);
 	componetGUIvector.push_back(new TileMapControllerGUI);
+	componetGUIvector.push_back(new BlockGUI);
 }
 
 void InspectorGUI::Update()
@@ -89,6 +92,11 @@ void InspectorGUI::SetObject(GameObject* object)
 		componetGUIvector[(int)ComponentGUIType::TileMapController]->SetObject(targetObject);
 	else
 		componetGUIvector[(int)ComponentGUIType::TileMapController]->SetObject(nullptr);
+
+	if (dynamic_cast<BlockObject*>(targetObject) != nullptr)
+		componetGUIvector[(int)ComponentGUIType::Block]->SetObject(targetObject);
+	else
+		componetGUIvector[(int)ComponentGUIType::Block]->SetObject(nullptr);
 }
 
 void InspectorGUI::TransformInfo()

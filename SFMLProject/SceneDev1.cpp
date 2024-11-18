@@ -16,6 +16,7 @@
 #include "Player.h"
 #include "TileMapController.h"
 #include "Goomba.h"
+#include "BrickBlockObject.h"
 
 void SceneDev1::Init()
 {
@@ -38,6 +39,7 @@ void SceneDev1::Enter()
 	TEXTURE_MANAGER.Load("background", "graphics/background_sheet.png");
 	TEXTURE_MANAGER.Load("mario_bros", "graphics/mario_bros.png");
 	TEXTURE_MANAGER.Load("tiles", "graphics/tiles.png");
+	TEXTURE_MANAGER.Load("tile_set", "graphics/tile_set.png");
 	TEXTURE_MANAGER.Load("characters", "graphics/characters.gif");
 
 	ResourcesManager<sf::Font>::GetInstance().Load("KOMIKAP", "fonts/KOMIKAP_.ttf");
@@ -60,6 +62,8 @@ void SceneDev1::Enter()
 	//tile->SaveCsv("TileMap/test.csv");
 	//tile->LoadCsv("TileMap/test.csv");
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Enemy, ColliderLayer::Player);
+
+	BrickBlockObject* block = AddGameObject(new BrickBlockObject("tile_set"), LayerType::Block);
 
 	TileMapController* tileMapController = AddGameObject(new TileMapController("TileMapController"), LayerType::Default);
 

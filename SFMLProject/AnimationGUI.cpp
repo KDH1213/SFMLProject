@@ -19,8 +19,8 @@ void AnimationGUI::Update()
 {
 	if (animator == nullptr)
 		return;
-	ImGui::Text("Animation"); ImGui::SameLine();
-	ImGui::BeginChild("##Animation");
+	ImGui::BeginChild("##Animation", { 300.f,150.f });
+	ImGui::Text("Animation");
 
 	/*if (useAnimationTool)
 		animationTool->Update();*/

@@ -99,8 +99,6 @@ void GameObject::Release()
 
 void GameObject::Update(const float& deltaTime)
 {
-	if(collider != nullptr)
-		collider->SetPosition(position);
 }
 
 void GameObject::FixedUpdate(const float& deltaTime)
