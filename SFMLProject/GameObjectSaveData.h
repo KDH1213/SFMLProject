@@ -1,0 +1,17 @@
+#pragma once
+
+#include "SaveData.h"
+
+struct GameObjectSaveData
+{
+	std::string			name;
+	sf::Vector2f		position;
+	float				rotation;
+	sf::Vector2f		scale;
+	sf::Vector2f		origin;
+	int					originPreset;
+	bool				active;
+	int					sortingOrder;
+
+	NLOHMANN_DEFINE_TYPE_INTRUSIVE(GameObjectSaveData, name, position, scale, origin, originPreset, active, sortingOrder);
+};

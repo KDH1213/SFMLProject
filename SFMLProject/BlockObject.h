@@ -1,6 +1,7 @@
 #pragma once
 
-#include "SpriteGameObject.h"
+#include "GameObject.h"
+#include "BlockSaveData.h"
 
 class Player;
 
@@ -45,6 +46,9 @@ public:
 	bool Load() override;
 	bool SaveCsv(const std::string& filePath) const override;
 	bool LoadCsv(const std::string& filePath) override;
+
+	BlockSaveData GetBlockSaveDate() const;
+	void LoadBlockSaveData(const BlockSaveData& data);
 
 public:
 	BlockObject(BlockType type, const std::string& texId, const std::string& name = "Block");

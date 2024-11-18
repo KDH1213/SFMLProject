@@ -67,9 +67,6 @@
     <Filter Include="Contants">
       <UniqueIdentifier>{06ae2c78-007e-4287-94cb-32fae660e895}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contants\Player">
-      <UniqueIdentifier>{da450f9f-2676-436b-8904-480965c27d5d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Manager\0. Framework">
       <UniqueIdentifier>{79b74483-ecd5-4f20-b650-51e47259682e}</UniqueIdentifier>
     </Filter>
@@ -78,9 +75,6 @@
     </Filter>
     <Filter Include="Core\4. Camera">
       <UniqueIdentifier>{fd05910c-2fb7-4a23-b75e-cf9799320468}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contants\ContantsScene">
-      <UniqueIdentifier>{bd39b06c-b371-4751-803b-5c4e5c8fe3f4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\6. Componet">
       <UniqueIdentifier>{32ec8558-52b2-43f8-b4fb-7c56474dfd21}</UniqueIdentifier>
@@ -109,44 +103,11 @@
     <Filter Include="Core\6. Componet\6. FSM">
       <UniqueIdentifier>{ebcba802-bd5b-4e08-91c7-cd2275d2796c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contants\Player\PlayerState">
-      <UniqueIdentifier>{6f9243a3-ec4b-41e5-8989-63b1ce601bda}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contants\Test">
-      <UniqueIdentifier>{9089be30-7d83-488f-8a24-3030a93e7a05}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contants\TileMapController">
-      <UniqueIdentifier>{72c7193e-6851-435a-bcc9-9b8e1053271f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contants\WallCollisionObject">
-      <UniqueIdentifier>{1df1e9f9-6715-4536-afae-ad96420b1c88}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core\7. Object">
       <UniqueIdentifier>{e6f70e50-bc42-4c8c-b753-49d6737d51b9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\7. Object\UI">
       <UniqueIdentifier>{3ca163a0-826a-44b2-9c7f-b72e53eed20d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\7. Object\GameObject">
-      <UniqueIdentifier>{2bf2f865-c382-47d6-8da9-93b6060f9507}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contants\Player\FSM">
-      <UniqueIdentifier>{9ee87c8a-ce22-425f-b436-0692dc5cfee0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contants\Enemy">
-      <UniqueIdentifier>{1c83ccda-ed0b-4b66-8422-47d42f8fa963}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contants\Enemy\Goomba">
-      <UniqueIdentifier>{1b2d5268-5696-482f-845a-20132ac3d47c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contants\Enemy\Goomba\FSM">
-      <UniqueIdentifier>{7da3955a-0a2d-46d1-985d-5f6ecaf5174e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contants\Enemy\Goomba\State">
-      <UniqueIdentifier>{9ee46451-75ea-4bf3-a0b9-5101761e9e43}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Contants\Block">
-      <UniqueIdentifier>{a2dc21ae-d5e8-4f71-a6fd-ac08af4cb4c3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Contants\0. Editor">
       <UniqueIdentifier>{6bd09cdf-4de3-4d6e-9cdf-46d0a2f8dd42}</UniqueIdentifier>
@@ -193,8 +154,62 @@
     <Filter Include="Manager\10. SaveLoadManger">
       <UniqueIdentifier>{df57a131-b81b-4d00-94cb-8957cf4ac4ac}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Manager\10. SaveLoadManger\SaveData">
+    <Filter Include="Contants\Utlies">
+      <UniqueIdentifier>{9c5b177c-e851-4939-9863-2c5c20623ef0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Utlies\SaveData">
       <UniqueIdentifier>{a8a2c5cf-732c-45e8-9bb8-6dde62c938ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Manager">
+      <UniqueIdentifier>{e8909f7a-09fc-4a4f-8786-5f74ca9a364b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Manager\GameManager">
+      <UniqueIdentifier>{e7744c4f-c73f-4294-8183-443a33a87a9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object">
+      <UniqueIdentifier>{6550af19-a05a-4085-ba3c-600fe71afa5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Block">
+      <UniqueIdentifier>{a2dc21ae-d5e8-4f71-a6fd-ac08af4cb4c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Enemy">
+      <UniqueIdentifier>{1c83ccda-ed0b-4b66-8422-47d42f8fa963}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Enemy\Goomba">
+      <UniqueIdentifier>{1b2d5268-5696-482f-845a-20132ac3d47c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Enemy\Goomba\FSM">
+      <UniqueIdentifier>{7da3955a-0a2d-46d1-985d-5f6ecaf5174e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Enemy\Goomba\State">
+      <UniqueIdentifier>{9ee46451-75ea-4bf3-a0b9-5101761e9e43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Player">
+      <UniqueIdentifier>{da450f9f-2676-436b-8904-480965c27d5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Player\PlayerState">
+      <UniqueIdentifier>{6f9243a3-ec4b-41e5-8989-63b1ce601bda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Player\FSM">
+      <UniqueIdentifier>{9ee87c8a-ce22-425f-b436-0692dc5cfee0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\WallCollisionObject">
+      <UniqueIdentifier>{1df1e9f9-6715-4536-afae-ad96420b1c88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Test">
+      <UniqueIdentifier>{9089be30-7d83-488f-8a24-3030a93e7a05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Scene">
+      <UniqueIdentifier>{5b44f181-ee93-430b-ab29-a59debb90143}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Scene\ContantsScene">
+      <UniqueIdentifier>{bd39b06c-b371-4751-803b-5c4e5c8fe3f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\TileMapController">
+      <UniqueIdentifier>{72c7193e-6851-435a-bcc9-9b8e1053271f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\GameObject">
+      <UniqueIdentifier>{2bf2f865-c382-47d6-8da9-93b6060f9507}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -259,10 +274,10 @@
       <Filter>Manager\5. SceneManager</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
-      <Filter>Core\7. Object\GameObject</Filter>
+      <Filter>Contants\Object\GameObject</Filter>
     </ClCompile>
     <ClCompile Include="SpriteGameObject.cpp">
-      <Filter>Core\7. Object\GameObject</Filter>
+      <Filter>Contants\Object\GameObject</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>Core\5. Scene</Filter>
@@ -286,10 +301,10 @@
       <Filter>Core\6. Componet\4. TileMap</Filter>
     </ClCompile>
     <ClCompile Include="SceneDev1.cpp">
-      <Filter>Contants\ContantsScene</Filter>
+      <Filter>Contants\Scene\ContantsScene</Filter>
     </ClCompile>
     <ClCompile Include="SceneDev2.cpp">
-      <Filter>Contants\ContantsScene</Filter>
+      <Filter>Contants\Scene\ContantsScene</Filter>
     </ClCompile>
     <ClCompile Include="PhysicsManager.cpp">
       <Filter>소스 파일</Filter>
@@ -361,19 +376,19 @@
       <Filter>Core\Utils</Filter>
     </ClCompile>
     <ClCompile Include="PlayerBreakState.cpp">
-      <Filter>Contants\Player\PlayerState</Filter>
+      <Filter>Contants\Object\Player\PlayerState</Filter>
     </ClCompile>
     <ClCompile Include="PlayerDeadState.cpp">
-      <Filter>Contants\Player\PlayerState</Filter>
+      <Filter>Contants\Object\Player\PlayerState</Filter>
     </ClCompile>
     <ClCompile Include="PlayerIdleState.cpp">
-      <Filter>Contants\Player\PlayerState</Filter>
+      <Filter>Contants\Object\Player\PlayerState</Filter>
     </ClCompile>
     <ClCompile Include="PlayerJumpState.cpp">
-      <Filter>Contants\Player\PlayerState</Filter>
+      <Filter>Contants\Object\Player\PlayerState</Filter>
     </ClCompile>
     <ClCompile Include="PlayerRunState.cpp">
-      <Filter>Contants\Player\PlayerState</Filter>
+      <Filter>Contants\Object\Player\PlayerState</Filter>
     </ClCompile>
     <ClCompile Include="BaseState.cpp">
       <Filter>Core\6. Componet\6. FSM</Filter>
@@ -382,67 +397,67 @@
       <Filter>Core\6. Componet\6. FSM</Filter>
     </ClCompile>
     <ClCompile Include="PlayerHitState.cpp">
-      <Filter>Contants\Player\PlayerState</Filter>
+      <Filter>Contants\Object\Player\PlayerState</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Contants\Player</Filter>
+      <Filter>Contants\Object\Player</Filter>
     </ClCompile>
     <ClCompile Include="Test.cpp">
-      <Filter>Contants\Test</Filter>
+      <Filter>Contants\Object\Test</Filter>
     </ClCompile>
     <ClCompile Include="TestPlayer.cpp">
-      <Filter>Contants\Test</Filter>
+      <Filter>Contants\Object\Test</Filter>
     </ClCompile>
     <ClCompile Include="TileMapController.cpp">
-      <Filter>Contants\TileMapController</Filter>
+      <Filter>Contants\Object\TileMapController</Filter>
     </ClCompile>
     <ClCompile Include="TileMapControllerGUI.cpp">
       <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\TileMapController</Filter>
     </ClCompile>
     <ClCompile Include="WallCollisionObject.cpp">
-      <Filter>Contants\WallCollisionObject</Filter>
+      <Filter>Contants\Object\WallCollisionObject</Filter>
     </ClCompile>
     <ClCompile Include="WallCollisionObjectEditor.cpp">
       <Filter>Contants\0. Editor\Imgui\GUI\ToolGUI\WallCollisionGUI</Filter>
     </ClCompile>
     <ClCompile Include="PlayerFSM.cpp">
-      <Filter>Contants\Player\FSM</Filter>
+      <Filter>Contants\Object\Player\FSM</Filter>
     </ClCompile>
     <ClCompile Include="PlayerBaseState.cpp">
-      <Filter>Contants\Player\FSM</Filter>
+      <Filter>Contants\Object\Player\FSM</Filter>
     </ClCompile>
     <ClCompile Include="EnemyFSM.cpp">
-      <Filter>Contants\Enemy</Filter>
+      <Filter>Contants\Object\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="EnemyBaseState.cpp">
-      <Filter>Contants\Enemy</Filter>
+      <Filter>Contants\Object\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
-      <Filter>Contants\Enemy</Filter>
+      <Filter>Contants\Object\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="GoombaDeadState.cpp">
-      <Filter>Contants\Enemy\Goomba\State</Filter>
+      <Filter>Contants\Object\Enemy\Goomba\State</Filter>
     </ClCompile>
     <ClCompile Include="GoombaIdleState.cpp">
-      <Filter>Contants\Enemy\Goomba\State</Filter>
+      <Filter>Contants\Object\Enemy\Goomba\State</Filter>
     </ClCompile>
     <ClCompile Include="GoombaScoutState.cpp">
-      <Filter>Contants\Enemy\Goomba\State</Filter>
+      <Filter>Contants\Object\Enemy\Goomba\State</Filter>
     </ClCompile>
     <ClCompile Include="GoombaFSM.cpp">
-      <Filter>Contants\Enemy\Goomba\FSM</Filter>
+      <Filter>Contants\Object\Enemy\Goomba\FSM</Filter>
     </ClCompile>
     <ClCompile Include="Goomba.cpp">
-      <Filter>Contants\Enemy\Goomba</Filter>
+      <Filter>Contants\Object\Enemy\Goomba</Filter>
     </ClCompile>
     <ClCompile Include="BlockObject.cpp">
-      <Filter>Contants\Block</Filter>
+      <Filter>Contants\Object\Block</Filter>
     </ClCompile>
     <ClCompile Include="ItemBlockObject.cpp">
-      <Filter>Contants\Block</Filter>
+      <Filter>Contants\Object\Block</Filter>
     </ClCompile>
     <ClCompile Include="BrickBlockObject.cpp">
-      <Filter>Contants\Block</Filter>
+      <Filter>Contants\Object\Block</Filter>
     </ClCompile>
     <ClCompile Include="BlockGUI.cpp">
       <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\Block</Filter>
@@ -451,7 +466,28 @@
       <Filter>Manager\10. SaveLoadManger</Filter>
     </ClCompile>
     <ClCompile Include="SaveData.cpp">
-      <Filter>Manager\10. SaveLoadManger\SaveData</Filter>
+      <Filter>Contants\Utlies\SaveData</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>Contants\Manager\GameManager</Filter>
+    </ClCompile>
+    <ClCompile Include="WallCollisionSaveData.cpp">
+      <Filter>Contants\Utlies\SaveData</Filter>
+    </ClCompile>
+    <ClCompile Include="TileMapSaveData.cpp">
+      <Filter>Contants\Utlies\SaveData</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSaveData.cpp">
+      <Filter>Contants\Utlies\SaveData</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectSaveData.cpp">
+      <Filter>Contants\Utlies\SaveData</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemySaveData.cpp">
+      <Filter>Contants\Utlies\SaveData</Filter>
+    </ClCompile>
+    <ClCompile Include="BlockSaveData.cpp">
+      <Filter>Contants\Utlies\SaveData</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -519,10 +555,10 @@
       <Filter>Manager\5. SceneManager</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">
-      <Filter>Core\7. Object\GameObject</Filter>
+      <Filter>Contants\Object\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="SpriteGameObject.h">
-      <Filter>Core\7. Object\GameObject</Filter>
+      <Filter>Contants\Object\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Core\5. Scene</Filter>
@@ -549,10 +585,10 @@
       <Filter>Core\6. Componet\4. TileMap</Filter>
     </ClInclude>
     <ClInclude Include="SceneDev1.h">
-      <Filter>Contants\ContantsScene</Filter>
+      <Filter>Contants\Scene\ContantsScene</Filter>
     </ClInclude>
     <ClInclude Include="SceneDev2.h">
-      <Filter>Contants\ContantsScene</Filter>
+      <Filter>Contants\Scene\ContantsScene</Filter>
     </ClInclude>
     <ClInclude Include="PhysicsManager.h">
       <Filter>헤더 파일</Filter>
@@ -633,19 +669,19 @@
       <Filter>Core\Utils</Filter>
     </ClInclude>
     <ClInclude Include="PlayerRunState.h">
-      <Filter>Contants\Player\PlayerState</Filter>
+      <Filter>Contants\Object\Player\PlayerState</Filter>
     </ClInclude>
     <ClInclude Include="PlayerBreakState.h">
-      <Filter>Contants\Player\PlayerState</Filter>
+      <Filter>Contants\Object\Player\PlayerState</Filter>
     </ClInclude>
     <ClInclude Include="PlayerDeadState.h">
-      <Filter>Contants\Player\PlayerState</Filter>
+      <Filter>Contants\Object\Player\PlayerState</Filter>
     </ClInclude>
     <ClInclude Include="PlayerIdleState.h">
-      <Filter>Contants\Player\PlayerState</Filter>
+      <Filter>Contants\Object\Player\PlayerState</Filter>
     </ClInclude>
     <ClInclude Include="PlayerJumpState.h">
-      <Filter>Contants\Player\PlayerState</Filter>
+      <Filter>Contants\Object\Player\PlayerState</Filter>
     </ClInclude>
     <ClInclude Include="BaseState.h">
       <Filter>Core\6. Componet\6. FSM</Filter>
@@ -654,25 +690,25 @@
       <Filter>Core\6. Componet\6. FSM</Filter>
     </ClInclude>
     <ClInclude Include="PlayerHitState.h">
-      <Filter>Contants\Player\PlayerState</Filter>
+      <Filter>Contants\Object\Player\PlayerState</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Contants\Player</Filter>
+      <Filter>Contants\Object\Player</Filter>
     </ClInclude>
     <ClInclude Include="TestPlayer.h">
-      <Filter>Contants\Test</Filter>
+      <Filter>Contants\Object\Test</Filter>
     </ClInclude>
     <ClInclude Include="Test.h">
-      <Filter>Contants\Test</Filter>
+      <Filter>Contants\Object\Test</Filter>
     </ClInclude>
     <ClInclude Include="TileMapController.h">
-      <Filter>Contants\TileMapController</Filter>
+      <Filter>Contants\Object\TileMapController</Filter>
     </ClInclude>
     <ClInclude Include="TileMapControllerGUI.h">
       <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\TileMapController</Filter>
     </ClInclude>
     <ClInclude Include="WallCollisionObject.h">
-      <Filter>Contants\WallCollisionObject</Filter>
+      <Filter>Contants\Object\WallCollisionObject</Filter>
     </ClInclude>
     <ClInclude Include="WallCollisionObjectEditor.h">
       <Filter>Contants\0. Editor\Imgui\GUI\ToolGUI\WallCollisionGUI</Filter>
@@ -681,43 +717,43 @@
       <Filter>Contants\0. Editor\Imgui\GUI</Filter>
     </ClInclude>
     <ClInclude Include="PlayerFSM.h">
-      <Filter>Contants\Player\FSM</Filter>
+      <Filter>Contants\Object\Player\FSM</Filter>
     </ClInclude>
     <ClInclude Include="PlayerBaseState.h">
-      <Filter>Contants\Player\FSM</Filter>
+      <Filter>Contants\Object\Player\FSM</Filter>
     </ClInclude>
     <ClInclude Include="EnemyFSM.h">
-      <Filter>Contants\Enemy</Filter>
+      <Filter>Contants\Object\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="EnemyBaseState.h">
-      <Filter>Contants\Enemy</Filter>
+      <Filter>Contants\Object\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Enemy.h">
-      <Filter>Contants\Enemy</Filter>
+      <Filter>Contants\Object\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="GoombaScoutState.h">
-      <Filter>Contants\Enemy\Goomba\State</Filter>
+      <Filter>Contants\Object\Enemy\Goomba\State</Filter>
     </ClInclude>
     <ClInclude Include="GoombaDeadState.h">
-      <Filter>Contants\Enemy\Goomba\State</Filter>
+      <Filter>Contants\Object\Enemy\Goomba\State</Filter>
     </ClInclude>
     <ClInclude Include="GoombaIdleState.h">
-      <Filter>Contants\Enemy\Goomba\State</Filter>
+      <Filter>Contants\Object\Enemy\Goomba\State</Filter>
     </ClInclude>
     <ClInclude Include="GoombaFSM.h">
-      <Filter>Contants\Enemy\Goomba\FSM</Filter>
+      <Filter>Contants\Object\Enemy\Goomba\FSM</Filter>
     </ClInclude>
     <ClInclude Include="Goomba.h">
-      <Filter>Contants\Enemy\Goomba</Filter>
+      <Filter>Contants\Object\Enemy\Goomba</Filter>
     </ClInclude>
     <ClInclude Include="BlockObject.h">
-      <Filter>Contants\Block</Filter>
+      <Filter>Contants\Object\Block</Filter>
     </ClInclude>
     <ClInclude Include="BrickBlockObject.h">
-      <Filter>Contants\Block</Filter>
+      <Filter>Contants\Object\Block</Filter>
     </ClInclude>
     <ClInclude Include="ItemBlockObject.h">
-      <Filter>Contants\Block</Filter>
+      <Filter>Contants\Object\Block</Filter>
     </ClInclude>
     <ClInclude Include="BlockGUI.h">
       <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\Block</Filter>
@@ -729,7 +765,28 @@
       <Filter>Core\Utils</Filter>
     </ClInclude>
     <ClInclude Include="SaveData.h">
-      <Filter>Manager\10. SaveLoadManger\SaveData</Filter>
+      <Filter>Contants\Utlies\SaveData</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>Contants\Manager\GameManager</Filter>
+    </ClInclude>
+    <ClInclude Include="WallCollisionSaveData.h">
+      <Filter>Contants\Utlies\SaveData</Filter>
+    </ClInclude>
+    <ClInclude Include="BlockSaveData.h">
+      <Filter>Contants\Utlies\SaveData</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemySaveData.h">
+      <Filter>Contants\Utlies\SaveData</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectSaveData.h">
+      <Filter>Contants\Utlies\SaveData</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSaveData.h">
+      <Filter>Contants\Utlies\SaveData</Filter>
+    </ClInclude>
+    <ClInclude Include="TileMapSaveData.h">
+      <Filter>Contants\Utlies\SaveData</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

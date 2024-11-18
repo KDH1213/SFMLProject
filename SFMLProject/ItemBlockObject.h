@@ -26,6 +26,8 @@ public:
 	bool SaveCsv(const std::string& filePath) const override;
 	bool LoadCsv(const std::string& filePath) override;
 
+	ItemBlockSaveData GetItemBlockSaveData() const;
+	void LoadItemBlockSaveData(const ItemBlockSaveData& data);
 public:
 	ItemBlockObject(ItemType type, const std::string& texId, const std::string& changeTexId, const std::string& name = "ItemBlock");
 	virtual ~ItemBlockObject() = default;

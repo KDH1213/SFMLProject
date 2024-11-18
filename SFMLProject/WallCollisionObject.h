@@ -1,5 +1,7 @@
 #pragma once
 #include "GameObject.h"
+#include "WallCollisionSaveData.h"
+
 class WallCollisionObject : public GameObject
 {
 protected:
@@ -24,6 +26,8 @@ public:
 	bool Load() override;
 	bool SaveCsv(const std::string& filePath) const override;
 	bool LoadCsv(const std::string& filePath) override;
+	WallCollisionSaveData GetWallCollisionSaveData() const;
+	void LoadWallCollisionSaveData(const WallCollisionSaveData& data);
 public:
 	WallCollisionObject(const std::string& name = "Wall");
 	virtual ~WallCollisionObject();

@@ -1,6 +1,7 @@
 #pragma once
 #include "GameObject.h"
 #include "PlayerFSM.h"
+#include "PlayerSaveData.h"
 
 class Rigidbody;
 
@@ -46,9 +47,11 @@ public:
 	void LateUpdate(const float& deltaTime) override;
 	void Render(sf::RenderWindow& renderWindow) override;
 
-
 	sf::FloatRect GetLocalBounds() const;
 	sf::FloatRect GetGlobalBounds() const;
+
+	PlayerSaveData GetPlayerSaveData() const;
+	void LoadData(const PlayerSaveData& data);
 public:
 	Player(const std::string& name = "Player");
 	virtual ~Player();

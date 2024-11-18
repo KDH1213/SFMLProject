@@ -157,3 +157,14 @@ sf::FloatRect Player::GetGlobalBounds() const
 {
 	return sprite.getGlobalBounds();
 }
+
+PlayerSaveData Player::GetPlayerSaveData() const
+{
+	return PlayerSaveData({this->GetGameObjectSaveData(), currentStatus});
+}
+
+void Player::LoadData(const PlayerSaveData& data)
+{
+	LoadGameObjectData(data.gameObjectSaveData);
+	currentStatus = data.status;
+}

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "GameObjectSaveData.h"
+
 class Animator;
 class Rigidbody;
 
@@ -85,6 +87,10 @@ public:
 	bool Load() override;
 	bool SaveCsv(const std::string& filePath) const override;
 	bool LoadCsv(const std::string& filePath) override;
+
+	GameObjectSaveData GetGameObjectSaveData() const;
+	void LoadGameObjectData(const GameObjectSaveData& data);
+
 public:
 	GameObject(const std::string& name);
 	virtual ~GameObject();

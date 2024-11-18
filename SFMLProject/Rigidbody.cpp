@@ -37,7 +37,7 @@ void Rigidbody::FixedUpdate(const float& fixedDeltaTime)
 
 	if (!isGround)
 	{
-		dropSpeed += 9.8f * fixedDeltaTime * 5.f;
+		dropSpeed += Gravity.y * fixedDeltaTime * 5.f;
 		velocity.y += dropSpeed;
 	}
 	else

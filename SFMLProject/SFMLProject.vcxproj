@@ -157,6 +157,7 @@
     <ClCompile Include="BaseState.cpp" />
     <ClCompile Include="BlockGUI.cpp" />
     <ClCompile Include="BlockObject.cpp" />
+    <ClCompile Include="BlockSaveData.cpp" />
     <ClCompile Include="BrickBlockObject.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraManger.cpp" />
@@ -173,10 +174,13 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyBaseState.cpp" />
     <ClCompile Include="EnemyFSM.cpp" />
+    <ClCompile Include="EnemySaveData.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Framework.cpp" />
     <ClCompile Include="FSMController.cpp" />
+    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameObjectSaveData.cpp" />
     <ClCompile Include="Goomba.cpp" />
     <ClCompile Include="GoombaDeadState.cpp" />
     <ClCompile Include="GoombaFSM.cpp" />
@@ -226,6 +230,7 @@
     <ClCompile Include="PlayerIdleState.cpp" />
     <ClCompile Include="PlayerJumpState.cpp" />
     <ClCompile Include="PlayerRunState.cpp" />
+    <ClCompile Include="PlayerSaveData.cpp" />
     <ClCompile Include="Resources.cpp" />
     <ClCompile Include="Rigidbody.cpp" />
     <ClCompile Include="SaveData.cpp" />
@@ -245,6 +250,7 @@
     <ClCompile Include="TileMap.cpp" />
     <ClCompile Include="TileMapController.cpp" />
     <ClCompile Include="TileMapGUI.cpp" />
+    <ClCompile Include="TileMapSaveData.cpp" />
     <ClCompile Include="TimeManager.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
@@ -254,6 +260,7 @@
     <ClCompile Include="Variables.cpp" />
     <ClCompile Include="WallCollisionObject.cpp" />
     <ClCompile Include="WallCollisionObjectEditor.cpp" />
+    <ClCompile Include="WallCollisionSaveData.cpp" />
     <ClCompile Include="WindowManager.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
     </ClCompile>
@@ -266,6 +273,7 @@
     <ClInclude Include="BaseState.h" />
     <ClInclude Include="BlockGUI.h" />
     <ClInclude Include="BlockObject.h" />
+    <ClInclude Include="BlockSaveData.h" />
     <ClInclude Include="BrickBlockObject.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraManger.h" />
@@ -284,10 +292,13 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyBaseState.h" />
     <ClInclude Include="EnemyFSM.h" />
+    <ClInclude Include="EnemySaveData.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Framework.h" />
     <ClInclude Include="FSMController.h" />
+    <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameObjectSaveData.h" />
     <ClInclude Include="Goomba.h" />
     <ClInclude Include="GoombaDeadState.h" />
     <ClInclude Include="GoombaFSM.h" />
@@ -322,6 +333,7 @@
     <ClInclude Include="PlayerIdleState.h" />
     <ClInclude Include="PlayerJumpState.h" />
     <ClInclude Include="PlayerRunState.h" />
+    <ClInclude Include="PlayerSaveData.h" />
     <ClInclude Include="rapidcsv.h" />
     <ClInclude Include="Resources.h" />
     <ClInclude Include="ResourcesManager.h" />
@@ -343,6 +355,7 @@
     <ClInclude Include="TileMap.h" />
     <ClInclude Include="TileMapController.h" />
     <ClInclude Include="TileMapGUI.h" />
+    <ClInclude Include="TileMapSaveData.h" />
     <ClInclude Include="TimeManager.h" />
     <ClInclude Include="UIGameObject.h" />
     <ClInclude Include="UITextGameObject.h" />
@@ -350,6 +363,7 @@
     <ClInclude Include="Variables.h" />
     <ClInclude Include="WallCollisionObject.h" />
     <ClInclude Include="WallCollisionObjectEditor.h" />
+    <ClInclude Include="WallCollisionSaveData.h" />
     <ClInclude Include="WindowManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

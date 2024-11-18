@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Rigidbody.h"
 
+#include "rapidcsv.h"
 BlockObject::BlockObject(BlockType type, const std::string& texId, const std::string& name)
     : GameObject(name)
     , type(type)
@@ -187,10 +188,53 @@ bool BlockObject::Load()
 
 bool BlockObject::SaveCsv(const std::string& filePath) const
 {
-    return false;
+	std::ofstream outFile(filePath);
+
+	outFile << "OBJECTNAME, TEXTUREID, BLOCK TPYE, RECTSIZEX,RECTSIZEX, TEXTUREUVRECT LEFT, TEXTUREUVRECT TOP, TEXTUREUVRECT WIDTH, TEXTUREUVRECT HEIGHT" << std::endl;
+
+	outFile << name;
+	outFile << "," + textureID;
+	outFile << "," + std::to_string((int)type);
+	outFile << "," + std::to_string(rectSize.x);
+	outFile << "," + std::to_string(rectSize.y);
+
+	outFile << "," + std::to_string(textureUVRect.left);
+	outFile << "," + std::to_string(textureUVRect.top);
+	outFile << "," + std::to_string(textureUVRect.width);
+	outFile << "," + std::to_string(textureUVRect.height);
+	return true;
 }
 
 bool BlockObject::LoadCsv(const std::string& filePath)
 {
-    return false;
+	rapidcsv::Document doc(filePath);
+
+	name = doc.GetCell<std::string>(0, 0);
+	textureID = doc.GetCell<std::string>(1, 0);
+	type = (BlockType)doc.GetCell<int>(2, 0);
+	rectSize.x = doc.GetCell<float>(3, 0);
+	rectSize.y = doc.GetCell<float>(4, 0);
+	textureUVRect.left = doc.GetCell<int>(5, 0);
+	textureUVRect.top = doc.GetCell<int>(6, 0);
+	textureUVRect.width = doc.GetCell<int>(7, 0);
+	textureUVRect.height = doc.GetCell<int>(8, 0);
+
+	render.setTexture(&ResourcesManager<sf::Texture>::GetInstance().Get(textureID));
+	render.setTextureRect(textureUVRect);
+	SetScale(scale);
+	return true;
+}
+
+BlockSaveData BlockObject::GetBlockSaveDate() const
+{
+	return BlockSaveData({ GetGameObjectSaveData(), (int)type, textureUVRect, rectSize, textureID });
+}
+
+void BlockObject::LoadBlockSaveData(const BlockSaveData& data)
+{
+	LoadGameObjectData(data.gameObjectSaveData);
+	type = (BlockType)data.type;
+	rectSize = data.rectSize;
+	textureUVRect = data.textureUVRect;
+	textureID = data.textureID;
 }

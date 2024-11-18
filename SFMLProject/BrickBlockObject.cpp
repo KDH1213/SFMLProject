@@ -91,13 +91,3 @@ bool BrickBlockObject::Load()
 {
 	return false;
 }
-
-bool BrickBlockObject::SaveCsv(const std::string& filePath) const
-{
-	return false;
-}
-
-bool BrickBlockObject::LoadCsv(const std::string& filePath)
-{
-	return false;
-}
