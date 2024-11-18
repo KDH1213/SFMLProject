@@ -125,11 +125,11 @@ void TileMap::Start()
 {
 	texture = &TEXTURE_MANAGER.Get(spriteSheetId);
 
-	position = { 300.055f,300.055f };
+	// position = { 300.055f,300.055f };
 	SetScale(sf::Vector2f::one);
 	UpdateTransform();
 
-	SaveCsv("TileMap/test.csv");
+	// SaveCsv("TileMap/test.csv");
 }
 
 void TileMap::UpdateTransform()
@@ -226,10 +226,13 @@ bool TileMap::SaveCsv(const std::string& filePath) const
 			{
 				outFile << vertexArray[index + k].texCoords.x;
 				outFile << "," << vertexArray[index + k].texCoords.y;
-				if (k != 3)
-					outFile << ",";
+
+				outFile << "," << (int)vertexArray[index + k].color.r;
+				outFile << "," << (int)vertexArray[index + k].color.g;
+				outFile << "," << (int)vertexArray[index + k].color.b;
+				outFile << "," << (int)vertexArray[index + k].color.a;
+				outFile << std::endl;
 			}
-			outFile << std::endl;
 		}
 	}
 	return true;
@@ -292,11 +295,14 @@ bool TileMap::LoadCsv(const std::string& filePath)
 			{
 				int vertexIndex = quadIndex * 4 + k;
 				vertexArray[vertexIndex].position = quadPosition + positionOffset[k];
-				vertexArray[vertexIndex].texCoords = { doc.GetCell<float>(k * 2, rowPosition) , doc.GetCell<float>((k * 2) + 1 , rowPosition) };
+				vertexArray[vertexIndex].texCoords = { doc.GetCell<float>(0, rowPosition) , doc.GetCell<float>(1 , rowPosition) };
+				vertexArray[vertexIndex].color = { (sf::Uint8)doc.GetCell<int>(2, rowPosition),(sf::Uint8)doc.GetCell<int>(3, rowPosition), (sf::Uint8)doc.GetCell<int>(4, rowPosition), (sf::Uint8)doc.GetCell<int>(5, rowPosition) };
+				++rowPosition;
 			}
-			++rowPosition;
 		}
 	}
+
+	UpdateTransform();
 
 	return true;
 }

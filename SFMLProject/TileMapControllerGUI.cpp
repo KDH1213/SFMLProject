@@ -100,6 +100,20 @@ void TileMapControllerGUI::Update()
 	{
 		tileMapController->SaveCsv("tileMap/" + tileMapController->GetName() + ".csv");
 	}
+
+	ImGui::SameLine(); if (ImGui::Button("LoadFile", { 100.f, 50.f }))
+	{
+		tileMapController->LoadCsv("tileMap/" + tileMapController->GetName() + ".csv");
+	}
+
+	static char cName[100];
+	ImGui::Text("SaveName Name");
+	if (ImGui::InputText("##SaveName", cName, 100))
+	{
+		saveName = cName;
+		tileMapController->SetName(saveName);
+	}
+
 	ImGui::EndChild();
 }
 

@@ -2,6 +2,7 @@
 #include "TileMapController.h"
 #include "TileMap.h"
 #include "Scene.h"
+#include "rapidcsv.h"
 
 TileMapController::TileMapController(const std::string& name)
     : GameObject(name)
@@ -54,18 +55,39 @@ void TileMapController::AddTileMap(int count)
 bool TileMapController::SaveCsv(const std::string& filePath) const
 {
     int count = 1;
+    std::ofstream outFile(filePath);
+
+    std::vector<std::string> tileMapsSavePaths;
 
     for (auto& tileMap : tileMaps)
     {
-        tileMap->SaveCsv("tileMap/" + tileMap->GetName() + std::to_string(count++) + ".csv");
+        tileMapsSavePaths.push_back("tileMap/" + name + tileMap->GetName() + std::to_string(count) + ".csv");
+        tileMap->SaveCsv("tileMap/" + name + tileMap->GetName() + std::to_string(count++) + ".csv");
     }
 
-    return false;
+    outFile << "TileMapPath" << std::endl;
+    for (auto& tileMapsSavePath : tileMapsSavePaths)
+    {
+        outFile << tileMapsSavePath << std::endl;
+    }
+
+    return true;
 }
 
 bool TileMapController::LoadCsv(const std::string& filePath)
 {
-    return false;
+    rapidcsv::Document doc(filePath);
+
+    for (int i = 0; i < doc.GetRowCount(); ++i)
+    {
+        auto row = doc.GetRow<std::string>(i);
+        TileMap* tileMap = new TileMap("","TileMap");
+        tileMap->LoadCsv(row[0]);
+        SceneManager::GetInstance().GetCurrentScene()->AddGameObject(tileMap, LayerType::TileMap);
+        tileMaps.push_back(tileMap);
+    }
+
+    return true;
 }
 
 sf::FloatRect TileMapController::GetLocalBounds() const

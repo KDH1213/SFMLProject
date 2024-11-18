@@ -11,6 +11,7 @@ private:
 	sf::Texture*				texture;
 	std::vector<std::string>    textureVector;
 	TileMapController*			tileMapController;
+	std::string					saveName;
 
 	sf::Vector2u				cellCount;
 	sf::Vector2f				cellSize;
