@@ -3,10 +3,9 @@
 class BrickBlockObject : public BlockObject
 {
 public:
-	virtual void OnCollisionEnter(Collider* target);
-	virtual void OnCollisionStay(Collider* target);
-	virtual void OnCollisionEnd(Collider* target);
-
+	void OnCollisionEnter(Collider* target) override;
+	void OnCollisionStay(Collider* target) override;
+	void OnCollisionEnd(Collider* target) override;
 
 public:
 	bool Save() const override;

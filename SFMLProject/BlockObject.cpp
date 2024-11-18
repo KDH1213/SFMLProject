@@ -2,6 +2,8 @@
 #include "BlockObject.h"
 #include "Collider.h"
 
+#include "Player.h"
+#include "Rigidbody.h"
 
 BlockObject::BlockObject(BlockType type, const std::string& texId, const std::string& name)
     : GameObject(name)
@@ -83,14 +85,74 @@ void BlockObject::SetOrigin(const sf::Vector2f & newOrigin)
 
 void BlockObject::OnCollisionEnter(Collider* target)
 {
+	if (target->GetColliderLayer() == ColliderLayer::Player)
+	{
+		player = (Player*)target->GetOwner();
+
+		sf::Vector2f targetPosition = target->GetPosition();
+
+		Rectangle rect(collider->GetPosition(), collider->GetScale());
+		Rectangle targetRect(targetPosition, target->GetScale());
+		float prevPositionY = player->GetRigidbody()->GetCurrentVelocity(). y * TimeManager::GetInstance().GetFixedDeletaTime();
+
+		if (rect.topPosition > targetRect.bottomPosition - prevPositionY)
+		{
+			player->GetRigidbody()->SetGround(true);
+			player->SetPosition({ targetPosition.x , rect.topPosition - target->GetScale().y * 0.5f });
+		}
+		else if (rect.bottomPosition < targetRect.topPosition - prevPositionY)
+		{
+			// SetDestory(true);
+			player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x, 0.f });
+
+		}
+	}
 }
 
 void BlockObject::OnCollisionStay(Collider* target)
 {
+	if (target->GetColliderLayer() == ColliderLayer::Player)
+	{
+		Rigidbody* targetRigidbody = player->GetRigidbody();
+
+		Rectangle rect(collider->GetPosition(), collider->GetScale());
+		Rectangle targetRect(target->GetPosition(), target->GetScale());
+
+		if (rect.topPosition != targetRect.bottomPosition)
+		{
+			if (position.x < player->GetPosition().x && player->GetRigidbody()->GetCurrentVelocity().x < 0.f)
+			{
+				player->SetPosition({ rect.rightPosition + target->GetScale().x * 0.5f, player->GetPosition().y });
+				targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
+			}
+			else if (position.x > player->GetPosition().x && player->GetRigidbody()->GetCurrentVelocity().x > 0.f)
+			{
+				targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
+				player->SetPosition({ rect.leftPosition - target->GetScale().x * 0.5f, player->GetPosition().y });
+			}
+		}
+
+	
+
+		if (rect.topPosition == targetRect.bottomPosition && !targetRigidbody->IsGround())
+		{
+			if (position.x < player->GetPosition().x && player->GetRigidbody()->GetCurrentVelocity().x < 0.f)
+				targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
+			else if (position.x > player->GetPosition().x && player->GetRigidbody()->GetCurrentVelocity().x > 0.f)
+				targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
+		}
+	}
+
 }
 
 void BlockObject::OnCollisionEnd(Collider* target)
 {
+	if (target->GetColliderLayer() == ColliderLayer::Player)
+	{
+		player = (Player*)target->GetOwner();
+
+		player->GetRigidbody()->SetGround(false);
+	}
 }
 
 sf::FloatRect BlockObject::GetLocalBounds() const

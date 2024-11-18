@@ -17,6 +17,8 @@
 #include "TileMapController.h"
 #include "Goomba.h"
 #include "BrickBlockObject.h"
+#include "ItemBlockObject.h"
+#include "Collider.h"
 
 void SceneDev1::Init()
 {
@@ -47,6 +49,7 @@ void SceneDev1::Enter()
 
 	Player* testPlayer = AddGameObject(new Player("Player"),LayerType::Player);
 	testPlayer->Awake();
+	testPlayer->GetCollider()->SetScale({ 100.f, 150.f });
 	//testPlayer->CreateAnimator();
 
 	//auto animator = testPlayer->GetAnimator();
@@ -63,11 +66,13 @@ void SceneDev1::Enter()
 	//tile->LoadCsv("TileMap/test.csv");
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Enemy, ColliderLayer::Player);
 
-	BrickBlockObject* block = AddGameObject(new BrickBlockObject("tile_set"), LayerType::Block);
+	BlockObject* block = AddGameObject(new BlockObject(BlockType::Brick ,"tile_set"), LayerType::Block);
+	//  ItemBlockObject* block = AddGameObject(new ItemBlockObject(ItemType::MushRoom, "tile_set", "tile_set"), LayerType::Block);
 
 	TileMapController* tileMapController = AddGameObject(new TileMapController("TileMapController"), LayerType::Default);
 
 
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Block, ColliderLayer::Player);
 	Scene::Enter();
 }
 

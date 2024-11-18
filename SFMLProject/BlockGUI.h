@@ -4,16 +4,20 @@
 #include "imgui.h"
 
 class BlockObject;
+class ItemBlockObject;
 
 class BlockGUI : public ComponentGUI
 {
 protected:
-	BlockObject*	blockObject;
-	sf::Texture*	texture;
-	ImVec2			tileUvSize;
-	bool			isChangeRect;	
-	int				heightCount;
-	int				widthCount;
+	BlockObject*		blockObject;
+	ItemBlockObject*	itemBlockObject;
+	sf::Texture*		texture;
+	ImVec2				tileUvSize;
+
+	bool				isChangeRectItemBlock;
+	bool				isChangeRect;	
+	int					heightCount;
+	int					widthCount;
 
 public:
 	void Update() override;

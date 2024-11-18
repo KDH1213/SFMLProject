@@ -34,9 +34,9 @@ public:
 	void SetOrigin(const sf::Vector2f& newOrigin) override;
 	void Render(sf::RenderWindow& renderWindow) override;
 public:
-	virtual void OnCollisionEnter(Collider* target);
-	virtual void OnCollisionStay(Collider* target);
-	virtual void OnCollisionEnd(Collider* target);
+	void OnCollisionEnter(Collider* target) override;
+	void OnCollisionStay(Collider* target) override;
+	void OnCollisionEnd(Collider* target) override;
 
 	sf::FloatRect GetLocalBounds() const;
 	sf::FloatRect GetGlobalBounds() const;

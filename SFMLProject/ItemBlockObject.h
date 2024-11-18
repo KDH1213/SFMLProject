@@ -10,6 +10,17 @@ protected:
 	int				itemCount;
 
 public:
+	virtual void SetChangeTextureUvRect(const sf::IntRect uvRect) { changeTextureUvRect = uvRect; }
+	virtual sf::IntRect GetChangeTextureUvRect() { return changeTextureUvRect; }
+
+	void SetItemType(ItemType type) { itemType = type; }
+	ItemType GetItemType() { return itemType; }
+
+public:
+	void OnCollisionEnter(Collider* target) override;
+	void OnCollisionStay(Collider* target) override;
+	void OnCollisionEnd(Collider* target) override;
+
 	bool Save() const override;
 	bool Load() override;
 	bool SaveCsv(const std::string& filePath) const override;
