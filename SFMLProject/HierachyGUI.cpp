@@ -6,7 +6,7 @@
 #include "InspectorGUI.h"
 
 #include "AnimationToolGUI.h"
-#include "WallCollisionObjectEditor.h"
+#include "CollisionObjectEditor.h"
 #include "Scene.h"
 
 HierachyGUI::HierachyGUI(const std::string& name)
@@ -29,7 +29,7 @@ HierachyGUI::~HierachyGUI()
 void HierachyGUI::Init()
 {
     animationToolGUI = new AnimationToolGUI;
-    wallCollisionToolGUI = new WallCollisionObjectEditor;
+    wallCollisionToolGUI = new CollisionObjectEditor;
 }
 
 void HierachyGUI::Update()

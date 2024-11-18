@@ -2,12 +2,27 @@
 
 #include "GUI.h"
 
-class WallCollisionObjectEditor : public GUI
+enum class CollisonObjectType
+{
+    Wall,
+    Trick,
+
+    End
+};
+
+struct CollisonObjectTypeEnum
+{
+    CollisonObjectType type;
+    std::string name;
+};
+
+class CollisionObjectEditor : public GUI
 {
 protected:
     sf::Vector2f	cellSize;
     sf::Vector2f    startPosition;
     sf::Vector2f    endPosition;
+    CollisonObjectType  currentType;
 
     bool            isCreateObject;
     bool            isStartInput;
@@ -18,7 +33,7 @@ public:
     void Update() override;
 
 public:
-    WallCollisionObjectEditor();
-    ~WallCollisionObjectEditor();
+    CollisionObjectEditor();
+    ~CollisionObjectEditor();
 };
 

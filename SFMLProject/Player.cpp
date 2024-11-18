@@ -12,6 +12,8 @@ Player::Player(const std::string& name)
 	, isJump(false)
 	, currentStatus(2, 500.f, 200.f, 350.f)
 	, isFlipX(false)
+	, hitTime(2.f)
+	, currentHitTime(0.f)
 {
 	rigidBody = new Rigidbody(this);
 	rigidBody->SetGround(true);

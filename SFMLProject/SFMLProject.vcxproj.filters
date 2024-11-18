@@ -417,7 +417,7 @@
     <ClCompile Include="WallCollisionObject.cpp">
       <Filter>Contants\Object\WallCollisionObject</Filter>
     </ClCompile>
-    <ClCompile Include="WallCollisionObjectEditor.cpp">
+    <ClCompile Include="CollisionObjectEditor.cpp">
       <Filter>Contants\0. Editor\Imgui\GUI\ToolGUI\WallCollisionGUI</Filter>
     </ClCompile>
     <ClCompile Include="PlayerFSM.cpp">
@@ -488,6 +488,9 @@
     </ClCompile>
     <ClCompile Include="BlockSaveData.cpp">
       <Filter>Contants\Utlies\SaveData</Filter>
+    </ClCompile>
+    <ClCompile Include="TrickColliderObject.cpp">
+      <Filter>Contants\Object\WallCollisionObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -710,7 +713,7 @@
     <ClInclude Include="WallCollisionObject.h">
       <Filter>Contants\Object\WallCollisionObject</Filter>
     </ClInclude>
-    <ClInclude Include="WallCollisionObjectEditor.h">
+    <ClInclude Include="CollisionObjectEditor.h">
       <Filter>Contants\0. Editor\Imgui\GUI\ToolGUI\WallCollisionGUI</Filter>
     </ClInclude>
     <ClInclude Include="InspectorGUI.h">
@@ -787,6 +790,9 @@
     </ClInclude>
     <ClInclude Include="TileMapSaveData.h">
       <Filter>Contants\Utlies\SaveData</Filter>
+    </ClInclude>
+    <ClInclude Include="TrickColliderObject.h">
+      <Filter>Contants\Object\WallCollisionObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -14,6 +14,9 @@ protected:
 	sf::Vector2f	moveDirection;
 	DefaultStatus	currentStatus;
 
+	float			hitTime;
+	float			currentHitTime;
+
 	bool			isJump;
 	bool			isHit;
 	bool			isDead;
@@ -34,6 +37,8 @@ public:
 	void SetOrigin(const sf::Vector2f& newOrigin) override;
 
 	const sf::Vector2f& GetMoveDirection() { return moveDirection; }
+
+	bool IsHit() { return isHit; }
 public:
 	void CreateAnimator() override;
 	float GetSpeed() { return currentStatus.speed; }

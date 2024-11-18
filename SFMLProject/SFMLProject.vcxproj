@@ -254,12 +254,13 @@
     <ClCompile Include="TimeManager.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="TrickColliderObject.cpp" />
     <ClCompile Include="UIGameObject.cpp" />
     <ClCompile Include="UITextGameObject.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="Variables.cpp" />
     <ClCompile Include="WallCollisionObject.cpp" />
-    <ClCompile Include="WallCollisionObjectEditor.cpp" />
+    <ClCompile Include="CollisionObjectEditor.cpp" />
     <ClCompile Include="WallCollisionSaveData.cpp" />
     <ClCompile Include="WindowManager.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
@@ -357,12 +358,13 @@
     <ClInclude Include="TileMapGUI.h" />
     <ClInclude Include="TileMapSaveData.h" />
     <ClInclude Include="TimeManager.h" />
+    <ClInclude Include="TrickColliderObject.h" />
     <ClInclude Include="UIGameObject.h" />
     <ClInclude Include="UITextGameObject.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Variables.h" />
     <ClInclude Include="WallCollisionObject.h" />
-    <ClInclude Include="WallCollisionObjectEditor.h" />
+    <ClInclude Include="CollisionObjectEditor.h" />
     <ClInclude Include="WallCollisionSaveData.h" />
     <ClInclude Include="WindowManager.h" />
   </ItemGroup>

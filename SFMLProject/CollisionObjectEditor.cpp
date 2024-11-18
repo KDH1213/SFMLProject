@@ -1,9 +1,10 @@
 #include "stdafx.h"
-#include "WallCollisionObjectEditor.h"
+#include "CollisionObjectEditor.h"
 #include "imgui.h"
 #include "WallCollisionObject.h"
+#include "TrickColliderObject.h"
 
-WallCollisionObjectEditor::WallCollisionObjectEditor()
+CollisionObjectEditor::CollisionObjectEditor()
 	: GUI("WallCollisionObjectEditor")
 	, isStartInput(false)
 	, isEndInput(false)
@@ -11,14 +12,14 @@ WallCollisionObjectEditor::WallCollisionObjectEditor()
 {
 }
 
-WallCollisionObjectEditor::~WallCollisionObjectEditor()
+CollisionObjectEditor::~CollisionObjectEditor()
 {
 }
-void WallCollisionObjectEditor::Init()
+void CollisionObjectEditor::Init()
 {
 }
 
-void WallCollisionObjectEditor::Update()
+void CollisionObjectEditor::Update()
 {
 	ImGui::Begin("##WallCollisionObjectEditor");
 	ImGui::SeparatorText("WallCollisionObjectEditor");
@@ -50,6 +51,33 @@ void WallCollisionObjectEditor::Update()
 			isEndInput = true;
 			endPosition = { cellSize.x * posX , cellSize.y * posY };
 		}
+	}
+
+	static const CollisonObjectTypeEnum itemEnum[] =
+	{
+		{ CollisonObjectType::Wall , "Wall"}
+		,{ CollisonObjectType::Trick , "Trick"}
+	};
+
+	int idx;
+	for (idx = 0; idx < (int)CollisonObjectType::End; ++idx)
+	{
+		if (itemEnum[idx].type == currentType)
+			break;
+	}
+
+	bool isSelect = false;
+	if (ImGui::BeginCombo("CollisonObjectTypeCombo", itemEnum[idx].name.c_str()))
+	{
+		for (int n = 0; n < (int)ItemType::End; n++)
+		{
+			if (ImGui::Selectable(itemEnum[n].name.c_str(), idx == n))
+			{
+				currentType = itemEnum[n].type;
+			}
+		}
+
+		ImGui::EndCombo();
 	}
 
 	if (ImGui::Button("Start Input Create", { 200.f,20.f }))
@@ -94,11 +122,24 @@ void WallCollisionObjectEditor::Update()
 			isEndInput = false;
 
 			sf::Vector2f pos = endPosition - startPosition;
-			auto object = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new WallCollisionObject, LayerType::TileMap);
-			object->SetPosition(startPosition + (pos * 0.5f));
-			pos = { abs(pos.x), abs(pos.y) };
-			object->SetScale(pos);
-			object->Start();
+
+			if (currentType == CollisonObjectType::Wall)
+			{
+				auto object = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new WallCollisionObject, LayerType::TileMap);
+				object->SetPosition(startPosition + (pos * 0.5f));
+				pos = { abs(pos.x), abs(pos.y) };
+				object->SetScale(pos);
+				object->Start();
+			}
+			else if (currentType == CollisonObjectType::Trick)
+			{
+				auto object = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new TrickColliderObject, LayerType::TileMap);
+				object->SetPosition(startPosition + (pos * 0.5f));
+				pos = { abs(pos.x), abs(pos.y) };
+				object->SetScale(pos);
+				object->Start();
+			}
+			
 		}
 	}
 
