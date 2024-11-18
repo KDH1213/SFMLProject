@@ -50,7 +50,7 @@ void Enemy::SetPosition(const sf::Vector2f& pos)
 void Enemy::SetScale(const sf::Vector2f& scale)
 {
     this->scale = scale;
-    sprite.setScale(scale);
+    animator->SetScale(scale);
     collider->SetOwnerScale(scale);
 }
 

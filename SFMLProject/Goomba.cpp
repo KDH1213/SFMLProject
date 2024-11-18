@@ -13,7 +13,7 @@ Goomba::Goomba(const std::string& name)
 	fsm = new GoombaFSM(this);
 
 	CreateAnimator();
-	animator->LoadCsv("animators/mario.csv");
+	animator->LoadCsv("animators/goomba.csv");
 	CreateCollider(ColliderType::Rectangle, ColliderLayer::Enemy);
 }
 
@@ -27,7 +27,7 @@ Goomba::~Goomba()
 
 void Goomba::Awake()
 {
-	animator->ChangeAnimation("marioIdle", true);
+	animator->ChangeAnimation("goombaMove", true);
 }
 
 void Goomba::Start()
