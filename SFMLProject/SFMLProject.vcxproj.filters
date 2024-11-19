@@ -49,9 +49,6 @@
     <Filter Include="Core\0. define">
       <UniqueIdentifier>{9fd34642-d56e-4549-9d57-bb1c19c91e83}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\0. Framework">
-      <UniqueIdentifier>{62dfbdd2-5b33-457f-8bf7-7ada7d2ac1bd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core\1. Entity">
       <UniqueIdentifier>{3594ac28-1dfb-46fb-9661-4e1dfbc195b1}</UniqueIdentifier>
     </Filter>
@@ -214,6 +211,9 @@
     <Filter Include="Contants\0. Editor\Imgui\GUI\ToolGUI\Object">
       <UniqueIdentifier>{7590d7cc-3fb9-45a9-afef-e97d7206b01e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contants\Object\Item">
+      <UniqueIdentifier>{f4c23842-0835-4d39-b0cd-24e16caf10d5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -236,9 +236,6 @@
     </ClCompile>
     <ClCompile Include="Singleton.cpp">
       <Filter>Manager\1. Singleton</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework.cpp">
-      <Filter>Core\0. Framework</Filter>
     </ClCompile>
     <ClCompile Include="Resources.cpp">
       <Filter>Core\3. Resources</Filter>
@@ -277,9 +274,6 @@
       <Filter>Manager\5. SceneManager</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
-      <Filter>Contants\Object\GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="SpriteGameObject.cpp">
       <Filter>Contants\Object\GameObject</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
@@ -498,6 +492,36 @@
     <ClCompile Include="CreateObjectTool.cpp">
       <Filter>Contants\0. Editor\Imgui\GUI\ToolGUI\Object</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerUpgradeState.cpp">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework.cpp">
+      <Filter>Manager\0. Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="FireBullet.cpp">
+      <Filter>Contants\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerAttackState.cpp">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="CoinObject.cpp">
+      <Filter>Contants\Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="FlowerObject.cpp">
+      <Filter>Contants\Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="MushRoomObject.cpp">
+      <Filter>Contants\Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteGameObject.cpp">
+      <Filter>Contants\Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="StarObject.cpp">
+      <Filter>Contants\Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemObject.cpp">
+      <Filter>Contants\Object\Item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -520,9 +544,6 @@
     </ClInclude>
     <ClInclude Include="WindowManager.h">
       <Filter>Manager\7. WindowManager</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework.h">
-      <Filter>Core\0. Framework</Filter>
     </ClInclude>
     <ClInclude Include="Resources.h">
       <Filter>Core\3. Resources</Filter>
@@ -564,9 +585,6 @@
       <Filter>Manager\5. SceneManager</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">
-      <Filter>Contants\Object\GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="SpriteGameObject.h">
       <Filter>Contants\Object\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
@@ -802,6 +820,36 @@
     </ClInclude>
     <ClInclude Include="CreateObjectTool.h">
       <Filter>Contants\0. Editor\Imgui\GUI\ToolGUI\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerUpgradeState.h">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework.h">
+      <Filter>Manager\0. Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="FireBullet.h">
+      <Filter>Contants\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerAttackState.h">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="StarObject.h">
+      <Filter>Contants\Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="CoinObject.h">
+      <Filter>Contants\Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="FlowerObject.h">
+      <Filter>Contants\Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemObject.h">
+      <Filter>Contants\Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="MushRoomObject.h">
+      <Filter>Contants\Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteGameObject.h">
+      <Filter>Contants\Object\Item</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

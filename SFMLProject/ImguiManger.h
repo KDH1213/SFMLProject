@@ -13,6 +13,7 @@ private:
 	void CreateUI();
 
 public:
+	bool									OnGUI;
 	bool Init(sf::RenderWindow& window, bool loadDefaultFont = true);
 	void Release();
 	void ProcessEvent(const sf::Window& window, const sf::Event& event);
@@ -25,7 +26,7 @@ public:
 	T* CreateGUI(T* gui);*/
 
 protected:
-	ImguiManger() = default;
+	ImguiManger();
 	virtual ~ImguiManger() = default;
 	ImguiManger(const ImguiManger&) = delete;
 	ImguiManger& operator=(const ImguiManger&) = delete;

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Scene.h"
 #include "Camera.h"
+#include "ImguiManger.h"
 
 Scene::Scene(const SceneIds id)
 	: id(id)
@@ -131,6 +132,9 @@ void Scene::Update(float deltaTime)
 			TimeManager::GetInstance().SetTimeScale(0.f);
 		}
 	}
+
+	if (InputManager::GetInstance().GetKeyUp(sf::Keyboard::F3))
+		ImguiManger::GetInstance().OnGUI = !ImguiManger::GetInstance().OnGUI;
 
 	if (isFreeView)
 	{

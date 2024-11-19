@@ -8,7 +8,8 @@ FlowerObject::FlowerObject()
 	: ItemObject(ItemType::Flower, "Items", "Flower")
 {
 	CreateAnimator();
-	//animator->LoadCsv("animators/flower.csv");
+
+	animator->LoadCsv("animators/flower.csv");
 }
 
 void FlowerObject::Start()
@@ -18,8 +19,19 @@ void FlowerObject::Start()
 	SetRotation(rotation);
 
 	SetOrigin(originPreset);
-	//animator->Start();
+	animator->Start();
 	collider->Reset();
-	//collider->SetScale({ (sf::Vector2f)animator->GetCurrentAnimation()->GetFrameInfo()[0].rectSize });
-	// animator->ChangeAnimation("FlowerIdle", true);
+	collider->SetScale({ (sf::Vector2f)animator->GetCurrentAnimation()->GetFrameInfo()[0].rectSize });
+	animator->ChangeAnimation("flower", true);
+}
+
+void FlowerObject::Update(const float& deltaTime)
+{
+	animator->Update(deltaTime);
+}
+
+void FlowerObject::CreateAnimator()
+{
+	if (animator == nullptr)
+		animator = new Animator(this, sprite);
 }

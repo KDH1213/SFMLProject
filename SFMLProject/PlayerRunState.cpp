@@ -11,6 +11,7 @@ PlayerRunState::PlayerRunState(PlayerFSM* fsm)
 {
 	animationKeys.push_back("marioSmallRun");
 	animationKeys.push_back("marioRun");
+	animationKeys.push_back("marioFireRun");
 }
 
 PlayerRunState::~PlayerRunState()

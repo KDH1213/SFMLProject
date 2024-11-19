@@ -54,6 +54,8 @@ void InputManager::UpDownCheck()
 
 void InputManager::Init()
 {
+	isInputable = false;
+
 	AxisInfo infoHorizontal;
 	infoHorizontal.axis = Axis::Horizontal;
 	infoHorizontal.AddKey(true, sf::Keyboard::D);
@@ -83,6 +85,7 @@ void InputManager::Init()
 	BindKey(sf::Keyboard::Space);
 	BindKey(sf::Keyboard::Z);
 	BindKey(sf::Keyboard::F11);
+	BindKey(sf::Keyboard::F3);
 	BindKey(sf::Keyboard::F2);
 
 	BindMouseButton(sf::Mouse::Left);
@@ -91,6 +94,9 @@ void InputManager::Init()
 
 void InputManager::UpdateEvent(const sf::Event* ev)
 {
+	if (isInputable)
+		return;
+
 	switch (ev->type)
 	{
 	case sf::Event::KeyPressed:
@@ -137,6 +143,9 @@ void InputManager::UpdateEvent(const sf::Event* ev)
 
 void InputManager::Update(float deltaTime)
 {
+	if (isInputable)
+		return;
+
 	for (auto& pair : axisInfoMap)
 	{
 		auto& axisInfo = pair.second;

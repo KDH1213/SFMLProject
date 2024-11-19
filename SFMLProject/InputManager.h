@@ -40,6 +40,7 @@ private:
 	std::vector<sf::Keyboard::Key>					keyUpDownStateVector;
 	std::vector<sf::Mouse::Button>					mouseUpDownStateVector;
 	sf::Vector2i									mousePosition;
+	bool											isInputable;
 
 
 public:
@@ -70,6 +71,8 @@ public:
 
 	void Clear();
 
+	void SetInputable(bool active) { isInputable = active; }
+	bool GetInputable() { return isInputable; }
 protected:
 	InputManager() = default;
 	~InputManager() = default;

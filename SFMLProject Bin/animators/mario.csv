@@ -14,3 +14,10 @@ animations/marioSmallJump.csv,marioSmallJump
 animations/marioSmallGrap.csv,marioSmallGrap
 animations/marioUpgrade.csv,marioUpgrade
 animations/marioFireUpgrade.csv,marioFireUpgrade
+animations/marioFireBreak.csv,marioFireBreak
+animations/marioFireDown.csv,marioFireDown
+animations/marioFireGrap.csv,marioFireGrap
+animations/marioFireIdle.csv,marioFireIdle
+animations/marioFireItemGrap.csv,marioFireItemGrap
+animations/marioFireJump.csv,marioFireJump
+animations/marioFireRun.csv,marioFireRun

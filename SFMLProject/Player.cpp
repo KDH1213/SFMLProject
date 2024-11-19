@@ -92,7 +92,8 @@ void Player::AddItem(ItemType itemType)
 			fsm.ChangeState(PlayerStateType::Upgrade);
 		break;
 	case ItemType::Flower:
-		fsm.ChangeState(PlayerStateType::Upgrade);
+		if(currentStatus.hp == 2)
+			fsm.ChangeState(PlayerStateType::Upgrade);
 		break;
 	case ItemType::Star:
 		break;
@@ -116,7 +117,7 @@ void Player::Update(const float& deltaTime)
 	if (isHit)
 	{
 		currentHitTime -= deltaTime;
-
+ 
 		if (currentHitTime <= 0.f)
 		{
 			sprite.setColor(defaultColor);

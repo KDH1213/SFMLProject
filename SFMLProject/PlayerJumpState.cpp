@@ -8,6 +8,7 @@ PlayerJumpState::PlayerJumpState(PlayerFSM* fsm)
 {
 	animationKeys.push_back("marioSmallJump");
 	animationKeys.push_back("marioJump");
+	animationKeys.push_back("marioFireJump");
 }
 
 PlayerJumpState::~PlayerJumpState()

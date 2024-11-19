@@ -11,6 +11,7 @@ PlayerBreakState::PlayerBreakState(PlayerFSM* fsm)
 {
 	animationKeys.push_back("marioSmallBreak");
 	animationKeys.push_back("marioBreak");
+	animationKeys.push_back("marioFireBreak");
 }
 
 PlayerBreakState::~PlayerBreakState()
@@ -27,8 +28,9 @@ void PlayerBreakState::Start()
 }
 void PlayerBreakState::Enter()
 {
-	PlayerBaseState::Enter();
-	player->GetAnimator()->ChangeAnimation("marioBreak", true);
+	PlayerBaseState::Enter(); 
+	animationKeyIndex = player->GetCurrentHP() - 1;
+	player->GetAnimator()->ChangeAnimation(animationKeys[animationKeyIndex], true);
 
 	horizontal = InputManager::GetInstance().GetAxis(Axis::Horizontal);
 	isMoveDirectionLeft = horizontal > 0.f ? false : true;

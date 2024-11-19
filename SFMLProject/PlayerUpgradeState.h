@@ -6,12 +6,15 @@ class PlayerUpgradeState : public PlayerBaseState
 private:
 	sf::Vector2f changePosition;
 	sf::Vector2f originalPosition;
-	float	currentTime;
+	int	currentCount;
 
 private:
 	void StartEffect();
 	void ChangePosition();
 	void OnAnimationEnd();
+
+
+	void OnFireUpgrade();
 public:
 	void Awake() override;
 	void Start() override;

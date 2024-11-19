@@ -25,13 +25,15 @@ void Framework::Update()
 
 		while (renderWindow->pollEvent(event))
 		{
-			ImguiManger::GetInstance().ProcessEvent(*renderWindow, event);
+			if(ImguiManger::GetInstance().OnGUI)
+				ImguiManger::GetInstance().ProcessEvent(*renderWindow, event);
 			if (event.type == sf::Event::Closed)
 				renderWindow->close();
 			InputManager::GetInstance().UpdateEvent(&event);
 		}
-		 
-		ImguiManger::GetInstance().Update(*renderWindow, TimeManager::GetInstance().GetTime());
+
+		if (ImguiManger::GetInstance().OnGUI)
+			ImguiManger::GetInstance().Update(*renderWindow, TimeManager::GetInstance().GetTime());
 
 		InputManager::GetInstance().Update(TimeManager::GetInstance().GetDeletaTime());
 		if (TimeManager::GetInstance().IsFixedUpdate())
@@ -46,7 +48,8 @@ void Framework::Update()
 		SceneManager::GetInstance().Render(*renderWindow);
 		TimeManager::GetInstance().Render(*renderWindow);
 
-		ImguiManger::GetInstance().Render(*renderWindow);
+		if (ImguiManger::GetInstance().OnGUI)
+			ImguiManger::GetInstance().Render(*renderWindow);
 		renderWindow->display();
 	}
 	

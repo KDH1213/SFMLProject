@@ -7,6 +7,7 @@
 
 PlayerUpgradeState::PlayerUpgradeState(PlayerFSM* fsm)
 	: PlayerBaseState(fsm, PlayerStateType::Hit)
+	, currentCount(0)
 {
 	animationKeys.push_back("marioUpgrade");
 	animationKeys.push_back("marioFireUpgrade");
@@ -21,10 +22,6 @@ void PlayerUpgradeState::StartEffect()
 	if (player->GetCurrentHP() == 1)
 	{
 		sf::Vector2f currentOrigin = player->GetOrigin();
-		player->SetOrigin(Origins::TopCenter);
-		currentOrigin = player->GetOrigin();
-		currentOrigin.y = currentOrigin.y * 0.5f;
-
 		player->GetAnimator()->ChangeAnimation(animationKeys[0], true, true);
 		
 
@@ -38,10 +35,13 @@ void PlayerUpgradeState::StartEffect()
 		animation->SetAnimationEndEvent(std::bind(&PlayerUpgradeState::OnAnimationEnd, this), 2);
 		// changePosition.y += (animation->GetFrameInfo()[0].rectSize.y - animation->GetFrameInfo()[2].rectSize.y) * 0.5f;
 	}
-	/*else if(player->GetCurrentHP() == 2)
+	else if(player->GetCurrentHP() == 2)
 	{
 		player->GetAnimator()->ChangeAnimation(animationKeys[1], true, true);
-	}*/
+
+		Animation* animation = player->GetAnimator()->GetCurrentAnimation();
+		animation->SetAnimationEndEvent(std::bind(&PlayerUpgradeState::OnFireUpgrade, this), 1);
+	}
 
 }
 
@@ -56,6 +56,18 @@ void PlayerUpgradeState::OnAnimationEnd()
 	fsm->ChangeState(PlayerStateType::Idle);
 }
 
+void PlayerUpgradeState::OnFireUpgrade()
+{
+	++currentCount;
+
+	if (currentCount == 5)
+	{
+		Animation* animation = player->GetAnimator()->GetCurrentAnimation();
+		animation->ClearEndEvent(1);
+		fsm->ChangeState(PlayerStateType::Idle);		
+	}
+}
+
 void PlayerUpgradeState::Awake()
 {
 }
@@ -67,8 +79,6 @@ void PlayerUpgradeState::Start()
 void PlayerUpgradeState::Enter()
 {
 	PlayerBaseState::Enter();
-
-	currentTime = 0.f;
 
 	StartEffect();
 
@@ -82,10 +92,10 @@ void PlayerUpgradeState::Exit()
 	PlayerBaseState::Exit();
 	TimeManager::GetInstance().SetTimeScale(1.f);
 	player->GetCollider()->SetActive(true);
-	player->SetPosition(changePosition);
 
 	if (player->GetCurrentHP() == 1)
 	{
+		player->SetPosition(changePosition);
 		Animation* animation = player->GetAnimator()->GetCurrentAnimation();
 		animation->ClearStartEvent(1);
 		animation->ClearEndEvent(2);

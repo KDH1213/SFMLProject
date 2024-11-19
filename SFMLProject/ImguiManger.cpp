@@ -94,3 +94,9 @@ void ImguiManger::Render(sf::RenderWindow& window)
 {
 	ImGui::SFML::Render(window);
 }
+
+ImguiManger::ImguiManger()
+	: sfTime(nullptr)
+	, OnGUI(true)
+{
+}

@@ -107,7 +107,7 @@ void Enemy::Start()
 void Enemy::Update(const float& deltaTime)
 {
     fsm->Update(deltaTime);
-    rigidBody->Update(deltaTime);
+    animator->Update(deltaTime);
 }
 
 void Enemy::FixedUpdate(const float& deltaTime)

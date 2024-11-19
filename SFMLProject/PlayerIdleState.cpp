@@ -8,6 +8,7 @@ PlayerIdleState::PlayerIdleState(PlayerFSM* fsm)
 {
 	animationKeys.push_back("marioSmallIdle");
 	animationKeys.push_back("marioIdle");
+	animationKeys.push_back("marioFireIdle");
 }
 
 PlayerIdleState::~PlayerIdleState()
