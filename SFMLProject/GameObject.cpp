@@ -156,7 +156,7 @@ bool GameObject::LoadCsv(const std::string& filePath)
 
 GameObjectSaveData GameObject::GetGameObjectSaveData() const
 {
-	return GameObjectSaveData({ name, position, rotation, scale, origin, (int)originPreset, active, sortingOrder });
+	return GameObjectSaveData({ name, position, rotation, scale, origin, (int)originPreset, active, sortingOrder, (int)layerType });
 }
 
 void GameObject::LoadGameObjectData(const GameObjectSaveData& data)
@@ -169,4 +169,5 @@ void GameObject::LoadGameObjectData(const GameObjectSaveData& data)
 	originPreset = (Origins)data.originPreset;
 	active = data.active;
 	sortingOrder = data.sortingOrder;
+	layerType = (LayerType)data.layerType;
 }

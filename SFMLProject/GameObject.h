@@ -21,6 +21,8 @@ protected:
 	Rigidbody*		rigidBody;
 	Origins			originPreset;
 
+	LayerType		layerType;
+
 	std::string		name;
 
 	int				iD;
@@ -55,6 +57,8 @@ public:
 		originPreset = Origins::Custom;
 	}
 
+	void SetLayerType(const LayerType& layer) { layerType = layer; }
+	const LayerType GetLayerType() const { return layerType; }
 
 	virtual sf::FloatRect GetLocalBounds() const = 0;
 	virtual sf::FloatRect GetGlobalBounds() const = 0;
