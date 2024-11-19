@@ -513,14 +513,14 @@
     <ClCompile Include="MushRoomObject.cpp">
       <Filter>Contants\Object\Item</Filter>
     </ClCompile>
-    <ClCompile Include="SpriteGameObject.cpp">
-      <Filter>Contants\Object\Item</Filter>
-    </ClCompile>
     <ClCompile Include="StarObject.cpp">
       <Filter>Contants\Object\Item</Filter>
     </ClCompile>
     <ClCompile Include="ItemObject.cpp">
       <Filter>Contants\Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteGameObject.cpp">
+      <Filter>Contants\Object\GameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -849,7 +849,7 @@
       <Filter>Contants\Object\Item</Filter>
     </ClInclude>
     <ClInclude Include="SpriteGameObject.h">
-      <Filter>Contants\Object\Item</Filter>
+      <Filter>Contants\Object\GameObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -45,6 +45,11 @@ void PlayerIdleState::Update(float deltaTime)
 	{
 		fsm->ChangeState(PlayerStateType::Jump);
 	}
+
+	if (InputManager::GetInstance().GetKeyUp(sf::Keyboard::Z))
+	{
+		player->Attack();
+	}
 }
 
 void PlayerIdleState::FixedUpdate(float fixedDeltaTime)

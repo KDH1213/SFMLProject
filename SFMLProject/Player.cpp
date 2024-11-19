@@ -5,6 +5,7 @@
 #include "Animator.h"
 #include "Collider.h"
 #include "Animation.h"
+#include "FireBullet.h"
 
 Player::Player(const std::string& name)
 	: GameObject(name)
@@ -14,6 +15,10 @@ Player::Player(const std::string& name)
 	, isFlipX(false)
 	, hitTime(2.f)
 	, currentHitTime(0.f)
+	, reloadTime(0.5f)
+	, currentReloadTime(0.f)
+	, isReload(false)
+	, isAttack(false)
 {
 	rigidBody = new Rigidbody(this);
 	rigidBody->SetGround(false);
@@ -24,6 +29,9 @@ Player::Player(const std::string& name)
 	defaultColor = sprite.getColor();
 	effectColor = defaultColor;
 	effectColor.a = 120;
+
+	// animator->GetAnimation("marioFireAttack")->SetAnimationEndEvent(std::bind(&Player::OnAttackEnd, this), 0);
+	// animator->GetAnimation("marioFireRunAttack")->SetAnimationEndEvent(std::bind(&Player::OnAttackEnd, this), 2);
 }
 
 Player::~Player()
@@ -106,6 +114,41 @@ void Player::AddItem(ItemType itemType)
 void Player::TakeUpgrade()
 {
 	// fsm.ChangeState(PlayerStateType::Upgrade);
+}
+
+void Player::Attack()
+{
+	if (isAttack || isReload)
+		return;
+
+	FireBullet* bullet = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new FireBullet(), LayerType::PlayerBullet);
+
+	sf::Vector2f direciton;
+	
+	if (isFlipX)
+	{
+		direciton = sf::Vector2f::left;
+		bullet->SetPosition(position + sf::Vector2f::left * 3.f);
+	}
+	else
+	{
+		direciton = sf::Vector2f::right;
+		bullet->SetPosition(position + sf::Vector2f::right * 3.f);
+	}
+
+	direciton.Normalized();
+
+	bullet->SetMoveDirection(direciton);
+	bullet->GetRigidbody()->SetVelocity({ 0.f, -400.f });
+	
+	bullet->Awake();
+	bullet->Start();
+}
+
+void Player::OnAttackEnd()
+{
+	isAttack = false;
+	isReload = true;
 }
 
 

@@ -20,11 +20,17 @@ protected:
 
 	float			hitTime;
 	float			currentHitTime;
+	float			reloadTime;
+	float			currentReloadTime;
 
 	bool			isJump;
 	bool			isHit;
 	bool			isDead;
 	bool			isFlipX;
+
+	bool			isReload;
+	bool			isAttack;
+
 
 public:
 	void TakeDamage();
@@ -33,6 +39,8 @@ public:
 	void AddHp() { ++currentStatus.hp; }
 	void AddItem(ItemType itemType);
 	void TakeUpgrade();
+	void Attack();
+	void OnAttackEnd();
 
 	void SetPosition(const sf::Vector2f& pos) override;
 	void SetScale(const sf::Vector2f& scale) override;

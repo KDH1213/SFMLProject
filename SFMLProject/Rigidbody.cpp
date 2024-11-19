@@ -31,6 +31,16 @@ void Rigidbody::SetGround(bool isGround)
 	this->isGround = isGround;
 }
 
+void Rigidbody::ResetVelocity()
+{
+	velocity = sf::Vector2f::zero;
+}
+
+void Rigidbody::ResetDropSpeed()
+{
+	dropSpeed = 0.f; 
+}
+
 void Rigidbody::FixedUpdate(const float& fixedDeltaTime)
 {
 	//velocity = accel * fixedDeltaTime;

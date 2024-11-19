@@ -34,6 +34,9 @@ public:
 	void SetOwner(GameObject* owner) { this->owner = owner; }
 	GameObject* GetOwner() { return owner; }
 
+	void ResetVelocity();
+	void ResetDropSpeed();
+
 public:
 	void FixedUpdate(const float& fixedDeltaTime) override;
 

@@ -8,6 +8,7 @@ private:
 	float				moveSpeed;
 
 public:
+	void Start() override;
 	void FixedUpdate(const float& deltaTime) override;
 
 	void OnCollisionStay(Collider* target) override;

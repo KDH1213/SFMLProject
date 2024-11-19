@@ -56,6 +56,11 @@ void PlayerJumpState::Update(float deltaTime)
 	float horizontal = InputManager::GetInstance().GetAxis(Axis::Horizontal);
 	if ((horizontal < 0.f && !player->IsFlipX()) || (horizontal > 0.f && player->IsFlipX()))
 		player->OnFlipX();
+
+	if (InputManager::GetInstance().GetKeyUp(sf::Keyboard::Z))
+	{
+		player->Attack();
+	}
 }
 
 void PlayerJumpState::FixedUpdate(float fixedDeltaTime)

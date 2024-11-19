@@ -78,6 +78,11 @@ void PlayerRunState::Update(float deltaTime)
 		fsm->ChangeState(PlayerStateType::Break);
 	else if (horizontal < 0.f && !isLeftRun)
 		fsm->ChangeState(PlayerStateType::Break);
+
+	if (InputManager::GetInstance().GetKeyUp(sf::Keyboard::Z))
+	{
+		player->Attack();
+	}
 }
 
 void PlayerRunState::FixedUpdate(float fixedDeltaTime)

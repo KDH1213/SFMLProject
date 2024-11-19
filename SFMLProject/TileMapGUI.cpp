@@ -106,6 +106,28 @@ void TileMapGUI::OnTileMapEditor()
 
 		std::string name = tileMap->GetName();
 
+		if (isSelect)
+		{
+			if (InputManager::GetInstance().GetKeyPressed(sf::Mouse::Left))
+			{
+				auto currentPos = SceneManager::GetInstance().GetCurrentScene()->IsFreeView() ? SceneManager::GetInstance().GetCurrentScene()->ScreenToFreeViewWorld(InputManager::GetInstance().GetMousePosition()) : SceneManager::GetInstance().GetCurrentScene()->ScreenToWorld(InputManager::GetInstance().GetMousePosition());
+				auto tileMapPos = tileMap->GetGlobalBounds();
+
+				if (tileMapPos.left < currentPos.x && tileMapPos.top < currentPos.y
+					&& tileMapPos.left + tileMapPos.width > currentPos.x && tileMapPos.top + tileMapPos.height > currentPos.y)
+				{
+					int indexX = (int)(currentPos.x - tileMapPos.left) / (int)cellSize.x;
+					int indexY = (int)(currentPos.y - tileMapPos.top) / (int)cellSize.y;
+
+					tileMap->ChangeTile(indexX, indexY, selectTileX, selectTileY);
+				}
+			}
+			if (InputManager::GetInstance().GetKeyDown(sf::Mouse::Right))
+			{
+				isSelect = false;
+			}
+		}
+
 		for (int i = 0; i < heightCount; ++i)
 		{
 			for (int j = 0; j < widthCount; ++j)
@@ -131,27 +153,6 @@ void TileMapGUI::OnTileMapEditor()
 			}
 		}
 
-		if (isSelect)
-		{
-			if (InputManager::GetInstance().GetKeyPressed(sf::Mouse::Left))
-			{
-				auto currentPos = SceneManager::GetInstance().GetCurrentScene()->IsFreeView() ? SceneManager::GetInstance().GetCurrentScene()->ScreenToFreeViewWorld(InputManager::GetInstance().GetMousePosition()) : SceneManager::GetInstance().GetCurrentScene()->ScreenToWorld(InputManager::GetInstance().GetMousePosition());
-				auto tileMapPos = tileMap->GetGlobalBounds();
-
-				if (tileMapPos.left < currentPos.x && tileMapPos.top < currentPos.y
-					&& tileMapPos.left + tileMapPos.width > currentPos.x && tileMapPos.top + tileMapPos.height > currentPos.y)
-				{
-					int indexX = (int)(currentPos.x - tileMapPos.left) / (int)cellSize.x;
-					int indexY = (int)(currentPos.y - tileMapPos.top) / (int)cellSize.y;
-
-					tileMap->ChangeTile(indexX, indexY, selectTileX, selectTileY);
-				}
-			}
-			if (InputManager::GetInstance().GetKeyDown(sf::Mouse::Right))
-			{
-				isSelect = false;
-			}
-		}
 
 		ImGui::End();
 	}
