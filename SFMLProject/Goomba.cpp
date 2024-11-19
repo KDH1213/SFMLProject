@@ -2,6 +2,7 @@
 #include "Goomba.h"
 
 #include "Animator.h"
+#include "Animation.h"
 #include "Collider.h"
 #include "Collision.h"
 #include "Player.h"
@@ -35,6 +36,8 @@ void Goomba::Start()
 	Enemy::Start();
 
 	fsm->ChangeState(EnemyStateType::Scout);
+
+	GetCollider()->SetScale({ (sf::Vector2f)animator->GetCurrentAnimation()->GetFrameInfo()[0].rectSize });
 }
 
 void Goomba::OnCollisionEnter(Collider* target)
@@ -51,7 +54,7 @@ void Goomba::OnCollisionEnter(Collider* target)
 
 		if (rect.topPosition > targetRect.bottomPosition - prevPositionY)
 		{
-			fsm->ChangeState(EnemyStateType::Dead);
+			TakeDamage();
 		}
 		else if (rect.bottomPosition < targetRect.topPosition - prevPositionY)
 			player->TakeDamage();

@@ -28,6 +28,9 @@ void Enemy::TakeDamage()
 {
     --currentStatus.hp;
 
+    SetDestory(true);
+
+
     if (currentStatus.hp == 0)
         fsm->ChangeState(EnemyStateType::Dead);
 }

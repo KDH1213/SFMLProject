@@ -4,6 +4,13 @@
 
 class PlayerDeadState : public PlayerBaseState
 {
+private:
+	float	waitTime;
+	float	currentWaitTime;
+
+	bool	isWait;
+
+
 public:
 	void Awake() override;
 	void Start() override;

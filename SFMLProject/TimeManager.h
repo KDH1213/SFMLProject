@@ -29,7 +29,7 @@ public:
 	void SetFixedTimeStep(float fixedTime) { fixedDeltaTime = fixedTime; }
 	void SetMaximumAllowedTimestep(float timestep) { maximumAllowedTimestep = timestep; }
 
-	float GetUnScaleDeletaTime() const { return deltaTime; }
+	float GetUnScaleDeletaTime() const { return realDeltatime; }
 	float GetUnScaleFixedDeletaTime() const { return fixedDeltaTime; }
 	float GetDeletaTime() const { return deltaTime * timeScale; }
 	float GetFixedDeletaTime() const { return fixedDeltaTime * timeScale; }

@@ -2,9 +2,13 @@
 #include "PlayerDeadState.h"
 #include "Rigidbody.h"
 #include "Animator.h"
+#include "Collider.h"
 
 PlayerDeadState::PlayerDeadState(PlayerFSM* fsm)
 	: PlayerBaseState(fsm, PlayerStateType::Dead)
+	, waitTime(0.5f)
+	, currentWaitTime(0.f)
+	, isWait(true)
 {
 }
 
@@ -23,7 +27,16 @@ void PlayerDeadState::Start()
 void PlayerDeadState::Enter()
 {
 	PlayerBaseState::Enter();
-	player->GetAnimator()->ChangeAnimation("marioHit", true, true);
+
+	currentWaitTime = 0.f;
+	isWait = true;
+
+	player->GetAnimator()->ChangeAnimation("marioDead", true, true);
+	TimeManager::GetInstance().SetTimeScale(0.f);
+
+	player->GetRigidbody()->SetVelocity({ 0.f, -1000.f });
+	player->GetRigidbody()->SetGround(false);
+	player->GetCollider()->SetActive(false);
 }
 
 void PlayerDeadState::Exit()
@@ -33,10 +46,16 @@ void PlayerDeadState::Exit()
 
 void PlayerDeadState::Update(float deltaTime)
 {
+	currentWaitTime += TimeManager::GetInstance().GetUnScaleDeletaTime();
+
+	if (isWait && currentWaitTime >= waitTime)
+		isWait = !isWait;
 }
 
 void PlayerDeadState::FixedUpdate(float fixedDeltaTime)
 {
+	if(!isWait)
+		player->GetRigidbody()->FixedUpdate(TimeManager::GetInstance().GetUnScaleFixedDeletaTime() * 0.8f);
 }
 
 void PlayerDeadState::LateUpdate(float deltaTime)

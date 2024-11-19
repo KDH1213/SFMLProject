@@ -50,7 +50,6 @@ void SceneDev1::Enter()
 
 	Player* testPlayer = AddGameObject(new Player("Player"),LayerType::Player);
 	testPlayer->Awake();
-	testPlayer->GetCollider()->SetScale({ 100.f, 150.f });
 	//testPlayer->CreateAnimator();
 
 	//auto animator = testPlayer->GetAnimator();

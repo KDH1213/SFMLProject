@@ -83,6 +83,7 @@ void PlayerHitState::Exit()
 	PlayerBaseState::Exit();
 	TimeManager::GetInstance().SetTimeScale(1.f);
 	player->GetCollider()->SetActive(true);
+	player->SetPosition(changePosition);
 
 	if (player->GetCurrentHP() == 1)
 	{

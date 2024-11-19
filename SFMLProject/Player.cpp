@@ -46,6 +46,9 @@ void Player::Start()
 
 	fsm.Start();
 	fsm.ChangeState(PlayerStateType::Idle);
+
+
+	GetCollider()->SetScale({ (sf::Vector2f)animator->GetCurrentAnimation()->GetFrameInfo()[0].rectSize });
 }
 
 void Player::InputMove()

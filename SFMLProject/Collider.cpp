@@ -156,7 +156,8 @@ void Collider::CreateCollision(ColliderType colliderType, sf::Vector2f offset, s
 
 void Collider::Render(sf::RenderWindow& renderWindow)
 {
-	collision->Render(renderWindow);
+	if(active)
+		collision->Render(renderWindow);
 }
 
 void Collider::OnCollisionEnter(Collider* target)
