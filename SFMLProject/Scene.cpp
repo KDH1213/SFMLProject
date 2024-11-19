@@ -64,6 +64,13 @@ void Scene::Release()
 		objectVector.clear();
 	}
 	gameObjectVectors.clear();
+
+	for (auto& object : destroyObjects)
+	{
+		object->Release();
+		delete object;
+	}
+	destroyObjects.clear();
 }
 
 void Scene::Enter()
@@ -90,14 +97,24 @@ void Scene::Exit()
 
 void Scene::Update(float deltaTime)
 {
-	for (auto& objectVector : gameObjectVectors)
-	{
-		for (auto& object : objectVector)
-		{
-			if (!object->IsActive())
-				continue;
 
-			object->Update(deltaTime);
+	for (int i = 0; i < (int)LayerType::End; ++i)
+	{
+		for (auto iter = gameObjectVectors[i].begin(); iter != gameObjectVectors[i].end();)
+		{
+			if ((*iter)->GetDestory())
+			{
+				iter = gameObjectVectors[i].erase(iter);
+			}
+			else
+			{
+				if (!(*iter)->IsActive())
+					continue;
+
+				(*iter)->Update(deltaTime);
+
+				++iter;
+			}
 		}
 	}
 
@@ -240,7 +257,7 @@ void Scene::ApplyRemoveGameObject()
 {
 	for (auto object : removeObjectVector)
 	{
-		//gameObjects.remove(object);
+		destroyObjects.push_back(object);
 	}
 	removeObjectVector.clear();
 }

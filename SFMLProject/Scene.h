@@ -8,6 +8,7 @@ class Scene
 protected:
 	const SceneIds							id;
 	std::vector<GameObject*>				removeObjectVector;
+	std::vector<GameObject*>				destroyObjects;
 	std::vector<std::vector<GameObject*>>	gameObjectVectors;
 
 	Camera*									mainCamera;

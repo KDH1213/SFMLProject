@@ -51,15 +51,6 @@ void Player::Start()
 	GetCollider()->SetScale({ (sf::Vector2f)animator->GetCurrentAnimation()->GetFrameInfo()[0].rectSize });
 }
 
-void Player::InputMove()
-{
-	
-}
-
-void Player::InputJump()
-{
-}
-
 void Player::TakeDamage()
 {
 	if (isHit)
@@ -88,6 +79,32 @@ void Player::OnFlipX()
 
 	scale.x *= -1.f;
 	SetScale(scale);
+}
+
+void Player::AddItem(ItemType itemType)
+{
+	switch (itemType)
+	{
+	case ItemType::Coin:
+		break;
+	case ItemType::MushRoom:
+		if(currentStatus.hp == 1)
+			fsm.ChangeState(PlayerStateType::Upgrade);
+		break;
+	case ItemType::Flower:
+		fsm.ChangeState(PlayerStateType::Upgrade);
+		break;
+	case ItemType::Star:
+		break;
+	case ItemType::End:
+		break;
+	default:
+		break;
+	}
+}
+void Player::TakeUpgrade()
+{
+	// fsm.ChangeState(PlayerStateType::Upgrade);
 }
 
 
@@ -137,6 +154,39 @@ void Player::Render(sf::RenderWindow& renderWindow)
 {
 	animator->Render(renderWindow);
 	collider->Render(renderWindow);
+}
+void Player::OnCollisionEnter(Collider* target)
+{
+}
+void Player::OnCollisionStay(Collider* target)
+{
+}
+void Player::OnCollisionEnd(Collider* target)
+{
+	if (target->GetColliderLayer() == ColliderLayer::Wall || target->GetColliderLayer() == ColliderLayer::Block)
+	{
+		auto& targets = collider->GetCollisionTargets();
+		bool isGround = false;
+		for (auto& targetCollsion : targets)
+		{
+			if (targetCollsion == target)
+				continue;
+
+			Rectangle rect(collider->GetPosition(), collider->GetScale());
+			Rectangle targetRect(targetCollsion->GetPosition(), targetCollsion->GetScale());
+
+			if (rect.bottomPosition == targetRect.topPosition)
+			{
+				isGround = true;
+				break;
+			}
+
+		}
+
+		if (!isGround)
+			rigidBody->SetGround(false);
+	}
+	
 }
 void Player::SetPosition(const sf::Vector2f& pos)
 {

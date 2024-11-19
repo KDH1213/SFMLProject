@@ -12,3 +12,5 @@ animations/marioSmallRun.csv,marioSmallRun
 animations/marioSmallBreak.csv,marioSmallBreak
 animations/marioSmallJump.csv,marioSmallJump
 animations/marioSmallGrap.csv,marioSmallGrap
+animations/marioUpgrade.csv,marioUpgrade
+animations/marioFireUpgrade.csv,marioFireUpgrade

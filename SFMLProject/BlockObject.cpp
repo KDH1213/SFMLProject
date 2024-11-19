@@ -150,12 +150,12 @@ void BlockObject::OnCollisionStay(Collider* target)
 
 void BlockObject::OnCollisionEnd(Collider* target)
 {
-	if (target->GetColliderLayer() == ColliderLayer::Player)
+	/*if (target->GetColliderLayer() == ColliderLayer::Player)
 	{
 		player = (Player*)target->GetOwner();
 
 		player->GetRigidbody()->SetGround(false);
-	}
+	}*/
 }
 
 sf::FloatRect BlockObject::GetLocalBounds() const

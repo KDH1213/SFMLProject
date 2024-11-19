@@ -8,6 +8,7 @@
 #include "PlayerDeadState.h"
 #include "PlayerBaseState.h"
 #include "PlayerHitState.h"
+#include "PlayerUpgradeState.h"
 
 PlayerFSM::PlayerFSM(Player* owner)
 	: owner(owner)
@@ -55,6 +56,9 @@ void PlayerFSM::CreateAllState()
 		case PlayerStateType::Dead:
 			AddState(PlayerStateType::Dead);
 			break;
+		case PlayerStateType::Upgrade:
+			AddState(PlayerStateType::Upgrade);
+			break;
 		case PlayerStateType::End:
 			break;
 		default:
@@ -86,6 +90,9 @@ BaseState<PlayerStateType>* PlayerFSM::CreateState(PlayerStateType type)
 		break;
 	case PlayerStateType::Dead:
 		state = new PlayerDeadState(this);
+		break;
+	case PlayerStateType::Upgrade:
+		state = new PlayerUpgradeState(this);
 		break;
 	case PlayerStateType::End:
 		break;

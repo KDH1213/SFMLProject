@@ -3,9 +3,6 @@
 
 class SceneDev1 : public Scene
 {
-private:
-	GameObject* test;
-
 public:
 	void Init() override;
 	void Enter() override;

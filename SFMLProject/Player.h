@@ -27,11 +27,12 @@ protected:
 	bool			isFlipX;
 
 public:
-	void InputMove();
-	void InputJump();
 	void TakeDamage();
 	void OnFlipX();
 	bool IsFlipX() { return isFlipX; }
+	void AddHp() { ++currentStatus.hp; }
+	void AddItem(ItemType itemType);
+	void TakeUpgrade();
 
 	void SetPosition(const sf::Vector2f& pos) override;
 	void SetScale(const sf::Vector2f& scale) override;
@@ -56,6 +57,10 @@ public:
 	void FixedUpdate(const float& deltaTime) override;
 	void LateUpdate(const float& deltaTime) override;
 	void Render(sf::RenderWindow& renderWindow) override;
+
+	void OnCollisionEnter(Collider* target) override;
+	void OnCollisionStay(Collider* target) override;
+	void OnCollisionEnd(Collider* target) override;
 
 	sf::FloatRect GetLocalBounds() const;
 	sf::FloatRect GetGlobalBounds() const;

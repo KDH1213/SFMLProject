@@ -90,7 +90,6 @@ void BrickBlockObject::OnCollisionEnter(Collider* target)
 					enemy->TakeDamage();
 			}
 
-
 			OnHitMove();
 			player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x, 0.f });
 			/*if (player->GetCurrentHP() == 1)
@@ -138,7 +137,6 @@ void BrickBlockObject::OnCollisionStay(Collider* target)
 				}
 			}
 		}
-
 	}
 
 	/*if (target->GetColliderLayer() == ColliderLayer::Wall || target->GetColliderLayer() == ColliderLayer::Enemy

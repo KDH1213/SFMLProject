@@ -97,6 +97,7 @@ enum class PlayerStateType
 	Jump,
 	Hit,
 	Dead,
+	Upgrade,
 
 	End
 };

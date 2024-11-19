@@ -12,18 +12,6 @@ PlayerDeadState::PlayerDeadState(PlayerFSM* fsm)
 {
 }
 
-PlayerDeadState::~PlayerDeadState()
-{
-}
-
-void PlayerDeadState::Awake()
-{
-}
-
-void PlayerDeadState::Start()
-{
-}
-
 void PlayerDeadState::Enter()
 {
 	PlayerBaseState::Enter();
@@ -56,8 +44,4 @@ void PlayerDeadState::FixedUpdate(float fixedDeltaTime)
 {
 	if(!isWait)
 		player->GetRigidbody()->FixedUpdate(TimeManager::GetInstance().GetUnScaleFixedDeletaTime() * 0.8f);
-}
-
-void PlayerDeadState::LateUpdate(float deltaTime)
-{
 }

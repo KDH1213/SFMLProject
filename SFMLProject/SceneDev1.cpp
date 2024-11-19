@@ -25,6 +25,11 @@
 #include "WallCollisionSaveData.h"
 #include "WallCollisionObject.h"
 
+#include "CoinObject.h"
+#include "StarObject.h"
+#include "FlowerObject.h"
+#include "MushRoomObject.h"
+
 void SceneDev1::Init()
 {
 	Scene::Init();
@@ -38,9 +43,7 @@ void SceneDev1::Enter()
 	TEXTURE_MANAGER.Load("Player", "graphics/player.png");
 
 	TEXTURE_MANAGER.Load("enemies", "graphics/enemies.png");
-
-	TEXTURE_MANAGER.Load("enemies", "graphics/enemies.png");
-	TEXTURE_MANAGER.Load("Items", "graphics/Items.png");
+	TEXTURE_MANAGER.Load("Items", "graphics/item_objects.png");
 	TEXTURE_MANAGER.Load("tiles", "graphics/tiles.png");
 	TEXTURE_MANAGER.Load("tile_set", "graphics/tile_set.png");
 	TEXTURE_MANAGER.Load("mario_bros", "graphics/mario_bros.png");
@@ -56,8 +59,8 @@ void SceneDev1::Enter()
 	//animator->AddAnimation(&ResourcesManager<Animation>::GetInstance().Get("marioIdle"), "marioIdle");
 	mainCamera->SetFollowTarget(testPlayer, true);
 
-	Goomba* enemy = AddGameObject(new Goomba(), LayerType::Enemy);
-	enemy->SetPosition(testPlayer->GetPosition() + sf::Vector2f::left * 300.f);
+	// Goomba* enemy = AddGameObject(new Goomba(), LayerType::Enemy);
+	// enemy->SetPosition(testPlayer->GetPosition() + sf::Vector2f::left * 300.f);
 	// mainCamera->SetCameraLimitRect({ -2000.f, 2000.f, -2000.f, 2000.f });
 
 	//TileMap* tile = AddGameObject(new TileMap("tiles", "Map"), LayerType::TileMap);
@@ -79,9 +82,19 @@ void SceneDev1::Enter()
 
 	TileMapController* tileMapController = AddGameObject(new TileMapController("TileMapController"), LayerType::Default);
 
+	CoinObject* coin = AddGameObject(new CoinObject, LayerType::Item);
+	coin->SetPosition({ -100.f, -150.f });
+	StarObject* star = AddGameObject(new StarObject, LayerType::Item);
+	star->SetPosition({ -150.f, -150.f });
+	FlowerObject* flower = AddGameObject(new FlowerObject, LayerType::Item);
+	flower->SetPosition({ -200.f, -150.f });
+	MushRoomObject* mushroom = AddGameObject(new MushRoomObject, LayerType::Item);
+	mushroom->SetPosition({ -250.f, -150.f });
 
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::Player);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Block, ColliderLayer::Player);
+
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Item, ColliderLayer::Player);
 	Scene::Enter();
 }
 
