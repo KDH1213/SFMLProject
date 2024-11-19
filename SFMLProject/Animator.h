@@ -21,12 +21,13 @@ protected:
 
 public:
 	Animation* GetAnimation(const std::string& animationName);
+	Animation* GetCurrentAnimation() { return currentAnimation; }
 
 	void CreateAnimation(const std::string& id, const std::string& animationName, const sf::Vector2u& rectSize, int frameCount, float frameTime, bool isRepeat = false);
 	void CreateAnimation(const sf::Texture* texture, const std::string& id, const std::string& animationName, const sf::Vector2u& rectSize, int frameCount, float frameTime, bool isRepeat = false);
 	void AddAnimation(Animation* animation, const std::string& animationName);
 
-	void ChangeAnimation(const std::string& animationName, bool isRepeat = false);
+	void ChangeAnimation(const std::string& animationName, bool isRepeat = false, bool isUnscale = false);
 	void Render(sf::RenderWindow& renderWindow);
 	void SetCurrentFrameRect(const sf::IntRect& rect);
 	void SetCurrentFrameInfo(const sf::Vector2u& size, const sf::IntRect& rect);

@@ -9,6 +9,8 @@ PlayerBreakState::PlayerBreakState(PlayerFSM* fsm)
 	, horizontal(0.f)
 	, isMoveDirectionLeft(false)
 {
+	animationKeys.push_back("marioSmallBreak");
+	animationKeys.push_back("marioBreak");
 }
 
 PlayerBreakState::~PlayerBreakState()

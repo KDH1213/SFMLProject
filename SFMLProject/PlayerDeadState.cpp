@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "PlayerDeadState.h"
-
+#include "Rigidbody.h"
+#include "Animator.h"
 
 PlayerDeadState::PlayerDeadState(PlayerFSM* fsm)
 	: PlayerBaseState(fsm, PlayerStateType::Dead)
@@ -21,10 +22,13 @@ void PlayerDeadState::Start()
 
 void PlayerDeadState::Enter()
 {
+	PlayerBaseState::Enter();
+	player->GetAnimator()->ChangeAnimation("marioHit", true, true);
 }
 
 void PlayerDeadState::Exit()
 {
+	PlayerBaseState::Exit();
 }
 
 void PlayerDeadState::Update(float deltaTime)

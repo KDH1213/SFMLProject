@@ -14,6 +14,10 @@ protected:
 	sf::Vector2f	moveDirection;
 	DefaultStatus	currentStatus;
 
+
+	sf::Color		effectColor;
+	sf::Color		defaultColor;
+
 	float			hitTime;
 	float			currentHitTime;
 

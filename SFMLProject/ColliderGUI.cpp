@@ -20,6 +20,15 @@ void ColliderGUI::Update()
 		return;
 	ImGui::Text("Collider");
 	ImGui::BeginChild("##Collider", {300.f,100.f});
+	sf::Vector2f position = collider->GetPosition();
+	float Pos[2] = { position.x, position.y };
+	ImGui::Text("position"); ImGui::SameLine();
+	if (ImGui::InputFloat2("##position", Pos))
+	{
+		position.x = Pos[0];
+		position.y = Pos[1];
+		collider->SetPosition(position);
+	}
 
 	sf::Vector2f offsetPosition = collider->GetOffsetPosition();
 	float offsetPos[2] = { offsetPosition.x, offsetPosition.y };
@@ -43,6 +52,14 @@ void ColliderGUI::Update()
 		colliderScale.x = scaleArr[0];
 		colliderScale.y = scaleArr[1];
 		collider->SetScale(colliderScale);
+	}
+
+	ImGui::Text("Origin"); ImGui::SameLine();
+
+	if (ImGui::InputFloat2("##Origin", originArr))
+	{
+		origin = { originArr[0], originArr[1] };
+		collider->SetOrigin(origin);
 	}
 	//ImGui::Text("Rotation"); ImGui::SameLine();
 	//if (ImGui::InputFloat("##Rotation", &rotation))

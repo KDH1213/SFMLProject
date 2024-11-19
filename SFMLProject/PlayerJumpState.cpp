@@ -6,6 +6,8 @@
 PlayerJumpState::PlayerJumpState(PlayerFSM* fsm)
 	: PlayerBaseState(fsm, PlayerStateType::Jump)
 {
+	animationKeys.push_back("marioSmallJump");
+	animationKeys.push_back("marioJump");
 }
 
 PlayerJumpState::~PlayerJumpState()
@@ -23,11 +25,14 @@ void PlayerJumpState::Start()
 
 void PlayerJumpState::Enter()
 {
-	PlayerBaseState::Enter();
+	PlayerBaseState::Enter();	
+	
+	animationKeyIndex = player->GetCurrentHP() - 1;
+	player->GetAnimator()->ChangeAnimation(animationKeys[animationKeyIndex], true);
 
 	rigidbody->SetGround(false);
 
-	player->GetAnimator()->ChangeAnimation("marioJump", true);
+	player->GetAnimator()->ChangeAnimation(animationKeys[animationKeyIndex], true);
 
 	if(InputManager::GetInstance().GetAxis(Axis::Jump) == 1.f)
 		rigidbody->SetVelocity({ rigidbody->GetCurrentVelocity().x, -800.f });
@@ -48,7 +53,7 @@ void PlayerJumpState::Update(float deltaTime)
 		return;
 	}
 	float horizontal = InputManager::GetInstance().GetAxis(Axis::Horizontal);
-	if ((horizontal > 0.f && !player->IsFlipX()) || (horizontal < 0.f && player->IsFlipX()))
+	if ((horizontal < 0.f && !player->IsFlipX()) || (horizontal > 0.f && player->IsFlipX()))
 		player->OnFlipX();
 }
 

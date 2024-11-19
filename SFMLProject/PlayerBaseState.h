@@ -13,6 +13,9 @@ protected:
 	std::vector<std::function<void()>>	stateStartEvents;
 	std::vector<std::function<void()>>	stateEndEvents;
 
+	std::vector<std::string>	animationKeys;
+	int							animationKeyIndex;
+
 public:
 	void Awake() override;
 	void Start() override;

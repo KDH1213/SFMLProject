@@ -49,6 +49,7 @@ enum class LayerType
 {
 	Default,
 	TileMap,
+	Wall,
 	BackGround,
 	Block,
 	Item,

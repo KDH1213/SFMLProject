@@ -73,6 +73,7 @@ inline T* Scene::AddGameObject(T* obj, LayerType layer)
 	if (std::find(gameObjectVectors[(int)layer].begin(), gameObjectVectors[(int)layer].end(), obj) == gameObjectVectors[(int)layer].end())
 	{
 		gameObjectVectors[(int)layer].push_back(obj);
+		obj->SetLayerType(layer);
 	}
 	return obj;
 }

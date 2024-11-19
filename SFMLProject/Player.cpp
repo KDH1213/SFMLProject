@@ -16,10 +16,14 @@ Player::Player(const std::string& name)
 	, currentHitTime(0.f)
 {
 	rigidBody = new Rigidbody(this);
-	rigidBody->SetGround(true);
+	rigidBody->SetGround(false);
 	CreateAnimator();
 	animator->LoadCsv("animators/mario.csv");
 	CreateCollider(ColliderType::Rectangle, ColliderLayer::Player);
+
+	defaultColor = sprite.getColor();
+	effectColor = defaultColor;
+	effectColor.a = 120;
 }
 
 Player::~Player()
@@ -55,10 +59,24 @@ void Player::InputJump()
 
 void Player::TakeDamage()
 {
-	/*--currentStatus.hp;
+	if (isHit)
+		return;
+
+	--currentStatus.hp;
+	isHit = true;
 
 	if (currentStatus.hp == 0)
-		fsm.ChangeState(PlayerStateType::Dead);*/
+	{
+		fsm.ChangeState(PlayerStateType::Dead);
+		return;
+	}
+	else
+	{
+		fsm.ChangeState(PlayerStateType::Hit);
+		sprite.setColor(effectColor);
+	}
+
+	currentHitTime = hitTime;
 }
 
 void Player::OnFlipX()
@@ -75,9 +93,17 @@ void Player::Update(const float& deltaTime)
 	fsm.Update(deltaTime);
 	animator->Update(deltaTime);
 
-	InputMove();
+	if (isHit)
+	{
+		currentHitTime -= deltaTime;
 
-	InputJump();
+		if (currentHitTime <= 0.f)
+		{
+			sprite.setColor(defaultColor);
+			isHit = false;
+			currentHitTime = 0.f;
+		}
+	}
 }
 
 void Player::FixedUpdate(const float& deltaTime)
@@ -85,14 +111,18 @@ void Player::FixedUpdate(const float& deltaTime)
 	fsm.FixedUpdate(deltaTime);
 	rigidBody->FixedUpdate(deltaTime); 
 
-	if (position.y >= 0.f)
+	/*if (!isHit)
 	{
-		isJump = false;
-		position.y = 0.f;
+		if (position.y >= 0.f)
+		{
+			isJump = false;
+			position.y = 0.f;
 
-		rigidBody->SetGround(true);
-		SetPosition(position);
-	}
+			rigidBody->SetGround(true);
+			SetPosition(position);
+		}
+	}*/
+	
 }
 
 void Player::LateUpdate(const float& deltaTime)

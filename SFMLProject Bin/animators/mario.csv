@@ -1,5 +1,5 @@
 ANIMATIONCSVPATH,ANIMAIONID
-
+,
 animations/marioIdle.csv,marioIdle
 animations/marioHit.csv,marioHit
 animations/marioRun.csv,marioRun
@@ -7,3 +7,8 @@ animations/marioJump.csv,marioJump
 animations/marioDead.csv,marioDead
 animations/marioGrap.csv,marioGrap
 animations/marioBreak.csv,marioBreak
+animations/marioSmallIdle.csv,marioSmallIdle
+animations/marioSmallRun.csv,marioSmallRun
+animations/marioSmallBreak.csv,marioSmallBreak
+animations/marioSmallJump.csv,marioSmallJump
+animations/marioSmallGrap.csv,marioSmallGrap

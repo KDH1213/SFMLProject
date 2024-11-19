@@ -9,6 +9,9 @@ struct AnimationInfo
 	sf::Vector2u	rectSize;
 	float			duration;
 
+	std::vector<std::function<void()>> startEvents;
+	std::vector<std::function<void()>> endEvents;
+
 	AnimationInfo() {}
 	AnimationInfo(const std::string& texID, const sf::Vector2u& rectSize, const sf::IntRect& uvRect, float duration)
 		: textureID(texID)
@@ -62,7 +65,10 @@ public:
 	void SetUnScaleUpdate(bool unscale) { isUnscale = unscale; }
 
 
-	void SetAnimationEvent(void* event, unsigned int index);
+	void SetAnimationStartEvent(std::function<void()>  event, unsigned int index);
+	void SetAnimationEndEvent(std::function<void()>  event, unsigned int index);
+	void ClearStartEvent(unsigned int index);
+	void ClearEndEvent(unsigned int index);
 	void SetAnimator(Animator* animator) { this->animator = animator; }
 	const sf::Texture* GetTexture() const { return texture; }
 	const sf::Vector2u& GetUvRect() { return frameInfoVector[0].rectSize; }

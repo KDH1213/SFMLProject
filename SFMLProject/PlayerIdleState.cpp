@@ -6,6 +6,8 @@
 PlayerIdleState::PlayerIdleState(PlayerFSM* fsm)
 	: PlayerBaseState(fsm, PlayerStateType::Idle)
 {
+	animationKeys.push_back("marioSmallIdle");
+	animationKeys.push_back("marioIdle");
 }
 
 PlayerIdleState::~PlayerIdleState()
@@ -24,7 +26,8 @@ void PlayerIdleState::Enter()
 {
 	PlayerBaseState::Enter();
 
-	player->GetAnimator()->ChangeAnimation("marioIdle", true);
+	animationKeyIndex = player->GetCurrentHP() - 1;
+	player->GetAnimator()->ChangeAnimation(animationKeys[animationKeyIndex], true);
 }
 
 void PlayerIdleState::Exit()

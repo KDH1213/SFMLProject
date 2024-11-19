@@ -58,7 +58,7 @@ void SceneDev1::Enter()
 	mainCamera->SetFollowTarget(testPlayer, true);
 
 	Goomba* enemy = AddGameObject(new Goomba(), LayerType::Enemy);
-	enemy->SetPosition(testPlayer->GetPosition() + sf::Vector2f::left * 20.f);
+	enemy->SetPosition(testPlayer->GetPosition() + sf::Vector2f::left * 300.f);
 	// mainCamera->SetCameraLimitRect({ -2000.f, 2000.f, -2000.f, 2000.f });
 
 	//TileMap* tile = AddGameObject(new TileMap("tiles", "Map"), LayerType::TileMap);
@@ -67,15 +67,21 @@ void SceneDev1::Enter()
 	//tile->LoadCsv("TileMap/test.csv");
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Enemy, ColliderLayer::Player);
 
-	BlockObject* block = AddGameObject(new BlockObject(BlockType::Brick ,"tile_set"), LayerType::Block);
+	//BlockObject* block = AddGameObject(new BlockObject(BlockType::Brick ,"tile_set"), LayerType::Block);
 
-	BrickBlockObject* brickBlock = AddGameObject(new BrickBlockObject("tile_set"), LayerType::Block);
+	BrickBlockObject* brickBlock = AddGameObject(new BrickBlockObject("tile_set"), LayerType::Block); 
 	brickBlock->SetPosition({ 100.f, -150.f });
+
+	WallCollisionObject* wallCollision = AddGameObject(new WallCollisionObject, LayerType::Wall);
+	wallCollision->SetScale({ 10000.f, 30.f });
+	wallCollision->SetPosition({ 0, 100.f });
+
 	//  ItemBlockObject* block = AddGameObject(new ItemBlockObject(ItemType::MushRoom, "tile_set", "tile_set"), LayerType::Block);
 
 	TileMapController* tileMapController = AddGameObject(new TileMapController("TileMapController"), LayerType::Default);
 
 
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::Player);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Block, ColliderLayer::Player);
 	Scene::Enter();
 }
@@ -143,21 +149,21 @@ void SceneDev1::Load()
 	Player* player = new Player();
 	player->LoadData(data.playerData);
 	player->Start();
-	AddGameObject(player, LayerType::Player);
+	AddGameObject(player, player->GetLayerType());
 
 	for (const auto& data : data.blockSaveDatas)
 	{
 		BlockObject* newBlock = new BlockObject(BlockType::Default, "");
 		newBlock->LoadBlockSaveData(data);
 		newBlock->Start();
-		AddGameObject(newBlock, LayerType::Block);
+		AddGameObject(newBlock, newBlock->GetLayerType());
 	}
 
 	TileMapController* tileMapController = new TileMapController("");
 	tileMapController->LoadTileMapSaveData(data.tileMapSaveData);
 
 	tileMapController->Start();
-	AddGameObject(tileMapController, LayerType::Default);
+	AddGameObject(tileMapController, tileMapController->GetLayerType());
 }
 
 SceneDev1::SceneDev1()

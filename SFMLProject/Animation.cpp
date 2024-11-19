@@ -143,10 +143,10 @@ void Animation::Play(bool isRepeat)
 	isPlaying = true;
 
 	animator->SetCurrentFrameInfo(frameInfoVector[0].rectSize, frameInfoVector[0].uvRect);
-	if (animator != nullptr)
-	{
-		//animator->SetCurrentFrameRect();
-	}
+	//if (animator != nullptr)
+	//{
+	//	//animator->SetCurrentFrameRect();
+	//}
 }
 
 void Animation::Stop()
@@ -165,10 +165,18 @@ void Animation::Update(float deltaTime)
 	if (!isPlaying)
 		return;
 
-	currentAnimationTime += deltaTime;
+	if (isUnscale)
+		currentAnimationTime += TimeManager::GetInstance().GetRealDeltatime();
+	else
+		currentAnimationTime += deltaTime;
 
 	if (currentAnimationTime >= frameInfoVector[currentIndex].duration)
 	{
+		for (auto& endEvent : frameInfoVector[currentIndex].endEvents)
+		{
+			if (endEvent)
+				endEvent();
+		}
 		currentAnimationTime -= frameInfoVector[currentIndex++].duration;
 
 		if (currentIndex == frameCount)
@@ -187,6 +195,11 @@ void Animation::Update(float deltaTime)
 		}
 
 		animator->SetCurrentFrameInfo(frameInfoVector[currentIndex].rectSize, frameInfoVector[currentIndex].uvRect);
+		for (auto& startEvent : frameInfoVector[currentIndex].startEvents)
+		{
+			if (startEvent)
+				startEvent();
+		}
 		//animator->SetCurrentFrameRect(frameInfoVector[currentIndex].uvRect);
 	}
 }
@@ -231,12 +244,31 @@ void Animation::SetRectSize(sf::Vector2u rectSize, unsigned int index)
 	frameInfoVector[index].rectSize = rectSize;
 }
 
-void Animation::SetAnimationEvent(void* event, unsigned int index)
+void Animation::SetAnimationStartEvent(std::function<void()> startEvent, unsigned int index)
 {
 	if (index >= frameCount)
 		return;
 
+	frameInfoVector[index].startEvents.push_back(startEvent);
 	// frameInfoVector[index].animationEvent = event;
+}
+
+void Animation::SetAnimationEndEvent(std::function<void()> endEvent, unsigned int index)
+{
+	if (index >= frameCount)
+		return;
+
+	frameInfoVector[index].endEvents.push_back(endEvent);
+}
+
+void Animation::ClearStartEvent(unsigned int index)
+{
+	frameInfoVector[index].startEvents.clear();
+}
+
+void Animation::ClearEndEvent(unsigned int index)
+{
+	frameInfoVector[index].endEvents.clear();
 }
 
 

@@ -9,6 +9,8 @@ PlayerRunState::PlayerRunState(PlayerFSM* fsm)
 	, horizontal(0.f)
 	, isLeftRun(false)
 {
+	animationKeys.push_back("marioSmallRun");
+	animationKeys.push_back("marioRun");
 }
 
 PlayerRunState::~PlayerRunState()
@@ -35,11 +37,14 @@ void PlayerRunState::Awake()
 void PlayerRunState::Start()
 {
 	rigidbody = player->GetRigidbody();
+
 }
 void PlayerRunState::Enter()
 {
 	PlayerBaseState::Enter();
-	player->GetAnimator()->ChangeAnimation("marioRun", true);
+	animationKeyIndex = player->GetCurrentHP() - 1;
+	player->GetAnimator()->ChangeAnimation(animationKeys[animationKeyIndex], true);
+
 
 	horizontal = InputManager::GetInstance().GetAxis(Axis::Horizontal);
 	isLeftRun = horizontal > 0.f ? false : true;
