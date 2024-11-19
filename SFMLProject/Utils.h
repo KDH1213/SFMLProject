@@ -63,6 +63,14 @@ struct Rectangle
 
 	}
 
+	Rectangle(const sf::Vector2f& position, const sf::Vector2f& size, Origins preset)
+		: leftPosition(position.x - size.x * ((int)preset % 3) * 0.5f)
+		, rightPosition(position.x + size.x * ((int)preset % 3) * 0.5f)
+		, topPosition(position.y - size.y * ((int)preset % 3) * 0.5f)
+		, bottomPosition(position.y + size.y * ((int)preset % 3) * 0.5f)
+	{
+	}
+
 	Rectangle(const sf::Vector2f& size)
 		: leftPosition(-size.x * 0.5f)
 		, rightPosition(size.x * 0.5f)

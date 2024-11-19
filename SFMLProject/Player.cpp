@@ -36,7 +36,7 @@ void Player::Start()
 	SetPosition(position);
 	SetRotation(rotation);
 
-	SetOrigin(originPreset);
+	SetOrigin(Origins::BottomCenter);
 	animator->Start();
 	collider->Reset();
 
@@ -55,10 +55,13 @@ void Player::InputJump()
 
 void Player::TakeDamage()
 {
-	/*--currentStatus.hp;
+	--currentStatus.hp;
 
-	if (currentStatus.hp == 0)
-		fsm.ChangeState(PlayerStateType::Dead);*/
+	//if (currentStatus.hp == 0)
+	//	fsm.ChangeState(PlayerStateType::Hit);
+	//	//fsm.ChangeState(PlayerStateType::Dead);
+	//else
+	//	fsm.ChangeState(PlayerStateType::Hit);
 }
 
 void Player::OnFlipX()
@@ -129,7 +132,7 @@ void Player::SetRotation(float angle)
 
 void Player::SetOrigin(Origins preset)
 {
-	originPreset = preset;
+	originPreset = preset; 
 	origin = Utils::SetOrigin(sprite, preset);
 	collider->SetOrigin(preset);
 }

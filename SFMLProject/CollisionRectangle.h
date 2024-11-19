@@ -18,6 +18,7 @@ public:
 	const sf::Transform& GetTransform() { return rectanleRender.getTransform(); }
 
 	void SetPosition(const sf::Vector2f& pos) override;
+	sf::Vector2f GetPosition() override;
 
 	void SetRotation(float angle) override;
 

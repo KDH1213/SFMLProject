@@ -226,7 +226,7 @@ bool ColliderManager::IsRectToRectCollision(Collider* left, Collider* right)
 
     if (left->GetRotation() == 0.f && right->GetRotation() == 0.f)
     {
-        if ((left->GetScale().x + right->GetScale().x) * 0.5f < abs(left->GetPosition().x - right->GetPosition().x))
+        if ((left->GetScale().x + right->GetScale().x) * 0.5f < abs(left->GetPosition().x - right->GetPosition().x)) 
             return false;
 
         if ((left->GetScale().y + right->GetScale().y) * 0.5f < abs(left->GetPosition().y - right->GetPosition().y))
@@ -235,7 +235,7 @@ bool ColliderManager::IsRectToRectCollision(Collider* left, Collider* right)
         return true;
     }
 
-    else
+    else 
     {
         return CheckOBBCollision(left, right);
     }

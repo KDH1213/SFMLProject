@@ -60,7 +60,7 @@ bool Collider::IsDestory()
 void Collider::SetOffsetPosition(const sf::Vector2f& offset)
 {
 	offsetPosition = offset;
-	collision->SetPosition(position + offsetPosition);
+ 	collision->SetPosition(position + offsetPosition);
 }
 
 void Collider::SetPosition(const sf::Vector2f& pos)

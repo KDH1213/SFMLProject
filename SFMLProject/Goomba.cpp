@@ -15,6 +15,8 @@ Goomba::Goomba(const std::string& name)
 	CreateAnimator();
 	animator->LoadCsv("animators/goomba.csv");
 	CreateCollider(ColliderType::Rectangle, ColliderLayer::Enemy);
+	
+	collider->SetScale({ 64.f,64.f });
 }
 
 Goomba::~Goomba()

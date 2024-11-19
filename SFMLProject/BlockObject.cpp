@@ -86,31 +86,32 @@ void BlockObject::SetOrigin(const sf::Vector2f & newOrigin)
 
 void BlockObject::OnCollisionEnter(Collider* target)
 {
-	if (target->GetColliderLayer() == ColliderLayer::Player)
-	{
-		player = (Player*)target->GetOwner();
+	//if (target->GetColliderLayer() == ColliderLayer::Player)
+	//{
+	//	player = (Player*)target->GetOwner();
 
-		sf::Vector2f targetPosition = target->GetPosition();
+	//	sf::Vector2f targetPosition = target->GetPosition();
 
-		Rectangle rect(collider->GetPosition(), collider->GetScale());
-		Rectangle targetRect(targetPosition, target->GetScale());
-		float prevPositionY = player->GetRigidbody()->GetCurrentVelocity(). y * TimeManager::GetInstance().GetFixedDeletaTime();
+	//	Rectangle rect(collider->GetPosition(), collider->GetScale());
+	//	Rectangle targetRect(targetPosition, target->GetScale());
+	//	float prevPositionY = player->GetRigidbody()->GetCurrentVelocity(). y * TimeManager::GetInstance().GetFixedDeletaTime();
 
-		if (rect.topPosition > targetRect.bottomPosition - prevPositionY)
-		{
-			player->GetRigidbody()->SetGround(true);
-			player->SetPosition({ targetPosition.x , rect.topPosition - target->GetScale().y * 0.5f });
-		}
-		else if (rect.bottomPosition < targetRect.topPosition - prevPositionY)
-		{
-			player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x, 0.f });
-		}
-	}
+	//	if (rect.topPosition > targetRect.bottomPosition - prevPositionY)
+	//	{
+	//		player->GetRigidbody()->SetGround(true);
+	//		//player->SetPosition({ targetPosition.x , rect.topPosition - target->GetScale().y * 0.5f });
+	//		player->SetPosition({ targetPosition.x , rect.topPosition});
+	//	}
+	//	else if (rect.bottomPosition < targetRect.topPosition - prevPositionY)
+	//	{
+	//		player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x, 0.f });
+	//	}
+	//}
 }
 
 void BlockObject::OnCollisionStay(Collider* target)
 {
-	if (target->GetColliderLayer() == ColliderLayer::Player)
+	/*if (target->GetColliderLayer() == ColliderLayer::Player)
 	{
 		Rigidbody* targetRigidbody = player->GetRigidbody();
 
@@ -144,7 +145,7 @@ void BlockObject::OnCollisionStay(Collider* target)
 			}
 		}
 		
-	}
+	}*/
 
 }
 

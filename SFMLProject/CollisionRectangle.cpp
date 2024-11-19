@@ -17,6 +17,7 @@ CollisionRectangle::~CollisionRectangle()
 void CollisionRectangle::SetOrigin(const Origins& origins)
 {
 	originPosition = Utils::SetOrigin(rectanleRender, origins);
+	originsPreset = origins;
 }
 
 void CollisionRectangle::Init()
@@ -62,6 +63,11 @@ void CollisionRectangle::SetPosition(const sf::Vector2f& pos)
 {
 	rectanleRender.setPosition(pos);
 	Collision::SetPosition(pos);
+}
+
+sf::Vector2f CollisionRectangle::GetPosition()
+{
+	return position;// +sf::Vector2f{ 0.f, originPosition.y };
 }
 
 void CollisionRectangle::SetRotation(float angle)
