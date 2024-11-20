@@ -13,6 +13,8 @@ public:
 
 	void Save() override;
 	void Load() override;
+	void Save(const std::string& savePath) override;
+	void Load(const std::string& loadPath) override;
 public:
 	SceneDev1();
 	~SceneDev1();

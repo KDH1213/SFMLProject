@@ -63,6 +63,14 @@ void SceneDev2::Load()
 {
 }
 
+void SceneDev2::Save(const std::string& savePath)
+{
+}
+
+void SceneDev2::Load(const std::string& loadPath)
+{
+}
+
 SceneDev2::SceneDev2()
 	: Scene(SceneIds::SceneDev2)
 {

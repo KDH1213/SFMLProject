@@ -65,6 +65,8 @@ public:
 
 	virtual void Save() = 0;
 	virtual void Load() = 0;
+	virtual void Save(const std::string& savePath) = 0;
+	virtual void Load(const std::string& loadPath) = 0;
 
 public:
 	Scene(const SceneIds id);

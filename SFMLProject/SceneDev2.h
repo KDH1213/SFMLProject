@@ -11,7 +11,9 @@ public:
 	void Update(float dt) override;
 	void Render(sf::RenderWindow& window)override; 
 	void Save() override;
-	void Load() override;
+	void Load() override; 
+	void Save(const std::string& savePath) override;
+	void Load(const std::string& loadPath) override;
 public:
 	SceneDev2();
 	~SceneDev2();

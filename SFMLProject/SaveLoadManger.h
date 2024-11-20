@@ -9,10 +9,12 @@ class SaveLoadManager : public Singleton<SaveLoadManager>
 protected:
 	std::string tempSavePath = "save1.json";
 
-
 public:
 	void Save(const SaveDataVC& saveData);
 	SaveDataVC Load();
+
+	void Save(const SaveDataVC& saveData, const std::string& savePath);
+	SaveDataVC Load(const std::string& loadPath);
 protected:
 	SaveLoadManager() = default;
 	virtual ~SaveLoadManager();

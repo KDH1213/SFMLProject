@@ -243,6 +243,115 @@ void SceneDev1::Load()
 	AddGameObject(tileMapController, tileMapController->GetLayerType());
 }
 
+void SceneDev1::Save(const std::string& savePath)
+{
+	SaveDataVC data;
+
+	data.playerData = ((Player*)FindGameObject("Player"))->GetPlayerSaveData();
+
+	for (auto& gameObjects : gameObjectVectors)
+	{
+		for (auto& gameObject : gameObjects)
+		{
+			auto tileMapController = dynamic_cast<TileMapController*>(gameObject);
+			if (tileMapController != nullptr)
+			{
+				data.tileMapSaveData = tileMapController->GetTileMapSaveData();
+				continue;
+			}
+
+			auto wallCollision = dynamic_cast<WallCollisionObject*>(gameObject);
+			if (wallCollision != nullptr)
+			{
+				data.wallCollisionSaveDatas.push_back(wallCollision->GetWallCollisionSaveData());
+				continue;
+			}
+
+			auto blockObject = dynamic_cast<BlockObject*>(gameObject);
+			if (blockObject != nullptr)
+			{
+
+				if (blockObject->GetBlockType() == BlockType::Item || blockObject->GetBlockType() == BlockType::ItemBrick)
+				{
+					data.itemBlockSaveDatas.push_back(((ItemBlockObject*)blockObject)->GetItemBlockSaveData());
+				}
+				else
+				{
+					data.blockSaveDatas.push_back(blockObject->GetBlockSaveDate());
+				}
+				continue;
+			}
+
+		}
+	}
+	SaveLoadManager::GetInstance().Save(data, savePath);
+}
+
+void SceneDev1::Load(const std::string& loadPath)
+{
+	SaveDataVC data = SaveLoadManager::GetInstance().Load(loadPath);
+
+	Player* player = new Player();
+	player->LoadData(data.playerData);
+	player->Start();
+	AddGameObject(player, player->GetLayerType());
+
+	mainCamera->SetFollowTarget(player, true);
+
+	for (const auto& data : data.blockSaveDatas)
+	{
+		BlockObject* newBlock = nullptr;
+		switch ((BlockType)data.blockType)
+		{
+		case BlockType::Default:
+		{
+			newBlock = new BlockObject(BlockType::Default, "");
+		}
+		break;
+		case BlockType::Brick:
+			newBlock = new BrickBlockObject("");
+			break;
+		case BlockType::Secret:
+			break;
+		case BlockType::ItemBrick:
+			// newBlock = new BrickBlockObject("");
+			break;
+		default:
+			break;
+		}
+
+		if (newBlock == nullptr)
+			continue;
+
+
+		newBlock->LoadBlockSaveData(data);
+		newBlock->Start();
+		AddGameObject(newBlock, newBlock->GetLayerType());
+	}
+
+	for (const auto& data : data.itemBlockSaveDatas)
+	{
+		ItemBlockObject* newBlock = new ItemBlockObject(ItemType::Coin, "", "");
+		newBlock->LoadItemBlockSaveData(data);
+		newBlock->Start();
+		AddGameObject(newBlock, newBlock->GetLayerType());
+	}
+
+	for (const auto& data : data.wallCollisionSaveDatas)
+	{
+		WallCollisionObject* wall = new WallCollisionObject();
+		wall->LoadWallCollisionSaveData(data);
+		wall->Start();
+		AddGameObject(wall, wall->GetLayerType());
+	}
+
+
+	TileMapController* tileMapController = new TileMapController("");
+	tileMapController->LoadTileMapSaveData(data.tileMapSaveData);
+	tileMapController->Start();
+	AddGameObject(tileMapController, tileMapController->GetLayerType());
+}
+
 SceneDev1::SceneDev1()
 	: Scene(SceneIds::SceneDev1)
 {
