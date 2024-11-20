@@ -8,6 +8,8 @@
 #include "ItemBlockObject.h"
 #include "BrickBlockObject.h"
 
+#include "SavePointObject.h"
+
 CreateObjectTool::CreateObjectTool()
 	: GUI("CreateObjectTool")
 	, currentType(CreateObjectType::Enemy)
@@ -51,6 +53,7 @@ void CreateObjectTool::Update()
 		{ CreateObjectType::Enemy , "Enemy"}
 		,{ CreateObjectType::Block , "Block"}
 		,{ CreateObjectType::Item , "Item"}
+		, { CreateObjectType::SavePoint , "SavePoint"}
 	};
 
 	int idx;
@@ -86,6 +89,8 @@ void CreateObjectTool::Update()
 		OnBlock();
 	else if (currentType == CreateObjectType::Item)
 		OnItem();
+	else if (currentType == CreateObjectType::SavePoint)
+		OnSavePoint();
 
 
 	ImGui::End();
@@ -236,5 +241,16 @@ void CreateObjectTool::OnItem()
 {
 	ImGui::BeginChild("Item");
 
+	ImGui::EndChild();
+}
+
+void CreateObjectTool::OnSavePoint()
+{
+	ImGui::BeginChild("SavePoint");
+
+	if (ImGui::Button("Create SavePoint", { 50, 20 }))
+	{
+		SavePointObject* savePointObject = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new SavePointObject(), LayerType::Default);
+	}
 	ImGui::EndChild();
 }

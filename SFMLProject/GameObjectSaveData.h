@@ -16,3 +16,11 @@ struct GameObjectSaveData
 
 	NLOHMANN_DEFINE_TYPE_INTRUSIVE(GameObjectSaveData, name, position, rotation, scale, origin, originPreset, active, sortingOrder, layerType);
 };
+
+
+struct SavePointSaveData
+{
+	GameObjectSaveData	gameObjectSaveData;
+	sf::Vector2f	restartPosition;
+	NLOHMANN_DEFINE_TYPE_INTRUSIVE(SavePointSaveData, gameObjectSaveData, restartPosition);
+};

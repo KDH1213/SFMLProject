@@ -7,6 +7,7 @@ namespace sf
 	NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(sf::IntRect, left, top, width, height);
 }
 
+#include "GameObjectSaveData.h"
 #include "PlayerSaveData.h"
 #include "BlockSaveData.h"
 #include "WallCollisionSaveData.h"
@@ -21,6 +22,7 @@ public:
 	std::vector<ItemBlockSaveData>		itemBlockSaveDatas;
 	std::vector<WallCollisionSaveData>	wallCollisionSaveDatas;
 	TileMapSaveData						tileMapSaveData;
+	std::vector<SavePointSaveData>		savePointSaveDatas;
 
 	virtual SaveData* VersionUp() = 0;
 };

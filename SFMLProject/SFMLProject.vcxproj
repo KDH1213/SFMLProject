@@ -245,6 +245,8 @@
     <ClCompile Include="Rigidbody.cpp" />
     <ClCompile Include="SaveData.cpp" />
     <ClCompile Include="SaveLoadManger.cpp" />
+    <ClCompile Include="SavePointGUI.cpp" />
+    <ClCompile Include="SavePointObject.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneDev1.cpp" />
     <ClCompile Include="SceneDev2.cpp" />
@@ -265,6 +267,7 @@
     <ClCompile Include="TimeManager.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="TrickColliderObject.cpp" />
     <ClCompile Include="UIGameObject.cpp" />
     <ClCompile Include="UITextGameObject.cpp" />
@@ -361,6 +364,8 @@
     <ClInclude Include="Rigidbody.h" />
     <ClInclude Include="SaveData.h" />
     <ClInclude Include="SaveLoadManger.h" />
+    <ClInclude Include="SavePointGUI.h" />
+    <ClInclude Include="SavePointObject.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneDev1.h" />
     <ClInclude Include="SceneDev2.h" />
@@ -379,6 +384,7 @@
     <ClInclude Include="TileMapGUI.h" />
     <ClInclude Include="TileMapSaveData.h" />
     <ClInclude Include="TimeManager.h" />
+    <ClInclude Include="TitleScene.h" />
     <ClInclude Include="TrickColliderObject.h" />
     <ClInclude Include="UIGameObject.h" />
     <ClInclude Include="UITextGameObject.h" />

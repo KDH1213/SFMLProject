@@ -75,6 +75,7 @@ enum class ColliderLayer
 	PlayerBullet,
 	EnemyBullet,
 
+	SavePoint,
 
 	End
 };

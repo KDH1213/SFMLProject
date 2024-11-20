@@ -56,6 +56,16 @@ void GameObject::SetDestory(bool destory)
 	}
 }
 
+void GameObject::OnDestory()
+{
+	isDestory = true;
+
+	if (collider != nullptr)
+	{
+		collider->OnDestory();
+	}
+}
+
 void GameObject::SetScale(const sf::Vector2f& scale)
 {
 	this->scale = scale;

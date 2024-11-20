@@ -8,17 +8,22 @@ class GameManager : public Singleton<GameManager>
 private:
 	
 	std::string		restartPath;
+	sf::Vector2f	restartPosition;
 
 	float			currentTimer;
 	unsigned int	currentScore;
 	int				life;
 	bool			isRestart;
+	bool			isPlayerDead;
 
 public:
 
 	bool IsRestart() { return isRestart; }
 	void OnRestart();
-	void OnSavePoint();
+	void OnSavePoint(const sf::Vector2f& restartPos);
+
+	void ReStart();
+	void PlayerDie();
 
 protected:
 	GameManager();

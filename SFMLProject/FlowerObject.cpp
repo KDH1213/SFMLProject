@@ -3,12 +3,13 @@
 #include "Animator.h"
 #include "Collider.h"
 #include "Animation.h"
+#include "Rigidbody.h"
 
 FlowerObject::FlowerObject()
 	: ItemObject(ItemType::Flower, "Items", "Flower")
 {
 	CreateAnimator();
-
+	rigidBody = new Rigidbody(this);
 	animator->LoadCsv("animators/flower.csv");
 }
 

@@ -33,6 +33,7 @@ public:
 	int				sortingOrder = 0;
 
 	void SetDestory(bool destory);
+	void OnDestory();
 	bool GetDestory() { return isDestory; }
 	const bool IsActive() const { return active; }
 	void SetActive(const bool active) { this->active = active; }

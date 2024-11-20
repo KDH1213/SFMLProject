@@ -16,6 +16,10 @@ protected:
 	Camera*									freeCamera;
 
 	sf::Vector2f							cameraPosition;
+
+	std::string								savePath;
+	std::string								loadPath;
+
 	float									cameraSpeed;
 	bool									isFreeView;
 

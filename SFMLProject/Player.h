@@ -58,6 +58,9 @@ public:
 	int GetCurrentHP() const { return currentStatus.hp; }
 	float GetSpeed() { return currentStatus.speed; }
 
+	void SetHp(int hp) { currentStatus.hp = hp; }
+	void ChangeSmallMario();
+
 public:
 	void Awake() override;
 	void Start() override;

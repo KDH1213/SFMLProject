@@ -8,11 +8,12 @@
 #include "CollisionRectangle.h"
 
 ColliderManager::ColliderManager()
+    : isCollisionRender(true)
 {
     collisionCheckVector.clear();
-    colliderVector.clear();
+    colliderVectors.clear();
 
-    colliderVector.resize((int)ColliderLayer::End);
+    colliderVectors.resize((int)ColliderLayer::End);
     collisionCheckVector.resize((int)ColliderLayer::End);
 
     for (int i = 0; i < (int)ColliderLayer::End; ++i)
@@ -24,9 +25,9 @@ ColliderManager::ColliderManager()
 void ColliderManager::Init()
 {
     collisionCheckVector.clear();
-    colliderVector.clear();
+    colliderVectors.clear();
 
-    colliderVector.resize((int)ColliderLayer::End);
+    colliderVectors.resize((int)ColliderLayer::End);
     collisionCheckVector.resize((int)ColliderLayer::End);
 
     for (int i = 0; i < (int)ColliderLayer::End; ++i)
@@ -51,9 +52,26 @@ void ColliderManager::Update()
 
 }
 
+void ColliderManager::Render(sf::RenderWindow& renderWindow)
+{
+    if (!isCollisionRender)
+        return;
+
+    for (auto& colliderVector : colliderVectors)
+    {
+        for (auto& collider : colliderVector)
+        {
+            if (collider->IsDestory() || !collider->GetActive())
+                continue;
+
+            collider->Render(renderWindow);
+        }
+    }
+}
+
 void ColliderManager::Clear()
 {
-    colliderVector.clear();
+    colliderVectors.clear();
     collisionCheckVector.clear();
     Init();
 }
@@ -87,21 +105,21 @@ void ColliderManager::DestoryColliderCheck()
 
 void ColliderManager::LayerCollision(int left, int right)
 {
-    int leftSize = (int)colliderVector[left].size();
-    int rightSize = (int)colliderVector[right].size();
+    int leftSize = (int)colliderVectors[left].size();
+    int rightSize = (int)colliderVectors[right].size();
 
     for (int i = 0; i < leftSize; ++i)
     {
         for (int j = 0; j < rightSize; ++j)
         {
-            if (!colliderVector[left][i]->GetActive() || !colliderVector[right][j]->GetActive())
+            if (!colliderVectors[left][i]->GetActive() || !colliderVectors[right][j]->GetActive())
                 continue;
 
-            if (colliderVector[left][i] == colliderVector[right][j])
+            if (colliderVectors[left][i] == colliderVectors[right][j])
                 continue;
 
-            auto leftID = colliderVector[left][i]->GetID() < colliderVector[right][j]->GetID() ? colliderVector[left][i]->GetID() : colliderVector[right][j]->GetID();
-            auto rightID = colliderVector[left][i]->GetID() < colliderVector[right][j]->GetID() ? colliderVector[right][j]->GetID() : colliderVector[left][i]->GetID();
+            auto leftID = colliderVectors[left][i]->GetID() < colliderVectors[right][j]->GetID() ? colliderVectors[left][i]->GetID() : colliderVectors[right][j]->GetID();
+            auto rightID = colliderVectors[left][i]->GetID() < colliderVectors[right][j]->GetID() ? colliderVectors[right][j]->GetID() : colliderVectors[left][i]->GetID();
             std::string hash = std::to_string(leftID) + "," + std::to_string(rightID);
 
             auto iter = collisionMap.find(hash);
@@ -111,27 +129,27 @@ void ColliderManager::LayerCollision(int left, int right)
                 iter = collisionMap.find(hash);
             }
 
-            if (CheckCollision(colliderVector[left][i], colliderVector[right][j]))
+            if (CheckCollision(colliderVectors[left][i], colliderVectors[right][j]))
             {
                 // 충돌하지 않음
                 if (!iter->second)
                 {
-                    colliderVector[left][i]->OnCollisionEnter(colliderVector[right][j]);
-                    colliderVector[right][j]->OnCollisionEnter(colliderVector[left][i]);
+                    colliderVectors[left][i]->OnCollisionEnter(colliderVectors[right][j]);
+                    colliderVectors[right][j]->OnCollisionEnter(colliderVectors[left][i]);
                     iter->second = true;
                 }
                 else
                 {
-                    colliderVector[left][i]->OnCollisionStay(colliderVector[right][j]);
-                    colliderVector[right][j]->OnCollisionStay(colliderVector[left][i]);
+                    colliderVectors[left][i]->OnCollisionStay(colliderVectors[right][j]);
+                    colliderVectors[right][j]->OnCollisionStay(colliderVectors[left][i]);
                 }
             }
             else
             {
                 if (iter->second)
                 {
-                    colliderVector[left][i]->OnCollisionEnd(colliderVector[right][j]);
-                    colliderVector[right][j]->OnCollisionEnd(colliderVector[left][i]);
+                    colliderVectors[left][i]->OnCollisionEnd(colliderVectors[right][j]);
+                    colliderVectors[right][j]->OnCollisionEnd(colliderVectors[left][i]);
                     iter->second = false;
                 }
             }
@@ -183,7 +201,7 @@ void ColliderManager::SetCollisionCheck(ColliderLayer left, ColliderLayer right)
 
 void ColliderManager::AddCollider(Collider* newCollision, ColliderLayer colliderLayer)
 {
-    colliderVector[(int)colliderLayer].push_back(newCollision);
+    colliderVectors[(int)colliderLayer].push_back(newCollision);
 }
 
 bool ColliderManager::IsPointToPointCollision(Collider* left, Collider* right)

@@ -31,10 +31,15 @@
 #include "MushRoomObject.h"
 
 #include "BackgroundColorBox.h"
+#include "GameManager.h"
+#include "SavePointObject.h"
 
 void SceneDev1::Init()
 {
 	Scene::Init();
+
+	cameraLimitRect = { 0.f,13440.f,-500.f, 700.f };
+	currentCameraLimitRect = cameraLimitRect;
 }
 
 void SceneDev1::Enter()
@@ -98,6 +103,8 @@ void SceneDev1::Enter()
 	background->SetScale({ 2000.f, 1300.f });
 	background->SetColor(sf::Color(85, 151, 248));
 
+	SavePointObject* savePoint = AddGameObject(new SavePointObject(), LayerType::Default);
+
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::Player);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Block, ColliderLayer::Player);
 
@@ -107,6 +114,19 @@ void SceneDev1::Enter()
 
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::PlayerBullet);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Block, ColliderLayer::PlayerBullet);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::SavePoint, ColliderLayer::Player);
+	
+	if (GameManager::GetInstance().IsRestart())
+	{
+		// GameManager::GetInstance().OnSavePoint();
+
+	}
+	else
+	{
+		Load();
+		// SaveLoadManager::GetInstance().Load();
+		//GameManager::GetInstance().OnSavePoint();
+	}
 	Scene::Enter();
 }
 
@@ -127,6 +147,20 @@ void SceneDev1::Release()
 void SceneDev1::Update(float dt)
 {
 	Scene::Update(dt);
+
+	if (GameManager::GetInstance().IsRestart())
+	{
+		ColliderManager::GetInstance().Clear();
+		GameManager::GetInstance().ReStart();
+		player = nullptr;
+	}
+
+	if (player != nullptr)
+	{
+		currentCameraLimitRect.leftPosition = player->GetPosition().x - 800.f;
+		currentCameraLimitRect.leftPosition = currentCameraLimitRect.leftPosition < 0.f ? 0.f : currentCameraLimitRect.leftPosition;
+		mainCamera->SetCameraLimitRect(currentCameraLimitRect);
+	}
 }
 
 void SceneDev1::Render(sf::RenderWindow& window)
@@ -173,6 +207,13 @@ void SceneDev1::Save()
 				continue;
 			}
 
+			auto savePoint = dynamic_cast<SavePointObject*>(gameObject);
+			if (savePoint != nullptr)
+			{
+				data.savePointSaveDatas.push_back(savePoint->GetSavePointSaveData());
+				continue;
+			}
+
 		}
 	}
 	SaveLoadManager::GetInstance().Save(data);
@@ -182,12 +223,15 @@ void SceneDev1::Load()
 {
 	SaveDataVC data = SaveLoadManager::GetInstance().Load();
 
-	Player* player = new Player();
+	Player* player = new Player();	
+	this->player = player;
 	player->LoadData(data.playerData);
 	player->Start();
 	AddGameObject(player, player->GetLayerType());
-
+	mainCamera->SetCameraLimitRect({ 0.f,13440.f,-500.f, 700.f }, true);
 	mainCamera->SetFollowTarget(player, true);
+	mainCamera->SetCameraPosition(player->GetPosition());
+
 
 	for (const auto& data : data.blockSaveDatas)
 	{
@@ -282,6 +326,12 @@ void SceneDev1::Save(const std::string& savePath)
 				continue;
 			}
 
+			auto savePoint = dynamic_cast<SavePointObject*>(gameObject);
+			if (savePoint != nullptr)
+			{
+				data.savePointSaveDatas.push_back(savePoint->GetSavePointSaveData());
+				continue;
+			}
 		}
 	}
 	SaveLoadManager::GetInstance().Save(data, savePath);
@@ -292,11 +342,13 @@ void SceneDev1::Load(const std::string& loadPath)
 	SaveDataVC data = SaveLoadManager::GetInstance().Load(loadPath);
 
 	Player* player = new Player();
+	this->player = player;
 	player->LoadData(data.playerData);
 	player->Start();
 	AddGameObject(player, player->GetLayerType());
 
 	mainCamera->SetFollowTarget(player, true);
+	mainCamera->SetCameraLimitRect(cameraLimitRect, true);
 
 	for (const auto& data : data.blockSaveDatas)
 	{

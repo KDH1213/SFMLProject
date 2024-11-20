@@ -118,6 +118,13 @@ void ItemBlockObject::Update(const float& deltaTime)
 
 void ItemBlockObject::OnCollisionEnter(Collider* target)
 {
+	if (itemCount == 0)
+	{
+		BlockObject::OnCollisionEnter(target);
+		return;
+	}
+
+
 	if (target->GetColliderLayer() == ColliderLayer::Player)
 	{
 		player = (Player*)target->GetOwner();
@@ -135,7 +142,6 @@ void ItemBlockObject::OnCollisionEnter(Collider* target)
 		}
 		else if (rect.bottomPosition < targetRect.topPosition - prevPositionY)
 		{
-
 			if (itemCount != 0)
 			{
 				CreateItem();
@@ -156,9 +162,6 @@ void ItemBlockObject::OnCollisionEnter(Collider* target)
 				}
 
 			}
-
-			
-
 			OnChangetRectUV();
 		}
 	}
@@ -166,6 +169,12 @@ void ItemBlockObject::OnCollisionEnter(Collider* target)
 
 void ItemBlockObject::OnCollisionStay(Collider* target)
 {
+	if (itemCount == 0)
+	{
+		BlockObject::OnCollisionStay(target);
+		return;
+	}
+
 	if (target->GetColliderLayer() == ColliderLayer::Player)
 	{
 		Rigidbody* targetRigidbody = player->GetRigidbody();

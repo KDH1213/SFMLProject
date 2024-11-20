@@ -1,14 +1,7 @@
 #pragma once
 #include "Scene.h"
-class Player;
-
-class SceneDev1 : public Scene
+class TitleScene : public Scene
 {
-private:
-	Player*		player;
-	Rectangle	cameraLimitRect;
-	Rectangle	currentCameraLimitRect;
-
 public:
 	void Init() override;
 	void Enter() override;
@@ -22,8 +15,6 @@ public:
 	void Save(const std::string& savePath) override;
 	void Load(const std::string& loadPath) override;
 public:
-	SceneDev1();
-	~SceneDev1();
-
+	TitleScene();
+	~TitleScene();
 };
-

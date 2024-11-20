@@ -7,6 +7,7 @@ enum class CreateObjectType
     Enemy,
     Block,
     Item,
+    SavePoint,
     End
 };
 
@@ -44,7 +45,7 @@ public:
     void OnEnemy();
     void OnBlock();
     void OnItem();
-
+    void OnSavePoint();
 public:
     CreateObjectTool();
     ~CreateObjectTool();

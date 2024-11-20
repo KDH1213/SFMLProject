@@ -64,7 +64,7 @@ void Scene::Release()
 		}
 		objectVector.clear();
 	}
-	gameObjectVectors.clear();
+	// gameObjectVectors.clear();
 
 	for (auto& object : destroyObjects)
 	{

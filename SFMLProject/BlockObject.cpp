@@ -40,7 +40,7 @@ void BlockObject::SetScale(const sf::Vector2f& scale)
 {
 	this->scale = scale;
 	render.setSize(rectSize * scale);
-	collider->SetScale(rectSize * scale);
+	collider->SetOwnerScale(rectSize * scale);
 	SetOrigin(originPreset);
 }
 

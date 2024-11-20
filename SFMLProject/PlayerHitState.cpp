@@ -27,8 +27,6 @@ void PlayerHitState::StartEffect()
 		player->GetAnimator()->ChangeAnimation("marioHit", true, true);
 		player->GetCollider()->SetScale(player->GetCollider()->GetScale() * 0.5f);
 
-	
-
 		Animation* animation = player->GetAnimator()->GetCurrentAnimation();
 		
 		animation->SetAnimationStartEvent(std::bind(&PlayerHitState::ChangePosition ,this ), 2);

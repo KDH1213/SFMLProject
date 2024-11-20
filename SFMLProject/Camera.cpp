@@ -80,7 +80,7 @@ void Camera::Update(const float& deltaTime)
 		{
 			if (useLerpFollowTarget)
 			{
-				cameraPosition = sf::Vector2f::SmoothDamp(cameraPosition, followTarget->GetPosition(), followSpeed, 0.5f, 400.f, deltaTime);
+				cameraPosition = sf::Vector2f::SmoothDamp(cameraPosition, followTarget->GetPosition(), followSpeed, 0.5f, 1200.f, deltaTime);
 				// cameraPosition += sf::Vector2f::Normalized(followTarget->GetPosition(), cameraPosition) * 400.f * deltaTime;
 				if (sf::Vector2f::Distance(cameraPosition, followTarget->GetPosition()) <= 1.f)
 					cameraPosition = followTarget->GetPosition();

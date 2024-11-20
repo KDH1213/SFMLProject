@@ -11,12 +11,14 @@ private:
 
 	std::vector<Collider*> destoryVector;
 	// юс╫ц
-	std::vector<std::vector<Collider*>>  colliderVector;
+	std::vector<std::vector<Collider*>>  colliderVectors;
 	std::vector<std::vector<bool>> collisionCheckVector;
-		
+	
+	bool isCollisionRender;
 public:
 	void Init();
 	void Update();
+	void Render(sf::RenderWindow& renderWindow);
 
 	void Clear();
 
@@ -38,6 +40,8 @@ public:
 	bool IsCircleToPointCollision(Collider* left, Collider* right);
 	bool IsCircleToPointCollision(sf::Vector2f circlePosition, float radian, sf::Vector2f pointPosition);
 
+	void DisableColliderRender() { isCollisionRender = false; }
+	void ActiveColliderRender() { isCollisionRender = true; }
 protected:
 	ColliderManager();
 	~ColliderManager() override {};

@@ -7,6 +7,8 @@
 #include "Animation.h"
 #include "FireBullet.h"
 
+#include "GameManager.h"
+
 Player::Player(const std::string& name)
 	: GameObject(name)
 	, fsm(this)
@@ -36,6 +38,13 @@ Player::Player(const std::string& name)
 
 Player::~Player()
 {
+}
+
+void Player::ChangeSmallMario()
+{
+	currentStatus.hp = 1;
+	collider->SetScale({32.f, 64.f});
+	fsm.ChangeState(PlayerStateType::Idle);
 }
 
 void Player::Awake()
@@ -167,6 +176,11 @@ void Player::Update(const float& deltaTime)
 			isHit = false;
 			currentHitTime = 0.f;
 		}
+	}
+
+	if (position.y >= 3000.f)
+	{
+		GameManager::GetInstance().PlayerDie();
 	}
 }
 
