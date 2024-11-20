@@ -51,6 +51,10 @@ sf::FloatRect WallCollisionObject::GetGlobalBounds() const
 }
 void WallCollisionObject::Start()
 {
+	SetScale(scale);
+	SetPosition(position);
+	SetRotation(rotation);
+	SetOrigin(originPreset);
 	collider->Reset();
 }
 
@@ -88,24 +92,24 @@ void WallCollisionObject::OnCollisionStay(Collider * target)
 
 		if (rect.topPosition == targetRect.bottomPosition)
 		{
-			if (position.x < object->GetPosition().x && object->GetRigidbody()->GetCurrentVelocity().x < 0.f)
+			if (rect.leftPosition > targetRect.leftPosition && rect.leftPosition < targetRect.rightPosition)
 				targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
-			else if (position.x > object->GetPosition().x && object->GetRigidbody()->GetCurrentVelocity().x > 0.f)
+			else if (rect.rightPosition < targetRect.rightPosition && rect.rightPosition >(targetRect.leftPosition))
 				targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
 		}
 		else
 		{
 			if (rect.bottomPosition > targetRect.topPosition)
 			{
-				if (position.x < object->GetPosition().x && object->GetRigidbody()->GetCurrentVelocity().x < 0.f)
+				if (rect.leftPosition > targetRect.leftPosition &&  rect.leftPosition < targetRect.rightPosition)
+				{
+					object->SetPosition({ rect.leftPosition - target->GetScale().x * 0.5f, object->GetPosition().y });
+					targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
+				}
+				else if (rect.rightPosition < targetRect.rightPosition && rect.rightPosition > (targetRect.leftPosition))
 				{
 					object->SetPosition({ rect.rightPosition + target->GetScale().x * 0.5f, object->GetPosition().y });
 					targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
-				}
-				else if (position.x > object->GetPosition().x && object->GetRigidbody()->GetCurrentVelocity().x > 0.f)
-				{
-					targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
-					object->SetPosition({ rect.leftPosition - target->GetScale().x * 0.5f, object->GetPosition().y });
 				}
 			}
 		}

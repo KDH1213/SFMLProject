@@ -68,12 +68,28 @@ void HierachyGUI::Update()
                 selected = currentPos;
                 currentObjectInspector->SetObject(objectVectors[i][j]);
                 currentObjectInspector->Activate();
-                currentObjectInspector->Update();
+                currentObjectInspector->Update();          
+
             }
+            if (ImGui::BeginPopupContextItem())
+            {
+                selected = currentPos;
+                ImGui::Text("Destory Object", objectVectors[i][j]->GetName().c_str());
+                if (ImGui::Button("Delete"))
+                {
+                    objectVectors[i][j]->SetDestory(true);
+                    ImGui::CloseCurrentPopup();
+                }
+                ImGui::EndPopup();
+            }
+            ImGui::SetItemTooltip("Right-click to open popup");
             ++currentPos;
         }
     }
 
+
+
+   
 
     if (ImGui::Button("OnAnimaitonToolEditor", { 100, 20.f }))
         isOnAnimationTool = !isOnAnimationTool;

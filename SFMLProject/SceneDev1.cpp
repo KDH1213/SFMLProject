@@ -51,45 +51,45 @@ void SceneDev1::Enter()
 	ResourcesManager<sf::Font>::GetInstance().Load("KOMIKAP", "fonts/KOMIKAP_.ttf");
 	ResourcesManager<Animation>::GetInstance().Load("marioIdle", "animations/marioIdle.csv");
 
-	Player* testPlayer = AddGameObject(new Player("Player"),LayerType::Player);
-	testPlayer->Awake();
-	//testPlayer->CreateAnimator();
+	//Player* testPlayer = AddGameObject(new Player("Player"),LayerType::Player);
+	//testPlayer->Awake();
+	////testPlayer->CreateAnimator();
 
-	//auto animator = testPlayer->GetAnimator();
-	//animator->AddAnimation(&ResourcesManager<Animation>::GetInstance().Get("marioIdle"), "marioIdle");
-	mainCamera->SetFollowTarget(testPlayer, true);
+	////auto animator = testPlayer->GetAnimator();
+	////animator->AddAnimation(&ResourcesManager<Animation>::GetInstance().Get("marioIdle"), "marioIdle");
+	//mainCamera->SetFollowTarget(testPlayer, true);
 
-	// Goomba* enemy = AddGameObject(new Goomba(), LayerType::Enemy);
-	// enemy->SetPosition(testPlayer->GetPosition() + sf::Vector2f::left * 300.f);
-	// mainCamera->SetCameraLimitRect({ -2000.f, 2000.f, -2000.f, 2000.f });
+	//// Goomba* enemy = AddGameObject(new Goomba(), LayerType::Enemy);
+	//// enemy->SetPosition(testPlayer->GetPosition() + sf::Vector2f::left * 300.f);
+	//// mainCamera->SetCameraLimitRect({ -2000.f, 2000.f, -2000.f, 2000.f });
 
-	//TileMap* tile = AddGameObject(new TileMap("tiles", "Map"), LayerType::TileMap);
-	//tile->SetTileInfo("tiles", { 30,30 }, { 64.f,64.f }, { 32,32 });
-	//tile->SaveCsv("TileMap/test.csv");
-	//tile->LoadCsv("TileMap/test.csv");
-	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Enemy, ColliderLayer::Player);
+	////TileMap* tile = AddGameObject(new TileMap("tiles", "Map"), LayerType::TileMap);
+	////tile->SetTileInfo("tiles", { 30,30 }, { 64.f,64.f }, { 32,32 });
+	////tile->SaveCsv("TileMap/test.csv");
+	////tile->LoadCsv("TileMap/test.csv");
+	//ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Enemy, ColliderLayer::Player);
 
-	//BlockObject* block = AddGameObject(new BlockObject(BlockType::Brick ,"tile_set"), LayerType::Block);
+	////BlockObject* block = AddGameObject(new BlockObject(BlockType::Brick ,"tile_set"), LayerType::Block);
 
-	BrickBlockObject* brickBlock = AddGameObject(new BrickBlockObject("tile_set"), LayerType::Block); 
-	brickBlock->SetPosition({ 100.f, -150.f });
+	//BrickBlockObject* brickBlock = AddGameObject(new BrickBlockObject("tile_set"), LayerType::Block); 
+	//brickBlock->SetPosition({ 100.f, -150.f });
 
-	WallCollisionObject* wallCollision = AddGameObject(new WallCollisionObject, LayerType::Wall);
-	wallCollision->SetScale({ 10000.f, 30.f });
-	wallCollision->SetPosition({ 0, 100.f });
+	//WallCollisionObject* wallCollision = AddGameObject(new WallCollisionObject, LayerType::Wall);
+	//wallCollision->SetScale({ 10000.f, 30.f });
+	//wallCollision->SetPosition({ 0, 100.f });
 
-	//  ItemBlockObject* block = AddGameObject(new ItemBlockObject(ItemType::MushRoom, "tile_set", "tile_set"), LayerType::Block);
+	////  ItemBlockObject* block = AddGameObject(new ItemBlockObject(ItemType::MushRoom, "tile_set", "tile_set"), LayerType::Block);
 
-	TileMapController* tileMapController = AddGameObject(new TileMapController("TileMapController"), LayerType::Default);
+	//TileMapController* tileMapController = AddGameObject(new TileMapController("TileMapController"), LayerType::Default);
 
-	CoinObject* coin = AddGameObject(new CoinObject, LayerType::Item);
-	coin->SetPosition({ -100.f, -150.f });
-	StarObject* star = AddGameObject(new StarObject, LayerType::Item);
-	star->SetPosition({ -150.f, -150.f });
-	FlowerObject* flower = AddGameObject(new FlowerObject, LayerType::Item);
-	flower->SetPosition({ -200.f, -150.f });
-	MushRoomObject* mushroom = AddGameObject(new MushRoomObject, LayerType::Item);
-	mushroom->SetPosition({ -250.f, -150.f });
+	//CoinObject* coin = AddGameObject(new CoinObject, LayerType::Item);
+	//coin->SetPosition({ -100.f, -150.f });
+	//StarObject* star = AddGameObject(new StarObject, LayerType::Item);
+	//star->SetPosition({ -150.f, -150.f });
+	//FlowerObject* flower = AddGameObject(new FlowerObject, LayerType::Item);
+	//flower->SetPosition({ -200.f, -150.f });
+	//MushRoomObject* mushroom = AddGameObject(new MushRoomObject, LayerType::Item);
+	//mushroom->SetPosition({ -250.f, -150.f });
 
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::Player);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Block, ColliderLayer::Player);
@@ -148,7 +148,7 @@ void SceneDev1::Save()
 			}
 
 			auto blockObject = dynamic_cast<BlockObject*>(gameObject);
-			if (wallCollision != nullptr)
+			if (blockObject != nullptr)
 			{
 				data.blockSaveDatas.push_back(blockObject->GetBlockSaveDate());
 			}
@@ -166,6 +166,8 @@ void SceneDev1::Load()
 	player->Start();
 	AddGameObject(player, player->GetLayerType());
 
+	mainCamera->SetFollowTarget(player, true);
+
 	for (const auto& data : data.blockSaveDatas)
 	{
 		BlockObject* newBlock = new BlockObject(BlockType::Default, "");
@@ -174,9 +176,17 @@ void SceneDev1::Load()
 		AddGameObject(newBlock, newBlock->GetLayerType());
 	}
 
+	for (const auto& data : data.wallCollisionSaveDatas)
+	{
+		WallCollisionObject* wall = new WallCollisionObject();
+		wall->LoadWallCollisionSaveData(data);
+		wall->Start();
+		AddGameObject(wall, wall->GetLayerType());
+	}
+
+
 	TileMapController* tileMapController = new TileMapController("");
 	tileMapController->LoadTileMapSaveData(data.tileMapSaveData);
-
 	tileMapController->Start();
 	AddGameObject(tileMapController, tileMapController->GetLayerType());
 }

@@ -49,7 +49,7 @@ void CollisionObjectEditor::Update()
 		else
 		{
 			isEndInput = true;
-			endPosition = { cellSize.x * posX , cellSize.y * posY };
+			endPosition = { cellSize.x * (posX + 1) , cellSize.y * (posY + 1) };
 		}
 	}
 
@@ -69,7 +69,7 @@ void CollisionObjectEditor::Update()
 	bool isSelect = false;
 	if (ImGui::BeginCombo("CollisonObjectTypeCombo", itemEnum[idx].name.c_str()))
 	{
-		for (int n = 0; n < (int)ItemType::End; n++)
+		for (int n = 0; n < (int)CollisonObjectType::End; n++)
 		{
 			if (ImGui::Selectable(itemEnum[n].name.c_str(), idx == n))
 			{

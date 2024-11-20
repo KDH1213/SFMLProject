@@ -36,7 +36,7 @@ void PlayerJumpState::Enter()
 	player->GetAnimator()->ChangeAnimation(animationKeys[animationKeyIndex], true);
 
 	if(InputManager::GetInstance().GetAxis(Axis::Jump) == 1.f)
-		rigidbody->SetVelocity({ rigidbody->GetCurrentVelocity().x, -800.f });
+		rigidbody->SetVelocity({ rigidbody->GetCurrentVelocity().x, -850.f });
 	else
 		rigidbody->SetVelocity({ rigidbody->GetCurrentVelocity().x, -500.f });
 }

@@ -59,7 +59,6 @@ void InspectorGUI::Update()
 
 	TransformInfo();
 
-	
 	for (auto& componet : componetGUIvector)
 	{
 		componet->Update();

@@ -1,0 +1,731 @@
+{
+    "blockSaveDatas": [],
+    "itemBlockSaveDatas": [],
+    "playerData": {
+        "gameObjectSaveData": {
+            "active": true,
+            "layerType": 6,
+            "name": "Player",
+            "origin": {
+                "x": 8.0,
+                "y": 16.0
+            },
+            "originPreset": 4,
+            "position": {
+                "x": 300.0,
+                "y": 444.0
+            },
+            "rotation": 0.0,
+            "scale": {
+                "x": 1.0,
+                "y": 1.0
+            },
+            "sortingOrder": 0
+        },
+        "status": {
+            "hp": 2,
+            "jumpPower": 200.0,
+            "maxHp": 2,
+            "maxJumpPower": 350.0,
+            "speed": 500.0
+        }
+    },
+    "tileMapSaveData": {
+        "cellCount": {
+            "x": 30,
+            "y": 20
+        },
+        "cellSize": {
+            "x": 64.0,
+            "y": 64.0
+        },
+        "gameObjectSaveData": {
+            "active": true,
+            "layerType": 0,
+            "name": "Stage1",
+            "origin": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "originPreset": 4,
+            "position": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "rotation": 0.0,
+            "scale": {
+                "x": 1.0,
+                "y": 1.0
+            },
+            "sortingOrder": 0
+        },
+        "spriteSheetId": "tiles",
+        "textureTileSize": {
+            "x": 16,
+            "y": 16
+        }
+    },
+    "version": 1,
+    "wallCollisionSaveDatas": [
+        {
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 1,
+                "name": "Wall2",
+                "origin": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 2208.0,
+                    "y": 640.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 4416.0,
+                    "y": 256.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 1,
+                "name": "Wall3",
+                "origin": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 1856.0,
+                    "y": 480.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 128.0,
+                    "y": 192.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 1,
+                "name": "Wall4",
+                "origin": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 2496.0,
+                    "y": 448.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 128.0,
+                    "y": 256.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 1,
+                "name": "Wall5",
+                "origin": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 3008.0,
+                    "y": 416.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 128.0,
+                    "y": 320.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 1,
+                "name": "Wall7",
+                "origin": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 3712.0,
+                    "y": 416.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 128.0,
+                    "y": 320.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 1,
+                "name": "Wall8",
+                "origin": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 4992.0,
+                    "y": 640.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 896.0,
+                    "y": 256.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 1,
+                "name": "Wall9",
+                "origin": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 5984.0,
+                    "y": 640.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 576.0,
+                    "y": 256.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 1,
+                "name": "Wall10",
+                "origin": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 6912.0,
+                    "y": 640.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 1024.0,
+                    "y": 256.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 1,
+                "name": "Wall11",
+                "origin": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 8704.0,
+                    "y": 640.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 2176.0,
+                    "y": 256.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 1,
+                "name": "Wall12",
+                "origin": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 8704.0,
+                    "y": 480.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 256.0,
+                    "y": 64.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 1,
+                "name": "Wall13",
+                "origin": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 8736.0,
+                    "y": 416.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 192.0,
+                    "y": 64.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 1,
+                "name": "Wall14",
+                "origin": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 8768.0,
+                    "y": 352.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 128.0,
+                    "y": 64.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 1,
+                "name": "Wall16",
+                "origin": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 8800.0,
+                    "y": 286.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 64.0,
+                    "y": 64.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 1,
+                "name": "Wall17",
+                "origin": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 8992.0,
+                    "y": 384.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 64.0,
+                    "y": 256.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 1,
+                "name": "Wall18",
+                "origin": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 9056.0,
+                    "y": 416.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 64.0,
+                    "y": 192.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 1,
+                "name": "Wall19",
+                "origin": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 9120.0,
+                    "y": 448.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 64.0,
+                    "y": 128.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 1,
+                "name": "Wall20",
+                "origin": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 9184.0,
+                    "y": 480.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 64.0,
+                    "y": 64.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 1,
+                "name": "Wall21",
+                "origin": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 9504.0,
+                    "y": 480.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 64.0,
+                    "y": 64.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 1,
+                "name": "Wall22",
+                "origin": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 9568.0,
+                    "y": 448.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 64.0,
+                    "y": 128.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 1,
+                "name": "Wall23",
+                "origin": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 9632.0,
+                    "y": 416.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 64.0,
+                    "y": 192.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 1,
+                "name": "Wall24",
+                "origin": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 9696.0,
+                    "y": 384.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 64.0,
+                    "y": 256.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 1,
+                "name": "Wall25",
+                "origin": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 9760.0,
+                    "y": 384.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 64.0,
+                    "y": 256.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 1,
+                "name": "Wall26",
+                "origin": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 9952.0,
+                    "y": 384.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 64.0,
+                    "y": 256.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 1,
+                "name": "Wall27",
+                "origin": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 10016.0,
+                    "y": 416.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 64.0,
+                    "y": 192.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 1,
+                "name": "Wall28",
+                "origin": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 10080.0,
+                    "y": 448.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 64.0,
+                    "y": 128.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 1,
+                "name": "Wall29",
+                "origin": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 10144.0,
+                    "y": 480.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 64.0,
+                    "y": 64.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 1,
+                "name": "Wall30",
+                "origin": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 11680.0,
+                    "y": 640.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 3520.0,
+                    "y": 256.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 1,
+                "name": "Wall31",
+                "origin": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 12704.0,
+                    "y": 480.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 64.0,
+                    "y": 64.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 1,
+                "name": "Wall32",
+                "origin": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 11520.0,
+                    "y": 448.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 128.0,
+                    "y": 128.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 1,
+                "name": "Wall33",
+                "origin": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 10496.0,
+                    "y": 448.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 128.0,
+                    "y": 128.0
+                },
+                "sortingOrder": 0
+            }
+        }
+    ]
+}
