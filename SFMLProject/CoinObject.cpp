@@ -3,9 +3,11 @@
 #include "Animator.h"
 #include "Collider.h"
 #include "Animation.h"
+#include "Rigidbody.h"
 
 CoinObject::CoinObject()
 	: ItemObject(ItemType::Coin, "Items", "Coin")
+	, isGetCoin(false)
 {
 	CreateAnimator();
 
@@ -28,10 +30,34 @@ void CoinObject::Start()
 void CoinObject::Update(const float& deltaTime)
 {
 	animator->Update(deltaTime);
+
+	if (isCreateEvent)
+	{
+		if (position.y >= createEndPosition.y)
+			SetDestory(true);
+	}
+}
+
+void CoinObject::FixedUpdate(const float& deltaTime)
+{
+	rigidBody->FixedUpdate(deltaTime);
 }
 
 void CoinObject::CreateAnimator()
 {
 	if (animator == nullptr)
 		animator = new Animator(this, sprite);
+}
+
+void CoinObject::CreateEvenet()
+{
+	isCreateEvent = true;
+	isGetCoin = true;
+	collider->SetActive(false);
+	createEndPosition = position;
+	createEndPosition.y += 20.f;
+	rigidBody = new Rigidbody(this);
+	rigidBody->SetVelocity({ 0, -800.f });
+	rigidBody->SetGround(false);
+	
 }

@@ -60,7 +60,7 @@ void WallCollisionObject::Start()
 
 void WallCollisionObject::OnCollisionEnter(Collider* target)
 {
-	if (target->GetColliderLayer() == ColliderLayer::Player || target->GetColliderLayer() == ColliderLayer::Enemy)
+	if (target->GetColliderLayer() == ColliderLayer::Player || target->GetColliderLayer() == ColliderLayer::Enemy || target->GetColliderLayer() == ColliderLayer::Item)
 	{
 		GameObject* object = target->GetOwner();
 
@@ -80,15 +80,13 @@ void WallCollisionObject::OnCollisionEnter(Collider* target)
 
 void WallCollisionObject::OnCollisionStay(Collider * target)
 {
-	if (target->GetColliderLayer() == ColliderLayer::Player || target->GetColliderLayer() == ColliderLayer::Enemy)
+	if (target->GetColliderLayer() == ColliderLayer::Player || target->GetColliderLayer() == ColliderLayer::Enemy || target->GetColliderLayer() == ColliderLayer::Item)
 	{
 		GameObject* object = target->GetOwner();
 		Rigidbody* targetRigidbody = target->GetOwner()->GetRigidbody();
 
 		Rectangle rect(collider->GetPosition(), collider->GetScale());
 		Rectangle targetRect(target->GetPosition(), target->GetScale());
-
-		sf::Vector2f prevPosition = targetRigidbody->GetCurrentVelocity() * TimeManager::GetInstance().GetFixedDeletaTime();
 
 		if (rect.topPosition == targetRect.bottomPosition)
 		{

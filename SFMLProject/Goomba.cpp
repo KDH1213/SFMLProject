@@ -73,4 +73,27 @@ void Goomba::OnCollisionStay(Collider* target)
 
 void Goomba::OnCollisionEnd(Collider* target)
 {
+	if (target->GetColliderLayer() == ColliderLayer::Wall || target->GetColliderLayer() == ColliderLayer::Block)
+	{
+		auto& targets = collider->GetCollisionTargets();
+		bool isGround = false;
+		for (auto& targetCollsion : targets)
+		{
+			if (targetCollsion == target)
+				continue;
+
+			Rectangle rect(collider->GetPosition(), collider->GetScale());
+			Rectangle targetRect(targetCollsion->GetPosition(), targetCollsion->GetScale());
+
+			if (rect.bottomPosition == targetRect.topPosition)
+			{
+				isGround = true;
+				break;
+			}
+
+		}
+
+		if (!isGround)
+			rigidBody->SetGround(false);
+	}
 }

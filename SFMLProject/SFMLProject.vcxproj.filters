@@ -214,6 +214,9 @@
     <Filter Include="Contants\Object\Item">
       <UniqueIdentifier>{f4c23842-0835-4d39-b0cd-24e16caf10d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contants\Object\Enemy\KoopaTroopa">
+      <UniqueIdentifier>{40b08f56-3ffb-405d-b9d6-26ec9969b8cd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -521,6 +524,12 @@
     </ClCompile>
     <ClCompile Include="SpriteGameObject.cpp">
       <Filter>Contants\Object\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="KoopaTroopa.cpp">
+      <Filter>Contants\Object\Enemy\KoopaTroopa</Filter>
+    </ClCompile>
+    <ClCompile Include="BackgroundColorBox.cpp">
+      <Filter>Contants\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -850,6 +859,12 @@
     </ClInclude>
     <ClInclude Include="SpriteGameObject.h">
       <Filter>Contants\Object\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="KoopaTroopa.h">
+      <Filter>Contants\Object\Enemy\KoopaTroopa</Filter>
+    </ClInclude>
+    <ClInclude Include="BackgroundColorBox.h">
+      <Filter>Contants\Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

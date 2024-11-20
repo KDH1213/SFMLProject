@@ -207,11 +207,12 @@ void CreateObjectTool::OnBlock()
 					else
 						pos = currentScene->ScreenToWorld(InputManager::GetInstance().GetMousePosition());
 
-					int posX = (int)(pos.x / block->GetRectSize().x);
-					int posY = (int)(pos.y / block->GetRectSize().y);
+					int posX = (int)(pos.x / block->GetRectSize().x) + 1;
+					int posY = (int)(pos.y / block->GetRectSize().y) + 1;
 
 					pos = { block->GetRectSize().x * (posX), block->GetRectSize().y * (posY) };
-					block->SetPosition(pos - sf::Vector2f(16.f, 16.f));
+					pos -= (block->GetRectSize() * 0.5f);
+					block->SetPosition(pos);
 
 					block->SetUVRect(blockTextureRects[currentIndex]);
 					block->Awake();

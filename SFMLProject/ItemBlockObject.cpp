@@ -2,20 +2,210 @@
 #include "ItemBlockObject.h"
 #include "rapidcsv.h"
 
+#include "Collider.h"
+
+#include "Player.h"
+#include "Rigidbody.h"
+#include "Enemy.h"
+
+#include "CoinObject.h"
+#include "MushRoomObject.h"
+#include "StarObject.h"
+#include "FlowerObject.h"
+#include "Scene.h"
+#include "Animator.h"
+
 ItemBlockObject::ItemBlockObject(ItemType type, const std::string& texId, const std::string& changeTexId, const std::string& name)
 	: BlockObject(BlockType::Item, texId, name)
 	, itemType(type)
 	, itemCount(1)
 	, changeTextureUvRect(0, 0, 16, 16)
+	, hitMoveDistance(32.f)
+	, moveSpeed(500.f)
+	, isReturn(false)
+	, currentMoveTime(0.f)
 {
+}
+
+void ItemBlockObject::OnChangetRectUV()
+{
+	render.setTextureRect(changeTextureUvRect);
+}
+
+void ItemBlockObject::OnHitMove()
+{
+	if (!isHit)
+	{
+		isHit = true;
+		startPosition = position;
+		endPosition = position;
+		endPosition.y -= hitMoveDistance;
+		currentMoveTime = 0.f;
+	}
+
+	isReturn = false;
+}
+
+void ItemBlockObject::CreateItem()
+{
+	switch (itemType)
+	{
+	case ItemType::Coin:
+	{
+		CoinObject* coin = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new CoinObject(), LayerType::Default);
+		coin->SetPosition(position);
+		coin->Awake();
+		coin->Start();
+		coin->GetAnimator()->ChangeAnimation("coinGet", true);
+		coin->CreateEvenet();
+	}
+		break;
+	case ItemType::MushRoom:
+	{
+		MushRoomObject* mush = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new MushRoomObject(), LayerType::Item);
+		mush->SetPosition(position);
+		mush->Awake();
+		mush->Start();
+		mush->CreateEvenet();
+	}
+		break;
+	case ItemType::Flower:
+	{
+		FlowerObject* flower = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new FlowerObject(), LayerType::Item);
+		flower->SetPosition(position);
+		flower->Awake();
+		flower->Start();
+		flower->CreateEvenet();
+	}
+		break;
+	case ItemType::Star:
+		break;
+	case ItemType::End:
+		break;
+	default:
+		break;
+	}
+
+	--itemCount;
+}
+
+void ItemBlockObject::Update(const float& deltaTime)
+{
+	if (isHit)
+	{
+		position.y += moveSpeed * deltaTime * (isReturn ? 1.f : -1.f);
+
+		if (!isReturn)
+		{
+			if (position.y <= endPosition.y)
+			{
+				position.y = endPosition.y;
+				isReturn = true;
+			}
+		}
+		else
+		{
+			if (position.y >= startPosition.y)
+			{
+				position.y = startPosition.y;
+				isHit = false;
+			}
+		}
+
+		SetPosition(position);
+	}
 }
 
 void ItemBlockObject::OnCollisionEnter(Collider* target)
 {
+	if (target->GetColliderLayer() == ColliderLayer::Player)
+	{
+		player = (Player*)target->GetOwner();
+
+		sf::Vector2f targetPosition = target->GetPosition();
+
+		Rectangle rect(collider->GetPosition(), collider->GetScale());
+		Rectangle targetRect(targetPosition, target->GetScale());
+		float prevPositionY = player->GetRigidbody()->GetCurrentVelocity().y * TimeManager::GetInstance().GetFixedDeletaTime();
+
+		if (rect.topPosition > targetRect.bottomPosition - prevPositionY)
+		{
+			player->GetRigidbody()->SetGround(true);
+			player->SetPosition({ targetPosition.x , rect.topPosition - target->GetScale().y * 0.5f });
+		}
+		else if (rect.bottomPosition < targetRect.topPosition - prevPositionY)
+		{
+
+			if (itemCount != 0)
+			{
+				CreateItem();
+				OnHitMove();
+				
+				player->SetPosition({ player->GetPosition().x, rect.bottomPosition + target->GetScale().y * 0.5f });
+				player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x , 0.f });
+
+				auto targets = collider->GetCollisionTargets();
+
+				for (auto& target : targets)
+				{
+					if (target->GetColliderLayer() == ColliderLayer::Enemy)
+					{
+						Enemy* enemy = (Enemy*)target->GetOwner();
+						enemy->TakeDamage();
+					}
+				}
+
+			}
+
+			
+
+			OnChangetRectUV();
+		}
+	}
 }
 
 void ItemBlockObject::OnCollisionStay(Collider* target)
 {
+	if (target->GetColliderLayer() == ColliderLayer::Player)
+	{
+		Rigidbody* targetRigidbody = player->GetRigidbody();
+
+		Rectangle rect(collider->GetPosition(), collider->GetScale());
+		Rectangle targetRect(target->GetPosition(), target->GetScale());
+
+		sf::Vector2f prevPosition = player->GetRigidbody()->GetCurrentVelocity() * TimeManager::GetInstance().GetFixedDeletaTime();
+
+
+		if (rect.topPosition == targetRect.bottomPosition)
+		{
+			if (rect.leftPosition > targetRect.leftPosition && rect.leftPosition < targetRect.rightPosition)
+				targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
+			else if (rect.rightPosition < targetRect.rightPosition && rect.rightPosition >(targetRect.leftPosition))
+				targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
+		}
+		else
+		{
+			if (rect.bottomPosition > targetRect.topPosition)
+			{
+				if (rect.leftPosition > targetRect.leftPosition && rect.leftPosition < targetRect.rightPosition)
+				{
+					player->SetPosition({ rect.leftPosition - target->GetScale().x * 0.5f, player->GetPosition().y });
+					targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
+				}
+				else if (rect.rightPosition < targetRect.rightPosition && rect.rightPosition >(targetRect.leftPosition))
+				{
+					player->SetPosition({ rect.rightPosition + target->GetScale().x * 0.5f, player->GetPosition().y });
+					targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
+				}
+			}
+			else
+			{
+				player->SetPosition({ player->GetPosition().x, rect.bottomPosition + target->GetScale().y * 0.5f });
+				player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x , 0.f });
+			}
+		}
+
+	}
 }
 
 void ItemBlockObject::OnCollisionEnd(Collider* target)
@@ -40,7 +230,7 @@ bool ItemBlockObject::SaveCsv(const std::string& filePath) const
 
 	outFile << name;
 	outFile << "," + textureID;
-	outFile << "," + std::to_string((int)type);
+	outFile << "," + std::to_string((int)blockType);
 	outFile << "," + std::to_string(rectSize.x);
 	outFile << "," + std::to_string(rectSize.y);
 
@@ -66,7 +256,7 @@ bool ItemBlockObject::LoadCsv(const std::string& filePath)
 
 	name = doc.GetCell<std::string>(0, 0);
 	textureID = doc.GetCell<std::string>(1, 0);
-	type = (BlockType)doc.GetCell<int>(2, 0);
+	blockType = (BlockType)doc.GetCell<int>(2, 0);
 	rectSize.x = doc.GetCell<float>(3, 0);
 	rectSize.y = doc.GetCell<float>(4, 0);
 	textureUVRect.left = doc.GetCell<int>(5, 0);

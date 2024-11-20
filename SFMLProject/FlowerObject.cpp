@@ -28,6 +28,7 @@ void FlowerObject::Start()
 void FlowerObject::Update(const float& deltaTime)
 {
 	animator->Update(deltaTime);
+	ItemObject::Update(deltaTime);
 }
 
 void FlowerObject::CreateAnimator()

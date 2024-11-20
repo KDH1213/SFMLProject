@@ -74,6 +74,13 @@ void HierachyGUI::Update()
             if (ImGui::BeginPopupContextItem())
             {
                 selected = currentPos;
+                ImGui::Text("Move Object", objectVectors[i][j]->GetName().c_str());
+                if (ImGui::Button("MoveObject"))
+                {
+                    SceneManager::GetInstance().GetCurrentScene()->SetMoveFreeView(objectVectors[i][j]->GetPosition());
+                    ImGui::CloseCurrentPopup();
+                }
+
                 ImGui::Text("Destory Object", objectVectors[i][j]->GetName().c_str());
                 if (ImGui::Button("Delete"))
                 {

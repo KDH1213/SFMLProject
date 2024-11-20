@@ -138,6 +138,11 @@ void Scene::Update(float deltaTime)
 
 	if (isFreeView)
 	{
+		if (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::LShift))
+			cameraSpeed = 1000.f;
+		else
+			cameraSpeed = 500.f;
+
 		if (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Left))
 			freeCamera->SetCameraPosition(freeCamera->GetCameraPosition() + sf::Vector2f::left * cameraSpeed * TimeManager::GetInstance().GetRealDeltatime());
 		if (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Right))
@@ -351,4 +356,9 @@ sf::Vector2f Scene::ScreenToWorld(const sf::View& view, sf::Vector2i screenPos)
 sf::Vector2i Scene::WorldToScreen(const sf::View& view, sf::Vector2f screenPos)
 {
 	return WindowManager::GetInstance().GetRenderWindow()->mapCoordsToPixel(screenPos, view);
+}
+
+void Scene::SetMoveFreeView(const sf::Vector2f& position)
+{
+	freeCamera->SetCameraPosition(position);
 }

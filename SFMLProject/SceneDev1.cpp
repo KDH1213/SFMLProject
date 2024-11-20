@@ -30,6 +30,8 @@
 #include "FlowerObject.h"
 #include "MushRoomObject.h"
 
+#include "BackgroundColorBox.h"
+
 void SceneDev1::Init()
 {
 	Scene::Init();
@@ -91,10 +93,17 @@ void SceneDev1::Enter()
 	//MushRoomObject* mushroom = AddGameObject(new MushRoomObject, LayerType::Item);
 	//mushroom->SetPosition({ -250.f, -150.f });
 
+
+	BackgroundColorBox* background = AddGameObject(new BackgroundColorBox(), LayerType::Default);
+	background->SetScale({ 2000.f, 1300.f });
+	background->SetColor(sf::Color(85, 151, 248));
+
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::Player);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Block, ColliderLayer::Player);
 
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Item, ColliderLayer::Player);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Item, ColliderLayer::Block);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Item, ColliderLayer::Wall);
 
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::PlayerBullet);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Block, ColliderLayer::PlayerBullet);
@@ -139,19 +148,31 @@ void SceneDev1::Save()
 			if (tileMapController != nullptr)
 			{
 				data.tileMapSaveData = tileMapController->GetTileMapSaveData();
+				continue;
 			}
 
 			auto wallCollision = dynamic_cast<WallCollisionObject*>(gameObject);
 			if (wallCollision != nullptr)
 			{
 				data.wallCollisionSaveDatas.push_back(wallCollision->GetWallCollisionSaveData());
+				continue;
 			}
 
 			auto blockObject = dynamic_cast<BlockObject*>(gameObject);
 			if (blockObject != nullptr)
 			{
-				data.blockSaveDatas.push_back(blockObject->GetBlockSaveDate());
+
+				if (blockObject->GetBlockType() == BlockType::Item || blockObject->GetBlockType() == BlockType::ItemBrick)
+				{
+					data.itemBlockSaveDatas.push_back(((ItemBlockObject*)blockObject)->GetItemBlockSaveData());
+				}
+				else
+				{
+					data.blockSaveDatas.push_back(blockObject->GetBlockSaveDate());
+				}
+				continue;
 			}
+
 		}
 	}
 	SaveLoadManager::GetInstance().Save(data);
@@ -170,8 +191,39 @@ void SceneDev1::Load()
 
 	for (const auto& data : data.blockSaveDatas)
 	{
-		BlockObject* newBlock = new BlockObject(BlockType::Default, "");
+		BlockObject* newBlock = nullptr;
+		switch ((BlockType)data.blockType)
+		{
+		case BlockType::Default:
+		{
+			newBlock = new BlockObject(BlockType::Default, "");
+		}
+			break;
+		case BlockType::Brick:
+			newBlock = new BrickBlockObject("");
+			break;
+		case BlockType::Secret:
+			break;
+		case BlockType::ItemBrick:
+			// newBlock = new BrickBlockObject("");
+			break;
+		default:
+			break;
+		}
+
+		if (newBlock == nullptr)
+			continue;
+
+
 		newBlock->LoadBlockSaveData(data);
+		newBlock->Start();
+		AddGameObject(newBlock, newBlock->GetLayerType());
+	}
+
+	for (const auto& data : data.itemBlockSaveDatas)
+	{
+		ItemBlockObject* newBlock = new ItemBlockObject(ItemType::Coin, "", "");
+		newBlock->LoadItemBlockSaveData(data);
 		newBlock->Start();
 		AddGameObject(newBlock, newBlock->GetLayerType());
 	}

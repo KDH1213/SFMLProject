@@ -6,12 +6,12 @@ struct BlockSaveData
 {
 	GameObjectSaveData	gameObjectSaveData;
 
-	int					type;
+	int					blockType;
 	sf::IntRect			textureUVRect;
 	sf::Vector2f		rectSize;
 	std::string			textureID;
 
-	NLOHMANN_DEFINE_TYPE_INTRUSIVE(BlockSaveData, gameObjectSaveData, type, textureUVRect, rectSize, textureID);
+	NLOHMANN_DEFINE_TYPE_INTRUSIVE(BlockSaveData, gameObjectSaveData, blockType, textureUVRect, rectSize, textureID);
 };
 
 struct ItemBlockSaveData

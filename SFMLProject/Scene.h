@@ -30,6 +30,10 @@ public:
 	sf::Vector2f ScreenToWorld(const sf::View& view, sf::Vector2i screenPos);
 	sf::Vector2i WorldToScreen(const sf::View& view, sf::Vector2f screenPos);
 
+	void SetMoveFreeView(const sf::Vector2f& position);
+	Camera* GetMainCamera() { return mainCamera; }
+	Camera* GetUICamera() { return uICamera; }
+
 	bool IsFreeView() { return isFreeView; }
 public:
 	virtual GameObject* AddGameObject(GameObject* obj, LayerType layer);

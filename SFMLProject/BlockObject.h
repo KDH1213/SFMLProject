@@ -9,7 +9,7 @@ class BlockObject : public GameObject
 {
 protected:
 	sf::RectangleShape	render;
-	BlockType			type;
+	BlockType			blockType;
 	Player*				player;
 
 	sf::IntRect			textureUVRect;
@@ -30,11 +30,14 @@ public:
 
 	const std::string& GetTextureID() const { return textureID; }
 
-	void Start() override;
 	void SetOrigin(Origins preset) override;
 	void SetOrigin(const sf::Vector2f& newOrigin) override;
-	void Render(sf::RenderWindow& renderWindow) override;
+
+	BlockType GetBlockType() { return blockType; }
 public:
+	void Start() override;
+	void Render(sf::RenderWindow& renderWindow) override;
+
 	void OnCollisionEnter(Collider* target) override;
 	void OnCollisionStay(Collider* target) override;
 	void OnCollisionEnd(Collider* target) override;

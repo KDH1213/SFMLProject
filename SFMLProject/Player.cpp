@@ -139,7 +139,7 @@ void Player::Attack()
 	direciton.Normalized();
 
 	bullet->SetMoveDirection(direciton);
-	bullet->GetRigidbody()->SetVelocity({ 0.f, -400.f });
+	bullet->GetRigidbody()->SetVelocity({ 0.f, 0.f });
 	
 	bullet->Awake();
 	bullet->Start();

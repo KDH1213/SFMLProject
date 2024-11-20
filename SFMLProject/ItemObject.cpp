@@ -55,10 +55,12 @@ void ItemObject::SetPosition(const sf::Vector2f& pos)
 	collider->SetPosition(position);
 }
 
-void ItemObject::CreateEvenet(const sf::Vector2f& createEndPos)
+void ItemObject::CreateEvenet()
 {
-	createEndPosition = createEndPos;
 	isCreateEvent = true;
+	createEndPosition = position;
+	createEndPosition.y -= 64.f;
+	collider->SetActive(false);
 }
 
 void ItemObject::SetScale(const sf::Vector2f& scale)
@@ -89,6 +91,7 @@ void ItemObject::Update(const float& deltaTime)
 		if (position.y <= createEndPosition.y)
 		{
 			isCreateEvent = false;
+			collider->SetActive(true);
 			position.y = createEndPosition.y;
 		}
 

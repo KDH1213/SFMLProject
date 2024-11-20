@@ -19,7 +19,7 @@ public:
 	void SetRotation(float angle) override;
 	void SetPosition(const sf::Vector2f& pos) override;
 	
-	void CreateEvenet(const sf::Vector2f& createEndPosition);
+	virtual void CreateEvenet();
 	
 	sf::Vector2f GetScale() const override;
 

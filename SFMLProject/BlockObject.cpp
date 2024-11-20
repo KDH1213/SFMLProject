@@ -8,11 +8,11 @@
 #include "rapidcsv.h"
 BlockObject::BlockObject(BlockType type, const std::string& texId, const std::string& name)
     : GameObject(name)
-    , type(type)
+    , blockType(type)
 	, textureID(texId)
 	, player(nullptr)
 	, textureUVRect(0,0,16,16)
-	, rectSize(32.f,32.f)
+	, rectSize(64.f,64.f)
 {
 	CreateCollider(ColliderType::Rectangle, ColliderLayer::Block);
 }
@@ -103,7 +103,24 @@ void BlockObject::OnCollisionEnter(Collider* target)
 		}
 		else if (rect.bottomPosition < targetRect.topPosition - prevPositionY)
 		{
-			player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x, 0.f });
+			player->SetPosition({ player->GetPosition().x, rect.bottomPosition + target->GetScale().y * 0.5f });
+			player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x , 1.f});
+		}
+	}
+	else if (target->GetColliderLayer() == ColliderLayer::Enemy || target->GetColliderLayer() == ColliderLayer::Item)
+	{
+		GameObject* object = target->GetOwner();
+
+		sf::Vector2f targetPosition = target->GetPosition();
+
+		Rectangle rect(collider->GetPosition(), collider->GetScale());
+		Rectangle targetRect(targetPosition, target->GetScale());
+		float prevPositionY = object->GetRigidbody()->GetCurrentVelocity().y * TimeManager::GetInstance().GetFixedDeletaTime();
+
+		if (rect.topPosition > targetRect.bottomPosition - prevPositionY)
+		{
+			object->GetRigidbody()->SetGround(true);
+			object->SetPosition({ targetPosition.x , rect.topPosition - target->GetScale().y * 0.5f });
 		}
 	}
 }
@@ -122,28 +139,65 @@ void BlockObject::OnCollisionStay(Collider* target)
 
 		if (rect.topPosition == targetRect.bottomPosition)
 		{
-			if (position.x < player->GetPosition().x && player->GetRigidbody()->GetCurrentVelocity().x < 0.f)
+			if (rect.leftPosition > targetRect.leftPosition && rect.leftPosition < targetRect.rightPosition)
 				targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
-			else if (position.x > player->GetPosition().x && player->GetRigidbody()->GetCurrentVelocity().x > 0.f)
+			else if (rect.rightPosition < targetRect.rightPosition && rect.rightPosition >(targetRect.leftPosition))
 				targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
 		}
 		else
-		{ 
+		{
 			if (rect.bottomPosition > targetRect.topPosition)
 			{
-				if (position.x < player->GetPosition().x && player->GetRigidbody()->GetCurrentVelocity().x < 0.f)
+				if (rect.leftPosition > targetRect.leftPosition && rect.leftPosition < targetRect.rightPosition)
+				{
+					player->SetPosition({ rect.leftPosition - target->GetScale().x * 0.5f, player->GetPosition().y });
+					targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
+				}
+				else if (rect.rightPosition < targetRect.rightPosition && rect.rightPosition >(targetRect.leftPosition))
 				{
 					player->SetPosition({ rect.rightPosition + target->GetScale().x * 0.5f, player->GetPosition().y });
 					targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
 				}
-				else if (position.x > player->GetPosition().x && player->GetRigidbody()->GetCurrentVelocity().x > 0.f)
-				{
-					targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
-					player->SetPosition({ rect.leftPosition - target->GetScale().x * 0.5f, player->GetPosition().y });
-				}
+			}
+			else
+			{
+				player->SetPosition({ player->GetPosition().x, rect.bottomPosition + target->GetScale().y * 0.5f });
+				player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x , 0.f });
 			}
 		}
 		
+	}
+	else if (target->GetColliderLayer() == ColliderLayer::Enemy || target->GetColliderLayer() == ColliderLayer::Item)
+	{
+		GameObject* object = target->GetOwner();
+		Rigidbody* targetRigidbody = target->GetOwner()->GetRigidbody();
+
+		Rectangle rect(collider->GetPosition(), collider->GetScale());
+		Rectangle targetRect(target->GetPosition(), target->GetScale());
+
+		if (rect.topPosition == targetRect.bottomPosition)
+		{
+			if (rect.leftPosition > targetRect.leftPosition && rect.leftPosition < targetRect.rightPosition)
+				targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
+			else if (rect.rightPosition < targetRect.rightPosition && rect.rightPosition >(targetRect.leftPosition))
+				targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
+		}
+		else
+		{
+			if (rect.bottomPosition > targetRect.topPosition)
+			{
+				if (rect.leftPosition > targetRect.leftPosition && rect.leftPosition < targetRect.rightPosition)
+				{
+					object->SetPosition({ rect.leftPosition - target->GetScale().x * 0.5f, object->GetPosition().y });
+					targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
+				}
+				else if (rect.rightPosition < targetRect.rightPosition && rect.rightPosition >(targetRect.leftPosition))
+				{
+					object->SetPosition({ rect.rightPosition + target->GetScale().x * 0.5f, object->GetPosition().y });
+					targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
+				}
+			}
+		}
 	}
 
 }
@@ -192,7 +246,7 @@ bool BlockObject::SaveCsv(const std::string& filePath) const
 
 	outFile << name;
 	outFile << "," + textureID;
-	outFile << "," + std::to_string((int)type);
+	outFile << "," + std::to_string((int)blockType);
 	outFile << "," + std::to_string(rectSize.x);
 	outFile << "," + std::to_string(rectSize.y);
 
@@ -209,7 +263,7 @@ bool BlockObject::LoadCsv(const std::string& filePath)
 
 	name = doc.GetCell<std::string>(0, 0);
 	textureID = doc.GetCell<std::string>(1, 0);
-	type = (BlockType)doc.GetCell<int>(2, 0);
+	blockType = (BlockType)doc.GetCell<int>(2, 0);
 	rectSize.x = doc.GetCell<float>(3, 0);
 	rectSize.y = doc.GetCell<float>(4, 0);
 	textureUVRect.left = doc.GetCell<int>(5, 0);
@@ -225,13 +279,13 @@ bool BlockObject::LoadCsv(const std::string& filePath)
 
 BlockSaveData BlockObject::GetBlockSaveDate() const
 {
-	return BlockSaveData({ GetGameObjectSaveData(), (int)type, textureUVRect, rectSize, textureID });
+	return BlockSaveData({ GetGameObjectSaveData(), (int)blockType, textureUVRect, rectSize, textureID });
 }
 
 void BlockObject::LoadBlockSaveData(const BlockSaveData& data)
 {
 	LoadGameObjectData(data.gameObjectSaveData);
-	type = (BlockType)data.type;
+	blockType = (BlockType)data.blockType;
 	rectSize = data.rectSize;
 	textureUVRect = data.textureUVRect;
 	textureID = data.textureID;

@@ -11,7 +11,7 @@
 FireBullet::FireBullet(const std::string& texId, const std::string& name)
 	: GameObject(name)
 	, textureID(texId)
-	, speed(400.f)
+	, speed(700.f)
 	, lifeTime(2.f)
 	, currentLifeTime(0.f)
 {
@@ -114,7 +114,7 @@ void FireBullet::OnCollisionEnter(Collider* target)
 	{
 		// moveDirection.y *= -1.f;
 		rigidBody->ResetDropSpeed();
-		rigidBody->SetVelocity({ rigidBody->GetCurrentVelocity().x, -500.f });
+		rigidBody->SetVelocity({ rigidBody->GetCurrentVelocity().x, -300.f });
 	}
 	else if (target->GetColliderLayer() == ColliderLayer::Enemy)
 	{

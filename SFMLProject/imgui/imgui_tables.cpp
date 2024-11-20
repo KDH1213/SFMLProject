@@ -1,4 +1,3 @@
-#include "stdafx.h"
 // dear imgui, v1.91.4
 // (tables and columns code)
 
