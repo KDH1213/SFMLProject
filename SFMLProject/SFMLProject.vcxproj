@@ -225,6 +225,7 @@
     <ClCompile Include="KeyAction.cpp" />
     <ClCompile Include="KoopaTroopa.cpp" />
     <ClCompile Include="LangugeStringTable.cpp" />
+    <ClCompile Include="MouseObject.cpp" />
     <ClCompile Include="MushRoomObject.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="main.cpp" />
@@ -255,6 +256,7 @@
     <ClCompile Include="SoundManger.cpp" />
     <ClCompile Include="SpriteGameObject.cpp" />
     <ClCompile Include="StarObject.cpp" />
+    <ClCompile Include="StartButton.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="StringTable.cpp" />
     <ClCompile Include="Test.cpp" />
@@ -269,6 +271,7 @@
     </ClCompile>
     <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="TrickColliderObject.cpp" />
+    <ClCompile Include="UIButtonObject.cpp" />
     <ClCompile Include="UIGameObject.cpp" />
     <ClCompile Include="UITextGameObject.cpp" />
     <ClCompile Include="Utils.cpp" />
@@ -343,6 +346,7 @@
     <ClInclude Include="KeyAction.h" />
     <ClInclude Include="KoopaTroopa.h" />
     <ClInclude Include="LangugeStringTable.h" />
+    <ClInclude Include="MouseObject.h" />
     <ClInclude Include="MushRoomObject.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="PhysicsManager.h" />
@@ -374,6 +378,7 @@
     <ClInclude Include="SoundManger.h" />
     <ClInclude Include="SpriteGameObject.h" />
     <ClInclude Include="StarObject.h" />
+    <ClInclude Include="StartButton.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="StringTable.h" />
     <ClInclude Include="Test.h" />
@@ -386,6 +391,7 @@
     <ClInclude Include="TimeManager.h" />
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="TrickColliderObject.h" />
+    <ClInclude Include="UIButtonObject.h" />
     <ClInclude Include="UIGameObject.h" />
     <ClInclude Include="UITextGameObject.h" />
     <ClInclude Include="Utils.h" />

@@ -33,6 +33,7 @@ enum class SceneIds
 	None = -1,
 	SceneDev1,
 	SceneDev2,
+	TitleScene,
 	Count,
 };
 
@@ -76,6 +77,8 @@ enum class ColliderLayer
 	EnemyBullet,
 
 	SavePoint,
+
+	UI,
 
 	End
 };

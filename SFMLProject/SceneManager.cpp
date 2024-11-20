@@ -3,11 +3,13 @@
 
 #include "SceneDev1.h"
 #include "SceneDev2.h"
+#include "TitleScene.h"
 
 void SceneManager::Init()
 {
 	sceneVec.push_back(new SceneDev1());
 	sceneVec.push_back(new SceneDev2());
+	sceneVec.push_back(new TitleScene());
 
 	for (auto& scene : sceneVec)
 	{
@@ -15,6 +17,7 @@ void SceneManager::Init()
 	}
 
 	currentScene = startScene;
+	currentScene = SceneIds::TitleScene;
 	sceneVec[(int)currentScene]->Enter();
 }
 

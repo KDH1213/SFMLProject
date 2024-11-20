@@ -294,10 +294,12 @@ bool ColliderManager::IsCircleToRectCollision(Collider* left, Collider* right)
 
 bool ColliderManager::IsPointToRectCollision(Collider* left, Collider* right)
 {
-    sf::Vector2f distance = left->GetCollision()->GetPosition() - right->GetCollision()->GetPosition();
-    sf::Vector2f rectangleSize = ((CollisionRectangle*)right->GetCollision())->GetScale() * 0.5f;
+    sf::Vector2f pointPosition = left->GetPosition();
+    Rectangle rect(right->GetPosition(), right->GetScale());
+    
 
-    return distance.x < rectangleSize.x && distance.y < rectangleSize.y;
+    return pointPosition.x >= rect.leftPosition && pointPosition.x <= rect.rightPosition 
+        && pointPosition.y >= rect.topPosition && pointPosition.y <= rect.bottomPosition;
 }
 
 bool ColliderManager::IsCircleToPointCollision(Collider* left, Collider* right)

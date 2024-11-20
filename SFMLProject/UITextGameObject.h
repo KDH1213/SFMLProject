@@ -3,7 +3,7 @@
 class UITextGameObject : public UIGameObject
 {
 protected:
-	sf::Text		scoreText;
+	sf::Text		text;
 	std::string		textId;
 	std::string		textString;
 	sf::Color		textColor;
@@ -21,6 +21,10 @@ public:
 	void Update(const float& deltaTime) override;
 	void FixedUpdate(const float& deltaTime) override;
 	void LateUpdate(const float& deltaTime) override;
+
+
+	sf::FloatRect GetLocalBounds() const override;
+	sf::FloatRect GetGlobalBounds() const override;
 public:
 	UITextGameObject(const std::string& textId, const std::string& name, unsigned int textSize, sf::Color textColor = sf::Color::White);
 	virtual ~UITextGameObject() = default;

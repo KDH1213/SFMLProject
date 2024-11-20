@@ -12,47 +12,47 @@ UITextGameObject::UITextGameObject(const std::string& textId, const std::string&
 
 void UITextGameObject::Awake()
 {
-	scoreText.setFont(ResourcesManager<sf::Font>::GetInstance().Get(textId));
+	text.setFont(ResourcesManager<sf::Font>::GetInstance().Get(textId));
 	SetOrigin(originPreset);
 
-	scoreText.setFillColor(textColor);
-	scoreText.setCharacterSize(textSize);
-	scoreText.setString(textString);
+	text.setFillColor(textColor);
+	text.setCharacterSize(textSize);
+	text.setString(textString);
 }
 
 void UITextGameObject::Start()
 {
-	scoreText.setFont(ResourcesManager<sf::Font>::GetInstance().Get(textId));
+	text.setFont(ResourcesManager<sf::Font>::GetInstance().Get(textId));
 	SetOrigin(originPreset);
 
-	scoreText.setFillColor(textColor);
-	scoreText.setCharacterSize(textSize);
-	scoreText.setString(textString);
+	text.setFillColor(textColor);
+	text.setCharacterSize(textSize);
+	text.setString(textString);
 }
 
 void UITextGameObject::SetOrigin(Origins preset)
 {
 	originPreset = preset;
-	Utils::SetOrigin(scoreText, preset);
+	Utils::SetOrigin(text, preset);
 }
 
 void UITextGameObject::SetOrigin(const sf::Vector2f& newOrigin)
 {
 	originPreset = Origins::Custom;
 	origin = newOrigin;
-	scoreText.setOrigin(origin);
+	text.setOrigin(origin);
 }
 
 void UITextGameObject::SetPosition(const sf::Vector2f& pos)
 {
 	UIGameObject::SetPosition(pos);
-	scoreText.setPosition(pos);
+	text.setPosition(pos);
 }
 
 void UITextGameObject::SetString(const std::string& string)
 {
 	textString = string;
-	scoreText.setString(textString);
+	text.setString(textString);
 }
 
 void UITextGameObject::Update(const float& deltaTime)
@@ -70,8 +70,18 @@ void UITextGameObject::LateUpdate(const float& deltaTime)
 	UIGameObject::LateUpdate(deltaTime);
 }
 
+sf::FloatRect UITextGameObject::GetLocalBounds() const
+{
+	return text.getLocalBounds();
+}
+
+sf::FloatRect UITextGameObject::GetGlobalBounds() const
+{
+	return text.getGlobalBounds();
+}
+
 void UITextGameObject::Render(sf::RenderWindow& window)
 {
 	UIGameObject::Render(window);
-	window.draw(scoreText);
+	window.draw(text);
 }

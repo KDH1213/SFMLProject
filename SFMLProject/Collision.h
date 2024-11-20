@@ -22,7 +22,7 @@ public:
 	virtual sf::Vector2f GetScale() const = 0;
 
 	virtual void SetPosition(const sf::Vector2f& pos) { position = pos; }
-	sf::Vector2f GetPosition() { return position; }
+	virtual sf::Vector2f GetPosition() { return position; }
 
 	virtual void SetOrigin(const Origins& origins) = 0;
 	virtual void SetOrigin(const sf::Vector2f& origins) { originPosition = origins; }
