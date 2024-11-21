@@ -9,12 +9,24 @@ StartButton::StartButton(const std::string& textId, const std::string& name, uns
 
 void StartButton::OnCollisionEnter(Collider* target)
 {
+	textColor = sf::Color::Red;
+	text.setFillColor(textColor);
 }
 
 void StartButton::OnCollisionStay(Collider* target)
 {
 	if (InputManager::GetInstance().GetKeyUp(sf::Mouse::Left))
 	{
-		SceneManager::GetInstance().ChangeScene(SceneIds::SceneDev1);
+		for (auto& buttonEvent : buttonEvents)
+		{
+			if(buttonEvent)
+				buttonEvent();
+		}
 	}
+}
+
+void StartButton::OnCollisionEnd(Collider* target)
+{
+	textColor = sf::Color::White;
+	text.setFillColor(textColor);
 }

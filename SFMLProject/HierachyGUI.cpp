@@ -131,3 +131,8 @@ void HierachyGUI::Update()
 	ImGui::End();
 }
 
+void HierachyGUI::Reset()
+{
+    currentObjectInspector->SetObject(nullptr);
+}
+

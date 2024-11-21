@@ -53,7 +53,7 @@ void InspectorGUI::Update()
 	bool b = true;
 	ImGui::Begin(GetName().c_str(), &b);
 
-	if (targetObject  != nullptr && targetObject->GetDestory())
+	if (targetObject != nullptr && targetObject->GetDestory())
 	{
 		targetObject = nullptr;
 		ImGui::End();

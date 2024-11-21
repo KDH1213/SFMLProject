@@ -2,9 +2,15 @@
 #include "UIButtonObject.h"
 class StartButton : public UIButtonObject
 {
+protected:
+	std::vector<std::function<void()>> buttonEvents;
+
 public:
+	void SetButtonEvent(std::function<void()> buttonEvent) { buttonEvents.push_back(buttonEvent); }
+
 	void OnCollisionEnter(Collider* target) override;
 	void OnCollisionStay(Collider* target) override;
+	void OnCollisionEnd(Collider* target) override;
 
 public:
 	StartButton(const std::string& textId, const std::string& name, unsigned int textSize, sf::Color textColor = sf::Color::White);

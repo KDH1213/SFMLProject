@@ -44,3 +44,15 @@ void GameManager::PlayerDie()
 	isPlayerDead = true;
 	OnRestart();
 }
+
+void GameManager::HaveCoin()
+{
+	++currentCoinCount;
+	currentScore += 1000;
+
+	if (currentCoinCount >= 100)
+	{
+		++life;
+		currentCoinCount -= 100;
+	}
+}

@@ -80,6 +80,40 @@
                 },
                 "originPreset": 4,
                 "position": {
+                    "x": 1312.0,
+                    "y": 288.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "sortingOrder": 0
+            },
+            "rectSize": {
+                "x": 64.0,
+                "y": 64.0
+            },
+            "textureID": "tiles",
+            "textureUVRect": {
+                "height": 16,
+                "left": 16,
+                "top": 0,
+                "width": 16
+            }
+        },
+        {
+            "blockType": 2,
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 4,
+                "name": "BrickBlock",
+                "origin": {
+                    "x": 32.0,
+                    "y": 32.0
+                },
+                "originPreset": 4,
+                "position": {
                     "x": 4960.0,
                     "y": 288.0
                 },
@@ -1832,8 +1866,8 @@
             },
             "originPreset": 4,
             "position": {
-                "x": 3245.99755859375,
-                "y": -53.685096740722656
+                "x": 3243.756103515625,
+                "y": -38.65664291381836
             },
             "rotation": 0.0,
             "scale": {

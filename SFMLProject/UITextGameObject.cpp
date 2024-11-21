@@ -24,7 +24,6 @@ void UITextGameObject::Start()
 {
 	text.setFont(ResourcesManager<sf::Font>::GetInstance().Get(textId));
 	SetOrigin(originPreset);
-
 	text.setFillColor(textColor);
 	text.setCharacterSize(textSize);
 	text.setString(textString);
@@ -53,6 +52,7 @@ void UITextGameObject::SetString(const std::string& string)
 {
 	textString = string;
 	text.setString(textString);
+	SetScale({ (float)textString.length() * (float)textSize , (float)textSize });
 }
 
 void UITextGameObject::Update(const float& deltaTime)

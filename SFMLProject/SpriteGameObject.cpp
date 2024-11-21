@@ -46,7 +46,6 @@ void SpriteGameObject::Render(sf::RenderWindow& renderWindow)
 
 void SpriteGameObject::Start()
 {
-	
 	SetScale(scale);
 	SetPosition(position);
 	SetRotation(rotation);

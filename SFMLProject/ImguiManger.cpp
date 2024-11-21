@@ -95,6 +95,14 @@ void ImguiManger::Render(sf::RenderWindow& window)
 	ImGui::SFML::Render(window);
 }
 
+void ImguiManger::Reset()
+{
+	for (const auto& pair : guiMap)
+	{
+		pair.second->Reset();
+	}
+}
+
 ImguiManger::ImguiManger()
 	: sfTime(nullptr)
 	, OnGUI(true)

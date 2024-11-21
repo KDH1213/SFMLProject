@@ -33,6 +33,7 @@
 #include "BackgroundColorBox.h"
 #include "GameManager.h"
 #include "SavePointObject.h"
+#include "ImguiManger.h"
 
 void SceneDev1::Init()
 {
@@ -132,8 +133,7 @@ void SceneDev1::Enter()
 
 void SceneDev1::Exit()
 {
-	TEXTURE_MANAGER.unLoad("player");
-	ResourcesManager<sf::Font>::GetInstance().Load("KOMIKAP", "fonts/KOMIKAP_.ttf");
+	ImguiManger::GetInstance().Reset();
 	Scene::Exit();
 
 	CameraManger::GetInstance().Clear();

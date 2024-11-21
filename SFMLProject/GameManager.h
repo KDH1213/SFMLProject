@@ -11,6 +11,7 @@ private:
 	sf::Vector2f	restartPosition;
 
 	float			currentTimer;
+	unsigned int	currentCoinCount;
 	unsigned int	currentScore;
 	int				life;
 	bool			isRestart;
@@ -24,6 +25,7 @@ public:
 
 	void ReStart();
 	void PlayerDie();
+	void HaveCoin();
 
 protected:
 	GameManager();

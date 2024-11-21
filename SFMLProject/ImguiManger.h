@@ -20,6 +20,7 @@ public:
 	void Update(sf::RenderWindow& window, sf::Time dt);
 	void Render(sf::RenderWindow& window);
 
+	void Reset();
 	/*virtual GUI* CreateGUI(GUI* gui);
 
 	template<typename T>

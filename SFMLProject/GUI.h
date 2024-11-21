@@ -17,6 +17,7 @@ public:
 	virtual void Activate() { isActive = true; }
 	void Deactivate() { isActive = false; }
 	bool IsActive() { return isActive; }
+	virtual void Reset() {};
 
 public:
 	GUI(const std::string& name);

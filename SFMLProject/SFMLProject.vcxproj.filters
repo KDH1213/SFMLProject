@@ -217,6 +217,12 @@
     <Filter Include="Contants\Object\Enemy\KoopaTroopa">
       <UniqueIdentifier>{40b08f56-3ffb-405d-b9d6-26ec9969b8cd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contants\UI">
+      <UniqueIdentifier>{ee90e4bd-8f59-47c9-9add-c1e1e0a4129c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Player\Bullet">
+      <UniqueIdentifier>{93792c18-37bb-48ca-91dc-8ff4c8e807c2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -501,9 +507,6 @@
     <ClCompile Include="Framework.cpp">
       <Filter>Manager\0. Framework</Filter>
     </ClCompile>
-    <ClCompile Include="FireBullet.cpp">
-      <Filter>Contants\Object</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerAttackState.cpp">
       <Filter>Contants\Object\Player\PlayerState</Filter>
     </ClCompile>
@@ -530,6 +533,30 @@
     </ClCompile>
     <ClCompile Include="BackgroundColorBox.cpp">
       <Filter>Contants\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleScene.cpp">
+      <Filter>Contants\Scene\ContantsScene</Filter>
+    </ClCompile>
+    <ClCompile Include="UIButtonObject.cpp">
+      <Filter>Contants\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="SavePointGUI.cpp">
+      <Filter>Contants\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="MouseObject.cpp">
+      <Filter>Contants\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="StartButton.cpp">
+      <Filter>Contants\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="SavePointObject.cpp">
+      <Filter>Contants\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="FireBullet.cpp">
+      <Filter>Contants\Object\Player\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="RectSpriteGameObject.cpp">
+      <Filter>Contants\Object\GameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -836,9 +863,6 @@
     <ClInclude Include="Framework.h">
       <Filter>Manager\0. Framework</Filter>
     </ClInclude>
-    <ClInclude Include="FireBullet.h">
-      <Filter>Contants\Object</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerAttackState.h">
       <Filter>Contants\Object\Player\PlayerState</Filter>
     </ClInclude>
@@ -865,6 +889,30 @@
     </ClInclude>
     <ClInclude Include="BackgroundColorBox.h">
       <Filter>Contants\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleScene.h">
+      <Filter>Contants\Scene\ContantsScene</Filter>
+    </ClInclude>
+    <ClInclude Include="UIButtonObject.h">
+      <Filter>Contants\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseObject.h">
+      <Filter>Contants\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="SavePointGUI.h">
+      <Filter>Contants\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="StartButton.h">
+      <Filter>Contants\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="SavePointObject.h">
+      <Filter>Contants\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="FireBullet.h">
+      <Filter>Contants\Object\Player\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="RectSpriteGameObject.h">
+      <Filter>Contants\Object\GameObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

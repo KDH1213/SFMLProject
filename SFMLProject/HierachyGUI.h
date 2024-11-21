@@ -21,6 +21,7 @@ public:
 	virtual void Init();
 	virtual void Update();
 	void SetInspectorGUI(InspectorGUI* inspectorGUI) { currentObjectInspector = inspectorGUI; }
+	void Reset() override;
 
 public:
 	HierachyGUI(const std::string& name);

@@ -2,6 +2,9 @@
 #include "Scene.h"
 class TitleScene : public Scene
 {
+private:
+	bool isGameStart;
+
 public:
 	void Init() override;
 	void Enter() override;
@@ -14,6 +17,9 @@ public:
 	void Load() override;
 	void Save(const std::string& savePath) override;
 	void Load(const std::string& loadPath) override;
+
+public:
+	void GameStart();
 public:
 	TitleScene();
 	~TitleScene();

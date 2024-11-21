@@ -103,13 +103,14 @@ void Player::AddItem(ItemType itemType)
 	switch (itemType)
 	{
 	case ItemType::Coin:
+		GameManager::GetInstance().HaveCoin();
 		break;
 	case ItemType::MushRoom:
 		if(currentStatus.hp == 1)
 			fsm.ChangeState(PlayerStateType::Upgrade);
 		break;
 	case ItemType::Flower:
-		if(currentStatus.hp == 2)
+		if(currentStatus.hp < 3)
 			fsm.ChangeState(PlayerStateType::Upgrade);
 		break;
 	case ItemType::Star:
