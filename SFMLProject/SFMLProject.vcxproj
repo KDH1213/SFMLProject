@@ -257,7 +257,7 @@
     <ClCompile Include="SoundManger.cpp" />
     <ClCompile Include="SpriteGameObject.cpp" />
     <ClCompile Include="StarObject.cpp" />
-    <ClCompile Include="StartButton.cpp" />
+    <ClCompile Include="TextButton.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="StringTable.cpp" />
     <ClCompile Include="Test.cpp" />
@@ -380,7 +380,7 @@
     <ClInclude Include="SoundManger.h" />
     <ClInclude Include="SpriteGameObject.h" />
     <ClInclude Include="StarObject.h" />
-    <ClInclude Include="StartButton.h" />
+    <ClInclude Include="TextButton.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="StringTable.h" />
     <ClInclude Include="Test.h" />

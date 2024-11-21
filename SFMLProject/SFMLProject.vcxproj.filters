@@ -546,7 +546,7 @@
     <ClCompile Include="MouseObject.cpp">
       <Filter>Contants\UI</Filter>
     </ClCompile>
-    <ClCompile Include="StartButton.cpp">
+    <ClCompile Include="TextButton.cpp">
       <Filter>Contants\UI</Filter>
     </ClCompile>
     <ClCompile Include="SavePointObject.cpp">
@@ -902,7 +902,7 @@
     <ClInclude Include="SavePointGUI.h">
       <Filter>Contants\UI</Filter>
     </ClInclude>
-    <ClInclude Include="StartButton.h">
+    <ClInclude Include="TextButton.h">
       <Filter>Contants\UI</Filter>
     </ClInclude>
     <ClInclude Include="SavePointObject.h">

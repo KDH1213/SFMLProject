@@ -3,12 +3,16 @@
 class UIButtonObject : public UITextGameObject
 {
 protected:
-	std::vector<std::function<void()>> buttonEvents;
+	std::vector<std::function<void()>> buttonCollsionEnterEvents;
+	std::vector<std::function<void()>> buttonClickEvents;
+	std::vector<std::function<void()>> buttonCollsionEndClickEvents;
+
 	sf::Vector2f colliderSize;
 	sf::Vector2f buttonSize;
 public:
 	void SetButtonSize(const sf::Vector2f& size);
 	void SetColliderSize(const sf::Vector2f& size);
+	void SetButtonClickEvent(std::function<void()> buttonEvent) { buttonClickEvents.push_back(buttonEvent); }
 
 public:
 	void Start() override;

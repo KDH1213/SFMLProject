@@ -4,8 +4,9 @@
 #include "RectSpriteGameObject.h"
 #include "MouseObject.h"
 #include "UIButtonObject.h"
-#include "StartButton.h"
+#include "TextButton.h"
 #include "BackgroundColorBox.h"
+#include "Collider.h"
 
 void TitleScene::Init()
 {
@@ -31,13 +32,19 @@ void TitleScene::Enter()
 
 	MouseObject* mouse = AddGameObject(new MouseObject(), LayerType::UI);
 
-	StartButton* button = AddGameObject(new StartButton("DungGeunMo", "Button", 100), LayerType::UI);
-
+	TextButton* button = AddGameObject(new TextButton("DungGeunMo", "Start Button", 100), LayerType::UI);
 	button->SetOrigin(Origins::MiddleCenter);
-	button->SetPosition({ resolutionSize.x * 0.5f , resolutionSize.y * 0.7f });
+	button->SetPosition({ resolutionSize.x * 0.5f , resolutionSize.y * 0.6f });
 	button->SetString("Start Button");
-	// button->SetScale({ 300.f, 300.f });
-	button->SetButtonEvent(std::bind(&TitleScene::GameStart, this));
+	button->SetButtonClickEvent(std::bind(&TitleScene::StartGame, this)); 
+	button->GetCollider()->SetOffsetPosition({ 0.f, 50.f });
+
+	TextButton* endButton = AddGameObject(new TextButton("DungGeunMo", "End Button", 100), LayerType::UI);
+	endButton->SetOrigin(Origins::MiddleCenter);
+	endButton->SetPosition({ resolutionSize.x * 0.5f , resolutionSize.y * 0.75f });
+	endButton->SetString("End Button");
+	endButton->SetButtonClickEvent(std::bind(&TitleScene::EndGame, this));
+	endButton->GetCollider()->SetOffsetPosition({ 0.f, 50.f });
 
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::UI, ColliderLayer::UI);
 
@@ -58,7 +65,7 @@ void TitleScene::Update(float dt)
 {
 	Scene::Update(dt);
 
-	if (isGameStart)
+	if (isStartGame)
 		SceneManager::GetInstance().ChangeScene(SceneIds::SceneDev1);
 }
 
@@ -83,14 +90,21 @@ void TitleScene::Load(const std::string& loadPath)
 {
 }
 
-void TitleScene::GameStart()
+void TitleScene::StartGame()
 {
-	isGameStart = true;
+	isStartGame = true;
+}
+
+void TitleScene::EndGame()
+{
+	isEndGame = true;
+	WindowManager::GetInstance().GetRenderWindow()->close();
 }
 
 TitleScene::TitleScene()
 	: Scene(SceneIds::SceneDev2)
-	, isGameStart(false)
+	, isStartGame(false)
+	, isEndGame(false)
 {
 
 }

@@ -3,7 +3,8 @@
 class TitleScene : public Scene
 {
 private:
-	bool isGameStart;
+	bool isStartGame;
+	bool isEndGame;
 
 public:
 	void Init() override;
@@ -19,7 +20,8 @@ public:
 	void Load(const std::string& loadPath) override;
 
 public:
-	void GameStart();
+	void StartGame();
+	void EndGame();
 public:
 	TitleScene();
 	~TitleScene();

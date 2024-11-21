@@ -51,12 +51,29 @@ void UIButtonObject::SetPosition(const sf::Vector2f& pos)
 
 void UIButtonObject::OnCollisionEnter(Collider* target)
 {
+	for (auto& enterEvent : buttonCollsionEnterEvents)
+	{
+		if (enterEvent)
+			enterEvent();
+	}
 }
-
 void UIButtonObject::OnCollisionStay(Collider* target)
 {
+	if (InputManager::GetInstance().GetKeyUp(sf::Mouse::Left))
+	{
+		for (auto& buttonEvent : buttonClickEvents)
+		{
+			if (buttonEvent)
+				buttonEvent();
+		}
+	}
 }
 
 void UIButtonObject::OnCollisionEnd(Collider* target)
 {
+	for (auto& endEvent : buttonCollsionEndClickEvents)
+	{
+		if (endEvent)
+			endEvent();
+	}
 }
