@@ -2,9 +2,6 @@
 #include "UIButtonObject.h"
 class StartButton : public UIButtonObject
 {
-protected:
-	std::vector<std::function<void()>> buttonEvents;
-
 public:
 	void SetButtonEvent(std::function<void()> buttonEvent) { buttonEvents.push_back(buttonEvent); }
 

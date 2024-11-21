@@ -3,9 +3,9 @@
 class UIButtonObject : public UITextGameObject
 {
 protected:
+	std::vector<std::function<void()>> buttonEvents;
 	sf::Vector2f colliderSize;
 	sf::Vector2f buttonSize;
-
 public:
 	void SetButtonSize(const sf::Vector2f& size);
 	void SetColliderSize(const sf::Vector2f& size);
@@ -17,8 +17,10 @@ public:
 	void SetOrigin(Origins preset) override;
 	void SetOrigin(const sf::Vector2f& newOrigin) override;
 
+
 	void OnCollisionEnter(Collider* target) override;
 	void OnCollisionStay(Collider* target) override;
+	void OnCollisionEnd(Collider* target) override;
 
 public:
 	UIButtonObject(const std::string& textId, const std::string& name, unsigned int textSize, sf::Color textColor = sf::Color::White);

@@ -11,11 +11,10 @@ UIButtonObject::UIButtonObject(const std::string& textId, const std::string& nam
 void UIButtonObject::Start()
 {
 	text.setFont(ResourcesManager<sf::Font>::GetInstance().Get(textId));
-	SetOrigin(originPreset);
-
 	text.setFillColor(textColor);
 	text.setCharacterSize(textSize);
 	text.setString(textString);
+	SetOrigin(originPreset);
 }
 
 void UIButtonObject::SetButtonSize(const sf::Vector2f& size)
@@ -55,5 +54,9 @@ void UIButtonObject::OnCollisionEnter(Collider* target)
 }
 
 void UIButtonObject::OnCollisionStay(Collider* target)
+{
+}
+
+void UIButtonObject::OnCollisionEnd(Collider* target)
 {
 }
