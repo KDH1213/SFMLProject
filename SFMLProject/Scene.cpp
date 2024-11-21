@@ -89,6 +89,7 @@ void Scene::Enter()
 
 void Scene::Exit()
 {
+	ColliderManager::GetInstance().Clear();
 	Release();
 
 	ResourcesManager<sf::Texture>::GetInstance().UnloadAll();

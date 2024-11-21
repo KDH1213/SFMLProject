@@ -54,10 +54,15 @@ void Camera::SetCameraPosition(const sf::Vector2f& position)
 void Camera::SetCameraLimitRect(const Rectangle& rect, bool use)
 {
 	cameraLimitRect = rect;
+
+
 	cameraLimitRect.leftPosition -= cameraBounds.leftPosition;
 	cameraLimitRect.rightPosition -= cameraBounds.rightPosition;
 	cameraLimitRect.topPosition -= cameraBounds.topPosition;
 	cameraLimitRect.bottomPosition -= cameraBounds.bottomPosition;
+
+	if (cameraLimitRect.rightPosition - cameraLimitRect.leftPosition < camera.getSize().x)
+		cameraLimitRect.leftPosition = cameraLimitRect.rightPosition - camera.getSize().x;
 
 	useCameraLimit = use;
 }
