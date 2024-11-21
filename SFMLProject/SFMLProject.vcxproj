@@ -183,6 +183,7 @@
     <ClCompile Include="FlowerObject.cpp" />
     <ClCompile Include="Framework.cpp" />
     <ClCompile Include="FSMController.cpp" />
+    <ClCompile Include="GameClearObject.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectSaveData.cpp" />
@@ -319,6 +320,7 @@
     <ClInclude Include="FireBullet.h" />
     <ClInclude Include="Framework.h" />
     <ClInclude Include="FSMController.h" />
+    <ClInclude Include="GameClearObject.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectSaveData.h" />

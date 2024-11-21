@@ -5,6 +5,7 @@ class Camera : public Entity
 protected:
 	sf::View		camera;
 	sf::Vector2f	cameraPosition;
+	sf::Vector2f	cameraSize;
 
 	Rectangle		cameraBounds;
 	Rectangle		cameraLimitRect;

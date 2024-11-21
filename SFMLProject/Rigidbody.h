@@ -2,7 +2,7 @@
 class Rigidbody : public Entity
 {
 protected:
-	GameObject* owner;
+	GameObject*		owner;
 
 	sf::Vector2f    accel;
 	sf::Vector2f	velocity;
@@ -13,6 +13,7 @@ protected:
 	float	maxDropSpeed;
 	bool    friction;
 	bool	isGround;
+	bool	isActive;
 public:
 	void SetVelocity(const sf::Vector2f& velocity);
 	sf::Vector2f GetCurrentVelocity() const { return velocity; }
@@ -33,6 +34,10 @@ public:
 
 	void SetOwner(GameObject* owner) { this->owner = owner; }
 	GameObject* GetOwner() { return owner; }
+
+	void SetActive(bool active) { isActive = active; }
+	void Disable() { isActive = false; }
+	bool GetActive() { return isActive; }
 
 	void ResetVelocity();
 	void ResetDropSpeed();

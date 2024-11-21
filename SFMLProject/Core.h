@@ -59,6 +59,7 @@ enum class LayerType
 	PlayerBullet,
 	EnemyBullet,
 
+	CleraPoint,
 	InGameUI,
 
 	UI,
@@ -75,8 +76,8 @@ enum class ColliderLayer
 	Enemy,
 	PlayerBullet,
 	EnemyBullet,
-
 	SavePoint,
+	CleraPoint,
 
 	UI,
 

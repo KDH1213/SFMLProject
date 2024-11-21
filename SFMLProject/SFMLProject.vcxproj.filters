@@ -558,6 +558,9 @@
     <ClCompile Include="RectSpriteGameObject.cpp">
       <Filter>Contants\Object\GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="GameClearObject.cpp">
+      <Filter>Contants\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -913,6 +916,9 @@
     </ClInclude>
     <ClInclude Include="RectSpriteGameObject.h">
       <Filter>Contants\Object\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GameClearObject.h">
+      <Filter>Contants\Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -75,6 +75,9 @@ void InspectorGUI::SetObject(GameObject* object)
 { 
 	targetObject = object; 
 
+	if (targetObject == nullptr)
+		return;
+
 	if (targetObject->GetCollider() != nullptr)
 		componetGUIvector[(int)ComponentGUIType::Collider]->SetObject(targetObject);
 	else

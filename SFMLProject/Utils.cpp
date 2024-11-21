@@ -67,6 +67,12 @@ int Utils::Clamp(int value, int min, int max)
 	return value;
 }
 
+float Utils::Lerp(float value, float end, float time)
+{
+	time = (time > 1.0f) ? 1.0f : ((time < 0.0f) ? 0.0f : time);
+	return value * (1.0f - time) + end * time;
+}
+
 sf::Vector2f Utils::SetOrigin(sf::Transformable& object, Origins preset, const sf::FloatRect rect)
 {
 	sf::Vector2f newOrigin(rect.width, rect.height);

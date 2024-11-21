@@ -27,7 +27,8 @@ Camera::Camera(const sf::View& view, CameraType type)
 {
 	camera = view;
 	cameraPosition = camera.getCenter();
-	cameraBounds = Rectangle(camera.getSize());
+	cameraSize = camera.getSize();
+	cameraBounds = Rectangle(cameraSize);
 }
 
 Camera::~Camera()
@@ -61,8 +62,17 @@ void Camera::SetCameraLimitRect(const Rectangle& rect, bool use)
 	cameraLimitRect.topPosition -= cameraBounds.topPosition;
 	cameraLimitRect.bottomPosition -= cameraBounds.bottomPosition;
 
-	if (cameraLimitRect.rightPosition - cameraLimitRect.leftPosition < camera.getSize().x)
-		cameraLimitRect.leftPosition = cameraLimitRect.rightPosition - camera.getSize().x;
+	if (cameraLimitRect.rightPosition - cameraLimitRect.leftPosition < cameraSize.x)
+		cameraLimitRect.leftPosition = cameraLimitRect.rightPosition - cameraSize.x;
+
+	/*if (cameraLimitRect.rightPosition - cameraLimitRect.leftPosition < cameraSize.x)
+		cameraLimitRect.leftPosition = cameraLimitRect.rightPosition + cameraSize.x;
+
+	if (cameraLimitRect.rightPosition - cameraLimitRect.leftPosition < cameraSize.x)
+		cameraLimitRect.leftPosition = cameraLimitRect.rightPosition - cameraSize.x;
+
+	if (cameraLimitRect.rightPosition - cameraLimitRect.leftPosition < cameraSize.x)
+		cameraLimitRect.leftPosition = cameraLimitRect.rightPosition - cameraSize.x;*/
 
 	useCameraLimit = use;
 }

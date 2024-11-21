@@ -21,6 +21,8 @@ public:
 
 	static float Clamp(float value, float min, float max);
 	static int Clamp(int value, int min, int max);
+	static float Lerp(float value, float end, float time);
+
 	// Origin
 	static sf::Vector2f SetOrigin(sf::Transformable& object, Origins preset, const sf::FloatRect bound);
 	static sf::Vector2f SetOrigin(sf::Shape& object, Origins preset);
