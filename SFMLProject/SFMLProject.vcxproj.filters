@@ -576,7 +576,7 @@
     <ClCompile Include="InGameUIHub.cpp">
       <Filter>Contants\UI</Filter>
     </ClCompile>
-    <ClCompile Include="GameStartUI.cpp">
+    <ClCompile Include="FadeOutUI.cpp">
       <Filter>Contants\UI</Filter>
     </ClCompile>
     <ClCompile Include="UIAnimationObject.cpp">
@@ -950,7 +950,7 @@
     <ClInclude Include="PlayerGameClearState.h">
       <Filter>Contants\Object\Player\PlayerState</Filter>
     </ClInclude>
-    <ClInclude Include="GameStartUI.h">
+    <ClInclude Include="FadeOutUI.h">
       <Filter>Contants\UI</Filter>
     </ClInclude>
     <ClInclude Include="InGameUIHub.h">

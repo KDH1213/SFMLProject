@@ -1,8 +1,12 @@
 #pragma once
 #include "Scene.h"
+
+class FadeOutUI;
 class TitleScene : public Scene
 {
 private:
+	FadeOutUI* fadeOutUI;
+
 	bool isStartGame;
 	bool isEndGame;
 

@@ -188,7 +188,7 @@
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectSaveData.cpp" />
-    <ClCompile Include="GameStartUI.cpp" />
+    <ClCompile Include="FadeOutUI.cpp" />
     <ClCompile Include="Goomba.cpp" />
     <ClCompile Include="GoombaDeadState.cpp" />
     <ClCompile Include="GoombaFSM.cpp" />
@@ -331,7 +331,7 @@
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectSaveData.h" />
-    <ClInclude Include="GameStartUI.h" />
+    <ClInclude Include="FadeOutUI.h" />
     <ClInclude Include="Goomba.h" />
     <ClInclude Include="GoombaDeadState.h" />
     <ClInclude Include="GoombaFSM.h" />

@@ -8,6 +8,8 @@
 #include "BackgroundColorBox.h"
 #include "Collider.h"
 
+#include "FadeOutUI.h"
+
 void TitleScene::Init()
 {
 	Scene::Init();
@@ -18,6 +20,13 @@ void TitleScene::Enter()
 	ResourcesManager<sf::Font>::GetInstance().Load("DungGeunMo", "fonts/DungGeunMo.ttf", true);
 	ResourcesManager<sf::Texture>::GetInstance().Load("title_screen", "graphics/title_screen.png", true);
 
+
+	fadeOutUI = AddGameObject(new FadeOutUI("FadeOut"), LayerType::UI);
+	fadeOutUI->SetScale({ 3000.f, 3000.f });
+	fadeOutUI->SetPosition({ 1000.f,1000.f });
+	//fadeOut->SetOrigin(Origins)
+	//fadeOutUI->SetActive(false);
+	fadeOutUI->AddFadeOutEndEvent(std::bind(&TitleScene::StartGame, this));
 	sf::Vector2f resolutionSize = sf::Vector2f(WindowManager::GetInstance().GetResolutionSize());
 
 
@@ -36,7 +45,7 @@ void TitleScene::Enter()
 	button->SetOrigin(Origins::MiddleCenter);
 	button->SetPosition({ resolutionSize.x * 0.5f , resolutionSize.y * 0.6f });
 	button->SetString("Start Button");
-	button->SetButtonClickEvent(std::bind(&TitleScene::StartGame, this)); 
+	button->SetButtonClickEvent(std::bind(&FadeOutUI::StartFadeOut, fadeOutUI));
 	button->GetCollider()->SetOffsetPosition({ 0.f, 50.f });
 
 	TextButton* endButton = AddGameObject(new TextButton("DungGeunMo", "End Button", 100), LayerType::UI);
@@ -46,9 +55,13 @@ void TitleScene::Enter()
 	endButton->SetButtonClickEvent(std::bind(&TitleScene::EndGame, this));
 	endButton->GetCollider()->SetOffsetPosition({ 0.f, 50.f });
 
+
+
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::UI, ColliderLayer::UI);
 
 	Scene::Enter();
+
+	// fadeOutUI->SetActive(false);
 }
 
 void TitleScene::Exit()
@@ -105,6 +118,7 @@ TitleScene::TitleScene()
 	: Scene(SceneIds::SceneDev2)
 	, isStartGame(false)
 	, isEndGame(false)
+	, fadeOutUI(nullptr)
 {
 
 }
