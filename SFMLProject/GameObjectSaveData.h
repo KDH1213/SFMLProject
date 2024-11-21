@@ -39,3 +39,10 @@ struct GameClearSaveData
 
 	NLOHMANN_DEFINE_TYPE_INTRUSIVE(GameClearSaveData, gameObjectSaveData, maxStartPosition, destinationPosition, endMovePosition, endMoveTime, moveTime);
 };
+
+struct EnemySpawnerSaveData
+{
+	GameObjectSaveData	gameObjectSaveData;
+
+	NLOHMANN_DEFINE_TYPE_INTRUSIVE(EnemySpawnerSaveData, gameObjectSaveData);
+};

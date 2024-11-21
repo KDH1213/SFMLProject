@@ -9,6 +9,7 @@ enum class CreateObjectType
     Item,
     SavePoint,
     GameClear,
+    EnemySpawner,
     End
 };
 
@@ -48,6 +49,7 @@ public:
     void OnItem();
     void OnSavePoint();
     void OnGameClearPoint();
+    void OnEnemySpawner();
 public:
     CreateObjectTool();
     ~CreateObjectTool();

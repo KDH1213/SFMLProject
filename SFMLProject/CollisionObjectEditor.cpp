@@ -21,8 +21,8 @@ void CollisionObjectEditor::Init()
 
 void CollisionObjectEditor::Update()
 {
-	ImGui::Begin("##WallCollisionObjectEditor");
-	ImGui::SeparatorText("WallCollisionObjectEditor");
+	ImGui::Begin("WallCollisionObjectEditor");
+	ImGui::SeparatorText("##WallCollisionObjectEditor");
 
 
 	float cellSizeArr[2] = { cellSize.x, cellSize.y };

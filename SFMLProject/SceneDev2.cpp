@@ -38,6 +38,7 @@
 #include "KoopaTroopa.h"
 
 #include "InGameUIHub.h"
+#include "EnemySpawner.h"
 
 void SceneDev2::Init()
 {
@@ -123,6 +124,9 @@ void SceneDev2::Enter()
 	BackgroundColorBox* background = AddGameObject(new BackgroundColorBox(), LayerType::Default);
 	background->SetScale({ 2000.f, 1300.f });
 	background->SetColor(sf::Color(85, 151, 248));
+
+	EnemySpawner* enemySpawner = AddGameObject(new EnemySpawner(), LayerType::Default);
+	enemySpawner->SetPosition({ 2000.f, 1300.f });
 
 	/*GameClearObject* gameClearObject = AddGameObject(new GameClearObject(), LayerType::CleraPoint);
 	gameClearObject->SetScale({ 10.f, 1300.f });

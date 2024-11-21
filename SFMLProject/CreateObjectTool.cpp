@@ -8,6 +8,7 @@
 #include "ItemBlockObject.h"
 #include "BrickBlockObject.h"
 #include "GameClearObject.h"
+#include "EnemySpawner.h"
 
 #include "SavePointObject.h"
 
@@ -56,6 +57,7 @@ void CreateObjectTool::Update()
 		,{ CreateObjectType::Item , "Item"}
 		, { CreateObjectType::SavePoint , "SavePoint"}
 		, { CreateObjectType::GameClear , "GameClear"}
+		, { CreateObjectType::EnemySpawner , "EnemySpawner"}
 	};
 
 	int idx;
@@ -100,6 +102,8 @@ void CreateObjectTool::Update()
 		OnSavePoint();
 	else if (currentType == CreateObjectType::GameClear)
 		OnGameClearPoint();
+	else if (currentType == CreateObjectType::EnemySpawner)
+		OnEnemySpawner();
 
 
 	ImGui::End();
@@ -271,6 +275,18 @@ void CreateObjectTool::OnGameClearPoint()
 	if (ImGui::Button("Create ClearObject", { 50, 20 }))
 	{
 		GameClearObject* gameClearObject = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new GameClearObject(), LayerType::CleraPoint);
+	}
+	ImGui::EndChild();
+}
+
+void CreateObjectTool::OnEnemySpawner()
+{
+	ImGui::BeginChild("EnemySpawner");
+
+	if (ImGui::Button("Create EnemySpawner", { 50, 20 }))
+	{
+		EnemySpawner* enemySpawner = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new EnemySpawner(), LayerType::Default);
+		enemySpawner->Start();
 	}
 	ImGui::EndChild();
 }

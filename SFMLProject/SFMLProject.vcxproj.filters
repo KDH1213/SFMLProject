@@ -235,6 +235,9 @@
     <Filter Include="Contants\Object\Enemy\KoopaTroopa\State">
       <UniqueIdentifier>{d2b09a16-e030-4a76-852f-751577b7fc95}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contants\0. Editor\Imgui\GUI\CompoentGUI\EnemySpawnerGUI">
+      <UniqueIdentifier>{0d590010-913d-4c7e-8170-c59b5002eaf2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -608,6 +611,12 @@
     </ClCompile>
     <ClCompile Include="KoopaTroopaDeadState.cpp">
       <Filter>Contants\Object\Enemy\KoopaTroopa\State</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemySpawner.cpp">
+      <Filter>Contants\Object\WallCollisionObject</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemySpawnerGUI.cpp">
+      <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\EnemySpawnerGUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1003,6 +1012,12 @@
     </ClInclude>
     <ClInclude Include="KoopaTroopaDeadState.h">
       <Filter>Contants\Object\Enemy\KoopaTroopa\State</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemySpawner.h">
+      <Filter>Contants\Object\WallCollisionObject</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemySpawnerGUI.h">
+      <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\EnemySpawnerGUI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

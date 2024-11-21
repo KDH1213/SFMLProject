@@ -16,6 +16,8 @@
 #include "BlockGUI.h"
 #include "SavePointGUI.h"
 #include "GameClearPointGUI.h"
+#include "EnemySpawner.h"
+#include "EnemySpawnerGUI.h"
 
 
 InspectorGUI::InspectorGUI(const std::string& name)
@@ -43,6 +45,7 @@ void InspectorGUI::Init()
 	componetGUIvector.push_back(new BlockGUI);
 	componetGUIvector.push_back(new SavePointGUI);
 	componetGUIvector.push_back(new GameClearPointGUI);
+	componetGUIvector.push_back(new EnemySpawnerGUI);
 }
 
 void InspectorGUI::Update()
@@ -115,6 +118,11 @@ void InspectorGUI::SetObject(GameObject* object)
 		componetGUIvector[(int)ComponentGUIType::GameClearPoint]->SetObject(targetObject);
 	else
 		componetGUIvector[(int)ComponentGUIType::GameClearPoint]->SetObject(nullptr);
+	if (dynamic_cast<EnemySpawner*>(targetObject) != nullptr)
+		componetGUIvector[(int)ComponentGUIType::EnemySpawner]->SetObject(targetObject);
+	else
+		componetGUIvector[(int)ComponentGUIType::EnemySpawner]->SetObject(nullptr);
+	
 }
 
 void InspectorGUI::TransformInfo()

@@ -9,6 +9,7 @@ enum class ComponentGUIType
 	Block,
 	SavePoint,
 	GameClearPoint,
+	EnemySpawner,
 	End
 };
 

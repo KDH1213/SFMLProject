@@ -5,6 +5,7 @@
 
 GameClearPointGUI::GameClearPointGUI()
 	: ComponentGUI(ComponentGUIType::GameClearPoint)
+	, clearObject(nullptr)
 {
 }
 

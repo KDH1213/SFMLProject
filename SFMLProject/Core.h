@@ -143,3 +143,11 @@ enum class ItemType
 
 	End
 };
+
+enum class EnemyType
+{
+	Goomba,
+	KoopaTroopa,
+	Koopa,
+	End
+};
