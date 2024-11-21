@@ -8,6 +8,7 @@ protected:
 	Rigidbody*		rigidbody;
 	float			horizontal;
 	bool			isLeftRun;
+	bool			isSpeedUp;
 
 protected:
 	void InputMove();

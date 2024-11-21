@@ -229,6 +229,10 @@
     <ClCompile Include="ItemBlockObject.cpp" />
     <ClCompile Include="ItemObject.cpp" />
     <ClCompile Include="KeyAction.cpp" />
+    <ClCompile Include="Koopa.cpp" />
+    <ClCompile Include="KoopaAttackState.cpp" />
+    <ClCompile Include="KoopaFSM.cpp" />
+    <ClCompile Include="KoopaIdleState.cpp" />
     <ClCompile Include="KoopaTroopa.cpp" />
     <ClCompile Include="KoopaTroopaDeadState.cpp" />
     <ClCompile Include="KoopaTroopaFSM.cpp" />
@@ -366,6 +370,10 @@
     <ClInclude Include="ItemObject.h" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="KeyAction.h" />
+    <ClInclude Include="Koopa.h" />
+    <ClInclude Include="KoopaAttackState.h" />
+    <ClInclude Include="KoopaFSM.h" />
+    <ClInclude Include="KoopaIdleState.h" />
     <ClInclude Include="KoopaTroopa.h" />
     <ClInclude Include="KoopaTroopaDeadState.h" />
     <ClInclude Include="KoopaTroopaFSM.h" />

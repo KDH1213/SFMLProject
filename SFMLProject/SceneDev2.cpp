@@ -39,6 +39,7 @@
 
 #include "InGameUIHub.h"
 #include "EnemySpawner.h"
+#include "Koopa.h"
 
 void SceneDev2::Init()
 {
@@ -77,11 +78,15 @@ void SceneDev2::Enter()
 	testPlayer->Awake();
 	mainCamera->SetFollowTarget(testPlayer, true);
 
-	Goomba* enemy = AddGameObject(new Goomba(), LayerType::Enemy);
+	Koopa* koopa = AddGameObject(new Koopa(), LayerType::Enemy);
+	koopa->Awake();
+	koopa->SetPosition({300.f, 20.f});
+
+	/*Goomba* enemy = AddGameObject(new Goomba(), LayerType::Enemy);
 	enemy->SetPosition(testPlayer->GetPosition() + sf::Vector2f::left * 500.f);
 
 	KoopaTroopa* koopaTroopa = AddGameObject(new KoopaTroopa(), LayerType::Enemy);
-	koopaTroopa->SetPosition(testPlayer->GetPosition() + sf::Vector2f::left * 800.f);
+	koopaTroopa->SetPosition(testPlayer->GetPosition() + sf::Vector2f::left * 800.f);*/
 	
 	////auto animator = testPlayer->GetAnimator();
 	////animator->AddAnimation(&ResourcesManager<Animation>::GetInstance().Get("marioIdle"), "marioIdle");

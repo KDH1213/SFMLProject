@@ -115,6 +115,7 @@ enum class EnemyStateType
 	Hit,
 	Move,
 	Groggy,
+	Attack,
 	Dead,
 	End
 };
