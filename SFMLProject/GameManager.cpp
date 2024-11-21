@@ -78,6 +78,9 @@ void GameManager::HaveCoin()
 	++currentCoinCount;
 	currentScore += 1000;
 
+	coinUI->SetString(std::to_string(currentCoinCount));
+	scoreUI->SetString(std::to_string(currentScore));
+
 	if (currentCoinCount >= 100)
 	{
 		++life;

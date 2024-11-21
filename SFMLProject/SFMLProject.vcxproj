@@ -279,6 +279,7 @@
     <ClCompile Include="TrickColliderObject.cpp" />
     <ClCompile Include="UIAnimationObject.cpp" />
     <ClCompile Include="UIButtonObject.cpp" />
+    <ClCompile Include="UICoinObject.cpp" />
     <ClCompile Include="UIGameObject.cpp" />
     <ClCompile Include="UITextGameObject.cpp" />
     <ClCompile Include="Utils.cpp" />
@@ -406,6 +407,7 @@
     <ClInclude Include="TrickColliderObject.h" />
     <ClInclude Include="UIAnimationObject.h" />
     <ClInclude Include="UIButtonObject.h" />
+    <ClInclude Include="UICoinObject.h" />
     <ClInclude Include="UIGameObject.h" />
     <ClInclude Include="UITextGameObject.h" />
     <ClInclude Include="Utils.h" />

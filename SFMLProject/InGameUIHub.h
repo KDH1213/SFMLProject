@@ -1,7 +1,9 @@
 #pragma once
 
 #include "GameObject.h"
-#include "UITextGameObject.h"
+
+class UITextGameObject;
+class UICoinObject;
 
 class InGameUIHub : public GameObject
 {
@@ -16,7 +18,7 @@ protected:
 	UITextGameObject*	worldUI;
 	UITextGameObject*	timerUI;
 	UITextGameObject*	coinUI;
-
+	UICoinObject*		coinAnimationUI;
 	std::string			fontId;
 
 private:

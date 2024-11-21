@@ -15,6 +15,8 @@
 #include "Scene.h"
 #include "Animator.h"
 
+#include "GameManager.h"
+
 ItemBlockObject::ItemBlockObject(ItemType type, const std::string& texId, const std::string& changeTexId, const std::string& name)
 	: BlockObject(BlockType::Item, texId, name)
 	, itemType(type)
@@ -58,6 +60,7 @@ void ItemBlockObject::CreateItem()
 		coin->Start();
 		coin->GetAnimator()->ChangeAnimation("coinGet", true);
 		coin->CreateEvenet();
+		GameManager::GetInstance().HaveCoin();
 	}
 		break;
 	case ItemType::MushRoom:

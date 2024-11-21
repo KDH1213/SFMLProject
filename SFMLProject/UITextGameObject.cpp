@@ -23,11 +23,11 @@ void UITextGameObject::Awake()
 void UITextGameObject::Start()
 {
 	text.setFont(ResourcesManager<sf::Font>::GetInstance().Get(textId));
-	SetOrigin(originPreset);
 	SetPosition(position);
 	text.setFillColor(textColor);
 	text.setCharacterSize(textSize);
 	text.setString(textString);
+	SetOrigin(originPreset);
 }
 
 void UITextGameObject::SetOrigin(Origins preset)

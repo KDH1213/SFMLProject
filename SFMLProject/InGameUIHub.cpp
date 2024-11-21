@@ -2,6 +2,8 @@
 #include "InGameUIHub.h"
 #include "Scene.h"
 #include "GameManager.h"
+#include "UITextGameObject.h"
+#include "UICoinObject.h"
 
 InGameUIHub::InGameUIHub(const std::string& textId, const std::string& name)
     : GameObject(name)
@@ -43,29 +45,33 @@ void InGameUIHub::Start()
     timerUI = currentScene->AddGameObject(new UITextGameObject(fontId, "TimerUI", 70), LayerType::UI);
     coinUI = currentScene->AddGameObject(new UITextGameObject(fontId, "CoinUI", 70), LayerType::UI);
 
+    coinAnimationUI = currentScene->AddGameObject(new UICoinObject("CoinAnimationUI"), LayerType::UI);
+
     PushBackObject();
 
     worldNameUI->SetString("WORLD");
     timeNameUI->SetString("TIME");
     marioNameUI->SetString("MARIO");
 
-    worldNameUI->SetPosition({ 1200.f, 50.f });
+    worldNameUI->SetPosition({ 1250.f, 50.f });
     timeNameUI->SetPosition({ 1700.f, 50.f });
     marioNameUI->SetPosition({ 100.f, 50.f });
 
     worldUI->SetPosition({ 1200.f, 85.f });
     scoreUI->SetPosition({ 250.f, 100.f });
-    timerUI->SetPosition({ 1700.f, 85.f });
+    timerUI->SetPosition({ 1660.f, 85.f });
     
-    coinUI->SetPosition({ 300.f, 50.f });
+    coinUI->SetPosition({ 450.f, 50.f });
+    coinAnimationUI->SetPosition({ 400.f, 100.f });
 
     worldNameUI->SetOrigin(Origins::MiddleCenter);
     timeNameUI->SetOrigin(Origins::MiddleCenter);
     marioNameUI->SetOrigin(Origins::MiddleLeft);
     worldUI->SetOrigin(Origins::MiddleCenter);
-    scoreUI->SetOrigin(Origins::MiddleCenter);
+
+    scoreUI->SetOrigin(Origins::MiddleRight);
     timerUI->SetOrigin(Origins::MiddleRight);
-    coinUI->SetOrigin(Origins::MiddleRight);
+    coinUI->SetOrigin(Origins::MiddleLeft);
 
     worldUI->Start();
     scoreUI->Start();
@@ -74,6 +80,7 @@ void InGameUIHub::Start()
     worldNameUI->Start();
     timeNameUI->Start();
     marioNameUI->Start();
+    coinAnimationUI->Start();
 }
 
 void InGameUIHub::OnAllDisable()
