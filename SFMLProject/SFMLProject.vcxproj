@@ -228,6 +228,7 @@
     <ClCompile Include="ItemObject.cpp" />
     <ClCompile Include="KeyAction.cpp" />
     <ClCompile Include="KoopaTroopa.cpp" />
+    <ClCompile Include="KoopaTroopaFSM.cpp" />
     <ClCompile Include="LangugeStringTable.cpp" />
     <ClCompile Include="MouseObject.cpp" />
     <ClCompile Include="MushRoomObject.cpp" />
@@ -357,6 +358,7 @@
     <ClInclude Include="json.hpp" />
     <ClInclude Include="KeyAction.h" />
     <ClInclude Include="KoopaTroopa.h" />
+    <ClInclude Include="KoopaTroopaFSM.h" />
     <ClInclude Include="LangugeStringTable.h" />
     <ClInclude Include="MouseObject.h" />
     <ClInclude Include="MushRoomObject.h" />

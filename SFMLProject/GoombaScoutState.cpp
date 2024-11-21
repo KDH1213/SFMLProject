@@ -3,7 +3,7 @@
 #include "Rigidbody.h"
 
 GoombaScoutState::GoombaScoutState(EnemyFSM* fsm)
-	: EnemyBaseState(fsm, EnemyStateType::Dead)
+	: EnemyBaseState(fsm, EnemyStateType::Scout)
 {
 }
 
