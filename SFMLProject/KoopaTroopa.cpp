@@ -6,13 +6,16 @@
 #include "Rigidbody.h"
 #include "Player.h"
 #include "Animation.h"
+#include "KoopaTroopaFSM.h"
+#include "BlockObject.h"
+#include "BrickBlockObject.h"
 
 KoopaTroopa::KoopaTroopa(const std::string& name)
 {
-	// fsm = new GoombaFSM(this);
+	fsm = new KoopaTroopaFSM(this);
 
 	CreateAnimator();
-	animator->LoadCsv("animators/goomba.csv");
+	animator->LoadCsv("animators/koopaTroopa.csv");
 	CreateCollider(ColliderType::Rectangle, ColliderLayer::Enemy);
 }
 
@@ -26,43 +29,143 @@ KoopaTroopa::~KoopaTroopa()
 
 void KoopaTroopa::Awake()
 {
-	animator->ChangeAnimation("goombaMove", true);
+	animator->ChangeAnimation("koopaTroopaScout", true);
 }
 
 void KoopaTroopa::Start()
 {
 	Enemy::Start();
 
-	fsm->ChangeState(EnemyStateType::Scout);
+	fsm->ChangeState(EnemyStateType::Groggy);
 
-	GetCollider()->SetScale({ (sf::Vector2f)animator->GetCurrentAnimation()->GetFrameInfo()[0].rectSize });
+
+	GetCollider()->SetScale({ 64.f, 64.f });
+	// GetCollider()->SetScale({ (sf::Vector2f)animator->GetCurrentAnimation()->GetFrameInfo()[0].rectSize });
 }
 
 void KoopaTroopa::OnCollisionEnter(Collider* target)
 {
 	if (target->GetColliderLayer() == ColliderLayer::Player)
 	{
-		Player* player = (Player*)target->GetOwner();
+		if (currentState == EnemyStateType::Scout)
+		{
+			Player* player = (Player*)target->GetOwner();
 
+			sf::Vector2f targetPosition = target->GetPosition();
+
+			Rectangle rect(collider->GetPosition(), collider->GetScale());
+			Rectangle targetRect(targetPosition, target->GetScale());
+			float prevPositionY = (target->GetOwner()->GetRigidbody()->GetCurrentVelocity().y + target->GetOwner()->GetRigidbody()->GetCurrentDropSpeed()) * TimeManager::GetInstance().GetFixedDeletaTime() * player->GetSpeed();
+
+			if (rect.topPosition > targetRect.bottomPosition - prevPositionY)
+			{
+				fsm->ChangeState(EnemyStateType::Groggy);
+				player->GetRigidbody()->ResetDropSpeed();
+				player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x, -250.f });
+
+			}
+			else if (rect.bottomPosition < targetRect.topPosition - prevPositionY)
+				player->TakeDamage();
+			else
+				player->TakeDamage();
+
+
+			return;
+		}
+		else if (currentState == EnemyStateType::Groggy)
+		{
+			sf::Vector2f targetPosition = target->GetPosition();
+			float direction = targetPosition.x - position.x;
+
+			if (direction < 0.f)
+			{
+				moveDirection.x = 1.f;
+			}
+			else
+				moveDirection.x = -1.f;
+
+			fsm->ChangeState(EnemyStateType::Move);
+		}
+		else if (currentState == EnemyStateType::Move)
+		{
+			Player* player = (Player*)target->GetOwner();
+
+			sf::Vector2f targetPosition = target->GetPosition();
+
+			Rectangle rect(collider->GetPosition(), collider->GetScale());
+			Rectangle targetRect(targetPosition, target->GetScale());
+			float prevPositionY = (target->GetOwner()->GetRigidbody()->GetCurrentVelocity().y + target->GetOwner()->GetRigidbody()->GetCurrentDropSpeed()) * TimeManager::GetInstance().GetFixedDeletaTime() * player->GetSpeed();
+
+			if (rect.topPosition > targetRect.bottomPosition - prevPositionY)
+			{
+				float direction = targetPosition.x - position.x;
+
+				if (direction < 0.f)
+				{
+					moveDirection.x = 1.f;
+				}
+				else
+					moveDirection.x = -1.f;
+
+				fsm->ChangeState(EnemyStateType::Move);
+
+				player->GetRigidbody()->ResetDropSpeed();
+				player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x, -250.f });
+
+			}
+			else if (rect.bottomPosition < targetRect.topPosition - prevPositionY)
+				player->TakeDamage();
+			else
+				player->TakeDamage();
+		}
+		
+	}
+	else if (target->GetColliderLayer() == ColliderLayer::Wall || target->GetColliderLayer() == ColliderLayer::Enemy
+		|| target->GetColliderLayer() == ColliderLayer::Block)
+	{
 		sf::Vector2f targetPosition = target->GetPosition();
 
 		Rectangle rect(collider->GetPosition(), collider->GetScale());
 		Rectangle targetRect(targetPosition, target->GetScale());
-		float prevPositionY = (target->GetOwner()->GetRigidbody()->GetCurrentVelocity().y + target->GetOwner()->GetRigidbody()->GetCurrentDropSpeed()) * TimeManager::GetInstance().GetFixedDeletaTime() * player->GetSpeed();
 
-		if (rect.topPosition > targetRect.bottomPosition - prevPositionY)
+		if (currentState == EnemyStateType::Scout)
 		{
-			TakeDamage();
-			player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x, 100.f });
+			if (!(rect.topPosition > targetRect.bottomPosition && rect.bottomPosition < targetRect.topPosition))
+			{
+				moveDirection.x *= -1.f;
+				fsm->ChangeState(EnemyStateType::Scout);
+			}
 		}
-		else if (rect.bottomPosition < targetRect.topPosition - prevPositionY)
-			player->TakeDamage();
-		else
-			player->TakeDamage();
+		if (currentState == EnemyStateType::Move)
+		{
+			if (!(rect.topPosition > targetRect.bottomPosition && rect.bottomPosition < targetRect.topPosition))
+			{
+
+				if (target->GetColliderLayer() == ColliderLayer::Enemy)
+					((Enemy*)target->GetOwner())->TakeDamage();
+				else if (target->GetColliderLayer() == ColliderLayer::Block)
+				{
+					if(((BlockObject*)target->GetOwner())->GetBlockType() == BlockType::Brick)
+					{
+						((BrickBlockObject*)target->GetOwner())->OnBreak();
+					}
+					else
+					{
+						moveDirection.x *= -1.f;
+						fsm->ChangeState(EnemyStateType::Move);
+					}
+
+				}
+				else
+				{
+					moveDirection.x *= -1.f;
+					fsm->ChangeState(EnemyStateType::Move);
+				}
+
+			}
+		}
+		//fsm->ChangeState(EnemyStateType::Scout);
 	}
-	else if (target->GetColliderLayer() == ColliderLayer::Wall || target->GetColliderLayer() == ColliderLayer::Enemy
-		|| target->GetColliderLayer() == ColliderLayer::Block)
-		fsm->ChangeState(EnemyStateType::Chase);
 }
 
 void KoopaTroopa::OnCollisionStay(Collider* target)

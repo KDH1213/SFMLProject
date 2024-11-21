@@ -113,6 +113,8 @@ enum class EnemyStateType
 	Scout,
 	Chase,
 	Hit,
+	Move,
+	Groggy,
 	Dead,
 	End
 };

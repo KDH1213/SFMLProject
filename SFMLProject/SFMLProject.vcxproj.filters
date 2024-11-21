@@ -229,6 +229,12 @@
     <Filter Include="Contants\0. Editor\Imgui\GUI\CompoentGUI\GameClearPoint">
       <UniqueIdentifier>{17f4816a-041e-4f96-b3d9-cb0e0edcf1a8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contants\Object\Enemy\KoopaTroopa\FSM">
+      <UniqueIdentifier>{b2e848a1-cecd-4644-a418-dc16ddd9db06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Enemy\KoopaTroopa\State">
+      <UniqueIdentifier>{d2b09a16-e030-4a76-852f-751577b7fc95}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -586,7 +592,22 @@
       <Filter>Contants\UI</Filter>
     </ClCompile>
     <ClCompile Include="KoopaTroopaFSM.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>Contants\Object\Enemy\KoopaTroopa\FSM</Filter>
+    </ClCompile>
+    <ClCompile Include="KoopaTroopaGroggyState.cpp">
+      <Filter>Contants\Object\Enemy\KoopaTroopa\State</Filter>
+    </ClCompile>
+    <ClCompile Include="KoopaTroopaIdleState.cpp">
+      <Filter>Contants\Object\Enemy\KoopaTroopa\State</Filter>
+    </ClCompile>
+    <ClCompile Include="KoopaTroopaMoveState.cpp">
+      <Filter>Contants\Object\Enemy\KoopaTroopa\State</Filter>
+    </ClCompile>
+    <ClCompile Include="KoopaTroopaScoutState.cpp">
+      <Filter>Contants\Object\Enemy\KoopaTroopa\State</Filter>
+    </ClCompile>
+    <ClCompile Include="KoopaTroopaDeadState.cpp">
+      <Filter>Contants\Object\Enemy\KoopaTroopa\State</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -966,7 +987,22 @@
       <Filter>Contants\UI</Filter>
     </ClInclude>
     <ClInclude Include="KoopaTroopaFSM.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>Contants\Object\Enemy\KoopaTroopa\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="KoopaTroopaScoutState.h">
+      <Filter>Contants\Object\Enemy\KoopaTroopa\State</Filter>
+    </ClInclude>
+    <ClInclude Include="KoopaTroopaGroggyState.h">
+      <Filter>Contants\Object\Enemy\KoopaTroopa\State</Filter>
+    </ClInclude>
+    <ClInclude Include="KoopaTroopaIdleState.h">
+      <Filter>Contants\Object\Enemy\KoopaTroopa\State</Filter>
+    </ClInclude>
+    <ClInclude Include="KoopaTroopaMoveState.h">
+      <Filter>Contants\Object\Enemy\KoopaTroopa\State</Filter>
+    </ClInclude>
+    <ClInclude Include="KoopaTroopaDeadState.h">
+      <Filter>Contants\Object\Enemy\KoopaTroopa\State</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

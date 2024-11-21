@@ -30,6 +30,8 @@ public:
 
 	const sf::Vector2f& GetMoveDirection() { return moveDirection; }
 	void SetMoveDirection(const sf::Vector2f& direction) { moveDirection = direction; }
+
+	void SetCurrentState(EnemyStateType state) { currentState = state; }
 public:
 	void CreateAnimator() override;
 	float GetSpeed() { return currentStatus.speed; }

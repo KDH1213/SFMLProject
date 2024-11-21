@@ -28,7 +28,7 @@ Goomba::~Goomba()
 
 void Goomba::Awake()
 {
-	animator->ChangeAnimation("goombaMove", true);
+	// animator->ChangeAnimation("goombaMove", true);
 }
 
 void Goomba::Start()
@@ -55,7 +55,8 @@ void Goomba::OnCollisionEnter(Collider* target)
 		if (rect.topPosition > targetRect.bottomPosition - prevPositionY)
 		{
 			TakeDamage();
-			player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x, 100.f });
+			player->GetRigidbody()->ResetDropSpeed();
+			player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x, -250.f });
 		}
 		else if (rect.bottomPosition < targetRect.topPosition - prevPositionY)
 			player->TakeDamage();
@@ -64,11 +65,38 @@ void Goomba::OnCollisionEnter(Collider* target)
 	}
 	else if (target->GetColliderLayer() == ColliderLayer::Wall || target->GetColliderLayer() == ColliderLayer::Enemy
 		|| target->GetColliderLayer() == ColliderLayer::Block)
-		fsm->ChangeState(EnemyStateType::Chase);
+	{
+		sf::Vector2f targetPosition = target->GetPosition();
+
+		Rectangle rect(collider->GetPosition(), collider->GetScale());
+		Rectangle targetRect(targetPosition, target->GetScale());
+
+		if (!(rect.topPosition > targetRect.bottomPosition && rect.bottomPosition < targetRect.topPosition))
+		{
+			moveDirection.x *= -1.f;
+			fsm->ChangeState(EnemyStateType::Scout);
+		}
+
+	}
 }
 
 void Goomba::OnCollisionStay(Collider* target)
 {
+	/*if (target->GetColliderLayer() == ColliderLayer::Wall || target->GetColliderLayer() == ColliderLayer::Enemy
+		|| target->GetColliderLayer() == ColliderLayer::Block)
+	{
+		sf::Vector2f targetPosition = target->GetPosition();
+
+		Rectangle rect(collider->GetPosition(), collider->GetScale());
+		Rectangle targetRect(targetPosition, target->GetScale());
+
+		if (!(rect.topPosition > targetRect.bottomPosition && rect.bottomPosition < targetRect.topPosition))
+		{
+			moveDirection.x *= -1.f;
+			fsm->ChangeState(EnemyStateType::Scout);
+		}
+
+	}*/
 }
 
 void Goomba::OnCollisionEnd(Collider* target)

@@ -16,7 +16,7 @@ Enemy::Enemy(const std::string& name)
     , currentState(EnemyStateType::Idle)
 {
     rigidBody = new Rigidbody(this);
-    rigidBody->SetGround(true);
+    rigidBody->SetGround(false);
 }
 
 Enemy::~Enemy()

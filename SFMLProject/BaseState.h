@@ -26,6 +26,7 @@ public:
 
 template<typename T>
 inline BaseState<T>::BaseState(T type)
+	: stateType(type)
 {
 }
 

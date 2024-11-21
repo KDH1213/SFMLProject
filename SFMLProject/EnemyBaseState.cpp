@@ -6,7 +6,7 @@ EnemyBaseState::EnemyBaseState(EnemyFSM* fsm, EnemyStateType stateType)
 	: BaseState<EnemyStateType>(stateType)
 	, fsm(fsm)
 	, enemy(fsm->GetEnemy())
-{
+{ 
 }
 
 EnemyBaseState::~EnemyBaseState()
