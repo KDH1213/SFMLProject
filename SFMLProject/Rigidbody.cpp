@@ -9,6 +9,7 @@ Rigidbody::Rigidbody(GameObject* owner)
 	, maxDropSpeed(200.f)
 	, owner(owner)
 	, friction(false)
+	, isActive(true)
 {
 }
 
@@ -44,6 +45,8 @@ void Rigidbody::ResetDropSpeed()
 void Rigidbody::FixedUpdate(const float& fixedDeltaTime)
 {
 	//velocity = accel * fixedDeltaTime;
+	if (!isActive)
+		return;
 
 	if (!isGround && fixedDeltaTime != 0.f)
 	{

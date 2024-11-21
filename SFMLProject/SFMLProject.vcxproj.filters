@@ -223,6 +223,12 @@
     <Filter Include="Contants\Object\Player\Bullet">
       <UniqueIdentifier>{93792c18-37bb-48ca-91dc-8ff4c8e807c2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contants\0. Editor\Imgui\GUI\CompoentGUI\SavePoint">
+      <UniqueIdentifier>{b5b7f332-e4e8-43d7-9461-fda75c0926d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\0. Editor\Imgui\GUI\CompoentGUI\GameClearPoint">
+      <UniqueIdentifier>{17f4816a-041e-4f96-b3d9-cb0e0edcf1a8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -540,9 +546,6 @@
     <ClCompile Include="UIButtonObject.cpp">
       <Filter>Contants\UI</Filter>
     </ClCompile>
-    <ClCompile Include="SavePointGUI.cpp">
-      <Filter>Contants\UI</Filter>
-    </ClCompile>
     <ClCompile Include="MouseObject.cpp">
       <Filter>Contants\UI</Filter>
     </ClCompile>
@@ -560,6 +563,15 @@
     </ClCompile>
     <ClCompile Include="GameClearObject.cpp">
       <Filter>Contants\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="SavePointGUI.cpp">
+      <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\SavePoint</Filter>
+    </ClCompile>
+    <ClCompile Include="GameClearPointGUI.cpp">
+      <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\GameClearPoint</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerGameClearState.cpp">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -902,9 +914,6 @@
     <ClInclude Include="MouseObject.h">
       <Filter>Contants\UI</Filter>
     </ClInclude>
-    <ClInclude Include="SavePointGUI.h">
-      <Filter>Contants\UI</Filter>
-    </ClInclude>
     <ClInclude Include="TextButton.h">
       <Filter>Contants\UI</Filter>
     </ClInclude>
@@ -919,6 +928,15 @@
     </ClInclude>
     <ClInclude Include="GameClearObject.h">
       <Filter>Contants\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="SavePointGUI.h">
+      <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\SavePoint</Filter>
+    </ClInclude>
+    <ClInclude Include="GameClearPointGUI.h">
+      <Filter>Contants\0. Editor\Imgui\GUI\CompoentGUI\GameClearPoint</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerGameClearState.h">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

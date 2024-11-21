@@ -103,7 +103,7 @@ enum class PlayerStateType
 	Hit,
 	Dead,
 	Upgrade,
-
+	GameClear,
 	End
 };
 

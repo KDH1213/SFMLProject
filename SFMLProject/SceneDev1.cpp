@@ -34,6 +34,8 @@
 #include "GameManager.h"
 #include "SavePointObject.h"
 #include "ImguiManger.h"
+#include "GameClearObject.h"
+
 
 void SceneDev1::Init()
 {
@@ -104,6 +106,13 @@ void SceneDev1::Enter()
 	background->SetScale({ 2000.f, 1300.f });
 	background->SetColor(sf::Color(85, 151, 248));
 
+	/*GameClearObject* gameClearObject = AddGameObject(new GameClearObject(), LayerType::CleraPoint);
+	gameClearObject->SetScale({ 10.f, 1300.f });
+	gameClearObject->SetPosition({ 800.f, 0.f });
+	gameClearObject->SetDestinationPosition({ 800.f, 440 });
+	gameClearObject->SetMaxStartPosition({ 800.f, -440 });
+	gameClearObject->SetEndMovePosition({ 1700.f, 440 });*/
+
 	SavePointObject* savePoint = AddGameObject(new SavePointObject(), LayerType::Default);
 
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::Player);
@@ -116,6 +125,7 @@ void SceneDev1::Enter()
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::PlayerBullet);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Block, ColliderLayer::PlayerBullet);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::SavePoint, ColliderLayer::Player);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::CleraPoint, ColliderLayer::Player);
 	
 	if (GameManager::GetInstance().IsRestart())
 	{

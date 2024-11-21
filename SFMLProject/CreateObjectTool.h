@@ -8,6 +8,7 @@ enum class CreateObjectType
     Block,
     Item,
     SavePoint,
+    GameClear,
     End
 };
 
@@ -46,6 +47,7 @@ public:
     void OnBlock();
     void OnItem();
     void OnSavePoint();
+    void OnGameClearPoint();
 public:
     CreateObjectTool();
     ~CreateObjectTool();

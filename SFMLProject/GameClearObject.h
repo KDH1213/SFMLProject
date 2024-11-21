@@ -8,16 +8,24 @@ class Player;
 class GameClearObject : public GameObject
 {
 protected:
+	std::vector<std::function<void()>> gameClearEvents;
+
 	sf::RectangleShape	render;
 	Player*				player;
 
 	sf::Vector2f		maxStartPosition;
 	sf::Vector2f		startPosition;
 	sf::Vector2f		destinationPosition;
+	sf::Vector2f		endMovePosition;
 
 	float				currentTime;
+	float				endMoveTime;
+	float				currentEndMoveTime;
 	float				moveTime;
+	int					currentEventIndex;
 	bool				isStartClearEvent;
+	bool				isStartFlip;
+	bool				isStartMove;
 
 public:
 	void SetScale(const sf::Vector2f& scale) override;
@@ -26,9 +34,18 @@ public:
 	
 	void SetMaxStartPosition(const sf::Vector2f& pos) { maxStartPosition = pos; }
 	void SetDestinationPosition(const sf::Vector2f& pos) { destinationPosition = pos; }
+	void SetEndMovePosition(const sf::Vector2f& pos) { endMovePosition = pos; }
+
+	sf::Vector2f GetMaxStartPosition() { return maxStartPosition; }
+	sf::Vector2f GetDestinationPosition() { return destinationPosition; }
+	sf::Vector2f GetEndMovePosition() { return endMovePosition; }
 
 	void SetOrigin(Origins preset) override;
 	void SetOrigin(const sf::Vector2f& newOrigin) override;
+
+	void StartMove();
+	void FlipEvent();
+	void Move();
 public:
 	void Start() override;
 
@@ -40,8 +57,8 @@ public:
 	sf::FloatRect GetLocalBounds() const;
 	sf::FloatRect GetGlobalBounds() const;
 public:
-	SavePointSaveData GetSavePointSaveData() const;
-	void LoadSavePointSaveData(const SavePointSaveData& data);
+	GameClearSaveData GetGameClearSaveData() const;
+	void LoadGameClearSaveData(const GameClearSaveData& data);
 
 public:
 	GameClearObject(const std::string& name = "GameClearPoint");

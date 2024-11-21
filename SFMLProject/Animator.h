@@ -40,8 +40,8 @@ public:
 	void SetScale(const sf::Vector2f& scale);
 	sf::Vector2f GetScale() { return rectSize;	}
 
-	void Test1();
-	void Test2();
+	void SetPlaying(bool isPlay) { isPlaying = isPlay; }
+	bool IsPlaying() { return isPlaying; }
 
 	sf::FloatRect GetLocalBounds() const;
 	sf::FloatRect GetGlobalBounds() const;

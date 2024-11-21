@@ -51,6 +51,7 @@ public:
 
 	const sf::Vector2f& GetMoveDirection() { return moveDirection; }
 
+	PlayerFSM& GetFSM() { return fsm; }
 public:
 	void CreateAnimator() override;
 

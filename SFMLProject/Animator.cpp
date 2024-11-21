@@ -146,16 +146,6 @@ void Animator::SetScale(const sf::Vector2f& scale)
 	sprite->setScale(this->scale);
 }
 
-void Animator::Test1()
-{
-	ChangeAnimation("PlayerMove");
-}
-
-void Animator::Test2()
-{
-	ChangeAnimation("PlayerDash");
-}
-
 sf::FloatRect Animator::GetLocalBounds() const
 {
 	return sprite->getLocalBounds();
@@ -174,10 +164,6 @@ void Animator::Update(const float& deltaTime)
 
 void Animator::Start()
 {
-	//this->GetAnimation("PlayerDash")->func = std::move(std::bind(&Animator::Test1, this));
-	//this->GetAnimation("PlayerMove")->func = std::move(std::bind(&Animator::Test2, this)); // = &Animator::Test2;
-	// this->GetAnimation("PlayerDash")->functest = std::bind(&Animator::Test1, this);
-	// this->GetAnimation("PlayerMove")->functest = std::bind(&Animator::Test2, this);
 
 }
 

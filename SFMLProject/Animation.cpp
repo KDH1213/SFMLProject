@@ -152,6 +152,7 @@ void Animation::Play(bool isRepeat)
 void Animation::Stop()
 {
 	isPlaying = false;
+	animator->SetPlaying(isPlaying);
 }
 
 void Animation::Reset()

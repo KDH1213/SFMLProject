@@ -23,6 +23,7 @@ public:
 	std::vector<WallCollisionSaveData>	wallCollisionSaveDatas;
 	TileMapSaveData						tileMapSaveData;
 	std::vector<SavePointSaveData>		savePointSaveDatas;
+	std::vector<GameClearSaveData>		gameClearSaveDatas;
 
 	virtual SaveData* VersionUp() = 0;
 };

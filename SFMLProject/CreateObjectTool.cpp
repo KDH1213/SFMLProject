@@ -7,6 +7,7 @@
 #include "BlockObject.h"
 #include "ItemBlockObject.h"
 #include "BrickBlockObject.h"
+#include "GameClearObject.h"
 
 #include "SavePointObject.h"
 
@@ -54,6 +55,7 @@ void CreateObjectTool::Update()
 		,{ CreateObjectType::Block , "Block"}
 		,{ CreateObjectType::Item , "Item"}
 		, { CreateObjectType::SavePoint , "SavePoint"}
+		, { CreateObjectType::GameClear , "GameClear"}
 	};
 
 	int idx;
@@ -71,8 +73,13 @@ void CreateObjectTool::Update()
 			if (ImGui::Selectable(objectEnum[n].name.c_str(), idx == n))
 			{
 				currentType = objectEnum[n].type;
-				texture = &ResourcesManager<sf::Texture>::GetInstance().Get(resoureceVector[n]);
-				sprite.setTexture(*texture, true);
+
+				if (n < (int)CreateObjectType::SavePoint)
+				{
+					texture = &ResourcesManager<sf::Texture>::GetInstance().Get(resoureceVector[n]);
+					sprite.setTexture(*texture, true);
+				}
+				
 
 				enemySelect = false;
 				itemSelect = false;
@@ -91,6 +98,8 @@ void CreateObjectTool::Update()
 		OnItem();
 	else if (currentType == CreateObjectType::SavePoint)
 		OnSavePoint();
+	else if (currentType == CreateObjectType::GameClear)
+		OnGameClearPoint();
 
 
 	ImGui::End();
@@ -251,6 +260,17 @@ void CreateObjectTool::OnSavePoint()
 	if (ImGui::Button("Create SavePoint", { 50, 20 }))
 	{
 		SavePointObject* savePointObject = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new SavePointObject(), LayerType::Default);
+	}
+	ImGui::EndChild();
+}
+
+void CreateObjectTool::OnGameClearPoint()
+{
+	ImGui::BeginChild("ClearObject");
+
+	if (ImGui::Button("Create ClearObject", { 50, 20 }))
+	{
+		GameClearObject* gameClearObject = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new GameClearObject(), LayerType::CleraPoint);
 	}
 	ImGui::EndChild();
 }

@@ -8,7 +8,7 @@ enum class ComponentGUIType
 	TileMapController,
 	Block,
 	SavePoint,
-
+	GameClearPoint,
 	End
 };
 

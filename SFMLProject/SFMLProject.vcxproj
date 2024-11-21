@@ -184,6 +184,7 @@
     <ClCompile Include="Framework.cpp" />
     <ClCompile Include="FSMController.cpp" />
     <ClCompile Include="GameClearObject.cpp" />
+    <ClCompile Include="GameClearPointGUI.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectSaveData.cpp" />
@@ -237,6 +238,7 @@
     <ClCompile Include="PlayerBreakState.cpp" />
     <ClCompile Include="PlayerDeadState.cpp" />
     <ClCompile Include="PlayerFSM.cpp" />
+    <ClCompile Include="PlayerGameClearState.cpp" />
     <ClCompile Include="PlayerHitState.cpp" />
     <ClCompile Include="PlayerIdleState.cpp" />
     <ClCompile Include="PlayerJumpState.cpp" />
@@ -321,6 +323,7 @@
     <ClInclude Include="Framework.h" />
     <ClInclude Include="FSMController.h" />
     <ClInclude Include="GameClearObject.h" />
+    <ClInclude Include="GameClearPointGUI.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectSaveData.h" />
@@ -359,6 +362,7 @@
     <ClInclude Include="PlayerBreakState.h" />
     <ClInclude Include="PlayerDeadState.h" />
     <ClInclude Include="PlayerFSM.h" />
+    <ClInclude Include="PlayerGameClearState.h" />
     <ClInclude Include="PlayerHitState.h" />
     <ClInclude Include="PlayerIdleState.h" />
     <ClInclude Include="PlayerJumpState.h" />

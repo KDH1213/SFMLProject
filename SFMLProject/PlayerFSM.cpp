@@ -9,6 +9,7 @@
 #include "PlayerBaseState.h"
 #include "PlayerHitState.h"
 #include "PlayerUpgradeState.h"
+#include "PlayerGameClearState.h"
 
 PlayerFSM::PlayerFSM(Player* owner)
 	: owner(owner)
@@ -59,6 +60,9 @@ void PlayerFSM::CreateAllState()
 		case PlayerStateType::Upgrade:
 			AddState(PlayerStateType::Upgrade);
 			break;
+		case PlayerStateType::GameClear:
+			AddState(PlayerStateType::GameClear);
+			break;
 		case PlayerStateType::End:
 			break;
 		default:
@@ -93,6 +97,9 @@ BaseState<PlayerStateType>* PlayerFSM::CreateState(PlayerStateType type)
 		break;
 	case PlayerStateType::Upgrade:
 		state = new PlayerUpgradeState(this);
+		break;
+	case PlayerStateType::GameClear:
+		state = new PlayerGameClearState(this);
 		break;
 	case PlayerStateType::End:
 		break;
