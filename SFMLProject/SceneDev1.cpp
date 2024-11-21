@@ -36,6 +36,8 @@
 #include "ImguiManger.h"
 #include "GameClearObject.h"
 
+#include "InGameUIHub.h"
+
 
 void SceneDev1::Init()
 {
@@ -59,6 +61,8 @@ void SceneDev1::Enter()
 	TEXTURE_MANAGER.Load("mario_bros", "graphics/mario_bros.png");
 
 	ResourcesManager<sf::Font>::GetInstance().Load("KOMIKAP", "fonts/KOMIKAP_.ttf");
+	ResourcesManager<sf::Font>::GetInstance().Load("DungGeunMo", "fonts/DungGeunMo.ttf", true);
+
 	ResourcesManager<Animation>::GetInstance().Load("marioIdle", "animations/marioIdle.csv");
 
 	//Player* testPlayer = AddGameObject(new Player("Player"),LayerType::Player);
@@ -101,6 +105,8 @@ void SceneDev1::Enter()
 	//MushRoomObject* mushroom = AddGameObject(new MushRoomObject, LayerType::Item);
 	//mushroom->SetPosition({ -250.f, -150.f });
 
+	InGameUIHub* uiHub = AddGameObject(new InGameUIHub("DungGeunMo", "UIHub"), LayerType::UI);
+
 
 	BackgroundColorBox* background = AddGameObject(new BackgroundColorBox(), LayerType::Default);
 	background->SetScale({ 2000.f, 1300.f });
@@ -139,6 +145,14 @@ void SceneDev1::Enter()
 		//GameManager::GetInstance().OnSavePoint();
 	}
 	Scene::Enter();
+
+
+	GameManager::GetInstance().SetTimerUI(uiHub->GetTextGameObject("TimerUI"));
+	GameManager::GetInstance().SetCoinUI(uiHub->GetTextGameObject("CoinUI"));
+	GameManager::GetInstance().SetScoreUI(uiHub->GetTextGameObject("ScoreUI"));
+	uiHub->GetTextGameObject("WorldUI")->SetString(GameManager::GetInstance().GetWorldName());
+
+	GameManager::GetInstance().GameStartInit();
 }
 
 void SceneDev1::Exit()
@@ -164,6 +178,10 @@ void SceneDev1::Update(float dt)
 		GameManager::GetInstance().ReStart();
 		player = nullptr;
 	}
+	else
+	{
+		GameManager::GetInstance().Update(dt);
+	}
 
 	if (player != nullptr)
 	{
@@ -171,6 +189,8 @@ void SceneDev1::Update(float dt)
 		currentCameraLimitRect.leftPosition = currentCameraLimitRect.leftPosition < 0.f ? 0.f : currentCameraLimitRect.leftPosition;
 		mainCamera->SetCameraLimitRect(currentCameraLimitRect);
 	}
+
+
 }
 
 void SceneDev1::Render(sf::RenderWindow& window)

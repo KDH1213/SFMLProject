@@ -573,6 +573,15 @@
     <ClCompile Include="PlayerGameClearState.cpp">
       <Filter>Contants\Object\Player\PlayerState</Filter>
     </ClCompile>
+    <ClCompile Include="InGameUIHub.cpp">
+      <Filter>Contants\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStartUI.cpp">
+      <Filter>Contants\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIAnimationObject.cpp">
+      <Filter>Core\7. Object\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -937,6 +946,15 @@
     </ClInclude>
     <ClInclude Include="PlayerGameClearState.h">
       <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStartUI.h">
+      <Filter>Contants\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="InGameUIHub.h">
+      <Filter>Contants\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIAnimationObject.h">
+      <Filter>Core\7. Object\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
