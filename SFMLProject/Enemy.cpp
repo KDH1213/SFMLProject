@@ -27,7 +27,9 @@ Enemy::~Enemy()
 void Enemy::TakeDamage()
 {
     --currentStatus.hp;
-    OnDead();
+
+    if(currentStatus.hp <= 0)
+        OnDead();
     
 }
 

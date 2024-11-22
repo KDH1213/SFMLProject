@@ -12,6 +12,7 @@ KoopaFireBullet::KoopaFireBullet(const std::string& texId, const std::string& na
 	: Bullet(ColliderLayer::EnemyBullet, texId, name)
 {
 	speed = 300.f;
+	lifeTime = 10.f;
 	CreateAnimator();
 	animator->LoadCsv("animators/koopaFire.csv");
 }

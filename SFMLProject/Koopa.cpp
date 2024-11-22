@@ -31,6 +31,8 @@ Koopa::Koopa(const std::string& name)
 	CreateAnimator();
 	animator->LoadCsv("animators/koopa.csv");
 	CreateCollider(ColliderType::Rectangle, ColliderLayer::Enemy);
+	currentStatus.maxHp = 5;
+	currentStatus.hp = currentStatus.maxHp;
 }
 
 Koopa::~Koopa()
@@ -51,6 +53,9 @@ void Koopa::OnJump()
 
 void Koopa::OnDead()
 {
+	if (isDead)
+		return;
+
 	isDead = true;
 	fsm->ChangeState(EnemyStateType::Dead);
 }
