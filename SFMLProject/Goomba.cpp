@@ -7,6 +7,7 @@
 #include "Collision.h"
 #include "Player.h"
 #include "Rigidbody.h"
+#include "PlayerFSM.h"
 
 Goomba::Goomba(const std::string& name)
 	: Enemy(EnemyType::Goomba, name)
@@ -58,6 +59,7 @@ void Goomba::OnCollisionEnter(Collider* target)
 			TakeDamage();
 			player->GetRigidbody()->ResetDropSpeed();
 			player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x, -350.f });
+			player->GetFSM().ChangeState(PlayerStateType::Jump);
 		}
 		else if (rect.bottomPosition < targetRect.topPosition - prevPositionY)
 			player->TakeDamage();

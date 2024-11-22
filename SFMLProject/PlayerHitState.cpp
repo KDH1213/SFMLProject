@@ -81,10 +81,10 @@ void PlayerHitState::Exit()
 	PlayerBaseState::Exit();
 	TimeManager::GetInstance().SetTimeScale(1.f);
 	player->GetCollider()->SetActive(true);
-	player->SetPosition(changePosition);
 
 	if (player->GetCurrentHP() == 1)
 	{
+		player->SetPosition(changePosition);
 		Animation* animation = player->GetAnimator()->GetCurrentAnimation();
 		animation->ClearStartEvent(2);
 		animation->ClearEndEvent(2);
@@ -101,7 +101,7 @@ void PlayerHitState::Update(float deltaTime)
 	{
 		fsm->ChangeState(PlayerStateType::Idle);
 		currentTime = 0.f;
-	}
+ 	}
 }
 
 void PlayerHitState::FixedUpdate(float fixedDeltaTime)
