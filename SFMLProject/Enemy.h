@@ -18,6 +18,7 @@ protected:
 
 public:
 	void TakeDamage();
+	virtual void OnDead();
 	void OnFlipX();
 	bool IsFlipX() { return isFlipX; }
 
@@ -32,6 +33,10 @@ public:
 	void SetMoveDirection(const sf::Vector2f& direction) { moveDirection = direction; }
 
 	void SetCurrentState(EnemyStateType state) { currentState = state; }
+	const DefaultStatus& GetCurrentStatus() { return currentStatus; }
+
+	int GetHP() { return currentStatus.hp; }
+	EnemyFSM* GetFSM() { return fsm; }
 public:
 	void CreateAnimator() override;
 	float GetSpeed() { return currentStatus.speed; }

@@ -4,7 +4,8 @@
 class KoopaAttackState : public EnemyBaseState
 {
 private:
-	Rigidbody* rigidbody;
+	Rigidbody*		rigidbody;
+	sf::Vector2f	createPosition;
 
 private:
 	void StartAttack();

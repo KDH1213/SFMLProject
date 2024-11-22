@@ -40,6 +40,7 @@
 #include "InGameUIHub.h"
 #include "EnemySpawner.h"
 #include "Koopa.h"
+#include "LabberObject.h"
 
 void SceneDev2::Init()
 {
@@ -133,6 +134,9 @@ void SceneDev2::Enter()
 	EnemySpawner* enemySpawner = AddGameObject(new EnemySpawner(), LayerType::Default);
 	enemySpawner->SetPosition({ 2000.f, 1300.f });
 
+	LabberObject* laberObject = AddGameObject(new LabberObject({ 0, 8 * 16,16,16 }, "Items", "labber"), LayerType::Default);
+	laberObject->SetPosition({ 100.f, 0.f });
+
 	/*GameClearObject* gameClearObject = AddGameObject(new GameClearObject(), LayerType::CleraPoint);
 	gameClearObject->SetScale({ 10.f, 1300.f });
 	gameClearObject->SetPosition({ 800.f, 0.f });
@@ -142,6 +146,7 @@ void SceneDev2::Enter()
 
 	// SavePointObject* savePoint = AddGameObject(new SavePointObject(), LayerType::Default);
 
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Default, ColliderLayer::Player);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::Player);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Block, ColliderLayer::Player);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Enemy, ColliderLayer::Player);
@@ -155,6 +160,7 @@ void SceneDev2::Enter()
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Item, ColliderLayer::Block);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Item, ColliderLayer::Wall);
 
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Enemy, ColliderLayer::PlayerBullet);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::PlayerBullet);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Block, ColliderLayer::PlayerBullet);
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::SavePoint, ColliderLayer::Player);

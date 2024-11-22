@@ -11,9 +11,12 @@ private:
 	float	currentJumpTime;
 	float	jumpTime;
 	bool	isJump;
+	bool	isDead;
+	bool	isLabberDead;
 
 public:
 	void OnJump();
+	void OnDead();
 
 public:
 	void Awake() override;

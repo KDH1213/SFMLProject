@@ -8,6 +8,7 @@
 KoopaAttackState::KoopaAttackState(EnemyFSM* fsm)
 	: EnemyBaseState(fsm, EnemyStateType::Attack)
 	, rigidbody(nullptr)
+	, createPosition(64.f, -32.f)
 {
 }
 
@@ -25,12 +26,12 @@ void KoopaAttackState::StartAttack()
 	if (!enemy->IsFlipX())
 	{
 		direciton = sf::Vector2f::left;
-		bullet->SetPosition(enemy->GetPosition() + sf::Vector2f::left * 3.f);
+		bullet->SetPosition(enemy->GetPosition() + (createPosition * sf::Vector2f::left));
 	}
 	else
 	{
 		direciton = sf::Vector2f::right;
-		bullet->SetPosition(enemy->GetPosition() + sf::Vector2f::right * 3.f);
+		bullet->SetPosition(enemy->GetPosition() + (createPosition * sf::Vector2f::right));
 	}
 
 	direciton.Normalized();

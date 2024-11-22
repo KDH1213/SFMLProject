@@ -645,6 +645,12 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>Contants\Object\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="LabberObject.cpp">
+      <Filter>Contants\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="KoopaDeadState.cpp">
+      <Filter>Contants\Object\Enemy\Koopa\State</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -1063,6 +1069,12 @@
     </ClInclude>
     <ClInclude Include="KoopaFireBullet.h">
       <Filter>Contants\Object\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="LabberObject.h">
+      <Filter>Contants\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="KoopaDeadState.h">
+      <Filter>Contants\Object\Enemy\Koopa\State</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

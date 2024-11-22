@@ -15,7 +15,7 @@ Koopa::Koopa(const std::string& name)
 	, currentJumpTime(0.f)
 	, jumpTime(3.f)
 	, isJump(false)
-
+	, isDead(false)
 
 {
 	fsm = new KoopaFSM(this);
@@ -41,6 +41,12 @@ void Koopa::OnJump()
 	currentJumpTime = 0.f;
 }
 
+void Koopa::OnDead()
+{
+	isDead = true;
+	fsm->ChangeState(EnemyStateType::Dead);
+}
+
 void Koopa::Awake()
 {
 	// animator->ChangeAnimation("goombaMove", true);
@@ -59,6 +65,9 @@ void Koopa::Start()
 void Koopa::Update(const float& deltaTime)
 {
 	Enemy::Update(deltaTime);
+
+	if (isDead)
+		return;
 
 	float distance = abs(abs(player->GetPosition().x) - abs(position.x));
 	if (distance < 400.f)

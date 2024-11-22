@@ -4,6 +4,7 @@
 #include "EnemyBaseState.h"
 #include "KoopaAttackState.h"
 #include "KoopaIdleState.h"
+#include "KoopaDeadState.h"
 
 
 KoopaFSM::KoopaFSM(Enemy* owner)
@@ -36,6 +37,7 @@ void KoopaFSM::CreateAllState()
 			AddState(EnemyStateType::Attack);
 				break;
 		case EnemyStateType::Dead:
+			AddState(EnemyStateType::Dead);
 			break;
 		case EnemyStateType::End:
 			break;
@@ -77,6 +79,7 @@ BaseState<EnemyStateType>* KoopaFSM::CreateState(EnemyStateType type)
 		state = new KoopaAttackState(this);
 		break;
 	case EnemyStateType::Dead:
+		state = new KoopaDeadState(this);
 		break;
 	case EnemyStateType::End:
 		break;

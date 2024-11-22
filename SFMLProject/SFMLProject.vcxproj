@@ -232,6 +232,7 @@
     <ClCompile Include="KeyAction.cpp" />
     <ClCompile Include="Koopa.cpp" />
     <ClCompile Include="KoopaAttackState.cpp" />
+    <ClCompile Include="KoopaDeadState.cpp" />
     <ClCompile Include="KoopaFireBullet.cpp" />
     <ClCompile Include="KoopaFSM.cpp" />
     <ClCompile Include="KoopaIdleState.cpp" />
@@ -242,6 +243,7 @@
     <ClCompile Include="KoopaTroopaIdleState.cpp" />
     <ClCompile Include="KoopaTroopaMoveState.cpp" />
     <ClCompile Include="KoopaTroopaScoutState.cpp" />
+    <ClCompile Include="LabberObject.cpp" />
     <ClCompile Include="LangugeStringTable.cpp" />
     <ClCompile Include="MouseObject.cpp" />
     <ClCompile Include="MushRoomObject.cpp" />
@@ -375,6 +377,7 @@
     <ClInclude Include="KeyAction.h" />
     <ClInclude Include="Koopa.h" />
     <ClInclude Include="KoopaAttackState.h" />
+    <ClInclude Include="KoopaDeadState.h" />
     <ClInclude Include="KoopaFireBullet.h" />
     <ClInclude Include="KoopaFSM.h" />
     <ClInclude Include="KoopaIdleState.h" />
@@ -385,6 +388,7 @@
     <ClInclude Include="KoopaTroopaIdleState.h" />
     <ClInclude Include="KoopaTroopaMoveState.h" />
     <ClInclude Include="KoopaTroopaScoutState.h" />
+    <ClInclude Include="LabberObject.h" />
     <ClInclude Include="LangugeStringTable.h" />
     <ClInclude Include="MouseObject.h" />
     <ClInclude Include="MushRoomObject.h" />

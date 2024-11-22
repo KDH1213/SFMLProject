@@ -27,12 +27,17 @@ Enemy::~Enemy()
 void Enemy::TakeDamage()
 {
     --currentStatus.hp;
+    OnDead();
+    
+}
 
-    SetDestory(true);
+void Enemy::OnDead()
+{
+    /*SetDestory(true);
 
 
     if (currentStatus.hp == 0)
-        fsm->ChangeState(EnemyStateType::Dead);
+        fsm->ChangeState(EnemyStateType::Dead);*/
 }
 
 void Enemy::OnFlipX()
@@ -60,7 +65,7 @@ void Enemy::SetScale(const sf::Vector2f& scale)
 void Enemy::SetRotation(float angle)
 {
     rotation = angle;
-    sprite.rotate(angle);
+    sprite.setRotation(angle);
     collider->SetRotation(angle);
 }
 
