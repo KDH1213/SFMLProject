@@ -3,6 +3,7 @@
 #include "PlayerFSM.h"
 #include "PlayerSaveData.h"
 
+class Camera;
 class Rigidbody;
 
 class Player : public GameObject
@@ -10,10 +11,10 @@ class Player : public GameObject
 protected:
 	sf::Sprite	sprite;
 	PlayerFSM	fsm;
+	Camera*		mainCamera;
 
 	sf::Vector2f	moveDirection;
 	DefaultStatus	currentStatus;
-
 
 	sf::Color		effectColor;
 	sf::Color		defaultColor;

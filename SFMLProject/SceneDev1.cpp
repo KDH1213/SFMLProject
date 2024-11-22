@@ -141,9 +141,13 @@ void SceneDev1::Update(float dt)
 
 	if (player != nullptr)
 	{
-		currentCameraLimitRect.leftPosition = player->GetPosition().x - 800.f;
-		currentCameraLimitRect.leftPosition = currentCameraLimitRect.leftPosition < 0.f ? 0.f : currentCameraLimitRect.leftPosition;
-		mainCamera->SetCameraLimitRect(currentCameraLimitRect);
+		if (currentCameraLimitRect.leftPosition < player->GetPosition().x - 800.f)
+		{
+			currentCameraLimitRect.leftPosition = player->GetPosition().x - 800.f;
+			currentCameraLimitRect.leftPosition = currentCameraLimitRect.leftPosition < 0.f ? 0.f : currentCameraLimitRect.leftPosition;
+			mainCamera->SetCameraLimitRect(currentCameraLimitRect);
+		}
+		
 	}
 
 

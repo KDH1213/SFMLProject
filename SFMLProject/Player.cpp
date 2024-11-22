@@ -8,6 +8,7 @@
 #include "FireBullet.h"
 
 #include "GameManager.h"
+#include "Camera.h"
 
 Player::Player(const std::string& name)
 	: GameObject(name)
@@ -66,6 +67,8 @@ void Player::Start()
 
 
 	GetCollider()->SetScale({ (sf::Vector2f)animator->GetCurrentAnimation()->GetFrameInfo()[0].rectSize });
+
+	mainCamera = SceneManager::GetInstance().GetCurrentScene()->GetMainCamera();
 }
 
 void Player::TakeDamage()
@@ -182,6 +185,12 @@ void Player::Update(const float& deltaTime)
 	if (position.y >= 3000.f)
 	{
 		GameManager::GetInstance().PlayerDie();
+	}
+
+	if (position.x - abs(collider->GetScale().x * 0.5f) < mainCamera->GetCameraLeftPosition())
+	{
+		position.x = mainCamera->GetCameraLeftPosition() + abs(collider->GetScale().x * 0.5f);
+		SetPosition(position);
 	}
 }
 

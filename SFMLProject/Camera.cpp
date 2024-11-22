@@ -58,7 +58,7 @@ void Camera::SetCameraLimitRect(const Rectangle& rect, bool use)
 
 
 	cameraLimitRect.leftPosition -= cameraBounds.leftPosition;
-	cameraLimitRect.rightPosition -= cameraBounds.rightPosition;
+	cameraLimitRect.rightPosition += cameraBounds.rightPosition;
 	cameraLimitRect.topPosition -= cameraBounds.topPosition;
 	cameraLimitRect.bottomPosition -= cameraBounds.bottomPosition;
 

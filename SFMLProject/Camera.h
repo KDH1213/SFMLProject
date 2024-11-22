@@ -50,6 +50,9 @@ public:
 
 	sf::FloatRect GetGlobalBounds();
 
+	Rectangle GetCameraBound() { return cameraBounds; }
+	float GetCameraLeftPosition() { return cameraPosition.x + cameraBounds.leftPosition; }
+
 public:
 	void Start() override;
 	void Update(const float& deltaTime);
