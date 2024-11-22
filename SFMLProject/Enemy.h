@@ -11,9 +11,13 @@ protected:
 
 	EnemyFSM*		fsm;
 	sf::Vector2f	moveDirection;
+	sf::Vector2f	hitDirection;
 	DefaultStatus	currentStatus;
 	EnemyStateType	currentState;
 	EnemyType		enemyType;
+
+	bool			isJumpDead;
+	bool			isBulletDead;
 
 	bool			isDead;
 	bool			isFlipX;
@@ -36,6 +40,14 @@ public:
 
 	void SetCurrentState(EnemyStateType state) { currentState = state; }
 	const DefaultStatus& GetCurrentStatus() { return currentStatus; }
+
+	void SetHitDirection(const sf::Vector2f& direction) { hitDirection = direction; }
+	const sf::Vector2f& GetHitDirection() { return hitDirection; }
+
+	void OnJumpDead() { isJumpDead = true; }
+	bool IsJumpHitDead() { return isJumpDead; }
+	void OnBulletDead() { isBulletDead = true; }
+	bool IsBulletDead() { return isBulletDead; }
 
 	int GetHP() { return currentStatus.hp; }
 	EnemyFSM* GetFSM() { return fsm; }

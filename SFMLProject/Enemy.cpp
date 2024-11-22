@@ -14,6 +14,8 @@ Enemy::Enemy(EnemyType type, const std::string& name)
     , fsm(nullptr)
     , moveDirection(sf::Vector2f::left)
     , currentState(EnemyStateType::Idle)
+    , isJumpDead(false)
+    , isBulletDead(false)
 {
     rigidBody = new Rigidbody(this);
     rigidBody->SetGround(false);
@@ -35,9 +37,10 @@ void Enemy::TakeDamage()
 
 void Enemy::OnDead()
 {
+    if (currentStatus.hp == 0)
+        fsm->ChangeState(EnemyStateType::Dead);
     /*SetDestory(true);
-
-
+    * 
     if (currentStatus.hp == 0)
         fsm->ChangeState(EnemyStateType::Dead);*/
 }

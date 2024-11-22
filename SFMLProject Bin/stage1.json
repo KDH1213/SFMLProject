@@ -1343,6 +1343,29 @@
                 },
                 "sortingOrder": 0
             }
+        },
+        {
+            "enemyType": 0,
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 7,
+                "name": "KoopaTroopa",
+                "origin": {
+                    "x": 8.0,
+                    "y": 12.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 6880.0,
+                    "y": 475.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "sortingOrder": 0
+            }
         }
     ],
     "enemySpawnerSaveDatas": [],

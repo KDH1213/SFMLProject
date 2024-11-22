@@ -54,9 +54,10 @@ void Goomba::OnCollisionEnter(Collider* target)
 
 		if (rect.topPosition > targetRect.bottomPosition - prevPositionY)
 		{
+			OnJumpDead();
 			TakeDamage();
 			player->GetRigidbody()->ResetDropSpeed();
-			player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x, -250.f });
+			player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x, -350.f });
 		}
 		else if (rect.bottomPosition < targetRect.topPosition - prevPositionY)
 			player->TakeDamage();

@@ -119,6 +119,7 @@ void FireBullet::OnCollisionEnter(Collider* target)
 	else if (target->GetColliderLayer() == ColliderLayer::Enemy)
 	{
 		SetDestory(true);
+		((Enemy*)target->GetOwner())->SetHitDirection(moveDirection);
 		((Enemy*)target->GetOwner())->TakeDamage();
 	}
 }

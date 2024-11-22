@@ -9,6 +9,7 @@
 #include "BrickBlockObject.h"
 #include "GameClearObject.h"
 #include "EnemySpawner.h"
+#include "KoopaTroopa.h"
 
 #include "SavePointObject.h"
 
@@ -149,6 +150,12 @@ void CreateObjectTool::OnEnemy()
 				if (currentIndex == 0)
 				{
 					enemy = currentScene->AddGameObject(new Goomba, LayerType::Enemy);
+					enemy->Awake();
+					enemy->Start();
+				}
+				else if (currentIndex == 1)
+				{
+					enemy = currentScene->AddGameObject(new KoopaTroopa, LayerType::Enemy);
 					enemy->Awake();
 					enemy->Start();
 				}
