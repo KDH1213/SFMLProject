@@ -23,6 +23,7 @@ void SceneDev1::Enter()
 	TEXTURE_MANAGER.Load("tiles", "graphics/tiles.png");
 	TEXTURE_MANAGER.Load("tile_set", "graphics/tile_set.png");
 	TEXTURE_MANAGER.Load("mario_bros", "graphics/mario_bros.png");
+	TEXTURE_MANAGER.Load("font", "graphics/font.png");
 	ResourcesManager<sf::Font>::GetInstance().Load("DungGeunMo", "fonts/DungGeunMo.ttf", true);
 
 	//Player* testPlayer = AddGameObject(new Player("Player"),LayerType::Player);
@@ -65,8 +66,9 @@ void SceneDev1::Enter()
 	//MushRoomObject* mushroom = AddGameObject(new MushRoomObject, LayerType::Item);
 	//mushroom->SetPosition({ -250.f, -150.f });
 
-	InGameUIHub* uiHub = AddGameObject(new InGameUIHub("DungGeunMo", "UIHub"), LayerType::UI);
+	StartUIObject* startUIObject = AddGameObject(new StartUIObject(), LayerType::UI);
 
+	InGameUIHub* uiHub = AddGameObject(new InGameUIHub("DungGeunMo", "UIHub"), LayerType::UI);
 
 	BackgroundColorBox* background = AddGameObject(new BackgroundColorBox(), LayerType::Default);
 	background->SetScale({ 2000.f, 1300.f });
@@ -83,17 +85,19 @@ void SceneDev1::Enter()
 
 	CollisitionCheck();
 	
-	//if (GameManager::GetInstance().IsRestart())
-	//{
-	//	// GameManager::GetInstance().OnSavePoint();
+	if (GameManager::GetInstance().IsRestart())
+	{
+		// GameManager::GetInstance().OnSavePoint();
 
-	//}
-	//else
-	//{
-	//	Load(loadPath);
-	//	// SaveLoadManager::GetInstance().Load();
-	//	//GameManager::GetInstance().OnSavePoint();
-	//}
+	}
+	else
+	{
+		Load(loadPath);
+
+		GameManager::GetInstance().OnSavePoint(player->GetPosition());
+		// SaveLoadManager::GetInstance().Load();
+		//GameManager::GetInstance().OnSavePoint();
+	}
 	Scene::Enter();
 
 
@@ -103,6 +107,8 @@ void SceneDev1::Enter()
 	uiHub->GetTextGameObject("WorldUI")->SetString(GameManager::GetInstance().GetWorldName());
 
 	GameManager::GetInstance().GameStartInit();
+
+	// startUIObject->Start();
 }
 
 void SceneDev1::Exit()
@@ -275,7 +281,7 @@ void SceneDev1::Load(const std::string& loadPath)
 		WallCollisionObject* wall = new WallCollisionObject();
 		wall->LoadWallCollisionSaveData(data);
 		wall->Start();
-		AddGameObject(wall, wall->GetLayerType());
+		AddGameObject(wall, LayerType::Wall);
 	}
 
 	TileMapController* tileMapController = new TileMapController("");

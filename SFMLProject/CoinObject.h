@@ -3,6 +3,7 @@
 class CoinObject : public ItemObject
 {
 private:
+	//sf::sprite
 	bool isGetCoin;
 public:
 	void Start() override;

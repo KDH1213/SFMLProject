@@ -2,6 +2,18 @@
 #include "Scene.h"
 #include "Camera.h"
 #include "ImguiManger.h"
+#include "algorithm"
+#include "TileMap.h"
+
+struct DrawOrderComparer
+{
+	bool operator()(GameObject* a, GameObject* b) const
+	{
+		if (a->GetLayerType() != b->GetLayerType())
+			return a->GetLayerType() > b->GetLayerType();
+		return a->sortingOrder > b->sortingOrder;
+	}
+};
 
 Scene::Scene(const SceneIds id)
 	: id(id)
@@ -115,8 +127,7 @@ void Scene::Update(float deltaTime)
 			{
 				if (!(*iter)->IsActive())
 					continue;
-				if ((cameraSize.x + (*iter)->GetScale().x) * 0.5f > abs(cameraPosition.x - (*iter)->GetPosition().x)
-					&& (cameraSize.y + (*iter)->GetScale().y) * 0.5f > abs(cameraPosition.y - (*iter)->GetPosition().y))
+				if ((cameraSize.x + (*iter)->GetScale().x) * 0.5f + 1000.f > abs(cameraPosition.x - (*iter)->GetPosition().x))
 					(*iter)->Update(deltaTime);
 
 				++iter;
@@ -227,11 +238,30 @@ void Scene::Render(sf::RenderWindow& window)
 	else
 	{
 		WindowManager::GetInstance().GetRenderWindow()->setView(mainCamera->GetView());
+		const sf::Vector2f& cameraPosition = mainCamera->GetCameraPosition();
+		auto cameraSize = mainCamera->GetView().getSize();
 
-		for (int i = 0; i < (int)LayerType::UI; ++i)
+		for (auto& object : gameObjectVectors[0])
 		{
-			const sf::Vector2f& cameraPosition = mainCamera->GetCameraPosition();
-			auto cameraSize = mainCamera->GetView().getSize();
+			if (!object->IsActive())
+				continue;
+			if ((cameraSize.x + object->GetScale().x) * 0.5f > abs(cameraPosition.x - object->GetPosition().x)
+				&& (cameraSize.y + object->GetScale().y) * 0.5f > abs(cameraPosition.y - object->GetPosition().y))
+				object->Render(window);
+		}
+
+		for (auto& object : gameObjectVectors[(int)LayerType::TileMap])
+		{
+			if (!object->IsActive())
+				continue;
+			TileMap* tileMap = ((TileMap*)object);
+			if ((cameraSize.x + tileMap->GetRealScale().x) * 0.5f > abs(cameraPosition.x - tileMap->GetRealPosition().x)
+				&& (cameraSize.y + tileMap->GetRealScale().y) * 0.5f > abs(cameraPosition.y - tileMap->GetRealPosition().y))
+				object->Render(window);
+		}
+
+		for (int i = (int)LayerType::Wall; i < (int)LayerType::UI; ++i)
+		{
 			for (auto& object : gameObjectVectors[i])
 			{
 				if (!object->IsActive())
@@ -242,16 +272,17 @@ void Scene::Render(sf::RenderWindow& window)
 			}
 		}
 	}
-	
+
 	WindowManager::GetInstance().GetRenderWindow()->setView(uICamera->GetView());
 
 	for (int i = (int)LayerType::UI; i < (int)LayerType::End; ++i)
 	{
+		std::sort(gameObjectVectors[i].begin(), gameObjectVectors[i].end(), DrawOrderComparer());
+
 		for (auto& object : gameObjectVectors[i])
 		{
 			if (!object->IsActive())
 				continue;
-
 			object->Render(window);
 		}
 	}

@@ -35,20 +35,20 @@ void TitleScene::Enter()
 	background->SetColor(sf::Color(85, 151, 248));
 
 
-	RectSpriteGameObject* titleSprite = AddGameObject(new RectSpriteGameObject({ 1, 60, 176, 88 }, "title_screen", "TitleSprite"), LayerType::UI);
+	RectSpriteGameObject* titleSprite = AddGameObject(new RectSpriteGameObject({ 1, 60, 176, 88 }, "title_screen", "TitleSprite"), LayerType::InGameUI);
 	titleSprite->SetPosition({ resolutionSize.x * 0.5f , resolutionSize.y * 0.3f });
 	titleSprite->SetScale(sf::Vector2f::one * 5.f);
 
 	MouseObject* mouse = AddGameObject(new MouseObject(), LayerType::UI);
 
-	TextButton* button = AddGameObject(new TextButton("DungGeunMo", "Start Button", 100), LayerType::UI);
+	TextButton* button = AddGameObject(new TextButton("DungGeunMo", "Start Button", 100), LayerType::InGameUI);
 	button->SetOrigin(Origins::MiddleCenter);
 	button->SetPosition({ resolutionSize.x * 0.5f , resolutionSize.y * 0.6f });
 	button->SetString("Start Button");
 	button->SetButtonClickEvent(std::bind(&FadeOutUI::StartFadeOut, fadeOutUI));
 	button->GetCollider()->SetOffsetPosition({ 0.f, 50.f });
 
-	TextButton* endButton = AddGameObject(new TextButton("DungGeunMo", "End Button", 100), LayerType::UI);
+	TextButton* endButton = AddGameObject(new TextButton("DungGeunMo", "End Button", 100), LayerType::InGameUI);
 	endButton->SetOrigin(Origins::MiddleCenter);
 	endButton->SetPosition({ resolutionSize.x * 0.5f , resolutionSize.y * 0.75f });
 	endButton->SetString("End Button");

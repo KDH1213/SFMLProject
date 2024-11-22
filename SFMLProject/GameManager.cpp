@@ -6,7 +6,7 @@
 
 GameManager::GameManager()
 	: isRestart(false)
-	, currentTimer(300.f)
+	, currentTimer(400.f)
 	, currentScore(0)
 	, life(3)
 	, restartPath("temporaryStorage.json")
@@ -17,6 +17,7 @@ GameManager::GameManager()
 	, coinUI(nullptr)
 	, timerUI(nullptr)
 	, scoreString("000000")
+	, highscore(0)
 {
 	  
 }

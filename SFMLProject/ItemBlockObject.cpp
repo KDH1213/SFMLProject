@@ -160,6 +160,7 @@ void ItemBlockObject::OnCollisionEnter(Collider* target)
 					if (target->GetColliderLayer() == ColliderLayer::Enemy)
 					{
 						Enemy* enemy = (Enemy*)target->GetOwner();
+						enemy->SetHitDirection(enemy->GetPosition().x < position.x ? sf::Vector2f::left : sf::Vector2f::right);
 						enemy->TakeDamage();
 					}
 				}

@@ -90,13 +90,15 @@ void BrickBlockObject::OnCollisionEnter(Collider* target)
 			{
 				Enemy* enemy = dynamic_cast<Enemy*>(target);
 				if (enemy != nullptr)
+				{
+					enemy->SetHitDirection(enemy->GetPosition().x < position.x ? sf::Vector2f::left : sf::Vector2f::right);
 					enemy->TakeDamage();
+				}
 			}
 			if (player->GetCurrentHP() == 1)
 				OnHitMove();
 			else
 				SetDestory(true);
-
 		}
 	}
 }

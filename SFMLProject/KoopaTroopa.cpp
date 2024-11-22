@@ -62,7 +62,8 @@ void KoopaTroopa::OnCollisionEnter(Collider* target)
 			{
 				fsm->ChangeState(EnemyStateType::Groggy);
 				player->GetRigidbody()->ResetDropSpeed();
-				player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x, -250.f });
+				player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x, -350.f });
+				player->GetFSM().ChangeState(PlayerStateType::Jump);
 
 			}
 			else if (rect.bottomPosition < targetRect.topPosition - prevPositionY)
@@ -111,7 +112,8 @@ void KoopaTroopa::OnCollisionEnter(Collider* target)
 				fsm->ChangeState(EnemyStateType::Move);
 
 				player->GetRigidbody()->ResetDropSpeed();
-				player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x, -250.f });
+				player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x, -350.f });
+				player->GetFSM().ChangeState(PlayerStateType::Jump);
 
 			}
 			else if (rect.bottomPosition < targetRect.topPosition - prevPositionY)

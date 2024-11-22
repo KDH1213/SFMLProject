@@ -14,6 +14,7 @@
 
 // 자료구조
 #include <unordered_map>
+#include <queue>
 #include <cassert>
 
 // SFML

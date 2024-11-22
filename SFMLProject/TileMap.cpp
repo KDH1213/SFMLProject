@@ -26,17 +26,14 @@ void TileMap::SetScale(const sf::Vector2f& s)
 	scale = s;
 	UpdateTransform();
 }
-
-sf::Vector2f TileMap::GetScale() const
+sf::Vector2f TileMap::GetRealScale() const
 {
 	return realSize;
 }
-
-sf::Vector2f TileMap::GetPosition() const
+sf::Vector2f TileMap::GetRealPosition() const
 {
 	return realPosition;
 }
-
 void TileMap::SetOrigin(Origins preset)
 {
 	originPreset = preset;
@@ -315,6 +312,7 @@ bool TileMap::LoadCsv(const std::string& filePath)
 	}
 
 	UpdateTransform();
+	Start();
 
 	return true;
 }

@@ -17,7 +17,7 @@ void SceneManager::Init()
 	}
 
 	currentScene = startScene;
-	currentScene = SceneIds::SceneDev1;
+	currentScene = SceneIds::TitleScene;
 	sceneVec[(int)currentScene]->Enter();
 }
 

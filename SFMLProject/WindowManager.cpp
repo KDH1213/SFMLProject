@@ -13,5 +13,9 @@ void WindowManager::init(const sf::Vector2u size, const std::string& title)
 
 	sf::VideoMode videoMode(resolutionSize.x, resolutionSize.y);
 	renderWindow = new sf::RenderWindow(videoMode, titleName);
-	// renderWindow->setFramerateLimit(300);
+#ifdef DEBUG
+#else
+	renderWindow->setFramerateLimit(300);
+#endif 
+
 }

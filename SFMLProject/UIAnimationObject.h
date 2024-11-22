@@ -27,4 +27,3 @@ public:
 	virtual ~UIAnimationObject() = default;
 	UIAnimationObject& operator= (const UIAnimationObject& other) = delete;
 };
-

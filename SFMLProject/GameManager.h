@@ -42,10 +42,13 @@ public:
 	void HaveCoin();
 
 	const std::string& GetWorldName() { return worldName; }
+	
 
 	void SetTimerUI(UITextGameObject* ui) { timerUI = ui; }
 	void SetCoinUI(UITextGameObject* ui) { coinUI = ui; }
 	void SetScoreUI(UITextGameObject* ui) { scoreUI = ui; }
+
+	int GetCurrentLife() { return life; }
 
 public:
 	void Update(float dt);

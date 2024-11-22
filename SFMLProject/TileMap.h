@@ -21,8 +21,8 @@ public:
 	void SetPosition(const sf::Vector2f& pos) override;
 	void SetRotation(float angle) override;
 	void SetScale(const sf::Vector2f& scale) override;
-	sf::Vector2f GetScale() const override;
-	sf::Vector2f GetPosition() const override;
+	sf::Vector2f GetRealScale() const;
+	sf::Vector2f GetRealPosition() const;
 
 	void SetOrigin(Origins preset) override;
 	void SetOrigin(const sf::Vector2f& newOrigin) override;

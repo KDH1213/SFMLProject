@@ -25,7 +25,6 @@ private:
     bool                        isAtlasTextrue;
 
 public:
-    void Init() override;
     void Update() override;
 
     void TextureLoad();

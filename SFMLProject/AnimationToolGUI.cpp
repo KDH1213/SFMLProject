@@ -27,11 +27,6 @@ AnimationToolGUI::~AnimationToolGUI()
 {
 }
 
-
-void AnimationToolGUI::Init()
-{
-}
-
 void AnimationToolGUI::Update()
 {
     bool b = true;

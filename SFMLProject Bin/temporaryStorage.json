@@ -12,6 +12,108 @@
                 },
                 "originPreset": 4,
                 "position": {
+                    "x": 1568.0,
+                    "y": 288.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "sortingOrder": 0
+            },
+            "rectSize": {
+                "x": 64.0,
+                "y": 64.0
+            },
+            "textureID": "tiles",
+            "textureUVRect": {
+                "height": 16,
+                "left": 16,
+                "top": 0,
+                "width": 16
+            }
+        },
+        {
+            "blockType": 2,
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 4,
+                "name": "BrickBlock",
+                "origin": {
+                    "x": 32.0,
+                    "y": 32.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 1440.0,
+                    "y": 288.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "sortingOrder": 0
+            },
+            "rectSize": {
+                "x": 64.0,
+                "y": 64.0
+            },
+            "textureID": "tiles",
+            "textureUVRect": {
+                "height": 16,
+                "left": 16,
+                "top": 0,
+                "width": 16
+            }
+        },
+        {
+            "blockType": 2,
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 4,
+                "name": "BrickBlock",
+                "origin": {
+                    "x": 32.0,
+                    "y": 32.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 1312.0,
+                    "y": 288.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "sortingOrder": 0
+            },
+            "rectSize": {
+                "x": 64.0,
+                "y": 64.0
+            },
+            "textureID": "tiles",
+            "textureUVRect": {
+                "height": 16,
+                "left": 16,
+                "top": 0,
+                "width": 16
+            }
+        },
+        {
+            "blockType": 2,
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 4,
+                "name": "BrickBlock",
+                "origin": {
+                    "x": 32.0,
+                    "y": 32.0
+                },
+                "originPreset": 4,
+                "position": {
                     "x": 4960.0,
                     "y": 288.0
                 },
@@ -919,6 +1021,393 @@
             }
         }
     ],
+    "enemySaveDatas": [
+        {
+            "enemyType": 0,
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 7,
+                "name": "Goomba",
+                "origin": {
+                    "x": 8.0,
+                    "y": 8.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 1440.60693359375,
+                    "y": 475.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "enemyType": 0,
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 7,
+                "name": "Goomba",
+                "origin": {
+                    "x": 8.0,
+                    "y": 8.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 2764.08056640625,
+                    "y": 475.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "enemyType": 0,
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 7,
+                "name": "Goomba",
+                "origin": {
+                    "x": 8.0,
+                    "y": 8.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 3310.8388671875,
+                    "y": 475.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "enemyType": 0,
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 7,
+                "name": "Goomba",
+                "origin": {
+                    "x": 8.0,
+                    "y": 8.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 3424.8388671875,
+                    "y": 475.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "enemyType": 0,
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 7,
+                "name": "Goomba",
+                "origin": {
+                    "x": 8.0,
+                    "y": 8.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 5410.869140625,
+                    "y": -35.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "enemyType": 0,
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 7,
+                "name": "Goomba",
+                "origin": {
+                    "x": 8.0,
+                    "y": 8.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 5521.662109375,
+                    "y": -35.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "enemyType": 0,
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 7,
+                "name": "Goomba",
+                "origin": {
+                    "x": 8.0,
+                    "y": 8.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 6496.0,
+                    "y": 475.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "enemyType": 0,
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 7,
+                "name": "Goomba",
+                "origin": {
+                    "x": 8.0,
+                    "y": 8.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 6564.0,
+                    "y": 475.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "enemyType": 0,
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 7,
+                "name": "Goomba",
+                "origin": {
+                    "x": 8.0,
+                    "y": 8.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 7456.0,
+                    "y": 475.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "enemyType": 0,
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 7,
+                "name": "Goomba",
+                "origin": {
+                    "x": 8.0,
+                    "y": 8.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 7388.0,
+                    "y": 475.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "enemyType": 0,
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 7,
+                "name": "Goomba",
+                "origin": {
+                    "x": 8.0,
+                    "y": 8.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 8028.0,
+                    "y": 475.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "enemyType": 0,
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 7,
+                "name": "Goomba",
+                "origin": {
+                    "x": 8.0,
+                    "y": 8.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 8096.0,
+                    "y": 475.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "enemyType": 0,
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 7,
+                "name": "Goomba",
+                "origin": {
+                    "x": 8.0,
+                    "y": 8.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 11352.0,
+                    "y": 475.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "enemyType": 0,
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 7,
+                "name": "Goomba",
+                "origin": {
+                    "x": 8.0,
+                    "y": 8.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 11420.0,
+                    "y": 475.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "sortingOrder": 0
+            }
+        },
+        {
+            "enemyType": 0,
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 7,
+                "name": "KoopaTroopa",
+                "origin": {
+                    "x": 8.0,
+                    "y": 8.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 6880.0,
+                    "y": 475.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "sortingOrder": 0
+            }
+        }
+    ],
+    "enemySpawnerSaveDatas": [],
+    "gameClearSaveDatas": [
+        {
+            "destinationPosition": {
+                "x": 12705.0,
+                "y": 380.0
+            },
+            "endMovePosition": {
+                "x": 13084.0,
+                "y": 440.0
+            },
+            "endMoveTime": 3.0,
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 10,
+                "name": "GameClearPoint",
+                "origin": {
+                    "x": 5.0,
+                    "y": 1000.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 12705.0,
+                    "y": 0.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 10.0,
+                    "y": 2000.0
+                },
+                "sortingOrder": 0
+            },
+            "maxStartPosition": {
+                "x": 12705.0,
+                "y": -135.0
+            },
+            "moveTime": 1.0
+        }
+    ],
+    "highscore": 0,
     "itemBlockSaveDatas": [
         {
             "blockSaveData": {
@@ -981,7 +1470,7 @@
                 },
                 "sortingOrder": 0
             },
-            "itemCount": 0,
+            "itemCount": 1,
             "itemType": 1
         },
         {
@@ -1173,7 +1662,7 @@
                 },
                 "sortingOrder": 0
             },
-            "itemCount": 0,
+            "itemCount": 1,
             "itemType": 0
         },
         {
@@ -1764,8 +2253,8 @@
             },
             "originPreset": 4,
             "position": {
-                "x": 3245.328125,
-                "y": 16.74605941772461
+                "x": 250.0,
+                "y": 440.0
             },
             "rotation": 0.0,
             "scale": {
@@ -1782,6 +2271,7 @@
             "speed": 500.0
         }
     },
+    "savePointSaveDatas": [],
     "tileMapSaveData": {
         "cellCount": {
             "x": 30,
@@ -1817,12 +2307,12 @@
             "y": 16
         }
     },
-    "version": 1,
+    "version": 2,
     "wallCollisionSaveDatas": [
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall2",
                 "origin": {
                     "x": 0.0,
@@ -1844,7 +2334,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall3",
                 "origin": {
                     "x": 0.0,
@@ -1866,7 +2356,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall4",
                 "origin": {
                     "x": 0.0,
@@ -1888,7 +2378,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall5",
                 "origin": {
                     "x": 0.0,
@@ -1910,7 +2400,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall7",
                 "origin": {
                     "x": 0.0,
@@ -1932,7 +2422,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall8",
                 "origin": {
                     "x": 0.0,
@@ -1954,7 +2444,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall12",
                 "origin": {
                     "x": 0.0,
@@ -1976,7 +2466,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall13",
                 "origin": {
                     "x": 0.0,
@@ -1998,7 +2488,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall14",
                 "origin": {
                     "x": 0.0,
@@ -2020,7 +2510,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall16",
                 "origin": {
                     "x": 0.0,
@@ -2042,7 +2532,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall17",
                 "origin": {
                     "x": 0.0,
@@ -2064,7 +2554,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall18",
                 "origin": {
                     "x": 0.0,
@@ -2086,7 +2576,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall19",
                 "origin": {
                     "x": 0.0,
@@ -2108,7 +2598,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall20",
                 "origin": {
                     "x": 0.0,
@@ -2130,7 +2620,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall21",
                 "origin": {
                     "x": 0.0,
@@ -2152,7 +2642,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall22",
                 "origin": {
                     "x": 0.0,
@@ -2174,7 +2664,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall23",
                 "origin": {
                     "x": 0.0,
@@ -2196,7 +2686,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall24",
                 "origin": {
                     "x": 0.0,
@@ -2218,7 +2708,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall25",
                 "origin": {
                     "x": 0.0,
@@ -2240,7 +2730,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall26",
                 "origin": {
                     "x": 0.0,
@@ -2262,7 +2752,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall27",
                 "origin": {
                     "x": 0.0,
@@ -2284,7 +2774,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall28",
                 "origin": {
                     "x": 0.0,
@@ -2306,7 +2796,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall29",
                 "origin": {
                     "x": 0.0,
@@ -2328,7 +2818,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall30",
                 "origin": {
                     "x": 0.0,
@@ -2350,7 +2840,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall31",
                 "origin": {
                     "x": 0.0,
@@ -2372,7 +2862,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall32",
                 "origin": {
                     "x": 0.0,
@@ -2394,7 +2884,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall33",
                 "origin": {
                     "x": 0.0,
@@ -2416,7 +2906,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall30",
                 "origin": {
                     "x": 0.0,
@@ -2438,7 +2928,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall31",
                 "origin": {
                     "x": 0.0,
@@ -2460,7 +2950,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall32",
                 "origin": {
                     "x": 0.0,
@@ -2482,7 +2972,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall33",
                 "origin": {
                     "x": 0.0,
@@ -2504,7 +2994,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall34",
                 "origin": {
                     "x": 0.0,
@@ -2526,7 +3016,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall35",
                 "origin": {
                     "x": 0.0,
@@ -2548,7 +3038,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall36",
                 "origin": {
                     "x": 0.0,
@@ -2570,7 +3060,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall38",
                 "origin": {
                     "x": 0.0,
@@ -2592,7 +3082,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall38",
                 "origin": {
                     "x": 0.0,
