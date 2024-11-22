@@ -100,8 +100,11 @@ void Scene::Exit()
 void Scene::Update(float deltaTime)
 {
 
-	for (int i = 0; i < (int)LayerType::End; ++i)
+	for (int i = 0; i < (int)LayerType::UI; ++i)
 	{
+		const sf::Vector2f& cameraPosition = mainCamera->GetCameraPosition();
+		auto cameraSize = mainCamera->GetView().getSize();
+
 		for (auto iter = gameObjectVectors[i].begin(); iter != gameObjectVectors[i].end();)
 		{
 			if ((*iter)->GetDestory())
@@ -112,13 +115,41 @@ void Scene::Update(float deltaTime)
 			{
 				if (!(*iter)->IsActive())
 					continue;
+				if ((cameraSize.x + (*iter)->GetScale().x) * 0.5f > abs(cameraPosition.x - (*iter)->GetPosition().x)
+					&& (cameraSize.y + (*iter)->GetScale().y) * 0.5f > abs(cameraPosition.y - (*iter)->GetPosition().y))
+					(*iter)->Update(deltaTime);
 
+				++iter;
+			}
+		}
+	}
+
+	for (int i = (int)LayerType::UI; i < (int)LayerType::End; ++i)
+	{
+		for (auto iter = gameObjectVectors[i].begin(); iter != gameObjectVectors[i].end();)
+		{
+			for (auto& object : gameObjectVectors[i])
+			{
+				if (!object->IsActive())
+					continue;
+
+			}
+
+			if ((*iter)->GetDestory())
+			{
+				iter = gameObjectVectors[i].erase(iter);
+			}
+			else
+			{
+				if (!(*iter)->IsActive())
+					continue;
 				(*iter)->Update(deltaTime);
 
 				++iter;
 			}
 		}
 	}
+
 
 	if (InputManager::GetInstance().GetKeyUp(sf::Keyboard::F2))
 	{
@@ -189,9 +220,7 @@ void Scene::Render(sf::RenderWindow& window)
 				if (!object->IsActive())
 					continue;
 
-				object->Render(window);
-				/*if ((cameraSize.x + object->GetScale().x) * 0.5f > abs(cameraPosition.x - object->GetPosition().x)
-					&& (cameraSize.y + object->GetScale().y) * 0.5f > abs(cameraPosition.y - object->GetPosition().y))*/				
+				object->Render(window);			
 			}
 		}
 	}
@@ -201,13 +230,12 @@ void Scene::Render(sf::RenderWindow& window)
 
 		for (int i = 0; i < (int)LayerType::UI; ++i)
 		{
-			const sf::Vector2f& cameraPosition = freeCamera->GetCameraPosition();
-			auto cameraSize = freeCamera->GetView().getSize();
+			const sf::Vector2f& cameraPosition = mainCamera->GetCameraPosition();
+			auto cameraSize = mainCamera->GetView().getSize();
 			for (auto& object : gameObjectVectors[i])
 			{
 				if (!object->IsActive())
 					continue;
-				object->Render(window);
 				if ((cameraSize.x + object->GetScale().x) * 0.5f > abs(cameraPosition.x - object->GetPosition().x)
 					&& (cameraSize.y + object->GetScale().y) * 0.5f > abs(cameraPosition.y - object->GetPosition().y))
 					object->Render(window);

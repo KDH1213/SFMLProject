@@ -46,7 +46,7 @@ public:
 	virtual void SetRotation(float angle);
 	virtual float GetRotation() { return rotation; }
 
-	sf::Vector2f GetPosition() const { return position; }
+	virtual sf::Vector2f GetPosition() const { return position; }
 	virtual void SetPosition(const sf::Vector2f& pos);
 
 	sf::Vector2f GetOrigin() const { return origin; }
