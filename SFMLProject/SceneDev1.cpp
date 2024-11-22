@@ -79,21 +79,21 @@ void SceneDev1::Enter()
 	gameClearObject->SetMaxStartPosition({ 800.f, -440 });
 	gameClearObject->SetEndMovePosition({ 1700.f, 440 });*/
 
-	SavePointObject* savePoint = AddGameObject(new SavePointObject(), LayerType::Default);
+	// SavePointObject* savePoint = AddGameObject(new SavePointObject(), LayerType::Default);
 
 	CollisitionCheck();
 	
-	if (GameManager::GetInstance().IsRestart())
-	{
-		// GameManager::GetInstance().OnSavePoint();
+	//if (GameManager::GetInstance().IsRestart())
+	//{
+	//	// GameManager::GetInstance().OnSavePoint();
 
-	}
-	else
-	{
-		Load(loadPath);
-		// SaveLoadManager::GetInstance().Load();
-		//GameManager::GetInstance().OnSavePoint();
-	}
+	//}
+	//else
+	//{
+	//	Load(loadPath);
+	//	// SaveLoadManager::GetInstance().Load();
+	//	//GameManager::GetInstance().OnSavePoint();
+	//}
 	Scene::Enter();
 
 
@@ -195,20 +195,20 @@ void SceneDev1::Save(const std::string& savePath)
 			}
 
 			auto gameClearObject = dynamic_cast<GameClearObject*>(gameObject);
-			if (savePoint != nullptr)
+			if (gameClearObject != nullptr)
 			{
 				data.gameClearSaveDatas.push_back(gameClearObject->GetGameClearSaveData());
 				continue;
 			}
 
 			auto enemy = dynamic_cast<Enemy*>(gameObject);
-			if (savePoint != nullptr)
+			if (enemy != nullptr)
 			{
 				data.enemySaveDatas.push_back(enemy->GetEnemySaveData());
 				continue;
 			}
 			auto enemySpawner = dynamic_cast<EnemySpawner*>(gameObject);
-			if (savePoint != nullptr)
+			if (enemySpawner != nullptr)
 			{
 				data.enemySpawnerSaveDatas.push_back(enemySpawner->GetEnemySpawnerSaveData());
 				continue;

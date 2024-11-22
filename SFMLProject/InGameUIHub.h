@@ -21,6 +21,8 @@ protected:
 	UICoinObject*		coinAnimationUI;
 	std::string			fontId;
 
+
+
 private:
 	void PushBackObject();
 

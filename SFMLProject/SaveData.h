@@ -52,7 +52,19 @@ public:
 	NLOHMANN_DEFINE_TYPE_INTRUSIVE(SaveDataV2, version, playerData, blockSaveDatas, itemBlockSaveDatas
 		, wallCollisionSaveDatas, tileMapSaveData, savePointSaveDatas, gameClearSaveDatas, enemySaveDatas, enemySpawnerSaveDatas, highscore);
 public:
-	SaveDataV2() { version = 2; }
+	SaveDataV2() : 
+		highscore(0)
+	{ version = 2; }
+	SaveDataV2(const SaveDataV1& other) :
+		highscore(0)
+	{
+		version = 2;
+		playerData = std::move(other.playerData);
+		blockSaveDatas = std::move(other.blockSaveDatas);
+		itemBlockSaveDatas = std::move(other.itemBlockSaveDatas);
+		wallCollisionSaveDatas = std::move(other.wallCollisionSaveDatas);
+		tileMapSaveData = std::move(other.tileMapSaveData);
+	}
 };
 
 

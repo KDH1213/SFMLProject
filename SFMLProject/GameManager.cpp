@@ -16,6 +16,7 @@ GameManager::GameManager()
 	, scoreUI(nullptr)
 	, coinUI(nullptr)
 	, timerUI(nullptr)
+	, scoreString("000000")
 {
 	  
 }
@@ -50,9 +51,23 @@ void GameManager::OnSavePoint(const sf::Vector2f& restartPos)
 
 void GameManager::GameStartInit()
 {
-	coinUI->SetString(std::to_string(currentCoinCount));
+	if (currentCoinCount < 10)
+		coinString = "0" + std::to_string(currentCoinCount);
+	else
+		coinString = std::to_string(currentCoinCount);
+
+	std::string score = std::to_string(currentScore);
+	int size = (int)score.size() - 1;
+	for (int i = 5; i > 0 ; --i)
+	{
+		scoreString[i] = score[size--];
+		if (size < 0)
+			break;
+	}
+
+	coinUI->SetString(coinString);
 	timerUI->SetString(std::to_string((int)currentTimer));
-	scoreUI->SetString(std::to_string(currentScore));
+	scoreUI->SetString(scoreString);
 }
 
 void GameManager::ReStart()
@@ -78,12 +93,27 @@ void GameManager::HaveCoin()
 	++currentCoinCount;
 	currentScore += 1000;
 
-	coinUI->SetString(std::to_string(currentCoinCount));
-	scoreUI->SetString(std::to_string(currentScore));
-
 	if (currentCoinCount >= 100)
 	{
 		++life;
 		currentCoinCount -= 100;
 	}
+
+	if (currentCoinCount < 10)
+		coinString = "0" + std::to_string(currentCoinCount);
+	else
+		coinString = std::to_string(currentCoinCount);
+
+	std::string score = std::to_string(currentScore);
+	int size = (int)score.size() - 1;
+	for (int i = 5; i > 0; --i)
+	{
+		scoreString[i] = score[size--];
+		if (size < 0)
+			break;
+	}
+
+	coinUI->SetString(coinString);
+	scoreUI->SetString(scoreString);
+
 }

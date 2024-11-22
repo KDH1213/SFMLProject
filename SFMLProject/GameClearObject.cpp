@@ -71,6 +71,7 @@ void GameClearObject::StartMove()
 
 	if (currentTime >= 1.f)
 	{
+		startPosition = currentPos;
 		player->GetAnimator()->GetCurrentAnimation()->Stop();
 		currentTime = 1.f;
 		// isStartClearEvent = false;
@@ -112,6 +113,7 @@ void GameClearObject::Move()
 		player->OnFlipX();
 		isStartMove = true;
 		currentEndMoveTime = 0.f;
+		startPosition = player->GetPosition();
 	}
 	else
 	{

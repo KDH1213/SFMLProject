@@ -29,17 +29,8 @@ void SceneDev2::CollisitionCheck()
 
 void SceneDev2::Init()
 {
-	/*GameObject* obj = AddGameObject(new SpriteGameObject("Player"), RenderLayer::Default);
-
-
-	obj->SetOrigin(Origins::MiddleCenter);
-	obj->SetPosition({ 1920.f * 0.5f, 1080 * 0.5f });
-
-	obj = AddGameObject(new UITextGameObject("KOMIKAP", "", 100), RenderLayer::Default);
-	obj->SetOrigin(Origins::TopLeft);
-	obj->SetPosition({ });
-	((UITextGameObject*)obj)->SetString("SceneDev1");*/
-
+	cameraLimitRect = { 0.f,13440.f,-500.f, 700.f };
+	currentCameraLimitRect = cameraLimitRect;
 
 	Scene::Init();
 }
@@ -147,9 +138,6 @@ void SceneDev2::Release()
 void SceneDev2::Update(float dt)
 {
 	Scene::Update(dt);
-
-	/*if (InputManager::GetInstance().GetKeyUp(sf::Keyboard::Space))
-		SCENE_MANAGER.ChangeScene(SceneIds::SceneDev2);*/
 }
 
 void SceneDev2::Render(sf::RenderWindow& window)
@@ -159,14 +147,203 @@ void SceneDev2::Render(sf::RenderWindow& window)
 
 void SceneDev2::Save(const std::string& savePath)
 {
+	SaveDataVC data;
+
+	data.playerData = ((Player*)FindGameObject("Player"))->GetPlayerSaveData();
+
+	for (auto& gameObjects : gameObjectVectors)
+	{
+		for (auto& gameObject : gameObjects)
+		{
+			auto tileMapController = dynamic_cast<TileMapController*>(gameObject);
+			if (tileMapController != nullptr)
+			{
+				data.tileMapSaveData = tileMapController->GetTileMapSaveData();
+				continue;
+			}
+
+			auto wallCollision = dynamic_cast<WallCollisionObject*>(gameObject);
+			if (wallCollision != nullptr)
+			{
+				data.wallCollisionSaveDatas.push_back(wallCollision->GetWallCollisionSaveData());
+				continue;
+			}
+
+			auto blockObject = dynamic_cast<BlockObject*>(gameObject);
+			if (blockObject != nullptr)
+			{
+
+				if (blockObject->GetBlockType() == BlockType::Item || blockObject->GetBlockType() == BlockType::ItemBrick)
+				{
+					data.itemBlockSaveDatas.push_back(((ItemBlockObject*)blockObject)->GetItemBlockSaveData());
+				}
+				else
+				{
+					data.blockSaveDatas.push_back(blockObject->GetBlockSaveDate());
+				}
+				continue;
+			}
+
+			auto savePoint = dynamic_cast<SavePointObject*>(gameObject);
+			if (savePoint != nullptr)
+			{
+				data.savePointSaveDatas.push_back(savePoint->GetSavePointSaveData());
+				continue;
+			}
+
+			auto gameClearObject = dynamic_cast<GameClearObject*>(gameObject);
+			if (savePoint != nullptr)
+			{
+				data.gameClearSaveDatas.push_back(gameClearObject->GetGameClearSaveData());
+				continue;
+			}
+
+			auto enemy = dynamic_cast<Enemy*>(gameObject);
+			if (savePoint != nullptr)
+			{
+				data.enemySaveDatas.push_back(enemy->GetEnemySaveData());
+				continue;
+			}
+			auto enemySpawner = dynamic_cast<EnemySpawner*>(gameObject);
+			if (savePoint != nullptr)
+			{
+				data.enemySpawnerSaveDatas.push_back(enemySpawner->GetEnemySpawnerSaveData());
+				continue;
+			}
+		}
+	}
+	SaveLoadManager::GetInstance().Save(data, savePath);
 }
 
 void SceneDev2::Load(const std::string& loadPath)
 {
+	SaveDataVC data = SaveLoadManager::GetInstance().Load(loadPath);
+
+	Player* player = new Player();
+	this->player = player;
+	player->LoadData(data.playerData);
+	player->Start();
+	AddGameObject(player, player->GetLayerType());
+
+	mainCamera->SetFollowTarget(player, true);
+	mainCamera->SetCameraLimitRect(cameraLimitRect, true);
+
+	for (const auto& data : data.blockSaveDatas)
+	{
+		BlockObject* newBlock = nullptr;
+		switch ((BlockType)data.blockType)
+		{
+		case BlockType::Default:
+		{
+			newBlock = new BlockObject(BlockType::Default, "");
+		}
+		break;
+		case BlockType::Brick:
+			newBlock = new BrickBlockObject("");
+			break;
+		case BlockType::Secret:
+			break;
+		case BlockType::ItemBrick:
+			// newBlock = new BrickBlockObject("");
+			break;
+		default:
+			break;
+		}
+
+		if (newBlock == nullptr)
+			continue;
+
+
+		newBlock->LoadBlockSaveData(data);
+		newBlock->Start();
+		AddGameObject(newBlock, newBlock->GetLayerType());
+	}
+
+	for (const auto& data : data.itemBlockSaveDatas)
+	{
+		ItemBlockObject* newBlock = new ItemBlockObject(ItemType::Coin, "", "");
+		newBlock->LoadItemBlockSaveData(data);
+		newBlock->Start();
+		AddGameObject(newBlock, newBlock->GetLayerType());
+	}
+
+	for (const auto& data : data.wallCollisionSaveDatas)
+	{
+		WallCollisionObject* wall = new WallCollisionObject();
+		wall->LoadWallCollisionSaveData(data);
+		wall->Start();
+		AddGameObject(wall, wall->GetLayerType());
+	}
+
+	TileMapController* tileMapController = new TileMapController("");
+	tileMapController->LoadTileMapSaveData(data.tileMapSaveData);
+	tileMapController->Start();
+	AddGameObject(tileMapController, tileMapController->GetLayerType());
+
+
+	for (const auto& data : data.savePointSaveDatas)
+	{
+		SavePointObject* savePointObject = new SavePointObject();
+		savePointObject->LoadSavePointSaveData(data);
+		savePointObject->Start();
+		AddGameObject(savePointObject, savePointObject->GetLayerType());
+	}
+
+	for (const auto& data : data.gameClearSaveDatas)
+	{
+		GameClearObject* gameClear = new GameClearObject();
+		gameClear->LoadGameClearSaveData(data);
+		gameClear->Start();
+		AddGameObject(gameClear, gameClear->GetLayerType());
+	}
+
+	for (const auto& data : data.enemySaveDatas)
+	{
+		switch ((EnemyType)data.enemyType)
+		{
+		case EnemyType::Goomba:
+		{
+			Goomba* enemy = new Goomba();
+			enemy->LoadEnemySaveData(data);
+			enemy->Start();
+			AddGameObject(enemy, enemy->GetLayerType());
+		}
+		break;
+		case EnemyType::KoopaTroopa:
+		{
+			KoopaTroopa* enemy = new KoopaTroopa();
+			enemy->LoadEnemySaveData(data);
+			enemy->Start();
+			AddGameObject(enemy, enemy->GetLayerType());
+		}
+		break;
+		case EnemyType::Koopa:
+		{
+			Koopa* enemy = new Koopa();
+			enemy->LoadEnemySaveData(data);
+			enemy->Start();
+			AddGameObject(enemy, enemy->GetLayerType());
+		}
+		break;
+		case EnemyType::End:
+			break;
+		default:
+			break;
+		}
+	}
+
+	for (const auto& data : data.enemySpawnerSaveDatas)
+	{
+		EnemySpawner* enemySpawner = new EnemySpawner();
+		enemySpawner->LoadEnemySpawnerSaveData(data);
+		enemySpawner->Start();
+		AddGameObject(enemySpawner, enemySpawner->GetLayerType());
+	}
 }
 
 SceneDev2::SceneDev2()
 	: Scene(SceneIds::SceneDev2)
+	, player(nullptr)
 {
 	savePath = "stage2.json";
 	loadPath = "stage2.json";

@@ -94,6 +94,13 @@ SaveDataVC SaveLoadManager::Load(const std::string& loadPath)
 	}
 	f.close();
 
+	while (saveData->version < 2)
+	{
+		SaveData* oldData = saveData;
+		saveData = saveData->VersionUp();
+		delete oldData;
+	}
+
 	SaveDataVC ret(*((SaveDataVC*)saveData));
 	delete saveData;
 

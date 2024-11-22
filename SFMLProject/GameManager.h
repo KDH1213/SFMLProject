@@ -16,6 +16,9 @@ private:
 	std::string		worldName;
 	sf::Vector2f	restartPosition;
 
+	std::string		coinString;
+	std::string		scoreString;
+
 	float			currentTimer;
 	unsigned int	currentCoinCount;
 	unsigned int	currentScore;

@@ -58,11 +58,11 @@ void InGameUIHub::Start()
     marioNameUI->SetPosition({ 100.f, 50.f });
 
     worldUI->SetPosition({ 1200.f, 85.f });
-    scoreUI->SetPosition({ 250.f, 100.f });
+    scoreUI->SetPosition({ 100.f, 80.f });
     timerUI->SetPosition({ 1660.f, 85.f });
     
-    coinUI->SetPosition({ 450.f, 50.f });
-    coinAnimationUI->SetPosition({ 400.f, 100.f });
+    coinUI->SetPosition({ 770.f, 55.f });
+    coinAnimationUI->SetPosition({ 700.f, 100.f });
 
     worldNameUI->SetOrigin(Origins::MiddleCenter);
     timeNameUI->SetOrigin(Origins::MiddleCenter);

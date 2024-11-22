@@ -40,7 +40,16 @@ void GameClearPointGUI::Update()
 		 destinationPosition.y = Pos[1];
 		 clearObject->SetDestinationPosition(destinationPosition);
 	 }
+	 sf::Vector2f endMovePosition = clearObject->GetEndMovePosition();
+	 float endMovePos[2] = { endMovePosition.x, endMovePosition.y };
 
+	 ImGui::Text("EndMovePosition"); ImGui::SameLine();
+	 if (ImGui::InputFloat2("##EndMovePosition", endMovePos))
+	 {
+		 endMovePosition.x = endMovePos[0];
+		 endMovePosition.y = endMovePos[1];
+		 clearObject->SetEndMovePosition(endMovePosition);
+	 }
 	ImGui::EndChild();
 }
 

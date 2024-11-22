@@ -1,8 +1,14 @@
 #pragma once
 #include "Scene.h"
 
+class Player;
+
 class SceneDev2 : public Scene
 {
+private:
+	Player* player;
+	Rectangle	cameraLimitRect;
+	Rectangle	currentCameraLimitRect;
 public:
 	void CollisitionCheck();
 
