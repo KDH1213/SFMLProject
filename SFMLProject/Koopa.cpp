@@ -60,7 +60,7 @@ void Koopa::Update(const float& deltaTime)
 {
 	Enemy::Update(deltaTime);
 
-	float distance = abs(player->GetPosition().x - position.x);
+	float distance = abs(abs(player->GetPosition().x) - abs(position.x));
 	if (distance < 400.f)
 	{
 		if (position.x < player->GetPosition().x)

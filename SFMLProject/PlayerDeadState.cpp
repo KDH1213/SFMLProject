@@ -22,7 +22,6 @@ void PlayerDeadState::Enter()
 	player->GetAnimator()->ChangeAnimation("marioDead", true, true);
 	TimeManager::GetInstance().SetTimeScale(0.f);
 
-	player->GetRigidbody()->SetVelocity({ 0.f, -1000.f });
 	player->GetRigidbody()->SetGround(false);
 	player->GetCollider()->SetActive(false);
 }
@@ -37,7 +36,10 @@ void PlayerDeadState::Update(float deltaTime)
 	currentWaitTime += TimeManager::GetInstance().GetUnScaleDeletaTime();
 
 	if (isWait && currentWaitTime >= waitTime)
+	{
+  		player->GetRigidbody()->SetVelocity({ 0.f, -1000.f });
 		isWait = !isWait;
+	}
 }
 
 void PlayerDeadState::FixedUpdate(float fixedDeltaTime)

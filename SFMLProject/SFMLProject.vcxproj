@@ -160,6 +160,7 @@
     <ClCompile Include="BlockObject.cpp" />
     <ClCompile Include="BlockSaveData.cpp" />
     <ClCompile Include="BrickBlockObject.cpp" />
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraManger.cpp" />
     <ClCompile Include="CoinObject.cpp" />
@@ -231,6 +232,7 @@
     <ClCompile Include="KeyAction.cpp" />
     <ClCompile Include="Koopa.cpp" />
     <ClCompile Include="KoopaAttackState.cpp" />
+    <ClCompile Include="KoopaFireBullet.cpp" />
     <ClCompile Include="KoopaFSM.cpp" />
     <ClCompile Include="KoopaIdleState.cpp" />
     <ClCompile Include="KoopaTroopa.cpp" />
@@ -314,6 +316,7 @@
     <ClInclude Include="BlockObject.h" />
     <ClInclude Include="BlockSaveData.h" />
     <ClInclude Include="BrickBlockObject.h" />
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraManger.h" />
     <ClInclude Include="CoinObject.h" />
@@ -372,6 +375,7 @@
     <ClInclude Include="KeyAction.h" />
     <ClInclude Include="Koopa.h" />
     <ClInclude Include="KoopaAttackState.h" />
+    <ClInclude Include="KoopaFireBullet.h" />
     <ClInclude Include="KoopaFSM.h" />
     <ClInclude Include="KoopaIdleState.h" />
     <ClInclude Include="KoopaTroopa.h" />

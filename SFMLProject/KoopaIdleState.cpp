@@ -28,6 +28,7 @@ void KoopaIdleState::Start()
 void KoopaIdleState::Enter()
 {
 	enemy->GetAnimator()->ChangeAnimation("koopaIdle", true);
+	currentAttackWaitTime = 0.f;
 
 	for (auto& startEvent : stateStartEvents)
 	{
@@ -50,5 +51,6 @@ void KoopaIdleState::Update(float deltaTime)
 	if (currentAttackWaitTime > attackWaitTime)
 	{
 		fsm->ChangeState(EnemyStateType::Attack);
+		currentAttackWaitTime = 0.f;
 	}
 }

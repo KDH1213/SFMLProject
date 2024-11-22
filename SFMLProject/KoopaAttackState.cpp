@@ -3,7 +3,7 @@
 #include "Rigidbody.h"
 #include "Animation.h"
 #include "Animator.h"
-#include "FireBullet.h"
+#include "KoopaFireBullet.h"
 
 KoopaAttackState::KoopaAttackState(EnemyFSM* fsm)
 	: EnemyBaseState(fsm, EnemyStateType::Attack)
@@ -18,21 +18,19 @@ KoopaAttackState::~KoopaAttackState()
 
 void KoopaAttackState::StartAttack()
 {
-	FireBullet* bullet = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new FireBullet(), LayerType::EnemyBullet);
+	KoopaFireBullet* bullet = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new KoopaFireBullet(), LayerType::EnemyBullet);
 
 	sf::Vector2f direciton;
 
-	if (enemy->IsFlipX())
+	if (!enemy->IsFlipX())
 	{
 		direciton = sf::Vector2f::left;
 		bullet->SetPosition(enemy->GetPosition() + sf::Vector2f::left * 3.f);
-		bullet->GetRigidbody()->SetVelocity({ -500.f, 0.f });
 	}
 	else
 	{
 		direciton = sf::Vector2f::right;
 		bullet->SetPosition(enemy->GetPosition() + sf::Vector2f::right * 3.f);
-		bullet->GetRigidbody()->SetVelocity({ 500.f, 0.f });
 	}
 
 	direciton.Normalized();

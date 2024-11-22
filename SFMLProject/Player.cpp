@@ -82,7 +82,7 @@ void Player::TakeDamage()
 		return;
 	}
 	else
-	{
+	{ 
 		fsm.ChangeState(PlayerStateType::Hit);
 		sprite.setColor(effectColor);
 	}

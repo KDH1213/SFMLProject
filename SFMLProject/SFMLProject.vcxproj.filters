@@ -220,9 +220,6 @@
     <Filter Include="Contants\UI">
       <UniqueIdentifier>{ee90e4bd-8f59-47c9-9add-c1e1e0a4129c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contants\Object\Player\Bullet">
-      <UniqueIdentifier>{93792c18-37bb-48ca-91dc-8ff4c8e807c2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Contants\0. Editor\Imgui\GUI\CompoentGUI\SavePoint">
       <UniqueIdentifier>{b5b7f332-e4e8-43d7-9461-fda75c0926d0}</UniqueIdentifier>
     </Filter>
@@ -246,6 +243,9 @@
     </Filter>
     <Filter Include="Contants\Object\Enemy\Koopa\State">
       <UniqueIdentifier>{16d5f5bb-8bb8-4bc5-8f9b-a5752e09696c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contants\Object\Bullet">
+      <UniqueIdentifier>{93792c18-37bb-48ca-91dc-8ff4c8e807c2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -574,7 +574,7 @@
       <Filter>Contants\Object</Filter>
     </ClCompile>
     <ClCompile Include="FireBullet.cpp">
-      <Filter>Contants\Object\Player\Bullet</Filter>
+      <Filter>Contants\Object\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="RectSpriteGameObject.cpp">
       <Filter>Contants\Object\GameObject</Filter>
@@ -638,6 +638,12 @@
     </ClCompile>
     <ClCompile Include="KoopaIdleState.cpp">
       <Filter>Contants\Object\Enemy\Koopa\State</Filter>
+    </ClCompile>
+    <ClCompile Include="KoopaFireBullet.cpp">
+      <Filter>Contants\Object\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Contants\Object\Bullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -987,7 +993,7 @@
       <Filter>Contants\Object</Filter>
     </ClInclude>
     <ClInclude Include="FireBullet.h">
-      <Filter>Contants\Object\Player\Bullet</Filter>
+      <Filter>Contants\Object\Bullet</Filter>
     </ClInclude>
     <ClInclude Include="RectSpriteGameObject.h">
       <Filter>Contants\Object\GameObject</Filter>
@@ -1051,6 +1057,12 @@
     </ClInclude>
     <ClInclude Include="KoopaIdleState.h">
       <Filter>Contants\Object\Enemy\Koopa\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Contants\Object\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="KoopaFireBullet.h">
+      <Filter>Contants\Object\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

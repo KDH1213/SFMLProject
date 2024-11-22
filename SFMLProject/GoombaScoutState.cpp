@@ -5,6 +5,8 @@
 
 GoombaScoutState::GoombaScoutState(EnemyFSM* fsm)
 	: EnemyBaseState(fsm, EnemyStateType::Scout)
+	, rigidbody(nullptr)
+	, speed(300.f)
 {
 }
 

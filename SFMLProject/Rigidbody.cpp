@@ -45,14 +45,14 @@ void Rigidbody::ResetDropSpeed()
 void Rigidbody::FixedUpdate(const float& fixedDeltaTime)
 {
 	//velocity = accel * fixedDeltaTime;
-	if (!isActive)
+	if (!isActive && fixedDeltaTime == 0.f)
 		return;
 
-	if (!isGround && fixedDeltaTime != 0.f)
+	if (!isGround)
 	{
 		dropSpeed += Gravity.y * fixedDeltaTime * 5.f;
 		velocity.y += dropSpeed;
-	}
+	} 
 	else
 	{
 		dropSpeed = 0.f;

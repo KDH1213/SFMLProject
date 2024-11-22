@@ -33,6 +33,7 @@ void KoopaFSM::CreateAllState()
 		case EnemyStateType::Hit:
 			break;
 		case EnemyStateType::Attack:
+			AddState(EnemyStateType::Attack);
 				break;
 		case EnemyStateType::Dead:
 			break;
