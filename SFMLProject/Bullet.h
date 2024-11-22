@@ -28,7 +28,10 @@ public:
 	void SetOrigin(Origins preset) override;
 	void SetOrigin(const sf::Vector2f& newOrigin) override;
 
-	void SetMoveDirection(const sf::Vector2f& direction) { moveDirection = direction; }
+	void SetMoveDirection(const sf::Vector2f& direction);
+	void SetSpeed(float speed) { this->speed = speed; }
+	float GetSpeed() { return speed; }
+
 public:
 	void Start() override;
 	void Update(const float& deltaTime) override;

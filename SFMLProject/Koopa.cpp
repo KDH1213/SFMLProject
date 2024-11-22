@@ -8,6 +8,7 @@
 #include "Player.h"
 #include "Rigidbody.h"
 #include "KoopaFSM.h"
+#include "KooparHammerBullet.h"
 
 Koopa::Koopa(const std::string& name)
 	: Enemy(name)
@@ -16,7 +17,14 @@ Koopa::Koopa(const std::string& name)
 	, jumpTime(3.f)
 	, isJump(false)
 	, isDead(false)
-
+	, currentHammerIndex(0)
+	, createHammerCount(6)
+	, currentHammerFiringTime(0.f)
+	, hammerFiringTime(0.1f)
+	, isCreateHammer(false)
+	, isEndHammerFiring(true)
+	, hammerPosition({-40.f, -62.f})
+	, isLabberDead(false)
 {
 	fsm = new KoopaFSM(this);
 
@@ -45,6 +53,50 @@ void Koopa::OnDead()
 {
 	isDead = true;
 	fsm->ChangeState(EnemyStateType::Dead);
+}
+
+void Koopa::OnCreateHammer()
+{
+	if (!isEndHammerFiring)
+		return;
+
+	Scene* currentScene = SceneManager::GetInstance().GetCurrentScene();
+
+	for (int i = 0; i < createHammerCount; ++i)
+	{
+		hammers.push_back(currentScene->AddGameObject(new KooparHammerBullet(), LayerType::EnemyBullet));
+		hammers[i]->Start();
+	}
+
+	for (auto& hammer : hammers)
+	{
+		hammer->SetPosition(position + hammerPosition);
+	}
+
+	currentHammerIndex = createHammerCount - 1;
+	currentHammerFiringTime = 0.f;
+
+	isCreateHammer = true;
+}
+
+void Koopa::HammerFiring(const float& deltaTime)
+{
+	currentHammerFiringTime += deltaTime;
+
+	if (currentHammerFiringTime >= hammerFiringTime)
+	{
+		hammers[currentHammerIndex]->SetMoveDirection({ isFlipX ? 1.f : -1.f , 0.f });
+		hammers[currentHammerIndex--]->OnFiring();
+		hammers.pop_back();
+		currentHammerFiringTime = 0.f;
+
+		if (currentHammerIndex == -1)
+		{
+			hammers.clear();
+			isEndHammerFiring = true;
+			isCreateHammer = false;
+		}
+	}
 }
 
 void Koopa::Awake()
@@ -90,11 +142,24 @@ void Koopa::Update(const float& deltaTime)
 		currentJumpTime += deltaTime;
 
 		if (currentJumpTime >= jumpTime)
+		{
+			OnCreateHammer();
 			OnJump();
+		}
 	}
 
 	if (isJump && rigidBody->IsGround())
 		isJump = false;
+
+	if (isCreateHammer)
+	{
+		HammerFiring(deltaTime);
+
+		for (auto& hammer : hammers)
+		{
+			hammer->SetPosition(position + hammerPosition);
+		}
+	}
 }
 
 void Koopa::OnCollisionEnter(Collider* target)

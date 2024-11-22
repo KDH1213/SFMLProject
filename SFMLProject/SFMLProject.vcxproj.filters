@@ -651,6 +651,9 @@
     <ClCompile Include="KoopaDeadState.cpp">
       <Filter>Contants\Object\Enemy\Koopa\State</Filter>
     </ClCompile>
+    <ClCompile Include="KooparHammerBullet.cpp">
+      <Filter>Contants\Object\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -1075,6 +1078,9 @@
     </ClInclude>
     <ClInclude Include="KoopaDeadState.h">
       <Filter>Contants\Object\Enemy\Koopa\State</Filter>
+    </ClInclude>
+    <ClInclude Include="KooparHammerBullet.h">
+      <Filter>Contants\Object\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

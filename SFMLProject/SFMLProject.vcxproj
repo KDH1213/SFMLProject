@@ -236,6 +236,7 @@
     <ClCompile Include="KoopaFireBullet.cpp" />
     <ClCompile Include="KoopaFSM.cpp" />
     <ClCompile Include="KoopaIdleState.cpp" />
+    <ClCompile Include="KooparHammerBullet.cpp" />
     <ClCompile Include="KoopaTroopa.cpp" />
     <ClCompile Include="KoopaTroopaDeadState.cpp" />
     <ClCompile Include="KoopaTroopaFSM.cpp" />
@@ -381,6 +382,7 @@
     <ClInclude Include="KoopaFireBullet.h" />
     <ClInclude Include="KoopaFSM.h" />
     <ClInclude Include="KoopaIdleState.h" />
+    <ClInclude Include="KooparHammerBullet.h" />
     <ClInclude Include="KoopaTroopa.h" />
     <ClInclude Include="KoopaTroopaDeadState.h" />
     <ClInclude Include="KoopaTroopaFSM.h" />

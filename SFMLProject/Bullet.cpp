@@ -49,6 +49,17 @@ void Bullet::SetOrigin(const sf::Vector2f& newOrigin)
 	collider->SetOrigin(newOrigin);
 }
 
+void Bullet::SetMoveDirection(const sf::Vector2f& direction)
+{
+	moveDirection = direction;
+
+	if (moveDirection.x > 0.f)
+	{
+		scale.x *= -1.f;
+		SetScale(scale);
+	}
+}
+
 
 void Bullet::SetUVRect(const sf::IntRect uvRect)
 {
@@ -66,8 +77,11 @@ void Bullet::SetPosition(const sf::Vector2f& pos)
 void Bullet::SetScale(const sf::Vector2f& scale)
 {
 	this->scale = scale;
-	sprite.setScale(scale);
-	collider->SetScale(scale);
+	if(animator != nullptr)
+		animator->SetScale(scale);
+	else
+		sprite.setScale(scale);
+	collider->SetOwnerScale(scale);
 	SetOrigin(originPreset);
 }
 

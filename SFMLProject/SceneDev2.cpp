@@ -41,6 +41,7 @@
 #include "EnemySpawner.h"
 #include "Koopa.h"
 #include "LabberObject.h"
+#include "KooparHammerBullet.h"
 
 void SceneDev2::Init()
 {
@@ -137,6 +138,9 @@ void SceneDev2::Enter()
 	LabberObject* laberObject = AddGameObject(new LabberObject({ 0, 8 * 16,16,16 }, "Items", "labber"), LayerType::Default);
 	laberObject->SetPosition({ 100.f, 0.f });
 
+
+	KooparHammerBullet* kooparHammerBullet = AddGameObject(new KooparHammerBullet(), LayerType::Default);
+	kooparHammerBullet->SetPosition({ 100.f, 0.f });
 	/*GameClearObject* gameClearObject = AddGameObject(new GameClearObject(), LayerType::CleraPoint);
 	gameClearObject->SetScale({ 10.f, 1300.f });
 	gameClearObject->SetPosition({ 800.f, 0.f });
