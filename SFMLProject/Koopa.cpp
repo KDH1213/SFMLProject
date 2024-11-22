@@ -73,10 +73,6 @@ void Koopa::OnCreateHammer()
 		hammers[i]->Start();
 	}
 
-	for (auto& hammer : hammers)
-	{
-		hammer->SetPosition(position + hammerPosition);
-	}
 
 	currentHammerIndex = createHammerCount - 1;
 	currentHammerFiringTime = 0.f;
@@ -142,6 +138,10 @@ void Koopa::Update(const float& deltaTime)
 			rigidBody->SetVelocity({ -currentStatus.speed  , rigidBody->GetCurrentVelocity().y });
 	}
 
+	if ((!isFlipX && position.x < player->GetPosition().x) || (isFlipX && position.x > player->GetPosition().x))
+		OnFlipX();
+
+
 	if (!isJump)
 	{
 		currentJumpTime += deltaTime;
@@ -160,9 +160,14 @@ void Koopa::Update(const float& deltaTime)
 	{
 		HammerFiring(deltaTime);
 
+		sf::Vector2f currenthammerPos = hammerPosition;
+
+		if (IsFlipX())
+			currenthammerPos.x *= -1.f;
+
 		for (auto& hammer : hammers)
 		{
-			hammer->SetPosition(position + hammerPosition);
+			hammer->SetPosition(position + currenthammerPos);
 		}
 	}
 }
