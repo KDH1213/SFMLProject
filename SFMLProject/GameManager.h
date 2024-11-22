@@ -40,6 +40,9 @@ public:
 	void ReStart();
 	void PlayerDie();
 	void HaveCoin();
+	void OnLifeUp();
+
+	void AddScore(int score);
 
 	const std::string& GetWorldName() { return worldName; }
 	

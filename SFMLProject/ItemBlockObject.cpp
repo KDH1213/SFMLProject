@@ -26,6 +26,7 @@ ItemBlockObject::ItemBlockObject(ItemType type, const std::string& texId, const 
 	, moveSpeed(500.f)
 	, isReturn(false)
 	, currentMoveTime(0.f)
+	, isHit(false)
 {
 }
 

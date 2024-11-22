@@ -84,21 +84,25 @@ void BrickBlockObject::OnCollisionEnter(Collider* target)
 			player->SetPosition({ player->GetPosition().x, rect.bottomPosition + target->GetScale().y * 0.5f });
 			player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x , 0.f });
 
-			auto targets = collider->GetCollisionTargets();
-
-			for (auto& target : targets)
+			if (abs(position.x - player->GetPosition().x) < 56.f)
 			{
-				Enemy* enemy = dynamic_cast<Enemy*>(target);
-				if (enemy != nullptr)
+				auto targets = collider->GetCollisionTargets();
+
+				for (auto& target : targets)
 				{
-					enemy->SetHitDirection(enemy->GetPosition().x < position.x ? sf::Vector2f::left : sf::Vector2f::right);
-					enemy->TakeDamage();
+					Enemy* enemy = dynamic_cast<Enemy*>(target);
+					if (enemy != nullptr)
+					{
+						enemy->SetHitDirection(enemy->GetPosition().x < position.x ? sf::Vector2f::left : sf::Vector2f::right);
+						enemy->TakeDamage();
+					}
 				}
+				if (player->GetCurrentHP() == 1)
+					OnHitMove();
+				else
+					SetDestory(true);
 			}
-			if (player->GetCurrentHP() == 1)
-				OnHitMove();
-			else
-				SetDestory(true);
+
 		}
 	}
 }

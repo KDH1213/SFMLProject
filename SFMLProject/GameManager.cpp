@@ -92,7 +92,7 @@ void GameManager::PlayerDie()
 void GameManager::HaveCoin()
 {
 	++currentCoinCount;
-	currentScore += 1000;
+	currentScore += 200;
 
 	if (currentCoinCount >= 100)
 	{
@@ -117,4 +117,25 @@ void GameManager::HaveCoin()
 	coinUI->SetString(coinString);
 	scoreUI->SetString(scoreString);
 
+}
+
+void GameManager::OnLifeUp()
+{
+	++life;
+}
+
+void GameManager::AddScore(int score)
+{
+	currentScore += score;
+
+	std::string strScore = std::to_string(currentScore);
+	int size = (int)strScore.size() - 1;
+	for (int i = 5; i > 0; --i)
+	{
+		scoreString[i] = strScore[size--];
+		if (size < 0)
+			break;
+	}
+
+	scoreUI->SetString(scoreString);
 }

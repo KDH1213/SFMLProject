@@ -3,6 +3,9 @@
 #include "Animator.h"
 #include "Collider.h"
 #include "Rigidbody.h"
+#include "InGameScoreUI.h"
+#include "GameManager.h"
+
 GoombaDeadState::GoombaDeadState(EnemyFSM* fsm)
 	: EnemyBaseState(fsm, EnemyStateType::Dead)
 	, rotationTime(0.3f)
@@ -74,8 +77,13 @@ void GoombaDeadState::Enter()
 		hitDirection = enemy->GetHitDirection();
 		currentRotationTime = 0.f;
 		rigidbody->SetVelocity({ hitDirection.x * 300.f, -450.f });
-
 	}
+
+	GameManager::GetInstance().AddScore(100);
+	InGameScoreUI* inGameScoreUI = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new InGameScoreUI("DungGeunMo", "CoinScoreUI", 30), LayerType::InGameUI);
+	inGameScoreUI->SetString("200");
+	inGameScoreUI->SetPosition(enemy->GetPosition() + sf::Vector2f::up * 20.f);
+	inGameScoreUI->Start();
 
 	for (auto& startEvent : stateStartEvents)
 	{

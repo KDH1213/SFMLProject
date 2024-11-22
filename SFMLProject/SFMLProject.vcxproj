@@ -224,6 +224,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="InGameScoreUI.cpp" />
     <ClCompile Include="InGameUIHub.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="InspectorGUI.cpp" />
@@ -372,6 +373,7 @@
     <ClInclude Include="imgui\imstb_rectpack.h" />
     <ClInclude Include="imgui\imstb_textedit.h" />
     <ClInclude Include="imgui\imstb_truetype.h" />
+    <ClInclude Include="InGameScoreUI.h" />
     <ClInclude Include="InGameUIHub.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="InspectorGUI.h" />

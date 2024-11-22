@@ -9,6 +9,7 @@
 
 #include "GameManager.h"
 #include "Camera.h"
+#include "InGameScoreUI.h"
 
 Player::Player(const std::string& name)
 	: GameObject(name)
@@ -109,8 +110,19 @@ void Player::AddItem(ItemType itemType)
 		GameManager::GetInstance().HaveCoin();
 		break;
 	case ItemType::MushRoom:
-		if(currentStatus.hp == 1)
+		if (currentStatus.hp == 1)
+		{
 			fsm.ChangeState(PlayerStateType::Upgrade);
+		}
+		else if (currentStatus.hp > 1)
+		{
+			GameManager::GetInstance().OnLifeUp();
+
+			InGameScoreUI* inGameScoreUI = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new InGameScoreUI("DungGeunMo", "MushRoomScore", 30), LayerType::InGameUI);
+			inGameScoreUI->SetString("1UP");
+			inGameScoreUI->SetPosition(position + sf::Vector2f::up * 20.f);
+			inGameScoreUI->Start();
+		}
 		break;
 	case ItemType::Flower:
 		if(currentStatus.hp < 3)
