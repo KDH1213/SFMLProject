@@ -39,6 +39,9 @@ public:
 	Camera* GetUICamera() { return uICamera; }
 
 	bool IsFreeView() { return isFreeView; }
+
+	const std::string& GetSavePath() { return savePath; }
+	const std::string& GetLoadPath() { return loadPath; }
 public:
 	virtual GameObject* AddGameObject(GameObject* obj, LayerType layer);
 	virtual void RemoveGameObject(GameObject* obj);
@@ -67,9 +70,7 @@ public:
 	virtual void FixedUpdate(float fixedDeltaTime);
 	virtual void Render(sf::RenderWindow& window);
 
-	virtual void Save() = 0;
-	virtual void Load() = 0;
-	virtual void Save(const std::string& savePath) = 0;
+	virtual void Save(const std::string& save) = 0;
 	virtual void Load(const std::string& loadPath) = 0;
 
 public:

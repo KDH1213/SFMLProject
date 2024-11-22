@@ -121,12 +121,12 @@ void HierachyGUI::Update()
 	ImGui::SameLine();
 	if (ImGui::Button("Save", { 100, 20.f }))
 	{
-        SceneManager::GetInstance().GetCurrentScene()->Save();
+        SceneManager::GetInstance().GetCurrentScene()->Save(SceneManager::GetInstance().GetCurrentScene()->GetSavePath());
 	}
 	ImGui::SameLine();
 	if (ImGui::Button("Load", { 100, 20.f }))
 	{
-        SceneManager::GetInstance().GetCurrentScene()->Load();
+        SceneManager::GetInstance().GetCurrentScene()->Load(SceneManager::GetInstance().GetCurrentScene()->GetLoadPath());
 	}
 	ImGui::End();
 }

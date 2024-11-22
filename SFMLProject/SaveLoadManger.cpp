@@ -36,15 +36,21 @@ SaveDataVC SaveLoadManager::Load()
 		saveData = new SaveDataV2(v2);
 		break;
 	}
+	default:
+	{
+		SaveDataV2 v2 = j.get<SaveDataV2>();
+		saveData = new SaveDataV2(v2);
+		break;
+	}
 	}
 	f.close();
 
-	/*while (saveData->version < 2)
+	while (saveData->version < 2)
 	{
 		SaveData* oldData = saveData;
 		saveData = saveData->VersionUp();
 		delete oldData;
-	}*/
+	}
 
 	SaveDataVC ret(*((SaveDataVC*)saveData));
 	delete saveData;

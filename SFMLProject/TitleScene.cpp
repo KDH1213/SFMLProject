@@ -55,9 +55,7 @@ void TitleScene::Enter()
 	endButton->SetButtonClickEvent(std::bind(&TitleScene::EndGame, this));
 	endButton->GetCollider()->SetOffsetPosition({ 0.f, 50.f });
 
-
-
-	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::UI, ColliderLayer::UI);
+	CollisitionCheck();
 
 	Scene::Enter();
 
@@ -87,20 +85,17 @@ void TitleScene::Render(sf::RenderWindow& window)
 	Scene::Render(window);
 }
 
-void TitleScene::Save()
-{
-}
-
-void TitleScene::Load()
-{
-}
-
 void TitleScene::Save(const std::string& savePath)
 {
 }
 
 void TitleScene::Load(const std::string& loadPath)
 {
+}
+
+void TitleScene::CollisitionCheck()
+{
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::UI, ColliderLayer::UI);
 }
 
 void TitleScene::StartGame()

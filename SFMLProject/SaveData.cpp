@@ -4,6 +4,11 @@
 SaveData* SaveDataV1::VersionUp()
 {
     SaveDataV2* newData = new SaveDataV2();
+    newData->playerData = playerData;
+    newData->blockSaveDatas = blockSaveDatas;
+    newData->itemBlockSaveDatas = itemBlockSaveDatas;
+    newData->wallCollisionSaveDatas = wallCollisionSaveDatas;
+    newData->tileMapSaveData = tileMapSaveData;
 
     return newData;
 }

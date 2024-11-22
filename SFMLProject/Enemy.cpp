@@ -6,7 +6,7 @@
 #include "Collider.h"
 
 
-Enemy::Enemy(const std::string& name)
+Enemy::Enemy(EnemyType type, const std::string& name)
     : GameObject(name)
     , currentStatus(1, 100.f, 0.f, 0.f)
     , isDead(false)
@@ -143,4 +143,14 @@ sf::FloatRect Enemy::GetLocalBounds() const
 sf::FloatRect Enemy::GetGlobalBounds() const
 {
     return sprite.getGlobalBounds();
+}
+
+EnemySaveData Enemy::GetEnemySaveData() const
+{
+    return EnemySaveData({ GetGameObjectSaveData(), (int)enemyType });
+}
+
+void Enemy::LoadEnemySaveData(const EnemySaveData& data)
+{
+    LoadGameObjectData(data.gameObjectSaveData);
 }

@@ -11,6 +11,7 @@
 #include "BrickBlockObject.h"
 
 KoopaTroopa::KoopaTroopa(const std::string& name)
+	: Enemy(EnemyType::KoopaTroopa, name)
 {
 	fsm = new KoopaTroopaFSM(this);
 

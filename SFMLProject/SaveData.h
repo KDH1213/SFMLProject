@@ -12,6 +12,7 @@ namespace sf
 #include "BlockSaveData.h"
 #include "WallCollisionSaveData.h"
 #include "TileMapSaveData.h"
+#include "EnemySaveData.h"
 
 struct SaveData
 {
@@ -22,15 +23,12 @@ public:
 	std::vector<ItemBlockSaveData>		itemBlockSaveDatas;
 	std::vector<WallCollisionSaveData>	wallCollisionSaveDatas;
 	TileMapSaveData						tileMapSaveData;
-	std::vector<SavePointSaveData>		savePointSaveDatas;
-	std::vector<GameClearSaveData>		gameClearSaveDatas;
 
 	virtual SaveData* VersionUp() = 0;
 };
 
 struct SaveDataV1 : public SaveData
 {
-public:
 
 public:
 	SaveData* VersionUp() override;
@@ -43,15 +41,19 @@ public:
 struct SaveDataV2 : public SaveData
 {
 public:
-	// std::vector<SaveZombie> zombies;
+	std::vector<SavePointSaveData>		savePointSaveDatas;
+	std::vector<GameClearSaveData>		gameClearSaveDatas;
+	std::vector<EnemySaveData>			enemySaveDatas;
+	std::vector<EnemySpawnerSaveData>	enemySpawnerSaveDatas;
 
+	int highscore;
 public:
 	SaveData* VersionUp() override;
-	NLOHMANN_DEFINE_TYPE_INTRUSIVE(SaveDataV2, version);
-	// NLOHMANN_DEFINE_TYPE_INTRUSIVE(SaveDataV2, version, highscore, gold, zombies);
+	NLOHMANN_DEFINE_TYPE_INTRUSIVE(SaveDataV2, version, playerData, blockSaveDatas, itemBlockSaveDatas
+		, wallCollisionSaveDatas, tileMapSaveData, savePointSaveDatas, gameClearSaveDatas, enemySaveDatas, enemySpawnerSaveDatas, highscore);
 public:
 	SaveDataV2() { version = 2; }
 };
 
 
-typedef SaveDataV1 SaveDataVC;
+typedef SaveDataV2 SaveDataVC;

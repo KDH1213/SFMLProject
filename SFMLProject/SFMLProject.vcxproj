@@ -348,6 +348,7 @@
     <ClInclude Include="FSMController.h" />
     <ClInclude Include="GameClearObject.h" />
     <ClInclude Include="GameClearPointGUI.h" />
+    <ClInclude Include="GameInclude.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectSaveData.h" />

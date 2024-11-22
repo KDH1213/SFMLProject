@@ -11,7 +11,7 @@
 #include "KooparHammerBullet.h"
 
 Koopa::Koopa(const std::string& name)
-	: Enemy(name)
+	: Enemy(EnemyType::Koopa, name)
 	, player(nullptr)
 	, currentJumpTime(0.f)
 	, jumpTime(3.f)

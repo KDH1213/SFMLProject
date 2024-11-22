@@ -1,42 +1,7 @@
 #include "stdafx.h"
 #include "SceneDev1.h"
-#include "SpriteGameObject.h"
-#include "UiTextGameObject.h"
-#include "Test.h"
 
-#include "Animation.h"
-#include "Animator.h"
-
-#include "Camera.h"
-#include "CameraManger.h"
-
-#include "TestPlayer.h"
-#include "TileMap.h"
-
-#include "Player.h"
-#include "TileMapController.h"
-#include "Goomba.h"
-#include "BrickBlockObject.h"
-#include "ItemBlockObject.h"
-#include "Collider.h"
-
-#include "PlayerSaveData.h"
-#include "BlockSaveData.h"
-#include "WallCollisionSaveData.h"
-#include "WallCollisionObject.h"
-
-#include "CoinObject.h"
-#include "StarObject.h"
-#include "FlowerObject.h"
-#include "MushRoomObject.h"
-
-#include "BackgroundColorBox.h"
-#include "GameManager.h"
-#include "SavePointObject.h"
-#include "ImguiManger.h"
-#include "GameClearObject.h"
-
-#include "InGameUIHub.h"
+#include "GameInclude.h"
 
 
 void SceneDev1::Init()
@@ -53,17 +18,12 @@ void SceneDev1::Enter()
 	CameraManger::GetInstance().SetCamera(uICamera);
 
 	TEXTURE_MANAGER.Load("Player", "graphics/player.png");
-
 	TEXTURE_MANAGER.Load("enemies", "graphics/enemies.png");
 	TEXTURE_MANAGER.Load("Items", "graphics/item_objects.png");
 	TEXTURE_MANAGER.Load("tiles", "graphics/tiles.png");
 	TEXTURE_MANAGER.Load("tile_set", "graphics/tile_set.png");
 	TEXTURE_MANAGER.Load("mario_bros", "graphics/mario_bros.png");
-
-	ResourcesManager<sf::Font>::GetInstance().Load("KOMIKAP", "fonts/KOMIKAP_.ttf");
 	ResourcesManager<sf::Font>::GetInstance().Load("DungGeunMo", "fonts/DungGeunMo.ttf", true);
-
-	ResourcesManager<Animation>::GetInstance().Load("marioIdle", "animations/marioIdle.csv");
 
 	//Player* testPlayer = AddGameObject(new Player("Player"),LayerType::Player);
 	//testPlayer->Awake();
@@ -121,17 +81,7 @@ void SceneDev1::Enter()
 
 	SavePointObject* savePoint = AddGameObject(new SavePointObject(), LayerType::Default);
 
-	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::Player);
-	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Block, ColliderLayer::Player);
-
-	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Item, ColliderLayer::Player);
-	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Item, ColliderLayer::Block);
-	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Item, ColliderLayer::Wall);
-
-	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::PlayerBullet);
-	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Block, ColliderLayer::PlayerBullet);
-	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::SavePoint, ColliderLayer::Player);
-	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::CleraPoint, ColliderLayer::Player);
+	CollisitionCheck();
 	
 	if (GameManager::GetInstance().IsRestart())
 	{
@@ -140,7 +90,7 @@ void SceneDev1::Enter()
 	}
 	else
 	{
-		Load();
+		Load(loadPath);
 		// SaveLoadManager::GetInstance().Load();
 		//GameManager::GetInstance().OnSavePoint();
 	}
@@ -198,125 +148,6 @@ void SceneDev1::Render(sf::RenderWindow& window)
 	Scene::Render(window);
 }
 
-void SceneDev1::Save()
-{
-	SaveDataVC data;
-
-	data.playerData = ((Player*)FindGameObject("Player"))->GetPlayerSaveData();
-
-	for (auto& gameObjects : gameObjectVectors)
-	{
-		for (auto& gameObject : gameObjects)
-		{
-			auto tileMapController = dynamic_cast<TileMapController*>(gameObject);
-			if (tileMapController != nullptr)
-			{
-				data.tileMapSaveData = tileMapController->GetTileMapSaveData();
-				continue;
-			}
-
-			auto wallCollision = dynamic_cast<WallCollisionObject*>(gameObject);
-			if (wallCollision != nullptr)
-			{
-				data.wallCollisionSaveDatas.push_back(wallCollision->GetWallCollisionSaveData());
-				continue;
-			}
-
-			auto blockObject = dynamic_cast<BlockObject*>(gameObject);
-			if (blockObject != nullptr)
-			{
-
-				if (blockObject->GetBlockType() == BlockType::Item || blockObject->GetBlockType() == BlockType::ItemBrick)
-				{
-					data.itemBlockSaveDatas.push_back(((ItemBlockObject*)blockObject)->GetItemBlockSaveData());
-				}
-				else
-				{
-					data.blockSaveDatas.push_back(blockObject->GetBlockSaveDate());
-				}
-				continue;
-			}
-
-			auto savePoint = dynamic_cast<SavePointObject*>(gameObject);
-			if (savePoint != nullptr)
-			{
-				data.savePointSaveDatas.push_back(savePoint->GetSavePointSaveData());
-				continue;
-			}
-
-		}
-	}
-	SaveLoadManager::GetInstance().Save(data);
-}
-
-void SceneDev1::Load()
-{
-	SaveDataVC data = SaveLoadManager::GetInstance().Load();
-
-	Player* player = new Player();	
-	this->player = player;
-	player->LoadData(data.playerData);
-	player->Start();
-	AddGameObject(player, player->GetLayerType());
-	mainCamera->SetCameraLimitRect({ 0.f,13440.f,-500.f, 700.f }, true);
-	mainCamera->SetFollowTarget(player, true);
-	mainCamera->SetCameraPosition(player->GetPosition());
-
-
-	for (const auto& data : data.blockSaveDatas)
-	{
-		BlockObject* newBlock = nullptr;
-		switch ((BlockType)data.blockType)
-		{
-		case BlockType::Default:
-		{
-			newBlock = new BlockObject(BlockType::Default, "");
-		}
-			break;
-		case BlockType::Brick:
-			newBlock = new BrickBlockObject("");
-			break;
-		case BlockType::Secret:
-			break;
-		case BlockType::ItemBrick:
-			// newBlock = new BrickBlockObject("");
-			break;
-		default:
-			break;
-		}
-
-		if (newBlock == nullptr)
-			continue;
-
-
-		newBlock->LoadBlockSaveData(data);
-		newBlock->Start();
-		AddGameObject(newBlock, newBlock->GetLayerType());
-	}
-
-	for (const auto& data : data.itemBlockSaveDatas)
-	{
-		ItemBlockObject* newBlock = new ItemBlockObject(ItemType::Coin, "", "");
-		newBlock->LoadItemBlockSaveData(data);
-		newBlock->Start();
-		AddGameObject(newBlock, newBlock->GetLayerType());
-	}
-
-	for (const auto& data : data.wallCollisionSaveDatas)
-	{
-		WallCollisionObject* wall = new WallCollisionObject();
-		wall->LoadWallCollisionSaveData(data);
-		wall->Start();
-		AddGameObject(wall, wall->GetLayerType());
-	}
-
-
-	TileMapController* tileMapController = new TileMapController("");
-	tileMapController->LoadTileMapSaveData(data.tileMapSaveData);
-	tileMapController->Start();
-	AddGameObject(tileMapController, tileMapController->GetLayerType());
-}
-
 void SceneDev1::Save(const std::string& savePath)
 {
 	SaveDataVC data;
@@ -360,6 +191,26 @@ void SceneDev1::Save(const std::string& savePath)
 			if (savePoint != nullptr)
 			{
 				data.savePointSaveDatas.push_back(savePoint->GetSavePointSaveData());
+				continue;
+			}
+
+			auto gameClearObject = dynamic_cast<GameClearObject*>(gameObject);
+			if (savePoint != nullptr)
+			{
+				data.gameClearSaveDatas.push_back(gameClearObject->GetGameClearSaveData());
+				continue;
+			}
+
+			auto enemy = dynamic_cast<Enemy*>(gameObject);
+			if (savePoint != nullptr)
+			{
+				data.enemySaveDatas.push_back(enemy->GetEnemySaveData());
+				continue;
+			}
+			auto enemySpawner = dynamic_cast<EnemySpawner*>(gameObject);
+			if (savePoint != nullptr)
+			{
+				data.enemySpawnerSaveDatas.push_back(enemySpawner->GetEnemySpawnerSaveData());
 				continue;
 			}
 		}
@@ -427,17 +278,101 @@ void SceneDev1::Load(const std::string& loadPath)
 		AddGameObject(wall, wall->GetLayerType());
 	}
 
-
 	TileMapController* tileMapController = new TileMapController("");
 	tileMapController->LoadTileMapSaveData(data.tileMapSaveData);
 	tileMapController->Start();
 	AddGameObject(tileMapController, tileMapController->GetLayerType());
+
+
+	for (const auto& data : data.savePointSaveDatas)
+	{
+		SavePointObject* savePointObject = new SavePointObject();
+		savePointObject->LoadSavePointSaveData(data);
+		savePointObject->Start();
+		AddGameObject(savePointObject, savePointObject->GetLayerType());
+	}
+
+	for (const auto& data : data.gameClearSaveDatas)
+	{
+		GameClearObject* gameClear = new GameClearObject();
+		gameClear->LoadGameClearSaveData(data);
+		gameClear->Start();
+		AddGameObject(gameClear, gameClear->GetLayerType());
+	}
+
+	for (const auto& data : data.enemySaveDatas)
+	{
+		switch ((EnemyType)data.enemyType)
+		{
+		case EnemyType::Goomba:
+		{
+			Goomba* enemy = new Goomba();
+			enemy->LoadEnemySaveData(data);
+			enemy->Start();
+			AddGameObject(enemy, enemy->GetLayerType());
+		}
+			break;
+		case EnemyType::KoopaTroopa:
+		{
+			KoopaTroopa* enemy = new KoopaTroopa();
+			enemy->LoadEnemySaveData(data);
+			enemy->Start();
+			AddGameObject(enemy, enemy->GetLayerType());
+		}
+			break;
+		case EnemyType::Koopa:
+		{
+			Koopa* enemy = new Koopa();
+			enemy->LoadEnemySaveData(data);
+			enemy->Start();
+			AddGameObject(enemy, enemy->GetLayerType());
+		}
+			break;
+		case EnemyType::End:
+			break;
+		default:
+			break;
+		}
+	}
+	
+	for (const auto& data : data.enemySpawnerSaveDatas)
+	{
+		EnemySpawner* enemySpawner = new EnemySpawner();
+		enemySpawner->LoadEnemySpawnerSaveData(data);
+		enemySpawner->Start();
+		AddGameObject(enemySpawner, enemySpawner->GetLayerType());
+	}
+}
+
+void SceneDev1::CollisitionCheck()
+{
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Default, ColliderLayer::Player);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::Player);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Block, ColliderLayer::Player);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Enemy, ColliderLayer::Player);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Player, ColliderLayer::EnemyBullet);
+
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::Enemy);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Block, ColliderLayer::Enemy);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Enemy, ColliderLayer::Enemy);
+
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Item, ColliderLayer::Player);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Item, ColliderLayer::Block);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Item, ColliderLayer::Wall);
+
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Enemy, ColliderLayer::PlayerBullet);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::PlayerBullet);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Block, ColliderLayer::PlayerBullet);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::SavePoint, ColliderLayer::Player);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::CleraPoint, ColliderLayer::Player);
 }
 
 SceneDev1::SceneDev1()
 	: Scene(SceneIds::SceneDev1)
+	, player(nullptr)
 {
-
+	savePath = "stage1.json";
+	loadPath = "stage1.json";
 }
 
 SceneDev1::~SceneDev1()

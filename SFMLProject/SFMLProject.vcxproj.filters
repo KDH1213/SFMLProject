@@ -1082,5 +1082,8 @@
     <ClInclude Include="KooparHammerBullet.h">
       <Filter>Contants\Object\Bullet</Filter>
     </ClInclude>
+    <ClInclude Include="GameInclude.h">
+      <Filter>Contants</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

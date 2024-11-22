@@ -1,47 +1,31 @@
 #include "stdafx.h"
 #include "SceneDev2.h"
-#include "SpriteGameObject.h"
-#include "UiTextGameObject.h"
-#include "Test.h"
 
-#include "Animation.h"
-#include "Animator.h"
+#include "GameInclude.h"
 
-#include "Camera.h"
-#include "CameraManger.h"
+void SceneDev2::CollisitionCheck()
+{
 
-#include "TestPlayer.h"
-#include "TileMap.h"
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Default, ColliderLayer::Player);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::Player);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Block, ColliderLayer::Player);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Enemy, ColliderLayer::Player);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Player, ColliderLayer::EnemyBullet);
 
-#include "Player.h"
-#include "TileMapController.h"
-#include "Goomba.h"
-#include "BrickBlockObject.h"
-#include "ItemBlockObject.h"
-#include "Collider.h"
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::Enemy);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Block, ColliderLayer::Enemy);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Enemy, ColliderLayer::Enemy);
 
-#include "PlayerSaveData.h"
-#include "BlockSaveData.h"
-#include "WallCollisionSaveData.h"
-#include "WallCollisionObject.h"
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Item, ColliderLayer::Player);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Item, ColliderLayer::Block);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Item, ColliderLayer::Wall);
 
-#include "CoinObject.h"
-#include "StarObject.h"
-#include "FlowerObject.h"
-#include "MushRoomObject.h"
-
-#include "BackgroundColorBox.h"
-#include "GameManager.h"
-#include "SavePointObject.h"
-#include "ImguiManger.h"
-#include "GameClearObject.h"
-#include "KoopaTroopa.h"
-
-#include "InGameUIHub.h"
-#include "EnemySpawner.h"
-#include "Koopa.h"
-#include "LabberObject.h"
-#include "KooparHammerBullet.h"
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Enemy, ColliderLayer::PlayerBullet);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::PlayerBullet);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Block, ColliderLayer::PlayerBullet);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::SavePoint, ColliderLayer::Player);
+	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::CleraPoint, ColliderLayer::Player);
+}
 
 void SceneDev2::Init()
 {
@@ -66,14 +50,11 @@ void SceneDev2::Enter()
 	CameraManger::GetInstance().SetCamera(uICamera);
 
 	TEXTURE_MANAGER.Load("Player", "graphics/player.png");
-
 	TEXTURE_MANAGER.Load("enemies", "graphics/enemies.png");
 	TEXTURE_MANAGER.Load("Items", "graphics/item_objects.png");
 	TEXTURE_MANAGER.Load("tiles", "graphics/tiles.png");
 	TEXTURE_MANAGER.Load("tile_set", "graphics/tile_set.png");
 	TEXTURE_MANAGER.Load("mario_bros", "graphics/mario_bros.png");
-
-	ResourcesManager<sf::Font>::GetInstance().Load("KOMIKAP", "fonts/KOMIKAP_.ttf");
 	ResourcesManager<sf::Font>::GetInstance().Load("DungGeunMo", "fonts/DungGeunMo.ttf", true);
 
 	Player* testPlayer = AddGameObject(new Player("Player"),LayerType::Player);
@@ -138,7 +119,7 @@ void SceneDev2::Enter()
 	LabberObject* laberObject = AddGameObject(new LabberObject({ 0, 8 * 16,16,16 }, "Items", "labber"), LayerType::Default);
 	laberObject->SetPosition({ 500.f, 0.f });
 
-
+	CollisitionCheck();
 	// KooparHammerBullet* kooparHammerBullet = AddGameObject(new KooparHammerBullet(), LayerType::Default);
 	// kooparHammerBullet->SetPosition({ 100.f, 0.f });
 	/*GameClearObject* gameClearObject = AddGameObject(new GameClearObject(), LayerType::CleraPoint);
@@ -150,34 +131,11 @@ void SceneDev2::Enter()
 
 	// SavePointObject* savePoint = AddGameObject(new SavePointObject(), LayerType::Default);
 
-	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Default, ColliderLayer::Player);
-	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::Player);
-	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Block, ColliderLayer::Player);
-	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Enemy, ColliderLayer::Player);
-	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Player, ColliderLayer::EnemyBullet);
-
-	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::Enemy);
-	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Block, ColliderLayer::Enemy);
-	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Enemy, ColliderLayer::Enemy);
-
-	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Item, ColliderLayer::Player);
-	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Item, ColliderLayer::Block);
-	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Item, ColliderLayer::Wall);
-
-	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Enemy, ColliderLayer::PlayerBullet);
-	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Wall, ColliderLayer::PlayerBullet);
-	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Block, ColliderLayer::PlayerBullet);
-	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::SavePoint, ColliderLayer::Player);
-	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::CleraPoint, ColliderLayer::Player);
-
-
 	Scene::Enter();
 }
 
 void SceneDev2::Exit()
 {
-	TEXTURE_MANAGER.unLoad("player");
-	ResourcesManager<sf::Font>::GetInstance().Load("KOMIKAP", "fonts/KOMIKAP_.ttf");
 	Scene::Exit();
 }
 
@@ -199,14 +157,6 @@ void SceneDev2::Render(sf::RenderWindow& window)
 	Scene::Render(window);
 }
 
-void SceneDev2::Save()
-{
-}
-
-void SceneDev2::Load()
-{
-}
-
 void SceneDev2::Save(const std::string& savePath)
 {
 }
@@ -218,7 +168,8 @@ void SceneDev2::Load(const std::string& loadPath)
 SceneDev2::SceneDev2()
 	: Scene(SceneIds::SceneDev2)
 {
-
+	savePath = "stage2.json";
+	loadPath = "stage2.json";
 }
 
 SceneDev2::~SceneDev2()

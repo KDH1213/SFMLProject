@@ -23,12 +23,14 @@ private:
 	bool			isRestart;
 	bool			isPlayerDead;
 
+	int				highscore;
 
 public:
 
 	bool IsRestart() { return isRestart; }
 	void OnRestart();
 	void OnSavePoint(const sf::Vector2f& restartPos);
+	void SetHighScore(int score) { highscore = score; }
 
 	void GameStartInit();
 

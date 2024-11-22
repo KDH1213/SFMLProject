@@ -9,7 +9,7 @@
 #include "Rigidbody.h"
 
 Goomba::Goomba(const std::string& name)
-	: Enemy(name)
+	: Enemy(EnemyType::Goomba, name)
 {
 	fsm = new GoombaFSM(this);
 

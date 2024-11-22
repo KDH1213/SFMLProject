@@ -2,6 +2,7 @@
 
 #include "GameObject.h"
 #include "EnemyFSM.h"
+#include "EnemySaveData.h"
 
 class Enemy : public GameObject
 {
@@ -12,6 +13,7 @@ protected:
 	sf::Vector2f	moveDirection;
 	DefaultStatus	currentStatus;
 	EnemyStateType	currentState;
+	EnemyType		enemyType;
 
 	bool			isDead;
 	bool			isFlipX;
@@ -37,6 +39,8 @@ public:
 
 	int GetHP() { return currentStatus.hp; }
 	EnemyFSM* GetFSM() { return fsm; }
+
+	EnemyType GetEnemyType() { return enemyType; }
 public:
 	void CreateAnimator() override;
 	float GetSpeed() { return currentStatus.speed; }
@@ -50,11 +54,14 @@ public:
 	void LateUpdate(const float& deltaTime) override;
 	void Render(sf::RenderWindow& renderWindow) override;
 
-
 	sf::FloatRect GetLocalBounds() const;
 	sf::FloatRect GetGlobalBounds() const;
+
+
+	EnemySaveData GetEnemySaveData() const;
+	virtual void LoadEnemySaveData(const EnemySaveData& data);
 public:
-	Enemy(const std::string& name = "Enemy");
+	Enemy(EnemyType type, const std::string& name = "Enemy");
 	virtual ~Enemy();
 	Enemy& operator= (const Enemy& other) = delete;
 };
