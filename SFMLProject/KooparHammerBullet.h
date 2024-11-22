@@ -7,7 +7,8 @@ private:
 
 public:
 	void OnFiring();
-
+	void OnColliderSet90RadionRotation();
+	void OnColliderSet0RadionRotation();
 public:
 	void Start() override;
 	void Update(const float& deltaTime) override;

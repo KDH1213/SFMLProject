@@ -136,11 +136,11 @@ void SceneDev2::Enter()
 	enemySpawner->SetPosition({ 2000.f, 1300.f });
 
 	LabberObject* laberObject = AddGameObject(new LabberObject({ 0, 8 * 16,16,16 }, "Items", "labber"), LayerType::Default);
-	laberObject->SetPosition({ 100.f, 0.f });
+	laberObject->SetPosition({ 500.f, 0.f });
 
 
-	KooparHammerBullet* kooparHammerBullet = AddGameObject(new KooparHammerBullet(), LayerType::Default);
-	kooparHammerBullet->SetPosition({ 100.f, 0.f });
+	// KooparHammerBullet* kooparHammerBullet = AddGameObject(new KooparHammerBullet(), LayerType::Default);
+	// kooparHammerBullet->SetPosition({ 100.f, 0.f });
 	/*GameClearObject* gameClearObject = AddGameObject(new GameClearObject(), LayerType::CleraPoint);
 	gameClearObject->SetScale({ 10.f, 1300.f });
 	gameClearObject->SetPosition({ 800.f, 0.f });

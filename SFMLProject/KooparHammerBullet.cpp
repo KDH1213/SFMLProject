@@ -5,6 +5,7 @@
 #include "Animation.h"
 #include "Animator.h"
 #include "Rigidbody.h"
+#include "Player.h"
 
 KooparHammerBullet::KooparHammerBullet(const std::string& texId, const std::string& name)
 	: Bullet(ColliderLayer::EnemyBullet, texId, name)
@@ -26,6 +27,15 @@ void KooparHammerBullet::OnFiring()
 	animator->ChangeAnimation("koopaHammer", true);
 }
 
+void KooparHammerBullet::OnColliderSet90RadionRotation()
+{
+	SetRotation(90.f);
+}
+
+void KooparHammerBullet::OnColliderSet0RadionRotation()
+{
+	SetRotation(0.f);
+}
 void KooparHammerBullet::Start()
 {
 	SetScale(scale);
@@ -39,6 +49,9 @@ void KooparHammerBullet::Start()
 	animator->ChangeAnimation("koopaHammer", true);
 	animator->SetPlaying(false);
 
+	Animation* animation = animator->GetCurrentAnimation();
+	animation->SetAnimationStartEvent(std::bind(&KooparHammerBullet::OnColliderSet90RadionRotation, this), 1);
+	animation->SetAnimationStartEvent(std::bind(&KooparHammerBullet::OnColliderSet0RadionRotation, this), 3);
 }
 
 void KooparHammerBullet::Update(const float& deltaTime)
@@ -61,6 +74,11 @@ void KooparHammerBullet::FixedUpdate(const float& deltaTime)
 
 void KooparHammerBullet::OnCollisionEnter(Collider* target)
 {
+	if (target->GetColliderLayer() == ColliderLayer::Player)
+	{
+		SetDestory(true);
+		((Player*)target->GetOwner())->TakeDamage();
+	}
 }
 
 void KooparHammerBullet::Render(sf::RenderWindow& renderWindow)
