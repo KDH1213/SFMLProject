@@ -187,7 +187,8 @@ void ItemBlockObject::OnCollisionEnter(Collider* target)
 				}
 
 			}
-			OnChangetRectUV();
+			if(itemCount == 0)
+				OnChangetRectUV();
 		}
 	}
 	else if (target->GetColliderLayer() == ColliderLayer::Enemy || target->GetColliderLayer() == ColliderLayer::Item)

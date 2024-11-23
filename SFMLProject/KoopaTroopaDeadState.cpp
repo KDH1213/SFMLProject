@@ -20,6 +20,7 @@ void KoopaTroopaDeadState::Awake()
 
 void KoopaTroopaDeadState::Start()
 {
+	rigidbody = enemy->GetRigidbody();
 }
 
 void KoopaTroopaDeadState::Enter()

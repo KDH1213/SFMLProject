@@ -10,6 +10,7 @@ Rigidbody::Rigidbody(GameObject* owner)
 	, owner(owner)
 	, friction(false)
 	, isActive(true)
+	, prevDropSpeed(0.f)
 {
 }
 
@@ -57,6 +58,8 @@ void Rigidbody::FixedUpdate(const float& fixedDeltaTime)
 	{
 		dropSpeed += Gravity.y * fixedDeltaTime * 5.f;
 		velocity.y += dropSpeed;
+
+		prevDropSpeed = velocity.y * fixedDeltaTime;
 	} 
 	else
 	{

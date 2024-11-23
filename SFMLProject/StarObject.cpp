@@ -12,6 +12,7 @@ StarObject::StarObject()
 	, moveDirection(sf::Vector2f::right)
 	, lifeTime(3.f)
 	, currentLifeTime(0.f)
+	, isJump(false)
 
 {
 	rigidBody = new Rigidbody(this);
@@ -70,9 +71,9 @@ void StarObject::OnCollisionEnter(Collider* target)
 		Rectangle rect(collider->GetPosition(), collider->GetScale());
 		Rectangle targetRect(target->GetPosition(), target->GetScale());
 
-		float prevPositionY = rigidBody->GetCurrentVelocity().y * TimeManager::GetInstance().GetFixedDeletaTime();
+		float prevPositionY = rigidBody->GetPrevDropSpeed();
 
-		if (rect.bottomPosition > targetRect.topPosition - prevPositionY)
+		if (!(rect.bottomPosition - prevPositionY < targetRect.topPosition))
 		{
 			moveDirection.x *= -1.f;
 		}
@@ -114,7 +115,10 @@ void StarObject::OnCollisionEnd(Collider* target)
 		if (!isGround)
 		{
 			rigidBody->SetGround(false);
-			rigidBody->AddDropSpeed(30.f);
+
+			if(!isJump)
+				rigidBody->AddDropSpeed(30.f);
+			isJump = true;
 		}
 	}
 }

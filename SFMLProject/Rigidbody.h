@@ -11,6 +11,7 @@ protected:
 	float	mass;
 	float	dropSpeed;
 	float	maxDropSpeed;
+	float	prevDropSpeed;
 	bool    friction;
 	bool	isGround;
 	bool	isActive;
@@ -22,6 +23,8 @@ public:
 
 	void AddForce(const sf::Vector2f& force);
 	sf::Vector2f GetCurrentForce() const { return force; }
+
+	float GetPrevDropSpeed() { return prevDropSpeed; }
 
 	float GetMass() const { return mass; }
 	void SetMass(float mass) { this->mass = mass; }

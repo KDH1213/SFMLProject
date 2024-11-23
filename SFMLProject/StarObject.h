@@ -11,6 +11,8 @@ private:
 	float				lifeTime;
 	float				currentLifeTime;
 
+	bool				isJump;
+
 public:
 	void Start() override;
 	void Update(const float& deltaTime) override;

@@ -37,7 +37,7 @@ void KoopaTroopa::Start()
 {
 	Enemy::Start();
 
-	fsm->ChangeState(EnemyStateType::Groggy);
+	fsm->ChangeState(EnemyStateType::Scout);
 
 
 	GetCollider()->SetScale({ 64.f, 64.f });
@@ -144,7 +144,7 @@ void KoopaTroopa::OnCollisionEnter(Collider* target)
 
 		if (currentState == EnemyStateType::Scout)
 		{
-			if (!(rect.topPosition > targetRect.bottomPosition && rect.bottomPosition < targetRect.topPosition))
+			if (rect.bottomPosition != targetRect.topPosition)
 			{
 				moveDirection.x *= -1.f;
 				fsm->ChangeState(EnemyStateType::Scout);

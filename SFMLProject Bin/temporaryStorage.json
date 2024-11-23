@@ -556,75 +556,7 @@
                 },
                 "originPreset": 4,
                 "position": {
-                    "x": 6048.0,
-                    "y": 288.0
-                },
-                "rotation": 0.0,
-                "scale": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "sortingOrder": 0
-            },
-            "rectSize": {
-                "x": 64.0,
-                "y": 64.0
-            },
-            "textureID": "tiles",
-            "textureUVRect": {
-                "height": 16,
-                "left": 16,
-                "top": 0,
-                "width": 16
-            }
-        },
-        {
-            "blockType": 2,
-            "gameObjectSaveData": {
-                "active": true,
-                "layerType": 4,
-                "name": "BrickBlock",
-                "origin": {
-                    "x": 32.0,
-                    "y": 32.0
-                },
-                "originPreset": 4,
-                "position": {
                     "x": 6496.0,
-                    "y": 288.0
-                },
-                "rotation": 0.0,
-                "scale": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "sortingOrder": 0
-            },
-            "rectSize": {
-                "x": 64.0,
-                "y": 64.0
-            },
-            "textureID": "tiles",
-            "textureUVRect": {
-                "height": 16,
-                "left": 16,
-                "top": 0,
-                "width": 16
-            }
-        },
-        {
-            "blockType": 2,
-            "gameObjectSaveData": {
-                "active": true,
-                "layerType": 4,
-                "name": "BrickBlock",
-                "origin": {
-                    "x": 32.0,
-                    "y": 32.0
-                },
-                "originPreset": 4,
-                "position": {
-                    "x": 6560.0,
                     "y": 288.0
                 },
                 "rotation": 0.0,
@@ -1352,7 +1284,7 @@
                 "name": "KoopaTroopa",
                 "origin": {
                     "x": 8.0,
-                    "y": 8.0
+                    "y": 12.0
                 },
                 "originPreset": 4,
                 "position": {
@@ -2239,6 +2171,134 @@
                 "sortingOrder": 0
             },
             "itemCount": 1,
+            "itemType": 0
+        },
+        {
+            "blockSaveData": {
+                "blockType": 1,
+                "gameObjectSaveData": {
+                    "active": true,
+                    "layerType": 4,
+                    "name": "ItemBlock",
+                    "origin": {
+                        "x": 32.0,
+                        "y": 32.0
+                    },
+                    "originPreset": 4,
+                    "position": {
+                        "x": 6560.0,
+                        "y": 288.0
+                    },
+                    "rotation": 0.0,
+                    "scale": {
+                        "x": 1.0,
+                        "y": 1.0
+                    },
+                    "sortingOrder": 0
+                },
+                "rectSize": {
+                    "x": 64.0,
+                    "y": 64.0
+                },
+                "textureID": "tiles",
+                "textureUVRect": {
+                    "height": 16,
+                    "left": 16,
+                    "top": 0,
+                    "width": 16
+                }
+            },
+            "changeTextureUvRect": {
+                "height": 16,
+                "left": 48,
+                "top": 0,
+                "width": 16
+            },
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 4,
+                "name": "ItemBlock",
+                "origin": {
+                    "x": 32.0,
+                    "y": 32.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 6560.0,
+                    "y": 288.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "sortingOrder": 0
+            },
+            "itemCount": 1,
+            "itemType": 3
+        },
+        {
+            "blockSaveData": {
+                "blockType": 1,
+                "gameObjectSaveData": {
+                    "active": true,
+                    "layerType": 4,
+                    "name": "ItemBlock",
+                    "origin": {
+                        "x": 32.0,
+                        "y": 32.0
+                    },
+                    "originPreset": 4,
+                    "position": {
+                        "x": 6048.0,
+                        "y": 288.0
+                    },
+                    "rotation": 0.0,
+                    "scale": {
+                        "x": 1.0,
+                        "y": 1.0
+                    },
+                    "sortingOrder": 0
+                },
+                "rectSize": {
+                    "x": 64.0,
+                    "y": 64.0
+                },
+                "textureID": "tiles",
+                "textureUVRect": {
+                    "height": 16,
+                    "left": 16,
+                    "top": 0,
+                    "width": 16
+                }
+            },
+            "changeTextureUvRect": {
+                "height": 16,
+                "left": 48,
+                "top": 0,
+                "width": 16
+            },
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 4,
+                "name": "ItemBlock",
+                "origin": {
+                    "x": 32.0,
+                    "y": 32.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 6048.0,
+                    "y": 288.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "sortingOrder": 0
+            },
+            "itemCount": 10,
             "itemType": 0
         }
     ],

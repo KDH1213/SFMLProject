@@ -273,14 +273,6 @@ void Player::Update(const float& deltaTime)
 		position.x = mainCamera->GetCameraLeftPosition() + abs(collider->GetScale().x * 0.5f);
 		SetPosition(position);
 	}
-
-	currentColorTime += deltaTime;
-	if (currentColorTime >= colorChangeTime) 
-	{
-		sprite.setColor(starStateChangeColors[currentColorIndex]);
-		currentColorTime = 0.f;
-		currentColorIndex = currentColorIndex == 3 ? 0 : currentColorIndex + 1;
-	}
 	if (isStarState)
 	{
 		currentStarState += deltaTime;
