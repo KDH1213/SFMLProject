@@ -17,14 +17,18 @@ GameClearObject::GameClearObject(const std::string& name)
 	, currentEventIndex(0)
 	, isStartFlip(false)
 	, isStartMove(false)
-	, endMoveTime(3.f)
+	, endMoveTime(1.5f)
 	, currentEndMoveTime(0.f)
+	, currentFlagMoveTime(0.f)
+	, flagMoveTime(2.f)
 {
 	CreateCollider(ColliderType::Rectangle, ColliderLayer::CleraPoint);
 
 	gameClearEvents.push_back(std::bind(&GameClearObject::StartMove, this));
 	gameClearEvents.push_back(std::bind(&GameClearObject::FlipEvent, this));
 	gameClearEvents.push_back(std::bind(&GameClearObject::Move, this));
+
+	eventCount = (int)gameClearEvents.size();
 }
 
 void GameClearObject::SetScale(const sf::Vector2f& scale)
@@ -66,8 +70,12 @@ void GameClearObject::SetOrigin(const sf::Vector2f& newOrigin)
 
 void GameClearObject::StartMove()
 {
+	currentFlagMoveTime += TimeManager::GetInstance().GetRealDeltatime();
 	sf::Vector2f currentPos = player->GetPosition();
 	currentPos.y = Utils::Lerp(startPosition.y, destinationPosition.y, currentTime);
+	sf::Vector2f currentFlagPos = flagSprite.getPosition();
+
+	currentFlagPos.y = Utils::Lerp(flagStartPosition.y, flagEndPosition.y, currentFlagMoveTime / flagMoveTime);
 
 	if (currentTime >= 1.f)
 	{
@@ -75,8 +83,13 @@ void GameClearObject::StartMove()
 		player->GetAnimator()->GetCurrentAnimation()->Stop();
 		currentTime = 1.f;
 		// isStartClearEvent = false;
+	}
+	if (currentFlagMoveTime >= flagMoveTime)
+	{
 		++currentEventIndex;
 	}
+
+	flagSprite.setPosition(currentFlagPos);
 	player->SetPosition(currentPos);
 }
 
@@ -109,7 +122,13 @@ void GameClearObject::Move()
 		player->GetRigidbody()->SetActive(true);
 		player->GetRigidbody()->SetGround(false);
 		player->GetCollider()->SetActive(true);
-		player->GetAnimator()->ChangeAnimation("marioRun", true);
+
+		if(player->GetCurrentHP() == 1)
+			player->GetAnimator()->ChangeAnimation("marioSmallRun", true);
+		else if (player->GetCurrentHP() == 2)
+			player->GetAnimator()->ChangeAnimation("marioRun", true);
+		else if (player->GetCurrentHP() == 3)
+			player->GetAnimator()->ChangeAnimation("marioFireRun", true);
 		player->OnFlipX();
 		isStartMove = true;
 		currentEndMoveTime = 0.f;
@@ -123,7 +142,8 @@ void GameClearObject::Move()
 
 		if (currentEndMoveTime >= endMoveTime)
 		{
-			isStartClearEvent = false;
+			GameManager::GetInstance().OnGameClearEvent();
+			isStartClearEvent = true;
 			player->SetActive(false);
 		}
 	}
@@ -131,6 +151,17 @@ void GameClearObject::Move()
 
 void GameClearObject::Start()
 {
+	flagStartPosition = position + sf::Vector2f(-32.f, -90.f);
+	flagEndPosition = flagStartPosition;
+	flagEndPosition.y = destinationPosition.y;
+
+	flagSprite.setTexture(ResourcesManager<sf::Texture>::GetInstance().Get("Items"));
+	flagSprite.setTextureRect({ 128,32,16,16 });
+	flagSprite.setScale(4.f, 4.f);
+	flagSprite.setPosition(flagStartPosition);
+	Utils::SetOrigin(flagSprite, originPreset);
+
+
 	SetScale(scale);
 	SetPosition(position);
 	SetRotation(rotation);
@@ -141,6 +172,9 @@ void GameClearObject::Start()
 void GameClearObject::Update(const float& deltaTime)
 {
 	if (!isStartClearEvent)
+		return;
+
+	if (eventCount == currentEventIndex)
 		return;
 
 	currentTime += deltaTime;
@@ -154,6 +188,7 @@ void GameClearObject::Update(const float& deltaTime)
 void GameClearObject::Render(sf::RenderWindow& renderWindow)
 {
 	collider->Render(renderWindow);
+	renderWindow.draw(flagSprite);
 }
 
 void GameClearObject::OnCollisionEnter(Collider* target)
@@ -169,7 +204,8 @@ void GameClearObject::OnCollisionEnter(Collider* target)
 		isStartClearEvent = true;
 		collider->SetActive(false);
 		player->GetFSM().ChangeState(PlayerStateType::GameClear);
-		// player->GetAnimator()->ChangeAnimation("")
+
+		GameManager::GetInstance().SetGameClear();
 	}
 }
 
@@ -194,6 +230,5 @@ void GameClearObject::LoadGameClearSaveData(const GameClearSaveData& data)
 	maxStartPosition = data.maxStartPosition;
 	destinationPosition = data.destinationPosition;
 	endMovePosition = data.endMovePosition;
-	endMoveTime = data.endMoveTime;
 	moveTime = data.moveTime;
 }

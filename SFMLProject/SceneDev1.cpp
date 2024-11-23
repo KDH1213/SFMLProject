@@ -93,7 +93,7 @@ void SceneDev1::Enter()
 	else
 	{
 		Load(loadPath);
-
+		player->ChangeSmallMario();
 		GameManager::GetInstance().OnSavePoint(player->GetPosition());
 		// SaveLoadManager::GetInstance().Load();
 		//GameManager::GetInstance().OnSavePoint();
@@ -132,7 +132,13 @@ void SceneDev1::Update(float dt)
 	{
 		ColliderManager::GetInstance().Clear();
 		GameManager::GetInstance().ReStart();
-		player = nullptr;
+		player = (Player*)GetObjectVector(LayerType::Player)[0];
+	}
+	else if (GameManager::GetInstance().IsEndAdjustment())
+	{
+		ColliderManager::GetInstance().Clear();
+		GameManager::GetInstance().NextStage();
+		return;
 	}
 	else
 	{
@@ -307,7 +313,7 @@ void SceneDev1::Load(const std::string& loadPath)
 		GameClearObject* gameClear = new GameClearObject();
 		gameClear->LoadGameClearSaveData(data);
 		gameClear->Start();
-		AddGameObject(gameClear, gameClear->GetLayerType());
+		AddGameObject(gameClear, LayerType::BackGround);
 	}
 
 	for (const auto& data : data.enemySaveDatas)

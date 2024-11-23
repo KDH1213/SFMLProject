@@ -105,6 +105,6 @@ void ImguiManger::Reset()
 
 ImguiManger::ImguiManger()
 	: sfTime(nullptr)
-	, OnGUI(true)
+	, OnGUI(false)
 {
 }

@@ -11,7 +11,6 @@ private:
 	UITextGameObject* timerUI;
 	UITextGameObject* scoreUI;
 
-
 	std::string		restartPath;
 	std::string		worldName;
 	sf::Vector2f	restartPosition;
@@ -25,18 +24,33 @@ private:
 	int				life;
 	bool			isRestart;
 	bool			isPlayerDead;
+	bool			isGameClear;
+	float			clearEvnetScoreUpTime;
+	float			currentEventTime;
+	float			waitTime;
 
 	int				highscore;
+	bool			isStartClearEvent;
+	bool			isEndAdjustment;
+	
+	int				marioHP;
 
 public:
 
+	bool IsGameClear() { return isGameClear; }
 	bool IsRestart() { return isRestart; }
+	bool IsEndAdjustment() { return isEndAdjustment; }
+
+	void OnClearAdjustment();
 	void OnRestart();
 	void OnSavePoint(const sf::Vector2f& restartPos);
+	void SetGameClear();
+	void OnGameClearEvent();
 	void SetHighScore(int score) { highscore = score; }
 
 	void GameStartInit();
 
+	void NextStage();
 	void ReStart();
 	void PlayerDie();
 	void HaveCoin();

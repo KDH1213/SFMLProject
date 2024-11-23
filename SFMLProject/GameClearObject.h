@@ -8,6 +8,8 @@ class Player;
 class GameClearObject : public GameObject
 {
 protected:
+	sf::Sprite		flagSprite;
+
 	std::vector<std::function<void()>> gameClearEvents;
 
 	sf::RectangleShape	render;
@@ -18,15 +20,21 @@ protected:
 	sf::Vector2f		destinationPosition;
 	sf::Vector2f		endMovePosition;
 
+	sf::Vector2f		flagStartPosition;
+	sf::Vector2f		flagEndPosition;
+
+	float				currentFlagMoveTime;
+	float				flagMoveTime;
 	float				currentTime;
 	float				endMoveTime;
 	float				currentEndMoveTime;
 	float				moveTime;
 	int					currentEventIndex;
+	int					eventCount;
 	bool				isStartClearEvent;
 	bool				isStartFlip;
 	bool				isStartMove;
-
+	
 public:
 	void SetScale(const sf::Vector2f& scale) override;
 	void SetRotation(float angle) override;

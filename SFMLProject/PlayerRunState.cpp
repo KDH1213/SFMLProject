@@ -83,14 +83,9 @@ void PlayerRunState::Update(float deltaTime)
 	{
 		player->Attack();
 	}
-
-	if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::LShift))
-		isSpeedUp = true;
-	if (InputManager::GetInstance().GetKeyUp(sf::Keyboard::LShift))
-		isSpeedUp = false;
 }
 
 void PlayerRunState::FixedUpdate(float fixedDeltaTime)
 {
-	rigidbody->SetVelocity({InputManager::GetInstance().GetAxis(Axis::Horizontal) * player->GetSpeed() * (isSpeedUp ? 1.5f : 1.f) , rigidbody->GetCurrentVelocity().y});
+	rigidbody->SetVelocity({InputManager::GetInstance().GetAxis(Axis::Horizontal) * player->GetSpeed() , rigidbody->GetCurrentVelocity().y});
 }

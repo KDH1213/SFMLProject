@@ -90,6 +90,7 @@ void InputManager::Init()
 	BindKey(sf::Keyboard::F11);
 	BindKey(sf::Keyboard::F3);
 	BindKey(sf::Keyboard::F2);
+	BindKey(sf::Keyboard::F4);
 
 	BindMouseButton(sf::Mouse::Left);
 	BindMouseButton(sf::Mouse::Right);

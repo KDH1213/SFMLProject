@@ -18,6 +18,11 @@ GameManager::GameManager()
 	, timerUI(nullptr)
 	, scoreString("000000")
 	, highscore(0)
+	, isStartClearEvent(false)
+	, currentEventTime(0.f)
+	, clearEvnetScoreUpTime(0.02f)
+	, waitTime(1.f)
+	, isEndAdjustment(false)
 {
 	  
 }
@@ -25,17 +30,56 @@ GameManager::GameManager()
 
 void GameManager::Update(float dt)
 {
-	currentTimer -= dt;
-	timerUI->SetString(std::to_string((int)currentTimer));
+	if (!isGameClear)
+	{
+		currentTimer -= dt;
+		timerUI->SetString(std::to_string((int)currentTimer));
+	}
 
-	if (!isPlayerDead && currentTimer <= 0.f)
+	if (!isPlayerDead && !isGameClear && currentTimer <= 0.f)
 	{
 		Player* player = (Player*)SceneManager::GetInstance().GetCurrentScene()->GetObjectVector(LayerType::Player)[0];
 		player->GetFSM().ChangeState(PlayerStateType::Dead);
 		isPlayerDead = true;
 	}
+
+	if (isStartClearEvent)
+	{
+		currentEventTime += dt;
+		if ((int)currentTimer == 0)
+		{
+			if (currentEventTime > waitTime)
+			{
+				isEndAdjustment = true;
+				// SceneManager::GetInstance().ChangeScene(SceneIds::SceneDev1);
+				currentTimer = 0.f;
+			}
+		}
+		else
+			OnClearAdjustment();
+	}
 }
 
+
+void GameManager::OnClearAdjustment()
+{
+	if (currentEventTime > clearEvnetScoreUpTime)
+	{
+		currentTimer -= 1.f;
+		currentEventTime = 0.f;
+		AddScore(100);
+
+		if (currentTimer < 100)
+		{
+			if (currentTimer < 10)
+				timerUI->SetString("00" + std::to_string((int)currentTimer));
+			else
+				timerUI->SetString("0" + std::to_string((int)currentTimer));
+		}
+		else
+			timerUI->SetString(std::to_string((int)currentTimer));
+	}
+}
 
 void GameManager::OnRestart()
 {
@@ -48,6 +92,17 @@ void GameManager::OnSavePoint(const sf::Vector2f& restartPos)
 {
 	restartPosition = restartPos;
 	SceneManager::GetInstance().GetCurrentScene()->Save(restartPath);
+}
+
+void GameManager::SetGameClear()
+{
+	isGameClear = true;
+}
+
+void GameManager::OnGameClearEvent()
+{
+	isStartClearEvent = true;
+	currentTimer = (float)((int)currentTimer);
 }
 
 void GameManager::GameStartInit()
@@ -67,20 +122,51 @@ void GameManager::GameStartInit()
 	}
 
 	coinUI->SetString(coinString);
-	timerUI->SetString(std::to_string((int)currentTimer));
+
+	if (currentTimer < 100)
+	{
+		if(currentTimer < 10)
+			timerUI->SetString("00" + std::to_string((int)currentTimer));
+		else
+			timerUI->SetString("0" + std::to_string((int)currentTimer));
+	}
+	else
+		timerUI->SetString(std::to_string((int)currentTimer));
 	scoreUI->SetString(scoreString);
+}
+
+void GameManager::NextStage()
+{
+	SceneIds currentId = SceneManager::GetInstance().GetCurrentSceneId();
+	if (currentId == SceneIds::SceneDev1)
+	{
+		Player* player = (Player*)SceneManager::GetInstance().GetCurrentScene()->GetObjectVector(LayerType::Player)[0];
+		marioHP = player->GetCurrentHP();
+		SceneManager::GetInstance().ChangeScene(SceneIds::SceneDev2);
+		player = (Player*)SceneManager::GetInstance().GetCurrentScene()->GetObjectVector(LayerType::Player)[0];
+		player->ChangeMario(marioHP);
+	}
+	else if (currentId == SceneIds::SceneDev2)
+	{
+		SceneManager::GetInstance().ChangeScene(SceneIds::TitleScene);
+	}
 }
 
 void GameManager::ReStart()
 {	
-	SceneManager::GetInstance().ChangeScene(SceneManager::GetInstance().GetCurrentSceneId());
-	SceneManager::GetInstance().GetCurrentScene()->Load(restartPath);
-	isRestart = false;
+	if(life == 0)
+		SceneManager::GetInstance().ChangeScene(SceneIds::TitleScene);
+	else
+	{
+		SceneManager::GetInstance().ChangeScene(SceneManager::GetInstance().GetCurrentSceneId());
+		SceneManager::GetInstance().GetCurrentScene()->Load(restartPath);
+		isRestart = false;
 
-	Player* player = (Player*)SceneManager::GetInstance().GetCurrentScene()->GetObjectVector(LayerType::Player)[0];
-	player->SetPosition(restartPosition);
-	player->ChangeSmallMario();
-	SceneManager::GetInstance().GetCurrentScene()->GetMainCamera()->SetCameraPosition(restartPosition);
+		Player* player = (Player*)SceneManager::GetInstance().GetCurrentScene()->GetObjectVector(LayerType::Player)[0];
+		player->SetPosition(restartPosition);
+		player->ChangeSmallMario();
+		SceneManager::GetInstance().GetCurrentScene()->GetMainCamera()->SetCameraPosition(restartPosition);
+	}
 }
 
 void GameManager::PlayerDie()

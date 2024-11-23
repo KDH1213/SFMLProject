@@ -49,6 +49,18 @@ void Player::ChangeSmallMario()
 	fsm.ChangeState(PlayerStateType::Idle);
 }
 
+void Player::ChangeMario(int hp)
+{
+	currentStatus.hp = hp;
+	if (hp == 1)
+		ChangeSmallMario();
+	else
+	{
+		collider->SetScale({ 64.f, 128.f });
+		fsm.ChangeState(PlayerStateType::Idle);
+	}
+}
+
 void Player::Awake()
 {
 }
@@ -66,8 +78,10 @@ void Player::Start()
 	fsm.Start();
 	fsm.ChangeState(PlayerStateType::Idle);
 
-
-	GetCollider()->SetScale({ (sf::Vector2f)animator->GetCurrentAnimation()->GetFrameInfo()[0].rectSize });
+	if(currentStatus.hp == 1)
+		GetCollider()->SetScale({ 32.f, 64});
+	else
+		GetCollider()->SetScale({ (sf::Vector2f)animator->GetCurrentAnimation()->GetFrameInfo()[0].rectSize });
 
 	mainCamera = SceneManager::GetInstance().GetCurrentScene()->GetMainCamera();
 }

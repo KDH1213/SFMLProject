@@ -62,6 +62,7 @@ public:
 
 	void SetHp(int hp) { currentStatus.hp = hp; }
 	void ChangeSmallMario();
+	void ChangeMario(int hp);
 
 public:
 	void Awake() override;

@@ -1379,10 +1379,10 @@
                 "x": 13084.0,
                 "y": 440.0
             },
-            "endMoveTime": 3.0,
+            "endMoveTime": 1.5,
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 10,
+                "layerType": 3,
                 "name": "GameClearPoint",
                 "origin": {
                     "x": 5.0,
@@ -2264,7 +2264,7 @@
             "sortingOrder": 0
         },
         "status": {
-            "hp": 2,
+            "hp": 1,
             "jumpPower": 200.0,
             "maxHp": 2,
             "maxJumpPower": 350.0,

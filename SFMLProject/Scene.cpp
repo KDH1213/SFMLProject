@@ -126,7 +126,10 @@ void Scene::Update(float deltaTime)
 			else
 			{
 				if (!(*iter)->IsActive())
+				{
+					++iter;
 					continue;
+				}
 				if ((cameraSize.x + (*iter)->GetScale().x) * 0.5f + 1000.f > abs(cameraPosition.x - (*iter)->GetPosition().x))
 					(*iter)->Update(deltaTime);
 
@@ -139,13 +142,7 @@ void Scene::Update(float deltaTime)
 	{
 		for (auto iter = gameObjectVectors[i].begin(); iter != gameObjectVectors[i].end();)
 		{
-			for (auto& object : gameObjectVectors[i])
-			{
-				if (!object->IsActive())
-					continue;
-
-			}
-
+			
 			if ((*iter)->GetDestory())
 			{
 				iter = gameObjectVectors[i].erase(iter);
@@ -153,7 +150,10 @@ void Scene::Update(float deltaTime)
 			else
 			{
 				if (!(*iter)->IsActive())
+				{
+					++iter;
 					continue;
+				}
 				(*iter)->Update(deltaTime);
 
 				++iter;
