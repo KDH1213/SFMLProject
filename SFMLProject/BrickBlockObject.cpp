@@ -90,7 +90,7 @@ void BrickBlockObject::OnCollisionEnter(Collider* target)
 
 				for (auto& target : targets)
 				{
-					Enemy* enemy = dynamic_cast<Enemy*>(target);
+					Enemy* enemy = dynamic_cast<Enemy*>(target->GetOwner());
 					if (enemy != nullptr)
 					{
 						enemy->SetHitDirection(enemy->GetPosition().x < position.x ? sf::Vector2f::left : sf::Vector2f::right);

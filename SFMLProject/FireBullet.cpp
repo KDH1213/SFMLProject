@@ -33,7 +33,7 @@ void FireBullet::Start()
 	SetOrigin(originPreset);
 	animator->Start();
 	collider->Reset();
-	collider->SetScale({ (sf::Vector2f)animator->GetCurrentAnimation()->GetFrameInfo()[0].rectSize });
+	collider->SetOwnerScale({ (sf::Vector2f)animator->GetCurrentAnimation()->GetFrameInfo()[0].rectSize });
 	animator->ChangeAnimation("attackFire", true);
 }
 
@@ -70,7 +70,7 @@ void FireBullet::SetScale(const sf::Vector2f& scale)
 {
 	this->scale = scale;
 	sprite.setScale(scale);
-	collider->SetScale(scale);
+	collider->SetOwnerScale(scale);
 	SetOrigin(originPreset);
 }
 
@@ -112,9 +112,20 @@ void FireBullet::OnCollisionEnter(Collider* target)
 {
 	if (target->GetColliderLayer() == ColliderLayer::Wall || target->GetColliderLayer() == ColliderLayer::Block)
 	{
-		// moveDirection.y *= -1.f;
-		rigidBody->ResetDropSpeed();
-		rigidBody->SetVelocity({ rigidBody->GetCurrentVelocity().x, -300.f });
+		Rectangle rect(collider->GetPosition(), collider->GetScale());
+		Rectangle targetRect(target->GetPosition(), target->GetScale());
+
+		sf::Vector2f prevPosition = rigidBody->GetCurrentVelocity() * TimeManager::GetInstance().GetFixedDeletaTime();
+		if (rect.bottomPosition > targetRect.topPosition + prevPosition.y)
+		{
+			SetDestory(true);
+		}
+		else
+		{
+			rigidBody->ResetDropSpeed();
+			rigidBody->SetVelocity({ rigidBody->GetCurrentVelocity().x, -300.f });
+		}
+
 	}
 	else if (target->GetColliderLayer() == ColliderLayer::Enemy)
 	{

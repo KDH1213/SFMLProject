@@ -82,6 +82,11 @@ void WallCollisionObject::OnCollisionEnter(Collider* target)
 					targetStar->GetRigidbody()->SetGround(false);
 					targetStar->GetRigidbody()->SetVelocity({ targetStar->GetRigidbody()->GetCurrentVelocity().x, -700.f });
 				}
+				else
+				{
+					object->GetRigidbody()->SetGround(true);
+					object->SetPosition({ targetPosition.x , rect.topPosition - target->GetScale().y * 0.5f });
+				}
 			}
 			else
 			{

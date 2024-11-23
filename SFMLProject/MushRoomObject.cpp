@@ -86,7 +86,6 @@ void MushRoomObject::OnCollisionEnd(Collider* target)
 				isGround = true;
 				break;
 			}
-
 		}
 
 		if (!isGround)

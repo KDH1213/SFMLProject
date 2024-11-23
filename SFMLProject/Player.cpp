@@ -35,7 +35,7 @@ Player::Player(const std::string& name)
 	effectColor.a = 120;
 
 	animator->GetAnimation("marioFireIdleAttack")->SetAnimationEndEvent(std::bind(&Player::OnAttackEnd, this), 0);
-	animator->GetAnimation("marioFireRunAttack")->SetAnimationEndEvent(std::bind(&Player::OnAttackEnd, this), 2);
+	animator->GetAnimation("marioFireRunAttack")->SetAnimationEndEvent(std::bind(&Player::OnAttackEnd, this), 1);
 	animator->GetAnimation("marioFireJumpAttack")->SetAnimationEndEvent(std::bind(&Player::OnAttackEnd, this), 0);
 }
 
@@ -159,7 +159,7 @@ void Player::TakeUpgrade()
 
 void Player::Attack()
 {
-	if (isAttack || isReload)
+	if (isAttack || isReload || currentStatus.hp < 3)
 		return;
 
 	if (!(fsm.GetCurrentStateType() == PlayerStateType::Idle || fsm.GetCurrentStateType() == PlayerStateType::Jump || fsm.GetCurrentStateType() == PlayerStateType::Run))
@@ -211,15 +211,15 @@ void Player::OnAttackEnd()
 
 	if (fsm.GetCurrentStateType() == PlayerStateType::Idle)
 	{
-		animator->ChangeAnimation("marioFireIdle");
+		animator->ChangeAnimation("marioFireIdle", true);
 	}
 	else if (fsm.GetCurrentStateType() == PlayerStateType::Jump)
 	{
-		animator->ChangeAnimation("marioFireJump");
+		animator->ChangeAnimation("marioFireJump", true);
 	}
 	else if (fsm.GetCurrentStateType() == PlayerStateType::Run)
 	{
-		animator->ChangeAnimation("marioFireRun");
+		animator->ChangeAnimation("marioFireRun", true);
 	}
 }
 
