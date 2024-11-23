@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "Rigidbody.h"
 #include "Enemy.h"
+#include "BrickBlockParticle.h"
 
 BrickBlockObject::BrickBlockObject(const std::string& texId, const std::string& name)
 	: BlockObject(BlockType::Brick, texId, name)
@@ -105,6 +106,25 @@ void BrickBlockObject::OnCollisionEnter(Collider* target)
 				else
 				{
 					SetDestory(true);
+
+					Scene* currentScene = SceneManager::GetInstance().GetCurrentScene();
+					for (int i = 0; i < 2; ++i)
+					{
+						BrickBlockParticle* particle = currentScene->AddGameObject(new BrickBlockParticle({ 64, 32, 16, 16 }, "Items"), LayerType::BackGround);
+						particle->SetPosition(position);
+						particle->SetMoveDirection(i != 0 ? sf::Vector2f::left : sf::Vector2f::right);
+						particle->StartMove((i + 1) * -600.f);
+						particle->Start();
+					}
+					for (int i = 0; i < 2; ++i)
+					{
+						BrickBlockParticle* particle = currentScene->AddGameObject(new BrickBlockParticle({ 64, 16, 16, 16 }, "Items"), LayerType::BackGround);
+						particle->SetPosition(position);
+						particle->SetMoveDirection(i != 0 ? sf::Vector2f::right : sf::Vector2f::left);
+						particle->StartMove((i + 1) * -600.f);
+						particle->Start();
+					}
+
 					SoundManger::GetInstance().PlaySfx("BrickSmash");
 				}
 			}

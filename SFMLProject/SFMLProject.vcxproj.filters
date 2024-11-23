@@ -663,6 +663,9 @@
     <ClCompile Include="InGameScoreUI.cpp">
       <Filter>Contants\UI</Filter>
     </ClCompile>
+    <ClCompile Include="BrickBlockParticle.cpp">
+      <Filter>Contants\Object\Block</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -1102,6 +1105,9 @@
     </ClInclude>
     <ClInclude Include="InGameScoreUI.h">
       <Filter>Contants\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="BrickBlockParticle.h">
+      <Filter>Contants\Object\Block</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

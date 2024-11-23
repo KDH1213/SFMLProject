@@ -160,6 +160,7 @@
     <ClCompile Include="BlockObject.cpp" />
     <ClCompile Include="BlockSaveData.cpp" />
     <ClCompile Include="BrickBlockObject.cpp" />
+    <ClCompile Include="BrickBlockParticle.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraManger.cpp" />
@@ -322,6 +323,7 @@
     <ClInclude Include="BlockObject.h" />
     <ClInclude Include="BlockSaveData.h" />
     <ClInclude Include="BrickBlockObject.h" />
+    <ClInclude Include="BrickBlockParticle.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraManger.h" />
