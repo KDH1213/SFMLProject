@@ -1277,7 +1277,7 @@
             }
         },
         {
-            "enemyType": 0,
+            "enemyType": 1,
             "gameObjectSaveData": {
                 "active": true,
                 "layerType": 7,
@@ -2331,7 +2331,112 @@
             "speed": 500.0
         }
     },
-    "savePointSaveDatas": [],
+    "savePointSaveDatas": [
+        {
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 0,
+                "name": "SavePoint",
+                "origin": {
+                    "x": 5.0,
+                    "y": 2500.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 3280.0,
+                    "y": 446.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 10.0,
+                    "y": 5000.0
+                },
+                "sortingOrder": 0
+            },
+            "restartPosition": {
+                "x": 3280.0,
+                "y": 446.0
+            }
+        },
+        {
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 0,
+                "name": "SavePoint",
+                "origin": {
+                    "x": 5.0,
+                    "y": 2500.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 3280.0,
+                    "y": 446.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 10.0,
+                    "y": 5000.0
+                },
+                "sortingOrder": 0
+            },
+            "restartPosition": {
+                "x": 3280.0,
+                "y": 446.0
+            }
+        },
+        {
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 0,
+                "name": "SavePoint",
+                "origin": {
+                    "x": 5.0,
+                    "y": 2500.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 3280.0,
+                    "y": 446.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 10.0,
+                    "y": 5000.0
+                },
+                "sortingOrder": 0
+            },
+            "restartPosition": {
+                "x": 3280.0,
+                "y": 446.0
+            }
+        },
+        {
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 0,
+                "name": "SavePoint",
+                "origin": {
+                    "x": 5.0,
+                    "y": 2500.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 3280.0,
+                    "y": 446.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 10.0,
+                    "y": 5000.0
+                },
+                "sortingOrder": 0
+            },
+            "restartPosition": {
+                "x": 3280.0,
+                "y": 446.0
+            }
+        }
+    ],
     "tileMapSaveData": {
         "cellCount": {
             "x": 30,

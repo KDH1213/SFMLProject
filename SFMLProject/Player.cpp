@@ -181,7 +181,7 @@ void Player::TakeUpgrade()
 
 void Player::Attack()
 {
-	if ( isAttack || isReload || !isStarState || currentStatus.hp < 3)
+	if ( isAttack || isReload || isStarState || currentStatus.hp < 3)
 		return;
 
 	if (!(fsm.GetCurrentStateType() == PlayerStateType::Idle || fsm.GetCurrentStateType() == PlayerStateType::Jump || fsm.GetCurrentStateType() == PlayerStateType::Run))

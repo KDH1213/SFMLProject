@@ -1,11 +1,15 @@
 #pragma once
 
 #include "SpriteGameObject.h"
+#include "KooparScaffoldingObject.h"
+
+class WallCollisionObject;
 
 class LabberObject : public SpriteGameObject
 {
 private:
 	sf::IntRect textureRect;
+	std::vector<KooparScaffoldingObject*> scaffoldingObjects;
 
 public:
 	void Start() override;

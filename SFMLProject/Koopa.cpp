@@ -9,6 +9,7 @@
 #include "Rigidbody.h"
 #include "KoopaFSM.h"
 #include "KooparHammerBullet.h"
+#include "WallCollisionObject.h"
 
 Koopa::Koopa(const std::string& name)
 	: Enemy(EnemyType::Koopa, name)
@@ -25,6 +26,7 @@ Koopa::Koopa(const std::string& name)
 	, isEndHammerFiring(true)
 	, hammerPosition({-40.f, -62.f})
 	, isLabberDead(false)
+	, wallObject(nullptr)
 {
 	fsm = new KoopaFSM(this);
 
@@ -100,6 +102,11 @@ void Koopa::HammerFiring(const float& deltaTime)
 	}
 }
 
+void Koopa::DisableScaffoldingCollision()
+{
+	wallObject->OnDestory();
+}
+
 void Koopa::Awake()
 {
 	// animator->ChangeAnimation("goombaMove", true);
@@ -109,10 +116,14 @@ void Koopa::Start()
 {
 	Enemy::Start();
 
+	Scene* scene = SceneManager::GetInstance().GetCurrentScene();
+	wallObject = (WallCollisionObject*)scene->FindGameObject("ScaffoldingWall");
+
 	fsm->ChangeState(EnemyStateType::Idle);
 	GetCollider()->SetScale({ (sf::Vector2f)animator->GetCurrentAnimation()->GetFrameInfo()[0].rectSize });
 
 	player = (Player*)(SceneManager::GetInstance().GetCurrentScene()->FindGameObject("Player", LayerType::Player));
+	currentJumpTime = jumpTime;
 }
 
 void Koopa::Update(const float& deltaTime)

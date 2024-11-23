@@ -7,7 +7,7 @@
 KoopaIdleState::KoopaIdleState(EnemyFSM* fsm)
 	: EnemyBaseState(fsm, EnemyStateType::Idle)
 	, rigidbody(nullptr)
-	, attackWaitTime(3.f)
+	, attackWaitTime(2.f)
 	,currentAttackWaitTime(0.f)
 {
 }

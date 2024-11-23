@@ -654,9 +654,6 @@
     <ClCompile Include="KooparHammerBullet.cpp">
       <Filter>Contants\Object\Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="Stage1.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="StartUIObject.cpp">
       <Filter>Contants\UI</Filter>
     </ClCompile>
@@ -665,6 +662,15 @@
     </ClCompile>
     <ClCompile Include="BrickBlockParticle.cpp">
       <Filter>Contants\Object\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage2.cpp">
+      <Filter>Contants\Scene\ContantsScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage1.cpp">
+      <Filter>Contants\Scene\ContantsScene</Filter>
+    </ClCompile>
+    <ClCompile Include="KooparScaffoldingObject.cpp">
+      <Filter>Contants\Object\Enemy\Koopa</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1097,9 +1103,6 @@
     <ClInclude Include="GameInclude.h">
       <Filter>Contants</Filter>
     </ClInclude>
-    <ClInclude Include="Stage1.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="StartUIObject.h">
       <Filter>Contants\UI</Filter>
     </ClInclude>
@@ -1108,6 +1111,15 @@
     </ClInclude>
     <ClInclude Include="BrickBlockParticle.h">
       <Filter>Contants\Object\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage1.h">
+      <Filter>Contants\Scene\ContantsScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage2.h">
+      <Filter>Contants\Scene\ContantsScene</Filter>
+    </ClInclude>
+    <ClInclude Include="KooparScaffoldingObject.h">
+      <Filter>Contants\Object\Enemy\Koopa</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -15,6 +15,19 @@ LabberObject::LabberObject(const sf::IntRect& textureRect, const std::string& te
 
 void LabberObject::Start()
 {
+	Scene* scene = SceneManager::GetInstance().GetCurrentScene();
+
+	for (int i = 0; i < 26; ++i)
+	{
+		KooparScaffoldingObject* object = scene->AddGameObject(new KooparScaffoldingObject("tiles", "ScaffoldingObject"), LayerType::BackGround);
+		scaffoldingObjects.push_back(object);
+
+		object->SetPosition(position + (sf::Vector2f::left * 64.f * (i + 1)) + sf::Vector2f::down * 64.f);
+		object->Start();
+	}
+
+	// { 2880.000, 448.000 };
+	// { 1664.000 , 128.000}
 	sprite.setTextureRect(textureRect);
 	sprite.setTexture(ResourcesManager<sf::Texture>::GetInstance().Get(textureId));
 	SetScale(scale);
@@ -42,6 +55,7 @@ void LabberObject::OnCollisionEnter(Collider* target)
 			Koopa* koopa = dynamic_cast<Koopa*>(object);
 			if (koopa != nullptr)
 			{
+				koopa->SetScaffoldingObjects(scaffoldingObjects);
 				koopa->OnDead();
 			}
 		}

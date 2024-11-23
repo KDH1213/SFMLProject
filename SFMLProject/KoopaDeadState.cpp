@@ -3,6 +3,8 @@
 #include "Animator.h"
 #include "Collider.h"
 #include "Rigidbody.h"
+#include "Koopa.h"
+#include "KooparScaffoldingObject.h"
 
 KoopaDeadState::KoopaDeadState(EnemyFSM* fsm)
 	: EnemyBaseState(fsm, EnemyStateType::Dead)
@@ -14,6 +16,9 @@ KoopaDeadState::KoopaDeadState(EnemyFSM* fsm)
 	, rotationTime(0.5f)
 	, currentRotationTime(0.f)
 	, isEndRotation(false)
+	, koopa(nullptr)
+	, currentOffTime(0.f)
+	, offScaffoldingTime(0.f)
 {
 }
 
@@ -25,6 +30,7 @@ KoopaDeadState::~KoopaDeadState()
 void KoopaDeadState::Awake()
 {
 	rigidbody = enemy->GetRigidbody();
+	koopa = (Koopa*)enemy;
 }
 
 void KoopaDeadState::Start()
@@ -50,6 +56,11 @@ void KoopaDeadState::Enter()
 		InputManager::GetInstance().SetInputable(true);
 		currentTime = 0.f;
 		isLabberDie = true;
+
+		koopa->DisableScaffoldingCollision();
+		currentIndex = 0;
+
+		offScaffoldingTime = 0.5f / koopa->GetScaffoldingObjects().size();
 	}
 }
 
@@ -89,6 +100,13 @@ void KoopaDeadState::EndDead()
 void KoopaDeadState::LabberDie()
 {
 	currentTime += TimeManager::GetInstance().GetUnScaleDeletaTime();
+	currentOffTime += TimeManager::GetInstance().GetUnScaleDeletaTime();
+
+	if (currentOffTime >= offScaffoldingTime && currentIndex < koopa->GetScaffoldingObjects().size())
+	{
+		currentOffTime -= offScaffoldingTime;
+		koopa->GetScaffoldingObjects()[currentIndex++]->SetActive(false);
+	}
 
 	if (!isStartEvent && currentTime > 0.5f)
 	{

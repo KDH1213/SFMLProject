@@ -34,10 +34,12 @@ private:
 	bool			isEndAdjustment;
 	
 	int				marioHP;
+	bool			isGameOver;
 
 	sf::Sound		countDown;
 public:
 
+	bool IsGameOver() { return isGameOver; }
 	bool IsGameClear() { return isGameClear; }
 	bool IsRestart() { return isRestart; }
 	bool IsEndAdjustment() { return isEndAdjustment; }
@@ -56,17 +58,19 @@ public:
 	void PlayerDie();
 	void HaveCoin();
 	void OnLifeUp();
-
 	void AddScore(int score);
 
 	const std::string& GetWorldName() { return worldName; }
+	void SetWorldName(const std::string& name) { worldName = name; }
 	
 
 	void SetTimerUI(UITextGameObject* ui) { timerUI = ui; }
 	void SetCoinUI(UITextGameObject* ui) { coinUI = ui; }
 	void SetScoreUI(UITextGameObject* ui) { scoreUI = ui; }
 
+	void SetMarioHp(int hp) { marioHP = hp; }
 	int GetCurrentLife() { return life; }
+	int GetMarioHp() { return marioHP; }
 
 public:
 	void Update(float dt);

@@ -6,6 +6,11 @@ inline void InputManager::Clear()
 	mouseInputMap.clear();
 }
 
+InputManager::InputManager()
+	: isInputable(false)
+{
+}
+
 bool InputManager::BindKey(const sf::Keyboard::Key& key)
 {
 	auto iter = keyboardInputMap.find(key);

@@ -23,6 +23,8 @@ GameManager::GameManager()
 	, clearEvnetScoreUpTime(0.02f)
 	, waitTime(1.f)
 	, isEndAdjustment(false)
+	, isGameOver(false)
+	, marioHP(1)
 {
 	  
 }
@@ -138,25 +140,32 @@ void GameManager::GameStartInit()
 
 void GameManager::NextStage()
 {
+	InputManager::GetInstance().SetInputable(false);
 	SceneIds currentId = SceneManager::GetInstance().GetCurrentSceneId();
 	if (currentId == SceneIds::SceneDev1)
 	{
 		Player* player = (Player*)SceneManager::GetInstance().GetCurrentScene()->GetObjectVector(LayerType::Player)[0];
 		marioHP = player->GetCurrentHP();
-		SceneManager::GetInstance().ChangeScene(SceneIds::SceneDev2);
+		SceneManager::GetInstance().ChangeScene(SceneIds::Stage2);
 		player = (Player*)SceneManager::GetInstance().GetCurrentScene()->GetObjectVector(LayerType::Player)[0];
 		player->ChangeMario(marioHP);
 	}
-	else if (currentId == SceneIds::SceneDev2)
+	else if (currentId == SceneIds::Stage2)
 	{
 		SceneManager::GetInstance().ChangeScene(SceneIds::TitleScene);
 	}
+	isEndAdjustment = false;
+	isGameClear = false;
+	isStartClearEvent = false;
 }
 
 void GameManager::ReStart()
 {	
-	if(life == 0)
+	if (life == 0)
+	{
 		SceneManager::GetInstance().ChangeScene(SceneIds::TitleScene);
+		isGameOver = true;
+	}
 	else
 	{
 		SceneManager::GetInstance().ChangeScene(SceneManager::GetInstance().GetCurrentSceneId());

@@ -16,6 +16,7 @@ Enemy::Enemy(EnemyType type, const std::string& name)
     , currentState(EnemyStateType::Idle)
     , isJumpDead(false)
     , isBulletDead(false)
+    , enemyType(type)
 {
     rigidBody = new Rigidbody(this);
     rigidBody->SetGround(false);

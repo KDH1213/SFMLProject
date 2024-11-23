@@ -239,6 +239,7 @@
     <ClCompile Include="KoopaFSM.cpp" />
     <ClCompile Include="KoopaIdleState.cpp" />
     <ClCompile Include="KooparHammerBullet.cpp" />
+    <ClCompile Include="KooparScaffoldingObject.cpp" />
     <ClCompile Include="KoopaTroopa.cpp" />
     <ClCompile Include="KoopaTroopaDeadState.cpp" />
     <ClCompile Include="KoopaTroopaFSM.cpp" />
@@ -281,6 +282,7 @@
     <ClCompile Include="SoundManger.cpp" />
     <ClCompile Include="SpriteGameObject.cpp" />
     <ClCompile Include="Stage1.cpp" />
+    <ClCompile Include="Stage2.cpp" />
     <ClCompile Include="StarObject.cpp" />
     <ClCompile Include="StartUIObject.cpp" />
     <ClCompile Include="TextButton.cpp" />
@@ -390,6 +392,7 @@
     <ClInclude Include="KoopaFSM.h" />
     <ClInclude Include="KoopaIdleState.h" />
     <ClInclude Include="KooparHammerBullet.h" />
+    <ClInclude Include="KooparScaffoldingObject.h" />
     <ClInclude Include="KoopaTroopa.h" />
     <ClInclude Include="KoopaTroopaDeadState.h" />
     <ClInclude Include="KoopaTroopaFSM.h" />
@@ -433,6 +436,7 @@
     <ClInclude Include="SoundManger.h" />
     <ClInclude Include="SpriteGameObject.h" />
     <ClInclude Include="Stage1.h" />
+    <ClInclude Include="Stage2.h" />
     <ClInclude Include="StarObject.h" />
     <ClInclude Include="StartUIObject.h" />
     <ClInclude Include="TextButton.h" />

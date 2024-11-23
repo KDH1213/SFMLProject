@@ -17,6 +17,9 @@ void SceneDev1::Enter()
 	CameraManger::GetInstance().SetCamera(mainCamera);
 	CameraManger::GetInstance().SetCamera(uICamera);
 	LoadResources();
+
+
+	GameManager::GetInstance().SetWorldName("1-1");
 	//Player* testPlayer = AddGameObject(new Player("Player"),LayerType::Player);
 	//testPlayer->Awake();
 	////testPlayer->CreateAnimator();
@@ -58,7 +61,6 @@ void SceneDev1::Enter()
 	//mushroom->SetPosition({ -250.f, -150.f });
 
 	StartUIObject* startUIObject = AddGameObject(new StartUIObject(), LayerType::UI);
-
 	InGameUIHub* uiHub = AddGameObject(new InGameUIHub("DungGeunMo", "UIHub"), LayerType::UI);
 
 	BackgroundColorBox* background = AddGameObject(new BackgroundColorBox(), LayerType::Default);
@@ -123,12 +125,18 @@ void SceneDev1::Update(float dt)
 	{
 		ColliderManager::GetInstance().Clear();
 		GameManager::GetInstance().ReStart();
+
+		if (GameManager::GetInstance().IsGameOver())
+			return;
+
 		player = (Player*)GetObjectVector(LayerType::Player)[0];
 	}
 	else if (GameManager::GetInstance().IsEndAdjustment())
 	{
+		GameManager::GetInstance().SetMarioHp(player->GetCurrentHP());
 		ColliderManager::GetInstance().Clear();
 		GameManager::GetInstance().NextStage();
+		mainCamera->SetFollowTarget(nullptr);
 		return;
 	}
 	else

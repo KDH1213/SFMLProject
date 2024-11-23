@@ -1,21 +1,26 @@
 #pragma once
 
 #include "EnemyBaseState.h"
+class Koopa;
 
 class KoopaDeadState : public EnemyBaseState
 {
 private:
 	Rigidbody*	rigidbody;
+	Koopa*		koopa;
 
 	float		rotationTime;
 	float		currentRotationTime;
 
 
+	float		currentOffTime;
+	float		offScaffoldingTime;
 	float		currentTime;
 	bool		isStartEvent;
 	bool		isLabberDie;
 	bool		isHitDie;
 	bool		isEndRotation;
+	int			currentIndex;
 
 
 private:

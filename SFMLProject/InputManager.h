@@ -74,7 +74,7 @@ public:
 	void SetInputable(bool active) { isInputable = active; }
 	bool GetInputable() { return isInputable; }
 protected:
-	InputManager() = default;
+	InputManager();
 	~InputManager() = default;
 	InputManager(const InputManager&) = delete;
 	InputManager& operator=(const InputManager&) = delete;
