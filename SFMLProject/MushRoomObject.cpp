@@ -89,6 +89,9 @@ void MushRoomObject::OnCollisionEnd(Collider* target)
 		}
 
 		if (!isGround)
+		{
 			rigidBody->SetGround(false);
+			rigidBody->AddDropSpeed(30.f);
+		}
 	}
 }

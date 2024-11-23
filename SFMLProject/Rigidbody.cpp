@@ -22,6 +22,11 @@ void Rigidbody::SetVelocity(const sf::Vector2f& velocity)
 	this->velocity = velocity;
 }
 
+void Rigidbody::AddVelocity(const sf::Vector2f& addVelocity)
+{
+	velocity += addVelocity;
+}
+
 void Rigidbody::AddForce(const sf::Vector2f& force)
 {
 	this->force += force * mass;

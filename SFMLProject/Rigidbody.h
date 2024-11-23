@@ -18,6 +18,8 @@ public:
 	void SetVelocity(const sf::Vector2f& velocity);
 	sf::Vector2f GetCurrentVelocity() const { return velocity; }
 
+	void AddVelocity(const sf::Vector2f& velocity);
+
 	void AddForce(const sf::Vector2f& force);
 	sf::Vector2f GetCurrentForce() const { return force; }
 
@@ -29,6 +31,9 @@ public:
 
 	void SetMaxDropSpeed(float speed) { maxDropSpeed = speed; }
 	float GetMaxDropSpeed() { return maxDropSpeed; }
+
+
+	void AddDropSpeed(float speed) { dropSpeed += speed; }
 
 	float GetCurrentDropSpeed() { return dropSpeed; }
 
