@@ -556,75 +556,7 @@
                 },
                 "originPreset": 4,
                 "position": {
-                    "x": 6048.0,
-                    "y": 288.0
-                },
-                "rotation": 0.0,
-                "scale": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "sortingOrder": 0
-            },
-            "rectSize": {
-                "x": 64.0,
-                "y": 64.0
-            },
-            "textureID": "tiles",
-            "textureUVRect": {
-                "height": 16,
-                "left": 16,
-                "top": 0,
-                "width": 16
-            }
-        },
-        {
-            "blockType": 2,
-            "gameObjectSaveData": {
-                "active": true,
-                "layerType": 4,
-                "name": "BrickBlock",
-                "origin": {
-                    "x": 32.0,
-                    "y": 32.0
-                },
-                "originPreset": 4,
-                "position": {
                     "x": 6496.0,
-                    "y": 288.0
-                },
-                "rotation": 0.0,
-                "scale": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "sortingOrder": 0
-            },
-            "rectSize": {
-                "x": 64.0,
-                "y": 64.0
-            },
-            "textureID": "tiles",
-            "textureUVRect": {
-                "height": 16,
-                "left": 16,
-                "top": 0,
-                "width": 16
-            }
-        },
-        {
-            "blockType": 2,
-            "gameObjectSaveData": {
-                "active": true,
-                "layerType": 4,
-                "name": "BrickBlock",
-                "origin": {
-                    "x": 32.0,
-                    "y": 32.0
-                },
-                "originPreset": 4,
-                "position": {
-                    "x": 6560.0,
                     "y": 288.0
                 },
                 "rotation": 0.0,
@@ -1345,14 +1277,14 @@
             }
         },
         {
-            "enemyType": 0,
+            "enemyType": 1,
             "gameObjectSaveData": {
                 "active": true,
                 "layerType": 7,
                 "name": "KoopaTroopa",
                 "origin": {
                     "x": 8.0,
-                    "y": 12.0
+                    "y": 8.0
                 },
                 "originPreset": 4,
                 "position": {
@@ -1379,10 +1311,10 @@
                 "x": 13084.0,
                 "y": 440.0
             },
-            "endMoveTime": 3.0,
+            "endMoveTime": 1.5,
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 10,
+                "layerType": 3,
                 "name": "GameClearPoint",
                 "origin": {
                     "x": 5.0,
@@ -2240,6 +2172,134 @@
             },
             "itemCount": 1,
             "itemType": 0
+        },
+        {
+            "blockSaveData": {
+                "blockType": 1,
+                "gameObjectSaveData": {
+                    "active": true,
+                    "layerType": 4,
+                    "name": "ItemBlock",
+                    "origin": {
+                        "x": 32.0,
+                        "y": 32.0
+                    },
+                    "originPreset": 4,
+                    "position": {
+                        "x": 6560.0,
+                        "y": 288.0
+                    },
+                    "rotation": 0.0,
+                    "scale": {
+                        "x": 1.0,
+                        "y": 1.0
+                    },
+                    "sortingOrder": 0
+                },
+                "rectSize": {
+                    "x": 64.0,
+                    "y": 64.0
+                },
+                "textureID": "tiles",
+                "textureUVRect": {
+                    "height": 16,
+                    "left": 16,
+                    "top": 0,
+                    "width": 16
+                }
+            },
+            "changeTextureUvRect": {
+                "height": 16,
+                "left": 48,
+                "top": 0,
+                "width": 16
+            },
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 4,
+                "name": "ItemBlock",
+                "origin": {
+                    "x": 32.0,
+                    "y": 32.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 6560.0,
+                    "y": 288.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "sortingOrder": 0
+            },
+            "itemCount": 1,
+            "itemType": 3
+        },
+        {
+            "blockSaveData": {
+                "blockType": 1,
+                "gameObjectSaveData": {
+                    "active": true,
+                    "layerType": 4,
+                    "name": "ItemBlock",
+                    "origin": {
+                        "x": 32.0,
+                        "y": 32.0
+                    },
+                    "originPreset": 4,
+                    "position": {
+                        "x": 6048.0,
+                        "y": 288.0
+                    },
+                    "rotation": 0.0,
+                    "scale": {
+                        "x": 1.0,
+                        "y": 1.0
+                    },
+                    "sortingOrder": 0
+                },
+                "rectSize": {
+                    "x": 64.0,
+                    "y": 64.0
+                },
+                "textureID": "tiles",
+                "textureUVRect": {
+                    "height": 16,
+                    "left": 16,
+                    "top": 0,
+                    "width": 16
+                }
+            },
+            "changeTextureUvRect": {
+                "height": 16,
+                "left": 48,
+                "top": 0,
+                "width": 16
+            },
+            "gameObjectSaveData": {
+                "active": true,
+                "layerType": 4,
+                "name": "ItemBlock",
+                "origin": {
+                    "x": 32.0,
+                    "y": 32.0
+                },
+                "originPreset": 4,
+                "position": {
+                    "x": 6048.0,
+                    "y": 288.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "sortingOrder": 0
+            },
+            "itemCount": 10,
+            "itemType": 0
         }
     ],
     "playerData": {
@@ -2249,7 +2309,7 @@
             "name": "Player",
             "origin": {
                 "x": 8.0,
-                "y": 16.0
+                "y": 8.0
             },
             "originPreset": 4,
             "position": {
@@ -2264,7 +2324,7 @@
             "sortingOrder": 0
         },
         "status": {
-            "hp": 2,
+            "hp": 1,
             "jumpPower": 200.0,
             "maxHp": 2,
             "maxJumpPower": 350.0,
@@ -2312,7 +2372,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall2",
                 "origin": {
                     "x": 0.0,
@@ -2334,7 +2394,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall3",
                 "origin": {
                     "x": 0.0,
@@ -2356,7 +2416,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall4",
                 "origin": {
                     "x": 0.0,
@@ -2378,7 +2438,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall5",
                 "origin": {
                     "x": 0.0,
@@ -2400,7 +2460,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall7",
                 "origin": {
                     "x": 0.0,
@@ -2422,7 +2482,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall8",
                 "origin": {
                     "x": 0.0,
@@ -2444,7 +2504,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall12",
                 "origin": {
                     "x": 0.0,
@@ -2466,7 +2526,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall13",
                 "origin": {
                     "x": 0.0,
@@ -2488,7 +2548,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall14",
                 "origin": {
                     "x": 0.0,
@@ -2510,7 +2570,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall16",
                 "origin": {
                     "x": 0.0,
@@ -2532,7 +2592,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall17",
                 "origin": {
                     "x": 0.0,
@@ -2554,7 +2614,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall18",
                 "origin": {
                     "x": 0.0,
@@ -2576,7 +2636,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall19",
                 "origin": {
                     "x": 0.0,
@@ -2598,7 +2658,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall20",
                 "origin": {
                     "x": 0.0,
@@ -2620,7 +2680,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall21",
                 "origin": {
                     "x": 0.0,
@@ -2642,7 +2702,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall22",
                 "origin": {
                     "x": 0.0,
@@ -2664,7 +2724,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall23",
                 "origin": {
                     "x": 0.0,
@@ -2686,7 +2746,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall24",
                 "origin": {
                     "x": 0.0,
@@ -2708,7 +2768,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall25",
                 "origin": {
                     "x": 0.0,
@@ -2730,7 +2790,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall26",
                 "origin": {
                     "x": 0.0,
@@ -2752,7 +2812,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall27",
                 "origin": {
                     "x": 0.0,
@@ -2774,7 +2834,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall28",
                 "origin": {
                     "x": 0.0,
@@ -2796,7 +2856,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall29",
                 "origin": {
                     "x": 0.0,
@@ -2818,7 +2878,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall30",
                 "origin": {
                     "x": 0.0,
@@ -2840,7 +2900,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall31",
                 "origin": {
                     "x": 0.0,
@@ -2862,7 +2922,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall32",
                 "origin": {
                     "x": 0.0,
@@ -2884,7 +2944,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall33",
                 "origin": {
                     "x": 0.0,
@@ -2906,7 +2966,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall30",
                 "origin": {
                     "x": 0.0,
@@ -2928,7 +2988,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall31",
                 "origin": {
                     "x": 0.0,
@@ -2950,7 +3010,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall32",
                 "origin": {
                     "x": 0.0,
@@ -2972,7 +3032,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall33",
                 "origin": {
                     "x": 0.0,
@@ -2994,7 +3054,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall34",
                 "origin": {
                     "x": 0.0,
@@ -3016,7 +3076,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall35",
                 "origin": {
                     "x": 0.0,
@@ -3038,7 +3098,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall36",
                 "origin": {
                     "x": 0.0,
@@ -3060,7 +3120,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall38",
                 "origin": {
                     "x": 0.0,
@@ -3082,7 +3142,7 @@
         {
             "gameObjectSaveData": {
                 "active": true,
-                "layerType": 1,
+                "layerType": 2,
                 "name": "Wall38",
                 "origin": {
                     "x": 0.0,
