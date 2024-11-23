@@ -27,6 +27,8 @@ private:
 	int				collisionCount;
 	bool			active;
 	bool			isDestory;
+public:
+	static bool		isRender;
 
 public:
 	Collision* GetCollision() const { return collision; }

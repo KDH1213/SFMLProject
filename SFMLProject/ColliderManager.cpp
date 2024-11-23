@@ -38,6 +38,8 @@ void ColliderManager::Init()
 
 void ColliderManager::Update()
 {
+    if (InputManager::GetInstance().GetKeyUp(sf::Keyboard::F4))
+        Collider::isRender = !Collider::isRender;
     
     for (int i = 0; i < (int)ColliderLayer::End; ++i)
     {

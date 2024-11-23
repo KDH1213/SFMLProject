@@ -6,6 +6,8 @@
 
 int Collider::globalCount = 0;
 
+bool Collider::isRender = true;
+
 Collider::Collider(ColliderType colliderType, ColliderLayer colliderLayer, sf::Vector2f offset, sf::Vector2f size)
 	: active(true)
 	, collision(nullptr)
@@ -157,7 +159,7 @@ void Collider::CreateCollision(ColliderType colliderType, sf::Vector2f offset, s
 
 void Collider::Render(sf::RenderWindow& renderWindow)
 {
-	if(active)
+	if(active && isRender)
 		collision->Render(renderWindow);
 }
 
