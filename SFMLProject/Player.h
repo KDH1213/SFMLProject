@@ -36,6 +36,11 @@ protected:
 	bool			isAttack;
 	bool			isStarState;
 
+	int				currentColorIndex;
+	float			colorChangeTime;
+	float			currentColorTime;
+
+	sf::Color		starStateChangeColors[4];
 
 public:
 	void TakeDamage();
