@@ -35,6 +35,7 @@ protected:
 	bool			isReload;
 	bool			isAttack;
 	bool			isStarState;
+	bool			isRun;
 
 	int				currentColorIndex;
 	float			colorChangeTime;
@@ -65,11 +66,12 @@ public:
 public:
 	void CreateAnimator() override;
 
+	bool IsRun() { return isRun; }
 	bool IsHit() const { return isHit; }
 	bool IsStarState() { return isStarState; }
 	void SetIsJump(bool jump) { isJump = jump; }
 	int GetCurrentHP() const { return currentStatus.hp; }
-	float GetSpeed() { return currentStatus.speed; }
+	float GetSpeed() { return currentStatus.speed + (isRun ? 300.f : 0.f); }
 
 	void SetHp(int hp) { currentStatus.hp = hp; }
 	void ChangeSmallMario();

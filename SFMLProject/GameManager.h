@@ -32,17 +32,19 @@ private:
 	int				highscore;
 	bool			isStartClearEvent;
 	bool			isEndAdjustment;
+	bool			isPlaying;
 	
 	int				marioHP;
 	bool			isGameOver;
 
-	sf::Sound		countDown;
+	sf::Sound*		countDown;
 public:
 
 	bool IsGameOver() { return isGameOver; }
 	bool IsGameClear() { return isGameClear; }
 	bool IsRestart() { return isRestart; }
 	bool IsEndAdjustment() { return isEndAdjustment; }
+	bool IsGamePlaying() { return isPlaying; }
 
 	void OnClearAdjustment();
 	void OnRestart();

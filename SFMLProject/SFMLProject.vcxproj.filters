@@ -672,6 +672,9 @@
     <ClCompile Include="KooparScaffoldingObject.cpp">
       <Filter>Contants\Object\Enemy\Koopa</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerDownState.cpp">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -1120,6 +1123,9 @@
     </ClInclude>
     <ClInclude Include="KooparScaffoldingObject.h">
       <Filter>Contants\Object\Enemy\Koopa</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerDownState.h">
+      <Filter>Contants\Object\Player\PlayerState</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

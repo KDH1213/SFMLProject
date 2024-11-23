@@ -8,6 +8,9 @@ PlayerBreakState::PlayerBreakState(PlayerFSM* fsm)
 	, rigidbody(nullptr)
 	, horizontal(0.f)
 	, isMoveDirectionLeft(false)
+	, breakTime(0.2f)
+	, currentBreakTime(0.f)
+
 {
 	animationKeys.push_back("marioSmallBreak");
 	animationKeys.push_back("marioBreak");
@@ -34,6 +37,11 @@ void PlayerBreakState::Enter()
 
 	horizontal = InputManager::GetInstance().GetAxis(Axis::Horizontal);
 	isMoveDirectionLeft = horizontal > 0.f ? false : true;
+	rigidbody->SetVelocity({ 0.f,  rigidbody->GetCurrentVelocity().y });
+
+	if ((!isMoveDirectionLeft && !player->IsFlipX()) || (isMoveDirectionLeft && player->IsFlipX()))
+		player->OnFlipX();
+
 }
 
 void PlayerBreakState::Exit()
@@ -43,12 +51,11 @@ void PlayerBreakState::Exit()
 
 void PlayerBreakState::Update(float deltaTime)
 {
-	horizontal = InputManager::GetInstance().GetAxis(Axis::Horizontal);
+	if(isMoveDirectionLeft && InputManager::GetInstance().GetAxis(Axis::Horizontal) >= 0.f)
+		fsm->ChangeState(PlayerStateType::Idle);
+	else if (!isMoveDirectionLeft && InputManager::GetInstance().GetAxis(Axis::Horizontal) <= 0.f)
+		fsm->ChangeState(PlayerStateType::Idle);
 
-	if (horizontal < 0.f && isMoveDirectionLeft)
-		fsm->ChangeState(PlayerStateType::Run);
-	else if (horizontal > 0.f && !isMoveDirectionLeft)
-		fsm->ChangeState(PlayerStateType::Run);
 
 	if (InputManager::GetInstance().GetKeyUp(sf::Keyboard::Space) || (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Space) && InputManager::GetInstance().GetAxis(Axis::Jump) == 1.f))
 	{
@@ -58,5 +65,5 @@ void PlayerBreakState::Update(float deltaTime)
 
 void PlayerBreakState::FixedUpdate(float fixedDeltaTime)
 {
-	rigidbody->SetVelocity({ InputManager::GetInstance().GetAxis(Axis::Horizontal) * player->GetSpeed() , rigidbody->GetCurrentVelocity().y });
+	rigidbody->SetVelocity({ (isMoveDirectionLeft ? -40.f : 40.f)  , rigidbody->GetCurrentVelocity().y });
 }

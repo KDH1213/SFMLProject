@@ -263,6 +263,17 @@ void Player::Update(const float& deltaTime)
 		}
 	}
 
+	if (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::LShift))
+	{
+		isRun = true;
+		animator->SetAnimationSpeed(2.f);
+	}
+	else
+	{
+		isRun = false;
+		animator->SetAnimationSpeed(1.f);
+	}
+
 	if (position.y >= 3000.f)
 	{
 		GameManager::GetInstance().PlayerDie();

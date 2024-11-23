@@ -106,6 +106,7 @@ enum class PlayerStateType
 	Dead,
 	Upgrade,
 	GameClear,
+	Down,
 	End
 };
 

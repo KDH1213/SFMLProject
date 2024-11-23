@@ -25,6 +25,7 @@ GameManager::GameManager()
 	, isEndAdjustment(false)
 	, isGameOver(false)
 	, marioHP(1)
+	, isPlaying(false)
 {
 	  
 }
@@ -38,7 +39,7 @@ void GameManager::Update(float dt)
 		timerUI->SetString(std::to_string((int)currentTimer));
 	}
 
-	if (!isPlayerDead && !isGameClear && currentTimer <= 0.f)
+	if (isPlaying &&  !isPlayerDead && !isGameClear && currentTimer <= 0.f)
 	{
 		Player* player = (Player*)SceneManager::GetInstance().GetCurrentScene()->GetObjectVector(LayerType::Player)[0];
 		player->GetFSM().ChangeState(PlayerStateType::Dead);
@@ -52,7 +53,9 @@ void GameManager::Update(float dt)
 		{
 			if (currentEventTime > waitTime)
 			{
+				countDown->stop();
 				isEndAdjustment = true;
+				isPlaying = false;
 				// SceneManager::GetInstance().ChangeScene(SceneIds::SceneDev1);
 				currentTimer = 0.f;
 			}
@@ -87,6 +90,7 @@ void GameManager::OnRestart()
 {
 	--life;
 	currentTimer = 400.f;
+	isPlaying = true;
 	isRestart = true;
 }
 
@@ -105,7 +109,7 @@ void GameManager::OnGameClearEvent()
 {
 	isStartClearEvent = true;
 	currentTimer = (float)((int)currentTimer);
-	SoundManger::GetInstance().PlaySfx(("CountDown"));
+	countDown = SoundManger::GetInstance().PlaySfxGet(("CountDown"));
 }
 
 void GameManager::GameStartInit()
@@ -140,6 +144,7 @@ void GameManager::GameStartInit()
 
 void GameManager::NextStage()
 {
+	isPlaying = false;
 	InputManager::GetInstance().SetInputable(false);
 	SceneIds currentId = SceneManager::GetInstance().GetCurrentSceneId();
 	if (currentId == SceneIds::SceneDev1)
@@ -149,6 +154,9 @@ void GameManager::NextStage()
 		SceneManager::GetInstance().ChangeScene(SceneIds::Stage2);
 		player = (Player*)SceneManager::GetInstance().GetCurrentScene()->GetObjectVector(LayerType::Player)[0];
 		player->ChangeMario(marioHP);
+
+		isPlaying = true;
+		currentTimer = 400.f;
 	}
 	else if (currentId == SceneIds::Stage2)
 	{

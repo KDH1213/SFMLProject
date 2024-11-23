@@ -77,10 +77,15 @@ void PlayerRunState::Update(float deltaTime)
 		fsm->ChangeState(PlayerStateType::Idle);
 		rigidbody->SetVelocity({ 0.f,rigidbody->GetCurrentVelocity().y });
 	}
-	else if (horizontal > 0.f && isLeftRun)
+	else if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Right) && isLeftRun)
+	{
 		fsm->ChangeState(PlayerStateType::Break);
-	else if (horizontal < 0.f && !isLeftRun)
+		return;
+	}
+	else if (InputManager::GetInstance().GetKeyDown(sf::Keyboard::Left) && !isLeftRun)
+	{
 		fsm->ChangeState(PlayerStateType::Break);
+	}
 
 	if (InputManager::GetInstance().GetKeyUp(sf::Keyboard::Z))
 	{

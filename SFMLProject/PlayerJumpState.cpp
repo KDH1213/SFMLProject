@@ -44,6 +44,9 @@ void PlayerJumpState::Enter()
 		rigidbody->SetVelocity({ rigidbody->GetCurrentVelocity().x, -850.f });
 	else
 		rigidbody->SetVelocity({ rigidbody->GetCurrentVelocity().x, -500.f });
+
+	if(player->IsRun())
+		rigidbody->AddVelocity(sf::Vector2f::up * 100.f);
 }
 
 void PlayerJumpState::Exit()

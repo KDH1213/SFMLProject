@@ -58,6 +58,36 @@ void SoundManger::StopBgm()
 	bgm.stop();
 }
 
+sf::Sound* SoundManger::PlaySfxGet(std::string id, bool loop)
+{
+	return PlaySfxGet(ResourcesManager<sf::SoundBuffer>::GetInstance().Get(id), loop);
+}
+
+sf::Sound* SoundManger::PlaySfxGet(sf::SoundBuffer& buffer, bool loop)
+{
+	sf::Sound* sound = nullptr;
+
+	if (waiting.empty())
+	{
+		sound = playing.front();
+		playing.pop_front();
+		sound->stop();
+	}
+	else
+	{
+		sound = waiting.front();
+		waiting.pop_front();
+	}
+
+	sound->setVolume(sfxVolume);
+	sound->setBuffer(buffer);
+	sound->setLoop(loop);
+	sound->play();
+	playing.push_back(sound);
+
+	return sound;
+}
+
 void SoundManger::PlaySfx(std::string id, bool loop)
 {
 	PlaySfx(ResourcesManager<sf::SoundBuffer>::GetInstance().Get(id), loop);
