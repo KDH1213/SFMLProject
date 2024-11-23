@@ -65,6 +65,7 @@ void KoopaTroopa::OnCollisionEnter(Collider* target)
 				player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x, -350.f });
 				player->GetFSM().ChangeState(PlayerStateType::Jump);
 
+				SoundManger::GetInstance().PlaySfx("Chop");
 			}
 			else if (rect.bottomPosition < targetRect.topPosition - prevPositionY)
 				player->TakeDamage();
@@ -87,6 +88,7 @@ void KoopaTroopa::OnCollisionEnter(Collider* target)
 				moveDirection.x = -1.f;
 
 			fsm->ChangeState(EnemyStateType::Move);
+			SoundManger::GetInstance().PlaySfx("Kick");
 		}
 		else if (currentState == EnemyStateType::Move)
 		{
@@ -111,6 +113,7 @@ void KoopaTroopa::OnCollisionEnter(Collider* target)
 
 				fsm->ChangeState(EnemyStateType::Move);
 
+				SoundManger::GetInstance().PlaySfx("Chop");
 				player->GetRigidbody()->ResetDropSpeed();
 				player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x, -350.f });
 				player->GetFSM().ChangeState(PlayerStateType::Jump);

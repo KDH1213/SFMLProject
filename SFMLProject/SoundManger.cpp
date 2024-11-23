@@ -30,7 +30,7 @@ void SoundManger::Update(float dt)
 		if ((*it)->getStatus() == sf::Sound::Stopped)
 		{
 			waiting.push_back(*it);
-			playing.erase(it);
+			it = playing.erase(it);
 		}
 		else
 		{
@@ -47,7 +47,7 @@ void SoundManger::PlayBgm(std::string id, bool loop)
 void SoundManger::PlayBgm(sf::SoundBuffer& buffer, bool loop)
 {
 	bgm.stop();
-	//bgm.setVolume(bgmVolume);
+	bgm.setVolume(bgmVolume);
 	bgm.setLoop(loop);
 	bgm.setBuffer(buffer);
 	bgm.play();

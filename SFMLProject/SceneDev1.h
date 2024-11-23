@@ -11,9 +11,10 @@ private:
 	Player*					player;
 	Rectangle				cameraLimitRect;
 	Rectangle				currentCameraLimitRect;
-
+	
 public:
 	void CollisitionCheck();
+	void LoadResources();
 public:
 	void Init() override;
 	void Enter() override;

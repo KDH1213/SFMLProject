@@ -43,6 +43,8 @@ void PlayerUpgradeState::StartEffect()
 		animation->SetAnimationEndEvent(std::bind(&PlayerUpgradeState::OnFireUpgrade, this), 1);
 	}
 
+	SoundManger::GetInstance().PlaySfx("PowerUp");
+
 }
 
 void PlayerUpgradeState::ChangePosition()

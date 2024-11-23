@@ -70,6 +70,7 @@ void PlayerHitState::Enter()
 
 	StartEffect();
 
+	SoundManger::GetInstance().PlaySfx("PowerUpAppears");
 
 	player->SetOrigin(Origins::MiddleCenter);
 	player->GetCollider()->SetActive(false);

@@ -33,7 +33,11 @@ void PlayerJumpState::Enter()
 
 	rigidbody->SetGround(false);
 
-	player->GetAnimator()->ChangeAnimation(animationKeys[animationKeyIndex], true);
+	if(animationKeyIndex == 0)
+		SoundManger::GetInstance().PlaySfx("SmallJump");
+	else
+		SoundManger::GetInstance().PlaySfx("BigJump");
+
 
 	if(InputManager::GetInstance().GetAxis(Axis::Jump) == 1.f)
 		rigidbody->SetVelocity({ rigidbody->GetCurrentVelocity().x, -850.f });

@@ -19,6 +19,9 @@ void PlayerDeadState::Enter()
 	currentWaitTime = 0.f;
 	isWait = true;
 
+	SoundManger::GetInstance().StopBgm();
+	SoundManger::GetInstance().PlaySfx("DeathBGM");
+
 	player->GetAnimator()->ChangeAnimation("marioDead", true, true);
 	TimeManager::GetInstance().SetTimeScale(0.f);
 

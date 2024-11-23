@@ -130,7 +130,7 @@ void Scene::Update(float deltaTime)
 					++iter;
 					continue;
 				}
-				if ((cameraSize.x + (*iter)->GetScale().x) * 0.5f + 1000.f > abs(cameraPosition.x - (*iter)->GetPosition().x))
+				if ((cameraSize.x + (*iter)->GetScale().x) * 0.5f + 300.f > abs(cameraPosition.x - (*iter)->GetPosition().x))
 					(*iter)->Update(deltaTime);
 
 				++iter;
@@ -202,7 +202,7 @@ void Scene::Update(float deltaTime)
 
 void Scene::FixedUpdate(float fixedDeltaTime)
 {
-	for (auto& objectVector : gameObjectVectors)
+	/*for (auto& objectVector : gameObjectVectors)
 	{
 		for (auto& object : objectVector)
 		{
@@ -210,6 +210,54 @@ void Scene::FixedUpdate(float fixedDeltaTime)
 				continue;
 
 			object->FixedUpdate(fixedDeltaTime);
+		}
+	}*/
+	for (int i = 0; i < (int)LayerType::UI; ++i)
+	{
+		const sf::Vector2f& cameraPosition = mainCamera->GetCameraPosition();
+		auto cameraSize = mainCamera->GetView().getSize();
+
+		for (auto iter = gameObjectVectors[i].begin(); iter != gameObjectVectors[i].end();)
+		{
+			if ((*iter)->GetDestory())
+			{
+				iter = gameObjectVectors[i].erase(iter);
+			}
+			else
+			{
+				if (!(*iter)->IsActive())
+				{
+					++iter;
+					continue;
+				}
+				if ((cameraSize.x + (*iter)->GetScale().x) * 0.5f + 300.f > abs(cameraPosition.x - (*iter)->GetPosition().x))
+					(*iter)->FixedUpdate(fixedDeltaTime);
+
+				++iter;
+			}
+		}
+	}
+
+	for (int i = (int)LayerType::UI; i < (int)LayerType::End; ++i)
+	{
+		for (auto iter = gameObjectVectors[i].begin(); iter != gameObjectVectors[i].end();)
+		{
+
+			if ((*iter)->GetDestory())
+			{
+				iter = gameObjectVectors[i].erase(iter);
+			}
+			else
+			{
+				if (!(*iter)->IsActive())
+				{
+					++iter;
+					continue;
+				}
+				(*iter)->FixedUpdate(fixedDeltaTime);
+
+				++iter;
+			}
 		}
 	}
 }

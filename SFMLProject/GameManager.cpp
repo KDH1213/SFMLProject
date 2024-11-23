@@ -103,6 +103,7 @@ void GameManager::OnGameClearEvent()
 {
 	isStartClearEvent = true;
 	currentTimer = (float)((int)currentTimer);
+	SoundManger::GetInstance().PlaySfx(("CountDown"));
 }
 
 void GameManager::GameStartInit()
@@ -184,6 +185,8 @@ void GameManager::HaveCoin()
 	{
 		++life;
 		currentCoinCount -= 100;
+
+		SoundManger::GetInstance().PlaySfx("OneUp");
 	}
 
 	if (currentCoinCount < 10)

@@ -62,6 +62,8 @@ void CoinObject::CreateEvenet()
 	rigidBody->SetVelocity({ 0, -800.f });
 	rigidBody->SetGround(false);
 	
+	SoundManger::GetInstance().PlaySfx("Coin");
+
 	InGameScoreUI* inGameScoreUI = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new InGameScoreUI("DungGeunMo", "CoinScoreUI", 30), LayerType::InGameUI);
 	inGameScoreUI->SetString("200");
 	inGameScoreUI->SetPosition(position + sf::Vector2f::up * 30.f);

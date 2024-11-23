@@ -78,6 +78,7 @@ void GoombaDeadState::Enter()
 		currentRotationTime = 0.f;
 		rigidbody->SetVelocity({ hitDirection.x * 300.f, -450.f });
 	}
+	SoundManger::GetInstance().PlaySfx("Chop");
 
 	GameManager::GetInstance().AddScore(100);
 	InGameScoreUI* inGameScoreUI = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new InGameScoreUI("DungGeunMo", "CoinScoreUI", 30), LayerType::InGameUI);

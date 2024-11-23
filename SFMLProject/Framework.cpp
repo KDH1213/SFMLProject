@@ -13,6 +13,7 @@ void Framework::Init()
 	ColliderManager::GetInstance().Init();
 	SceneManager::GetInstance().Init();
 	TimeManager::GetInstance().Init();
+	SoundManger::GetInstance().Init();
 }
 
 void Framework::Update()

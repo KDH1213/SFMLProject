@@ -6,6 +6,7 @@
 #include "Rigidbody.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "StarObject.h"
 
 int WallCollisionObject::wallID = 0;
 
@@ -72,8 +73,22 @@ void WallCollisionObject::OnCollisionEnter(Collider* target)
 
 		if (rect.topPosition > targetRect.bottomPosition - prevPositionY)
 		{
-			object->GetRigidbody()->SetGround(true);
-			object->SetPosition({ targetPosition.x , rect.topPosition - target->GetScale().y * 0.5f });
+			if (target->GetColliderLayer() == ColliderLayer::Item)
+			{
+				StarObject* targetStar = dynamic_cast<StarObject*>(target->GetOwner());
+				if (targetStar != nullptr)
+				{
+					targetStar->GetRigidbody()->ResetDropSpeed();
+					targetStar->GetRigidbody()->SetGround(false);
+					targetStar->GetRigidbody()->SetVelocity({ targetStar->GetRigidbody()->GetCurrentVelocity().x, -700.f });
+				}
+			}
+			else
+			{
+				object->GetRigidbody()->SetGround(true);
+				object->SetPosition({ targetPosition.x , rect.topPosition - target->GetScale().y * 0.5f });
+			}
+
 		}
 	}
 }

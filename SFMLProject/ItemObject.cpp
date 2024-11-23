@@ -61,6 +61,8 @@ void ItemObject::CreateEvenet()
 	createEndPosition = position;
 	createEndPosition.y -= 64.f;
 	collider->SetActive(false);
+	SoundManger::GetInstance().PlaySfx("OutOfTime");
+	
 }
 
 void ItemObject::SetScale(const sf::Vector2f& scale)

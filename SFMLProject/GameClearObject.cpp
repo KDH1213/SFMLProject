@@ -26,7 +26,7 @@ GameClearObject::GameClearObject(const std::string& name)
 
 	gameClearEvents.push_back(std::bind(&GameClearObject::StartMove, this));
 	gameClearEvents.push_back(std::bind(&GameClearObject::FlipEvent, this));
-	gameClearEvents.push_back(std::bind(&GameClearObject::Move, this));
+	gameClearEvents.push_back(std::bind(&GameClearObject::PlayerCastleMove, this));
 
 	eventCount = (int)gameClearEvents.size();
 }
@@ -86,7 +86,7 @@ void GameClearObject::StartMove()
 	}
 	if (currentFlagMoveTime >= flagMoveTime)
 	{
-		++currentEventIndex;
+		++currentEventIndex;		
 	}
 
 	flagSprite.setPosition(currentFlagPos);
@@ -108,13 +108,14 @@ void GameClearObject::FlipEvent()
 	{
 		if (currentTime > 0.5f)
 		{
-			++currentEventIndex;
+			++currentEventIndex; 
+			SoundManger::GetInstance().PlayBgm(("StageClear"), false);
 		}
 	}
 	
 }
 
-void GameClearObject::Move()
+void GameClearObject::PlayerCastleMove()
 {
 	if (!isStartMove)
 	{
@@ -143,7 +144,7 @@ void GameClearObject::Move()
 		if (currentEndMoveTime >= endMoveTime)
 		{
 			GameManager::GetInstance().OnGameClearEvent();
-			isStartClearEvent = true;
+			isStartClearEvent = false;
 			player->SetActive(false);
 		}
 	}
@@ -206,6 +207,10 @@ void GameClearObject::OnCollisionEnter(Collider* target)
 		player->GetFSM().ChangeState(PlayerStateType::GameClear);
 
 		GameManager::GetInstance().SetGameClear();
+		SoundManger::GetInstance().StopBgm();
+		SoundManger::GetInstance().PlaySfx("Flagpole");
+		
+		//SoundManger::GetInstance().PlayBgm(ResourcesManager<sf::SoundBuffer>::GetInstance().Get("MainTheme"));
 	}
 }
 

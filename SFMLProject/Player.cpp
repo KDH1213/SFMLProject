@@ -19,7 +19,7 @@ Player::Player(const std::string& name)
 	, isFlipX(false)
 	, hitTime(2.f)
 	, currentHitTime(0.f)
-	, reloadTime(0.5f)
+	, reloadTime(0.2f)
 	, currentReloadTime(0.f)
 	, isReload(false)
 	, isAttack(false)
@@ -34,8 +34,9 @@ Player::Player(const std::string& name)
 	effectColor = defaultColor;
 	effectColor.a = 120;
 
-	// animator->GetAnimation("marioFireAttack")->SetAnimationEndEvent(std::bind(&Player::OnAttackEnd, this), 0);
-	// animator->GetAnimation("marioFireRunAttack")->SetAnimationEndEvent(std::bind(&Player::OnAttackEnd, this), 2);
+	animator->GetAnimation("marioFireIdleAttack")->SetAnimationEndEvent(std::bind(&Player::OnAttackEnd, this), 0);
+	animator->GetAnimation("marioFireRunAttack")->SetAnimationEndEvent(std::bind(&Player::OnAttackEnd, this), 2);
+	animator->GetAnimation("marioFireJumpAttack")->SetAnimationEndEvent(std::bind(&Player::OnAttackEnd, this), 0);
 }
 
 Player::~Player()
@@ -136,6 +137,7 @@ void Player::AddItem(ItemType itemType)
 			inGameScoreUI->SetString("1UP");
 			inGameScoreUI->SetPosition(position + sf::Vector2f::up * 20.f);
 			inGameScoreUI->Start();
+			SoundManger::GetInstance().PlaySfx("OneUp");
 		}
 		break;
 	case ItemType::Flower:
@@ -160,6 +162,9 @@ void Player::Attack()
 	if (isAttack || isReload)
 		return;
 
+	if (!(fsm.GetCurrentStateType() == PlayerStateType::Idle || fsm.GetCurrentStateType() == PlayerStateType::Jump || fsm.GetCurrentStateType() == PlayerStateType::Run))
+		return;
+
 	FireBullet* bullet = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new FireBullet(), LayerType::PlayerBullet);
 
 	sf::Vector2f direciton;
@@ -167,12 +172,12 @@ void Player::Attack()
 	if (isFlipX)
 	{
 		direciton = sf::Vector2f::left;
-		bullet->SetPosition(position + sf::Vector2f::left * 3.f);
+		bullet->SetPosition(position + sf::Vector2f::left * 32.f);
 	}
 	else
 	{
 		direciton = sf::Vector2f::right;
-		bullet->SetPosition(position + sf::Vector2f::right * 3.f);
+		bullet->SetPosition(position + sf::Vector2f::right * 32.f);
 	}
 
 	direciton.Normalized();
@@ -182,12 +187,40 @@ void Player::Attack()
 	
 	bullet->Awake();
 	bullet->Start();
+
+	if (fsm.GetCurrentStateType() == PlayerStateType::Idle)
+	{
+		animator->ChangeAnimation("marioFireIdleAttack");
+	}
+	else if (fsm.GetCurrentStateType() == PlayerStateType::Jump)
+	{
+		animator->ChangeAnimation("marioFireJumpAttack");
+	}
+	else if (fsm.GetCurrentStateType() == PlayerStateType::Run)
+	{
+		animator->ChangeAnimation("marioFireRunAttack");
+	}
+
+	SoundManger::GetInstance().PlaySfx("Fireball");
 }
 
 void Player::OnAttackEnd()
 {
 	isAttack = false;
 	isReload = true;
+
+	if (fsm.GetCurrentStateType() == PlayerStateType::Idle)
+	{
+		animator->ChangeAnimation("marioFireIdle");
+	}
+	else if (fsm.GetCurrentStateType() == PlayerStateType::Jump)
+	{
+		animator->ChangeAnimation("marioFireJump");
+	}
+	else if (fsm.GetCurrentStateType() == PlayerStateType::Run)
+	{
+		animator->ChangeAnimation("marioFireRun");
+	}
 }
 
 
@@ -217,6 +250,16 @@ void Player::Update(const float& deltaTime)
 	{
 		position.x = mainCamera->GetCameraLeftPosition() + abs(collider->GetScale().x * 0.5f);
 		SetPosition(position);
+	}
+
+	if (isReload)
+	{
+		currentReloadTime += deltaTime;
+		if (currentReloadTime >= reloadTime)
+		{
+			currentReloadTime = 0.f;
+			isReload = false;
+		}
 	}
 }
 

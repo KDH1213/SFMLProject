@@ -105,6 +105,8 @@ void BlockObject::OnCollisionEnter(Collider* target)
 		{
 			player->SetPosition({ player->GetPosition().x, rect.bottomPosition + target->GetScale().y * 0.5f });
 			player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x , 1.f});
+
+			SoundManger::GetInstance().PlaySfx("Bump");
 		}
 	}
 	else if (target->GetColliderLayer() == ColliderLayer::Enemy || target->GetColliderLayer() == ColliderLayer::Item)

@@ -16,16 +16,7 @@ void SceneDev1::Enter()
 {
 	CameraManger::GetInstance().SetCamera(mainCamera);
 	CameraManger::GetInstance().SetCamera(uICamera);
-
-	TEXTURE_MANAGER.Load("Player", "graphics/player.png");
-	TEXTURE_MANAGER.Load("enemies", "graphics/enemies.png");
-	TEXTURE_MANAGER.Load("Items", "graphics/item_objects.png");
-	TEXTURE_MANAGER.Load("tiles", "graphics/tiles.png");
-	TEXTURE_MANAGER.Load("tile_set", "graphics/tile_set.png");
-	TEXTURE_MANAGER.Load("mario_bros", "graphics/mario_bros.png");
-	TEXTURE_MANAGER.Load("font", "graphics/font.png");
-	ResourcesManager<sf::Font>::GetInstance().Load("DungGeunMo", "fonts/DungGeunMo.ttf", true);
-
+	LoadResources();
 	//Player* testPlayer = AddGameObject(new Player("Player"),LayerType::Player);
 	//testPlayer->Awake();
 	////testPlayer->CreateAnimator();
@@ -383,9 +374,51 @@ void SceneDev1::CollisitionCheck()
 	ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::CleraPoint, ColliderLayer::Player);
 }
 
+void SceneDev1::LoadResources()
+{
+	TEXTURE_MANAGER.Load("Player", "graphics/player.png");
+	TEXTURE_MANAGER.Load("enemies", "graphics/enemies.png");
+	TEXTURE_MANAGER.Load("Items", "graphics/item_objects.png");
+	TEXTURE_MANAGER.Load("tiles", "graphics/tiles.png");
+	TEXTURE_MANAGER.Load("tile_set", "graphics/tile_set.png");
+	TEXTURE_MANAGER.Load("mario_bros", "graphics/mario_bros.png");
+	TEXTURE_MANAGER.Load("font", "graphics/font.png");
+	ResourcesManager<sf::Font>::GetInstance().Load("DungGeunMo", "fonts/DungGeunMo.ttf", true);
+
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("BigJump", "sound/big_jump.ogg");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("SmallJump", "sound/small_jump.ogg");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Stomp", "sound/stomp.ogg");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Fireball", "sound/fireball.ogg");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("BrickSmash", "sound/brick_smash.ogg");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Chop", "sound/chop.wav");
+
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("PowerUpAppears", "sound/powerup_appears.ogg");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("PowerUp", "sound/powerup.ogg");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Kick", "sound/kick.ogg");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Coin", "sound/coin.ogg");
+
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("OneUp", "sound/one_up.ogg");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Coin", "sound/coin.ogg");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Bump", "sound/bump.ogg");
+
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("OutOfTime", "sound/out_of_time.wav");
+
+
+
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("CountDown", "sound/count_down.ogg");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Flagpole", "sound/bgm/flagpole.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("MainTheme", "sound/bgm/main_theme.ogg");
+
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("DeathBGM", "sound/bgm/death.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("GameOver", "sound/bgm/game_over.ogg");
+
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("StageClear", "sound/bgm/stage_clear.wav");
+}
+
 SceneDev1::SceneDev1()
 	: Scene(SceneIds::SceneDev1)
 	, player(nullptr)
+	, cameraWallCollisionObject(nullptr)
 {
 	savePath = "stage1.json";
 	loadPath = "stage1.json";

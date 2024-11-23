@@ -58,12 +58,12 @@ void Camera::SetCameraLimitRect(const Rectangle& rect, bool use)
 
 
 	cameraLimitRect.leftPosition -= cameraBounds.leftPosition;
-	cameraLimitRect.rightPosition += cameraBounds.rightPosition;
+	cameraLimitRect.rightPosition -= cameraBounds.rightPosition;
 	cameraLimitRect.topPosition -= cameraBounds.topPosition;
 	cameraLimitRect.bottomPosition -= cameraBounds.bottomPosition;
 
 	if (cameraLimitRect.rightPosition - cameraLimitRect.leftPosition < cameraSize.x)
-		cameraLimitRect.leftPosition = cameraLimitRect.rightPosition - cameraSize.x;
+		cameraLimitRect.leftPosition = cameraLimitRect.rightPosition - (cameraSize.x * 0.5f);
 
 	/*if (cameraLimitRect.rightPosition - cameraLimitRect.leftPosition < cameraSize.x)
 		cameraLimitRect.leftPosition = cameraLimitRect.rightPosition + cameraSize.x;

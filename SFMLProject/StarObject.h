@@ -8,6 +8,9 @@ private:
 	sf::Vector2f		moveDirection;
 	float				moveSpeed;
 
+	float				lifeTime;
+	float				currentLifeTime;
+
 public:
 	void Start() override;
 	void Update(const float& deltaTime) override;

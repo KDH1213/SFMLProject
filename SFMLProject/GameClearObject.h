@@ -53,7 +53,7 @@ public:
 
 	void StartMove();
 	void FlipEvent();
-	void Move();
+	void PlayerCastleMove();
 public:
 	void Start() override;
 

@@ -98,11 +98,35 @@ void BrickBlockObject::OnCollisionEnter(Collider* target)
 					}
 				}
 				if (player->GetCurrentHP() == 1)
+				{
 					OnHitMove();
+					SoundManger::GetInstance().PlaySfx("Bump");
+				}
 				else
+				{
 					SetDestory(true);
+					SoundManger::GetInstance().PlaySfx("BrickSmash");
+				}
 			}
+			else
+				SoundManger::GetInstance().PlaySfx("Bump");
 
+		}
+	}
+	else if (target->GetColliderLayer() == ColliderLayer::Enemy || target->GetColliderLayer() == ColliderLayer::Item)
+	{
+		GameObject* object = target->GetOwner();
+
+		sf::Vector2f targetPosition = target->GetPosition();
+
+		Rectangle rect(collider->GetPosition(), collider->GetScale());
+		Rectangle targetRect(targetPosition, target->GetScale());
+		float prevPositionY = object->GetRigidbody()->GetCurrentVelocity().y * TimeManager::GetInstance().GetFixedDeletaTime();
+
+		if (rect.topPosition > targetRect.bottomPosition - prevPositionY)
+		{
+			object->GetRigidbody()->SetGround(true);
+			object->SetPosition({ targetPosition.x , rect.topPosition - target->GetScale().y * 0.5f });
 		}
 	}
 }
@@ -138,6 +162,38 @@ void BrickBlockObject::OnCollisionStay(Collider* target)
 				else if (rect.rightPosition < targetRect.rightPosition && rect.rightPosition >(targetRect.leftPosition))
 				{
 					player->SetPosition({ rect.rightPosition + target->GetScale().x * 0.5f, player->GetPosition().y });
+					targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
+				}
+			}
+		}
+	}
+	else if (target->GetColliderLayer() == ColliderLayer::Enemy || target->GetColliderLayer() == ColliderLayer::Item)
+	{
+		GameObject* object = target->GetOwner();
+		Rigidbody* targetRigidbody = target->GetOwner()->GetRigidbody();
+
+		Rectangle rect(collider->GetPosition(), collider->GetScale());
+		Rectangle targetRect(target->GetPosition(), target->GetScale());
+
+		if (rect.topPosition == targetRect.bottomPosition)
+		{
+			if (rect.leftPosition > targetRect.leftPosition && rect.leftPosition < targetRect.rightPosition)
+				targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
+			else if (rect.rightPosition < targetRect.rightPosition && rect.rightPosition >(targetRect.leftPosition))
+				targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
+		}
+		else
+		{
+			if (rect.bottomPosition > targetRect.topPosition)
+			{
+				if (rect.leftPosition > targetRect.leftPosition && rect.leftPosition < targetRect.rightPosition)
+				{
+					object->SetPosition({ rect.leftPosition - target->GetScale().x * 0.5f, object->GetPosition().y });
+					targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
+				}
+				else if (rect.rightPosition < targetRect.rightPosition && rect.rightPosition >(targetRect.leftPosition))
+				{
+					object->SetPosition({ rect.rightPosition + target->GetScale().x * 0.5f, object->GetPosition().y });
 					targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
 				}
 			}

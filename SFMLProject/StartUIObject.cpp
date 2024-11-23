@@ -51,6 +51,7 @@ void StartUIObject::Update(const float& deltaTime)
         OnDestory();
         TimeManager::GetInstance().SetTimeScale(1.f);
         currentLifeTime = 0.f;
+        SoundManger::GetInstance().PlayBgm(ResourcesManager<sf::SoundBuffer>::GetInstance().Get("MainTheme"));
     }
 }
 

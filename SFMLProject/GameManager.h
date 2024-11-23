@@ -35,6 +35,7 @@ private:
 	
 	int				marioHP;
 
+	sf::Sound		countDown;
 public:
 
 	bool IsGameClear() { return isGameClear; }
