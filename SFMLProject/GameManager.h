@@ -19,24 +19,23 @@ private:
 	std::string		scoreString;
 
 	float			currentTimer;
-	unsigned int	currentCoinCount;
-	unsigned int	currentScore;
-	int				life;
-	bool			isRestart;
-	bool			isPlayerDead;
-	bool			isGameClear;
 	float			clearEvnetScoreUpTime;
 	float			currentEventTime;
 	float			waitTime;
-
+	unsigned int	currentCoinCount;
+	unsigned int	currentScore;
+	int				life;
 	int				highscore;
+	int				marioHP;
+
+	bool			isRestart;
+	bool			isPlayerDead;
+	bool			isGameClear;
 	bool			isStartClearEvent;
 	bool			isEndAdjustment;
 	bool			isPlaying;
-	
-	int				marioHP;
 	bool			isGameOver;
-
+	
 	sf::Sound*		countDown;
 public:
 

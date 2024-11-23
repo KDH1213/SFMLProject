@@ -48,6 +48,11 @@ void PlayerIdleState::Update(float deltaTime)
 			fsm->ChangeState(PlayerStateType::Jump);
 	}
 
+	if (animationKeyIndex > 0 && InputManager::GetInstance().GetKeyDown(sf::Keyboard::Down))
+	{
+		fsm->ChangeState(PlayerStateType::Down);
+	}
+
 	if (InputManager::GetInstance().GetKeyUp(sf::Keyboard::Z))
 	{
 		player->Attack();

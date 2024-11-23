@@ -24,3 +24,5 @@ animations/marioFireRun.csv,marioFireRun
 animations/marioFireIdleAttack.csv,marioFireIdleAttack
 animations/marioFireRunAttack.csv,marioFireRunAttack
 animations/marioFireJumpAttack.csv,marioFireJumpAttack
+animations/marioDown.csv,marioDown
+animations/marioFireDown.csv,marioFireDown

@@ -966,8 +966,8 @@
                 },
                 "originPreset": 4,
                 "position": {
-                    "x": 1440.60693359375,
-                    "y": 475.0
+                    "x": 2680.06591796875,
+                    "y": 480.0
                 },
                 "rotation": 0.0,
                 "scale": {
@@ -989,8 +989,8 @@
                 },
                 "originPreset": 4,
                 "position": {
-                    "x": 2764.08056640625,
-                    "y": 475.0
+                    "x": 3403.185546875,
+                    "y": 480.0
                 },
                 "rotation": 0.0,
                 "scale": {
@@ -1012,31 +1012,8 @@
                 },
                 "originPreset": 4,
                 "position": {
-                    "x": 3310.8388671875,
-                    "y": 475.0
-                },
-                "rotation": 0.0,
-                "scale": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "sortingOrder": 0
-            }
-        },
-        {
-            "enemyType": 0,
-            "gameObjectSaveData": {
-                "active": true,
-                "layerType": 7,
-                "name": "Goomba",
-                "origin": {
-                    "x": 8.0,
-                    "y": 8.0
-                },
-                "originPreset": 4,
-                "position": {
-                    "x": 3424.8388671875,
-                    "y": 475.0
+                    "x": 3476.4384765625,
+                    "y": 480.0
                 },
                 "rotation": 0.0,
                 "scale": {
@@ -1402,7 +1379,7 @@
                 },
                 "sortingOrder": 0
             },
-            "itemCount": 1,
+            "itemCount": 0,
             "itemType": 1
         },
         {
@@ -1594,7 +1571,7 @@
                 },
                 "sortingOrder": 0
             },
-            "itemCount": 1,
+            "itemCount": 0,
             "itemType": 0
         },
         {
@@ -2309,12 +2286,12 @@
             "name": "Player",
             "origin": {
                 "x": 8.0,
-                "y": 16.0
+                "y": 8.0
             },
             "originPreset": 4,
             "position": {
-                "x": 250.0,
-                "y": 440.0
+                "x": 3243.487060546875,
+                "y": -24.620573043823242
             },
             "rotation": 0.0,
             "scale": {
@@ -2324,7 +2301,7 @@
             "sortingOrder": 0
         },
         "status": {
-            "hp": 1,
+            "hp": 2,
             "jumpPower": 200.0,
             "maxHp": 2,
             "maxJumpPower": 350.0,

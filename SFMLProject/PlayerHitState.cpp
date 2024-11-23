@@ -6,6 +6,7 @@
 
 PlayerHitState::PlayerHitState(PlayerFSM* fsm)
 	: PlayerBaseState(fsm, PlayerStateType::Hit)
+	, currentTime(0.f)
 {
 	animationKeys.push_back("marioSmallHit");
 	animationKeys.push_back("marioHit");
