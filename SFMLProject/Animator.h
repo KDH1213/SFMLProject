@@ -14,6 +14,8 @@ protected:
 	sf::Vector2f								scale;
 
 	GameObject*									owner;
+
+	float										animationSpeed;
 	bool										isPlaying;
 
 protected:
@@ -33,6 +35,7 @@ public:
 	void SetCurrentFrameInfo(const sf::Vector2u& size, const sf::IntRect& rect);
 	sf::Sprite& GetCurrentSprite() { return *sprite; }
 
+	void SetAnimationSpeed(float speed);
 
 	void SetOrigin(Origins preset);
 	void SetOrigin(const sf::Vector2f& newOrigin);

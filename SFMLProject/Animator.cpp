@@ -9,6 +9,7 @@ Animator::Animator(GameObject* owner, sf::Sprite& sprite)
 	, currentAnimation(nullptr)
 	, isPlaying(false)
 	, owner(owner)
+	, animationSpeed(1.f)
 {
 }
 
@@ -16,6 +17,9 @@ Animator::Animator(const Animator& other)
 	: currentAnimation(nullptr)
 	, uvRect(other.uvRect)
 	, isPlaying(false)
+	, owner(nullptr)
+	, sprite(nullptr)
+	, animationSpeed(1.f)
 {
 	animationMap.clear();
 	for (auto& animation : other.animationMap)
@@ -87,7 +91,7 @@ void Animator::ChangeAnimation(const std::string& animationName, bool isRepeat, 
 	currentAnimation = animation->second;
 
 	sprite->setTexture(*currentAnimation->GetTexture());
-	currentAnimation->Play(isRepeat);
+	currentAnimation->Play(animationSpeed, isRepeat);
 	currentAnimation->SetUnScaleUpdate(isUnscale);
 }
 
@@ -123,6 +127,11 @@ void Animator::SetCurrentFrameInfo(const sf::Vector2u& size, const sf::IntRect& 
 
 	sprite->setTextureRect(uvRect);
 	Utils::SetOrigin(*sprite, uvRect, owner->GetOrigins());
+}
+
+void Animator::SetAnimationSpeed(float speed)
+{
+	animationSpeed = speed;
 }
 
 void Animator::SetOrigin(Origins preset)

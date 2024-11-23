@@ -34,6 +34,7 @@ protected:
 	unsigned int				currentIndex;
 	float						totalFrameTime;
 	float						currentAnimationTime;
+	float						animationSpeed;
 
 	bool						isUnscale;
 	bool						isPlaying;
@@ -47,7 +48,7 @@ public:
 	//std::function<void(Animator&)> func;
 
 public:
-	void Play(bool isRepeat = false);
+	void Play(float speed, bool isRepeat = false);
 	void Stop();
 	void Reset();
 

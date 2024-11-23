@@ -14,6 +14,7 @@ Animation::Animation()
 	, isPlaying(false)
 	, isUnscale(false)
 	, animator(nullptr)
+	, animationSpeed(1.f)
 {
 }
 
@@ -135,8 +136,9 @@ void Animation::CreateAnimationInfo(const sf::Texture* texture, const std::strin
 }
 
 
-void Animation::Play(bool isRepeat)
+void Animation::Play(float speed, bool isRepeat)
 {
+	animationSpeed = speed;
 	Reset();
 	// animationStartEvnet;
 	this->isRepeat = isRepeat;
@@ -167,9 +169,9 @@ void Animation::Update(float deltaTime)
 		return;
 
 	if (isUnscale)
-		currentAnimationTime += TimeManager::GetInstance().GetRealDeltatime();
+		currentAnimationTime += TimeManager::GetInstance().GetRealDeltatime() * animationSpeed;
 	else
-		currentAnimationTime += deltaTime;
+		currentAnimationTime += deltaTime * animationSpeed;
 
 	if (currentAnimationTime >= frameInfoVector[currentIndex].duration)
 	{
