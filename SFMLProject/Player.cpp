@@ -26,7 +26,9 @@ Player::Player(const std::string& name)
 	, currentStarState(0.f)
 	, starStateTime(9.f)
 	, isStarState(false)
-
+	, colorChangeTime(0.1f)
+	, currentColorTime(0.f)
+	, currentColorIndex(0)
 {
 	rigidBody = new Rigidbody(this);
 	rigidBody->SetGround(false);
@@ -41,6 +43,11 @@ Player::Player(const std::string& name)
 	animator->GetAnimation("marioFireIdleAttack")->SetAnimationEndEvent(std::bind(&Player::OnAttackEnd, this), 0);
 	animator->GetAnimation("marioFireRunAttack")->SetAnimationEndEvent(std::bind(&Player::OnAttackEnd, this), 1);
 	animator->GetAnimation("marioFireJumpAttack")->SetAnimationEndEvent(std::bind(&Player::OnAttackEnd, this), 0);
+
+	starStateChangeColors[0] = { 230,230,230,255 };
+	starStateChangeColors[1] = { 230,200,20,255 };
+	starStateChangeColors[2] = { 58,132,0,255 };
+	starStateChangeColors[3] = { 230,156,33,255 };
 }
 
 Player::~Player()
@@ -96,6 +103,7 @@ void Player::Start()
 		GetCollider()->SetScale({ (sf::Vector2f)animator->GetCurrentAnimation()->GetFrameInfo()[0].rectSize });
 
 	mainCamera = SceneManager::GetInstance().GetCurrentScene()->GetMainCamera();
+
 }
 
 void Player::TakeDamage()
@@ -266,15 +274,31 @@ void Player::Update(const float& deltaTime)
 		SetPosition(position);
 	}
 
+	currentColorTime += deltaTime;
+	if (currentColorTime >= colorChangeTime) 
+	{
+		sprite.setColor(starStateChangeColors[currentColorIndex]);
+		currentColorTime = 0.f;
+		currentColorIndex = currentColorIndex == 3 ? 0 : currentColorIndex + 1;
+	}
 	if (isStarState)
 	{
 		currentStarState += deltaTime;
+		currentColorTime += deltaTime;
+
+		if (currentColorTime >= colorChangeTime)
+		{
+			sprite.setColor(starStateChangeColors[currentColorIndex]);
+			currentColorTime = 0.f;
+
+			currentColorIndex = currentColorIndex == 3 ? 0 : currentColorIndex + 1;
+		}
 
 		if (currentStarState >= starStateTime)
 		{
 			currentStarState = 0.f;
 			isStarState = false;
-
+			sprite.setColor(defaultColor);
 			SoundManger::GetInstance().PlayBgm("MainTheme");
 		}
 	}
