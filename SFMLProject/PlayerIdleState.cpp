@@ -21,6 +21,7 @@ void PlayerIdleState::Awake()
 
 void PlayerIdleState::Start()
 {
+	rigidbody = player->GetRigidbody();
 }
 
 void PlayerIdleState::Enter()
@@ -41,9 +42,10 @@ void PlayerIdleState::Update(float deltaTime)
 	if (InputManager::GetInstance().GetAxis(Axis::Horizontal) != 0.f)
 		fsm->ChangeState(PlayerStateType::Run);
 
-	if (InputManager::GetInstance().GetKeyUp(sf::Keyboard::Space) || (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Space) && InputManager::GetInstance().GetAxis(Axis::Jump) == 1.f))
+	if ((InputManager::GetInstance().GetKeyUp(sf::Keyboard::Space) || (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Space) && InputManager::GetInstance().GetAxis(Axis::Jump) == 1.f)))
 	{
-		fsm->ChangeState(PlayerStateType::Jump);
+		if(rigidbody->IsGround())
+			fsm->ChangeState(PlayerStateType::Jump);
 	}
 
 	if (InputManager::GetInstance().GetKeyUp(sf::Keyboard::Z))

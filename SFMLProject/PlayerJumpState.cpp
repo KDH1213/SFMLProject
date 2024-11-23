@@ -31,6 +31,7 @@ void PlayerJumpState::Enter()
 	animationKeyIndex = player->GetCurrentHP() - 1;
 	player->GetAnimator()->ChangeAnimation(animationKeys[animationKeyIndex], true);
 
+	player->SetIsJump(true);
 	rigidbody->SetGround(false);
 
 	if(animationKeyIndex == 0)

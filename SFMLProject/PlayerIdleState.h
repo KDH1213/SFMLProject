@@ -4,6 +4,8 @@
 
 class PlayerIdleState : public PlayerBaseState
 {
+protected:
+	Rigidbody* rigidbody;
 
 public:
 	void Awake() override;

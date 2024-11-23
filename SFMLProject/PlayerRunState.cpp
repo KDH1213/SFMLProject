@@ -65,8 +65,11 @@ void PlayerRunState::Update(float deltaTime)
 
 	if (InputManager::GetInstance().GetKeyUp(sf::Keyboard::Space) || (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Space) && InputManager::GetInstance().GetAxis(Axis::Jump) == 1.f))
 	{
-		fsm->ChangeState(PlayerStateType::Jump);
-		return;
+		if (rigidbody->IsGround())
+		{
+			fsm->ChangeState(PlayerStateType::Jump);
+			return;
+		}
 	}
 
 	if (horizontal == 0)

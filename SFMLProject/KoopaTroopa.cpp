@@ -48,60 +48,43 @@ void KoopaTroopa::OnCollisionEnter(Collider* target)
 {
 	if (target->GetColliderLayer() == ColliderLayer::Player)
 	{
-		if (currentState == EnemyStateType::Scout)
+		Player* player = (Player*)target->GetOwner();
+
+		if (player->IsStarState())
 		{
-			Player* player = (Player*)target->GetOwner();
-
-			sf::Vector2f targetPosition = target->GetPosition();
-
-			Rectangle rect(collider->GetPosition(), collider->GetScale());
-			Rectangle targetRect(targetPosition, target->GetScale());
-			float prevPositionY = (target->GetOwner()->GetRigidbody()->GetCurrentVelocity().y + target->GetOwner()->GetRigidbody()->GetCurrentDropSpeed()) * TimeManager::GetInstance().GetFixedDeletaTime() * player->GetSpeed();
-
-			if (rect.topPosition > targetRect.bottomPosition - prevPositionY)
-			{
-				fsm->ChangeState(EnemyStateType::Groggy);
-				player->GetRigidbody()->ResetDropSpeed();
-				player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x, -350.f });
-				player->GetFSM().ChangeState(PlayerStateType::Jump);
-
-				SoundManger::GetInstance().PlaySfx("Chop");
-			}
-			else if (rect.bottomPosition < targetRect.topPosition - prevPositionY)
-				player->TakeDamage();
-			else
-				player->TakeDamage();
-
-
-			return;
+			SetHitDirection(position.x < player->GetPosition().x ? sf::Vector2f::left : sf::Vector2f::right);
+			TakeDamage();
 		}
-		else if (currentState == EnemyStateType::Groggy)
+		else
 		{
-			sf::Vector2f targetPosition = target->GetPosition();
-			float direction = targetPosition.x - position.x;
-
-			if (direction < 0.f)
+			if (currentState == EnemyStateType::Scout)
 			{
-				moveDirection.x = 1.f;
+				sf::Vector2f targetPosition = target->GetPosition();
+
+				Rectangle rect(collider->GetPosition(), collider->GetScale());
+				Rectangle targetRect(targetPosition, target->GetScale());
+				float prevPositionY = (target->GetOwner()->GetRigidbody()->GetCurrentVelocity().y + target->GetOwner()->GetRigidbody()->GetCurrentDropSpeed()) * TimeManager::GetInstance().GetFixedDeletaTime() * player->GetSpeed();
+
+				if (rect.topPosition > targetRect.bottomPosition - prevPositionY)
+				{
+					fsm->ChangeState(EnemyStateType::Groggy);
+					player->GetRigidbody()->ResetDropSpeed();
+					player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x, -350.f });
+					player->GetFSM().ChangeState(PlayerStateType::Jump);
+
+					SoundManger::GetInstance().PlaySfx("Chop");
+				}
+				else if (rect.bottomPosition < targetRect.topPosition - prevPositionY)
+					player->TakeDamage();
+				else
+					player->TakeDamage();
+
+
+				return;
 			}
-			else
-				moveDirection.x = -1.f;
-
-			fsm->ChangeState(EnemyStateType::Move);
-			SoundManger::GetInstance().PlaySfx("Kick");
-		}
-		else if (currentState == EnemyStateType::Move)
-		{
-			Player* player = (Player*)target->GetOwner();
-
-			sf::Vector2f targetPosition = target->GetPosition();
-
-			Rectangle rect(collider->GetPosition(), collider->GetScale());
-			Rectangle targetRect(targetPosition, target->GetScale());
-			float prevPositionY = (target->GetOwner()->GetRigidbody()->GetCurrentVelocity().y + target->GetOwner()->GetRigidbody()->GetCurrentDropSpeed()) * TimeManager::GetInstance().GetFixedDeletaTime() * player->GetSpeed();
-
-			if (rect.topPosition > targetRect.bottomPosition - prevPositionY)
+			else if (currentState == EnemyStateType::Groggy)
 			{
+				sf::Vector2f targetPosition = target->GetPosition();
 				float direction = targetPosition.x - position.x;
 
 				if (direction < 0.f)
@@ -112,18 +95,43 @@ void KoopaTroopa::OnCollisionEnter(Collider* target)
 					moveDirection.x = -1.f;
 
 				fsm->ChangeState(EnemyStateType::Move);
-
-				SoundManger::GetInstance().PlaySfx("Chop");
-				player->GetRigidbody()->ResetDropSpeed();
-				player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x, -350.f });
-				player->GetFSM().ChangeState(PlayerStateType::Jump);
-
+				SoundManger::GetInstance().PlaySfx("Kick");
 			}
-			else if (rect.bottomPosition < targetRect.topPosition - prevPositionY)
-				player->TakeDamage();
-			else
-				player->TakeDamage();
+			else if (currentState == EnemyStateType::Move)
+			{
+				sf::Vector2f targetPosition = target->GetPosition();
+
+				Rectangle rect(collider->GetPosition(), collider->GetScale());
+				Rectangle targetRect(targetPosition, target->GetScale());
+				float prevPositionY = (target->GetOwner()->GetRigidbody()->GetCurrentVelocity().y + target->GetOwner()->GetRigidbody()->GetCurrentDropSpeed()) * TimeManager::GetInstance().GetFixedDeletaTime() * player->GetSpeed();
+
+				if (rect.topPosition > targetRect.bottomPosition - prevPositionY)
+				{
+					float direction = targetPosition.x - position.x;
+
+					if (direction < 0.f)
+					{
+						moveDirection.x = 1.f;
+					}
+					else
+						moveDirection.x = -1.f;
+
+					fsm->ChangeState(EnemyStateType::Move);
+
+					SoundManger::GetInstance().PlaySfx("Chop");
+					player->GetRigidbody()->ResetDropSpeed();
+					player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x, -350.f });
+					player->GetFSM().ChangeState(PlayerStateType::Jump);
+
+				}
+				else if (rect.bottomPosition < targetRect.topPosition - prevPositionY)
+					player->TakeDamage();
+				else
+					player->TakeDamage();
+			}
 		}
+
+		
 		
 	}
 	else if (target->GetColliderLayer() == ColliderLayer::Wall || target->GetColliderLayer() == ColliderLayer::Enemy

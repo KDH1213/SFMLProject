@@ -404,13 +404,13 @@ void SceneDev1::LoadResources()
 	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("OutOfTime", "sound/out_of_time.wav");
 
 
-
 	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("CountDown", "sound/count_down.ogg");
 	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Flagpole", "sound/bgm/flagpole.wav");
 	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("MainTheme", "sound/bgm/main_theme.ogg");
 
 	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("DeathBGM", "sound/bgm/death.wav");
 	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("GameOver", "sound/bgm/game_over.ogg");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Invincible", "sound/bgm/invincible.ogg");
 
 	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("StageClear", "sound/bgm/stage_clear.wav");
 }

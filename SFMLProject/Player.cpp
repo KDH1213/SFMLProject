@@ -23,6 +23,10 @@ Player::Player(const std::string& name)
 	, currentReloadTime(0.f)
 	, isReload(false)
 	, isAttack(false)
+	, currentStarState(0.f)
+	, starStateTime(9.f)
+	, isStarState(false)
+
 {
 	rigidBody = new Rigidbody(this);
 	rigidBody->SetGround(false);
@@ -60,6 +64,13 @@ void Player::ChangeMario(int hp)
 		collider->SetScale({ 64.f, 128.f });
 		fsm.ChangeState(PlayerStateType::Idle);
 	}
+}
+
+void Player::OnStarState()
+{
+	isStarState = true;
+	currentStarState = 0.f;
+	SoundManger::GetInstance().PlayBgm("Invincible");
 }
 
 void Player::Awake()
@@ -145,6 +156,9 @@ void Player::AddItem(ItemType itemType)
 			fsm.ChangeState(PlayerStateType::Upgrade);
 		break;
 	case ItemType::Star:
+	{
+		OnStarState();
+	}
 		break;
 	case ItemType::End:
 		break;
@@ -159,7 +173,7 @@ void Player::TakeUpgrade()
 
 void Player::Attack()
 {
-	if (isAttack || isReload || currentStatus.hp < 3)
+	if ( isAttack || isReload || !isStarState || currentStatus.hp < 3)
 		return;
 
 	if (!(fsm.GetCurrentStateType() == PlayerStateType::Idle || fsm.GetCurrentStateType() == PlayerStateType::Jump || fsm.GetCurrentStateType() == PlayerStateType::Run))
@@ -252,6 +266,19 @@ void Player::Update(const float& deltaTime)
 		SetPosition(position);
 	}
 
+	if (isStarState)
+	{
+		currentStarState += deltaTime;
+
+		if (currentStarState >= starStateTime)
+		{
+			currentStarState = 0.f;
+			isStarState = false;
+
+			SoundManger::GetInstance().PlayBgm("MainTheme");
+		}
+	}
+
 	if (isReload)
 	{
 		currentReloadTime += deltaTime;
@@ -315,13 +342,19 @@ void Player::OnCollisionEnd(Collider* target)
 			if (rect.bottomPosition == targetRect.topPosition)
 			{
 				isGround = true;
+				isJump = false;
 				break;
 			}
 
 		}
 
 		if (!isGround)
+		{
+			if(!isJump)
+				rigidBody->AddDropSpeed(30.f);
+
 			rigidBody->SetGround(false);
+		}
 	}
 	
 }

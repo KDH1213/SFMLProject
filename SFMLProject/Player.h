@@ -24,6 +24,9 @@ protected:
 	float			reloadTime;
 	float			currentReloadTime;
 
+	float			currentStarState;
+	float			starStateTime;
+
 	bool			isJump;
 	bool			isHit;
 	bool			isDead;
@@ -31,6 +34,7 @@ protected:
 
 	bool			isReload;
 	bool			isAttack;
+	bool			isStarState;
 
 
 public:
@@ -57,12 +61,15 @@ public:
 	void CreateAnimator() override;
 
 	bool IsHit() const { return isHit; }
+	bool IsStarState() { return isStarState; }
+	void SetIsJump(bool jump) { isJump = jump; }
 	int GetCurrentHP() const { return currentStatus.hp; }
 	float GetSpeed() { return currentStatus.speed; }
 
 	void SetHp(int hp) { currentStatus.hp = hp; }
 	void ChangeSmallMario();
 	void ChangeMario(int hp);
+	void OnStarState();
 
 public:
 	void Awake() override;

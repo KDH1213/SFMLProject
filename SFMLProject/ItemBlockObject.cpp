@@ -75,13 +75,25 @@ void ItemBlockObject::CreateItem()
 		break;
 	case ItemType::Flower:
 	{
-		FlowerObject* flower = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new FlowerObject(), LayerType::Item);
-		flower->SetPosition(position);
-		flower->Awake();
-		flower->Start();
-		flower->CreateEvenet();
+		Player* _player = (Player*)SceneManager::GetInstance().GetCurrentScene()->FindGameObject("Player", LayerType::Player);
+		if (_player->GetCurrentHP() == 1)
+		{
+			MushRoomObject* mush = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new MushRoomObject(), LayerType::Item);
+			mush->SetPosition(position);
+			mush->Awake();
+			mush->Start();
+			mush->CreateEvenet();
+		}
+		else
+		{
+			FlowerObject* flower = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new FlowerObject(), LayerType::Item);
+			flower->SetPosition(position);
+			flower->Awake();
+			flower->Start();
+			flower->CreateEvenet();
+		}
 	}
-		break;
+	break;
 	case ItemType::Star:
 	{
 		StarObject* star = SceneManager::GetInstance().GetCurrentScene()->AddGameObject(new StarObject(), LayerType::Item);

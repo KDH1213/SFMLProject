@@ -47,24 +47,32 @@ void Goomba::OnCollisionEnter(Collider* target)
 	{
 		Player* player = (Player*)target->GetOwner();
 		
-		sf::Vector2f targetPosition = target->GetPosition();
-		
-		Rectangle rect(collider->GetPosition(), collider->GetScale());
-		Rectangle targetRect(targetPosition, target->GetScale());
-		float prevPositionY = (target->GetOwner()->GetRigidbody()->GetCurrentVelocity().y + target->GetOwner()->GetRigidbody()->GetCurrentDropSpeed()) * TimeManager::GetInstance().GetFixedDeletaTime() * player->GetSpeed();
-
-		if (rect.topPosition > targetRect.bottomPosition - prevPositionY)
+		if (player->IsStarState())
 		{
-			OnJumpDead();
+			SetHitDirection(position.x < player->GetPosition().x ? sf::Vector2f::left : sf::Vector2f::right);
 			TakeDamage();
-			player->GetRigidbody()->ResetDropSpeed();
-			player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x, -350.f });
-			player->GetFSM().ChangeState(PlayerStateType::Jump);
 		}
-		else if (rect.bottomPosition < targetRect.topPosition - prevPositionY)
-			player->TakeDamage();
 		else
-			player->TakeDamage();		
+		{
+			sf::Vector2f targetPosition = target->GetPosition();
+
+			Rectangle rect(collider->GetPosition(), collider->GetScale());
+			Rectangle targetRect(targetPosition, target->GetScale());
+			float prevPositionY = (target->GetOwner()->GetRigidbody()->GetCurrentVelocity().y + target->GetOwner()->GetRigidbody()->GetCurrentDropSpeed()) * TimeManager::GetInstance().GetFixedDeletaTime() * player->GetSpeed();
+
+			if (rect.topPosition > targetRect.bottomPosition - prevPositionY)
+			{
+				OnJumpDead();
+				TakeDamage();
+				player->GetRigidbody()->ResetDropSpeed();
+				player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x, -350.f });
+				player->GetFSM().ChangeState(PlayerStateType::Jump);
+			}
+			else if (rect.bottomPosition < targetRect.topPosition - prevPositionY)
+				player->TakeDamage();
+			else
+				player->TakeDamage();
+		}
 	}
 	else if (target->GetColliderLayer() == ColliderLayer::Wall || target->GetColliderLayer() == ColliderLayer::Block)
 	{
