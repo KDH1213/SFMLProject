@@ -38,4 +38,5 @@ void KoopaTroopaMoveState::Exit()
 
 void KoopaTroopaMoveState::FixedUpdate(float fixedDeltaTime)
 {
+	rigidbody->SetVelocity({ moveDirection.x * speed , rigidbody->GetCurrentVelocity().y });
 }

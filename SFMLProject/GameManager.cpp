@@ -95,6 +95,7 @@ void GameManager::Reset()
 	isPlaying = false;
 	currentGameOverCreditTime = 0.f;
 	isGameOverCredit = false;
+	currentTimer = 400.f;
 }
 
 void GameManager::OnClearAdjustment()
@@ -214,7 +215,7 @@ void GameManager::ReStart()
 		background->sortingOrder = -1;
 		UITextGameObject* creadit = scene->AddGameObject(new UITextGameObject("DungGeunMo", "Ending", 80), LayerType::UI);
 		creadit->sortingOrder = -2;
-		creadit->SetPosition({ 960.f, 590.f });
+		creadit->SetPosition({ 960.f, 500.f });
 		creadit->SetOrigin(Origins::MiddleCenter);
 		creadit->SetString("GAME OVER!");
 		creadit->Start();

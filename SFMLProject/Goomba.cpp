@@ -152,5 +152,8 @@ void Goomba::OnCollisionEnd(Collider* target)
 
 		if (!isGround)
 			rigidBody->SetGround(false);
+		else
+			rigidBody->SetGround(true);
+
 	}
 }

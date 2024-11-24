@@ -208,6 +208,8 @@ void KoopaTroopa::OnCollisionEnd(Collider* target)
 		}
 
 		if (!isGround)
-			rigidBody->SetGround(false);
+			rigidBody->SetGround(false);		
+		else
+			rigidBody->SetGround(true);
 	}
 }

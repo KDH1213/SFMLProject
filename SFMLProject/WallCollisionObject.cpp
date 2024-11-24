@@ -80,7 +80,7 @@ void WallCollisionObject::OnCollisionEnter(Collider* target)
 				{
 					targetStar->GetRigidbody()->ResetDropSpeed();
 					targetStar->GetRigidbody()->SetGround(false);
-					targetStar->GetRigidbody()->SetVelocity({ targetStar->GetRigidbody()->GetCurrentVelocity().x, -700.f });
+					targetStar->GetRigidbody()->SetVelocity({ targetStar->GetRigidbody()->GetCurrentVelocity().x, -500.f });
 				}
 				else
 				{
