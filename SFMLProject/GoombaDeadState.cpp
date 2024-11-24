@@ -14,6 +14,7 @@ GoombaDeadState::GoombaDeadState(EnemyFSM* fsm)
 	, isJumpDie(false)
 	, isEndRotation(false)
 	, jumpDeadTime(0.3f)
+	, rigidbody(nullptr)
 {	
 }
 

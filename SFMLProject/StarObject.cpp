@@ -73,7 +73,7 @@ void StarObject::OnCollisionEnter(Collider* target)
 
 		float prevPositionY = rigidBody->GetPrevDropSpeed();
 
-		if (!(rect.bottomPosition - prevPositionY < targetRect.topPosition))
+		if (prevPositionY  != 0.f && !(rect.bottomPosition - prevPositionY < targetRect.topPosition))
 		{
 			moveDirection.x *= -1.f;
 		}

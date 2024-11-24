@@ -14,6 +14,10 @@ private:
 	bool		isEndRotation;
 	float		jumpDeadTime;
 
+private:
+
+	void IsHitDie(float deltaTime);
+
 public:
 	void Awake() override;
 	void Start() override;

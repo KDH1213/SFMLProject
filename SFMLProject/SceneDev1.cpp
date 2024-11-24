@@ -229,7 +229,7 @@ void SceneDev1::Load(const std::string& loadPath)
 
 		newBlock->LoadBlockSaveData(data);
 		newBlock->Start();
-		AddGameObject(newBlock, newBlock->GetLayerType());
+		AddGameObject(newBlock, LayerType::Block);
 	}
 
 	for (const auto& data : data.itemBlockSaveDatas)
@@ -237,7 +237,7 @@ void SceneDev1::Load(const std::string& loadPath)
 		ItemBlockObject* newBlock = new ItemBlockObject(ItemType::Coin, "", "");
 		newBlock->LoadItemBlockSaveData(data);
 		newBlock->Start();
-		AddGameObject(newBlock, newBlock->GetLayerType());
+		AddGameObject(newBlock, LayerType::Block);
 	}
 
 	for (const auto& data : data.wallCollisionSaveDatas)
