@@ -176,6 +176,7 @@
     <ClCompile Include="CreateObjectTool.cpp" />
     <ClCompile Include="DataTable.cpp" />
     <ClCompile Include="DataTableManager.cpp" />
+    <ClCompile Include="EndingCreditTimeLine.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyBaseState.cpp" />
     <ClCompile Include="EnemyFSM.cpp" />
@@ -301,6 +302,7 @@
     </ClCompile>
     <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="TrickColliderObject.cpp" />
+    <ClCompile Include="TriggerObject.cpp" />
     <ClCompile Include="UIAnimationObject.cpp" />
     <ClCompile Include="UIButtonObject.cpp" />
     <ClCompile Include="UICoinObject.cpp" />
@@ -344,6 +346,7 @@
     <ClInclude Include="DataTable.h" />
     <ClInclude Include="DataTableManager.h" />
     <ClInclude Include="Defines.h" />
+    <ClInclude Include="EndingCreditTimeLine.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyBaseState.h" />
     <ClInclude Include="EnemyFSM.h" />
@@ -454,6 +457,7 @@
     <ClInclude Include="TimeManager.h" />
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="TrickColliderObject.h" />
+    <ClInclude Include="TriggerObject.h" />
     <ClInclude Include="UIAnimationObject.h" />
     <ClInclude Include="UIButtonObject.h" />
     <ClInclude Include="UICoinObject.h" />

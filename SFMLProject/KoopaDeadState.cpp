@@ -19,6 +19,7 @@ KoopaDeadState::KoopaDeadState(EnemyFSM* fsm)
 	, koopa(nullptr)
 	, currentOffTime(0.f)
 	, offScaffoldingTime(0.f)
+	, currentIndex(0)
 {
 }
 
@@ -79,6 +80,7 @@ void KoopaDeadState::Update(float deltaTime)
 	{
 		EndDead();
 		enemy->OnDestory();
+		SoundManger::GetInstance().PlayBgm("WorldClear", false);
 	}
 }
 

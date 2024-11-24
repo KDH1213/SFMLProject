@@ -3,6 +3,7 @@
 #include "Rigidbody.h"
 #include "Animator.h"
 #include "Collider.h"
+#include "GameManager.h"
 
 PlayerDeadState::PlayerDeadState(PlayerFSM* fsm)
 	: PlayerBaseState(fsm, PlayerStateType::Dead)
@@ -43,6 +44,9 @@ void PlayerDeadState::Update(float deltaTime)
   		player->GetRigidbody()->SetVelocity({ 0.f, -1000.f });
 		isWait = !isWait;
 	}
+
+	if(currentWaitTime >= 3.f)
+		GameManager::GetInstance().PlayerDie();
 }
 
 void PlayerDeadState::FixedUpdate(float fixedDeltaTime)

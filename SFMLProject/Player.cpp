@@ -29,6 +29,7 @@ Player::Player(const std::string& name)
 	, colorChangeTime(0.1f)
 	, currentColorTime(0.f)
 	, currentColorIndex(0)
+	, isDead(false)
 {
 	rigidBody = new Rigidbody(this);
 	rigidBody->SetGround(false);
@@ -116,6 +117,7 @@ void Player::TakeDamage()
 
 	if (currentStatus.hp == 0)
 	{
+		isDead = true;
 		fsm.ChangeState(PlayerStateType::Dead);
 		return;
 	}
@@ -274,9 +276,11 @@ void Player::Update(const float& deltaTime)
 		animator->SetAnimationSpeed(1.f);
 	}
 
-	if (position.y >= 3000.f)
+
+	if (!isDead && position.y >= 3000.f)
 	{
-		GameManager::GetInstance().PlayerDie();
+		fsm.ChangeState(PlayerStateType::Dead);
+		isDead = true;
 	}
 
 	if (position.x - abs(collider->GetScale().x * 0.5f) < mainCamera->GetCameraLeftPosition())

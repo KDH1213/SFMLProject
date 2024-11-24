@@ -71,7 +71,7 @@ public:
 
 	void Clear();
 
-	void SetInputable(bool active) { isInputable = active; }
+	void SetInputable(bool active);
 	bool GetInputable() { return isInputable; }
 protected:
 	InputManager();

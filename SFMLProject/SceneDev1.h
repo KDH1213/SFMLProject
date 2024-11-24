@@ -3,6 +3,7 @@
 
 class Player;
 class WallCollisionObject;
+class BackgroundColorBox;
 
 class SceneDev1 : public Scene
 {
@@ -11,6 +12,7 @@ private:
 	Player*					player;
 	Rectangle				cameraLimitRect;
 	Rectangle				currentCameraLimitRect;
+	BackgroundColorBox*		backgroundColorBox;
 	
 public:
 	void CollisitionCheck();

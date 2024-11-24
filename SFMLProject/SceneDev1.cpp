@@ -18,81 +18,24 @@ void SceneDev1::Enter()
 	CameraManger::GetInstance().SetCamera(uICamera);
 	LoadResources();
 
-
 	GameManager::GetInstance().SetWorldName("1-1");
-	//Player* testPlayer = AddGameObject(new Player("Player"),LayerType::Player);
-	//testPlayer->Awake();
-	////testPlayer->CreateAnimator();
-
-	////auto animator = testPlayer->GetAnimator();
-	////animator->AddAnimation(&ResourcesManager<Animation>::GetInstance().Get("marioIdle"), "marioIdle");
-	//mainCamera->SetFollowTarget(testPlayer, true);
-
-	//// Goomba* enemy = AddGameObject(new Goomba(), LayerType::Enemy);
-	//// enemy->SetPosition(testPlayer->GetPosition() + sf::Vector2f::left * 300.f);
-	//// mainCamera->SetCameraLimitRect({ -2000.f, 2000.f, -2000.f, 2000.f });
-
-	////TileMap* tile = AddGameObject(new TileMap("tiles", "Map"), LayerType::TileMap);
-	////tile->SetTileInfo("tiles", { 30,30 }, { 64.f,64.f }, { 32,32 });
-	////tile->SaveCsv("TileMap/test.csv");
-	////tile->LoadCsv("TileMap/test.csv");
-	//ColliderManager::GetInstance().SetCollisionCheck(ColliderLayer::Enemy, ColliderLayer::Player);
-
-	////BlockObject* block = AddGameObject(new BlockObject(BlockType::Brick ,"tile_set"), LayerType::Block);
-
-	//BrickBlockObject* brickBlock = AddGameObject(new BrickBlockObject("tile_set"), LayerType::Block); 
-	//brickBlock->SetPosition({ 100.f, -150.f });
-
-	//WallCollisionObject* wallCollision = AddGameObject(new WallCollisionObject, LayerType::Wall);
-	//wallCollision->SetScale({ 10000.f, 30.f });
-	//wallCollision->SetPosition({ 0, 100.f });
-
-	////  ItemBlockObject* block = AddGameObject(new ItemBlockObject(ItemType::MushRoom, "tile_set", "tile_set"), LayerType::Block);
-
-	//TileMapController* tileMapController = AddGameObject(new TileMapController("TileMapController"), LayerType::Default);
-
-	//CoinObject* coin = AddGameObject(new CoinObject, LayerType::Item);
-	//coin->SetPosition({ -100.f, -150.f });
-	//StarObject* star = AddGameObject(new StarObject, LayerType::Item);
-	//star->SetPosition({ -150.f, -150.f });
-	//FlowerObject* flower = AddGameObject(new FlowerObject, LayerType::Item);
-	//flower->SetPosition({ -200.f, -150.f });
-	//MushRoomObject* mushroom = AddGameObject(new MushRoomObject, LayerType::Item);
-	//mushroom->SetPosition({ -250.f, -150.f });
 
 	StartUIObject* startUIObject = AddGameObject(new StartUIObject(), LayerType::UI);
 	InGameUIHub* uiHub = AddGameObject(new InGameUIHub("DungGeunMo", "UIHub"), LayerType::UI);
 
-	BackgroundColorBox* background = AddGameObject(new BackgroundColorBox(), LayerType::Default);
-	background->SetScale({ 2000.f, 1300.f });
-	background->SetColor(sf::Color(85, 151, 248));
-
-	/*GameClearObject* gameClearObject = AddGameObject(new GameClearObject(), LayerType::CleraPoint);
-	gameClearObject->SetScale({ 10.f, 1300.f });
-	gameClearObject->SetPosition({ 800.f, 0.f });
-	gameClearObject->SetDestinationPosition({ 800.f, 440 });
-	gameClearObject->SetMaxStartPosition({ 800.f, -440 });
-	gameClearObject->SetEndMovePosition({ 1700.f, 440 });*/
-
-	// SavePointObject* savePoint = AddGameObject(new SavePointObject(), LayerType::Default);
+	backgroundColorBox = AddGameObject(new BackgroundColorBox(), LayerType::Default);
+	backgroundColorBox->SetScale({ 2000.f, 1300.f });
+	backgroundColorBox->SetColor(sf::Color(85, 151, 248));
 
 	CollisitionCheck();
 	
-	if (GameManager::GetInstance().IsRestart())
-	{
-		// GameManager::GetInstance().OnSavePoint();
-
-	}
-	else
+	if (!GameManager::GetInstance().IsRestart())
 	{
 		Load(loadPath);
 		player->ChangeSmallMario();
 		GameManager::GetInstance().OnSavePoint(player->GetPosition());
-		// SaveLoadManager::GetInstance().Load();
-		//GameManager::GetInstance().OnSavePoint();
 	}
 	Scene::Enter();
-
 
 	GameManager::GetInstance().SetTimerUI(uiHub->GetTextGameObject("TimerUI"));
 	GameManager::GetInstance().SetCoinUI(uiHub->GetTextGameObject("CoinUI"));
@@ -127,7 +70,10 @@ void SceneDev1::Update(float dt)
 		GameManager::GetInstance().ReStart();
 
 		if (GameManager::GetInstance().IsGameOver())
+		{
+			mainCamera->SetFollowTarget(nullptr);
 			return;
+		}
 
 		player = (Player*)GetObjectVector(LayerType::Player)[0];
 	}
@@ -141,6 +87,7 @@ void SceneDev1::Update(float dt)
 	}
 	else
 	{
+		backgroundColorBox->SetPosition(mainCamera->GetCameraPosition());
 		GameManager::GetInstance().Update(dt);
 	}
 
@@ -149,7 +96,6 @@ void SceneDev1::Update(float dt)
 		if (currentCameraLimitRect.leftPosition < player->GetPosition().x - 800.f)
 		{
 			currentCameraLimitRect.leftPosition = player->GetPosition().x - 800.f;
-			currentCameraLimitRect.leftPosition = currentCameraLimitRect.leftPosition < 0.f ? 0.f : currentCameraLimitRect.leftPosition;
 			mainCamera->SetCameraLimitRect(currentCameraLimitRect);
 		}
 		
@@ -246,6 +192,13 @@ void SceneDev1::Load(const std::string& loadPath)
 	mainCamera->SetFollowTarget(player, true);
 	mainCamera->SetCameraLimitRect(cameraLimitRect, true);
 
+	currentCameraLimitRect = cameraLimitRect;
+	if (currentCameraLimitRect.leftPosition < player->GetPosition().x - 800.f)
+	{
+		currentCameraLimitRect.leftPosition = player->GetPosition().x - 800.f;
+		mainCamera->SetCameraLimitRect(currentCameraLimitRect);
+	}
+
 	for (const auto& data : data.blockSaveDatas)
 	{
 		BlockObject* newBlock = nullptr;
@@ -317,6 +270,9 @@ void SceneDev1::Load(const std::string& loadPath)
 
 	for (const auto& data : data.enemySaveDatas)
 	{
+		if (player->GetPosition().x > data.gameObjectSaveData.position.x)
+			continue;
+
 		switch ((EnemyType)data.enemyType)
 		{
 		case EnemyType::Goomba:
@@ -421,12 +377,14 @@ void SceneDev1::LoadResources()
 	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Invincible", "sound/bgm/invincible.ogg");
 
 	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("StageClear", "sound/bgm/stage_clear.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("WorldClear", "sound/bgm/world_clear.wav");
 }
 
 SceneDev1::SceneDev1()
 	: Scene(SceneIds::SceneDev1)
 	, player(nullptr)
 	, cameraWallCollisionObject(nullptr)
+	, backgroundColorBox(nullptr)
 {
 	savePath = "stage1.json";
 	loadPath = "stage1.json";

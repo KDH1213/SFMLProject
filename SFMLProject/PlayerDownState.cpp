@@ -40,7 +40,7 @@ void PlayerDownState::Enter()
 }
 
 void PlayerDownState::Exit()
-{
+{ 
 	sf::Vector2f scale = player->GetCollider()->GetScale();
 	player->GetCollider()->SetOffsetPosition({ 0.f, 0.f });
 	scale.y *= 2.f;

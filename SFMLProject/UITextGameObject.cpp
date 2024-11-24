@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "UITextGameObject.h"
 
-
 UITextGameObject::UITextGameObject(const std::string& textId, const std::string& name, unsigned int textSize, sf::Color textColor)
 	: UIGameObject(name)
 	, textId(textId)

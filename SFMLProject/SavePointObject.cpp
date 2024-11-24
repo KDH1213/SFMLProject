@@ -48,9 +48,9 @@ void SavePointObject::SetOrigin(const sf::Vector2f& newOrigin)
 
 void SavePointObject::Start()
 {
-	position = sf::Vector2f(3280.f, 446.f);
+	/*position = sf::Vector2f(3280.f, 446.f);
 	restartPosition = sf::Vector2f(3280.f, 446.f);
-	scale = sf::Vector2f(10.f, 5000.f);
+	scale = sf::Vector2f(10.f, 5000.f);*/
 
 	SetScale(scale);
 	SetPosition(position);

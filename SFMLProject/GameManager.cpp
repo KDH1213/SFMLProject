@@ -66,6 +66,18 @@ void GameManager::Update(float dt)
 }
 
 
+void GameManager::Reset()
+{
+	life = 3;
+	isPlayerDead = false;
+	currentCoinCount = 0;
+	currentScore = 0;
+	isStartClearEvent = false;
+	isEndAdjustment = false;
+	isGameOver = false;
+	isPlaying = false;
+}
+
 void GameManager::OnClearAdjustment()
 {
 	if (currentEventTime > clearEvnetScoreUpTime)

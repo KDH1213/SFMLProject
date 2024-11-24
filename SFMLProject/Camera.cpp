@@ -39,8 +39,12 @@ void Camera::CameraLimit()
 {
  	auto size = camera.getSize() * 0.5f;
 
+
 	cameraPosition.x = Utils::Clamp(cameraPosition.x , cameraLimitRect.leftPosition, cameraLimitRect.rightPosition);
 	cameraPosition.y = Utils::Clamp(cameraPosition.y, cameraLimitRect.topPosition, cameraLimitRect.bottomPosition);
+
+	if (cameraLimitRect.leftPosition > cameraLimitRect.rightPosition)
+		cameraPosition.x = cameraLimitRect.rightPosition;
 
 	camera.setCenter(cameraPosition);
 }
@@ -61,18 +65,6 @@ void Camera::SetCameraLimitRect(const Rectangle& rect, bool use)
 	cameraLimitRect.rightPosition -= cameraBounds.rightPosition;
 	cameraLimitRect.topPosition -= cameraBounds.topPosition;
 	cameraLimitRect.bottomPosition -= cameraBounds.bottomPosition;
-
-	if (cameraLimitRect.rightPosition - cameraLimitRect.leftPosition < cameraSize.x)
-		cameraLimitRect.leftPosition = cameraLimitRect.rightPosition - (cameraSize.x * 0.5f);
-
-	/*if (cameraLimitRect.rightPosition - cameraLimitRect.leftPosition < cameraSize.x)
-		cameraLimitRect.leftPosition = cameraLimitRect.rightPosition + cameraSize.x;
-
-	if (cameraLimitRect.rightPosition - cameraLimitRect.leftPosition < cameraSize.x)
-		cameraLimitRect.leftPosition = cameraLimitRect.rightPosition - cameraSize.x;
-
-	if (cameraLimitRect.rightPosition - cameraLimitRect.leftPosition < cameraSize.x)
-		cameraLimitRect.leftPosition = cameraLimitRect.rightPosition - cameraSize.x;*/
 
 	useCameraLimit = use;
 }

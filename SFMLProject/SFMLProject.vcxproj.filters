@@ -675,6 +675,12 @@
     <ClCompile Include="PlayerDownState.cpp">
       <Filter>Contants\Object\Player\PlayerState</Filter>
     </ClCompile>
+    <ClCompile Include="EndingCreditTimeLine.cpp">
+      <Filter>Contants\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="TriggerObject.cpp">
+      <Filter>Contants\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -1126,6 +1132,12 @@
     </ClInclude>
     <ClInclude Include="PlayerDownState.h">
       <Filter>Contants\Object\Player\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="EndingCreditTimeLine.h">
+      <Filter>Contants\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="TriggerObject.h">
+      <Filter>Contants\Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

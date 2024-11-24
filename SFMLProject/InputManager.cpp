@@ -6,6 +6,20 @@ inline void InputManager::Clear()
 	mouseInputMap.clear();
 }
 
+void InputManager::SetInputable(bool active)
+{
+	isInputable = active;
+
+	if (isInputable)
+	{
+		for (auto& pair : axisInfoMap)
+		{
+			auto& axisInfo = pair.second;
+			axisInfo.value = 0.f;
+		}
+	}
+}
+
 InputManager::InputManager()
 	: isInputable(false)
 {
@@ -103,9 +117,6 @@ void InputManager::Init()
 
 void InputManager::UpdateEvent(const sf::Event* ev)
 {
-	if (isInputable)
-		return;
-
 	switch (ev->type)
 	{
 	case sf::Event::KeyPressed:

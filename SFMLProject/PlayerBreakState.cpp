@@ -46,6 +46,7 @@ void PlayerBreakState::Enter()
 
 void PlayerBreakState::Exit()
 {
+	rigidbody->SetVelocity({ 0.f , rigidbody->GetCurrentVelocity().y });
 	PlayerBaseState::Exit();
 }
 

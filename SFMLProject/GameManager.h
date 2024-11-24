@@ -44,8 +44,10 @@ public:
 	bool IsRestart() { return isRestart; }
 	bool IsEndAdjustment() { return isEndAdjustment; }
 	bool IsGamePlaying() { return isPlaying; }
+	void Reset();
 
 	void OnClearAdjustment();
+	void SetEndAdjustment(bool isEnd) { isEndAdjustment = isEnd; }
 	void OnRestart();
 	void OnSavePoint(const sf::Vector2f& restartPos);
 	void SetGameClear();

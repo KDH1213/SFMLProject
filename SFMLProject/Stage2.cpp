@@ -65,12 +65,13 @@ void Stage2::LoadResources()
 	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("Invincible", "sound/bgm/invincible.ogg");
 
 	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("StageClear", "sound/bgm/stage_clear.wav");
+	ResourcesManager<sf::SoundBuffer>::GetInstance().Load("WorldClear", "sound/bgm/world_clear.wav");
 
 }
 
 void Stage2::Init()
 {
-	cameraLimitRect = { 0.f,13440.f,-500.f, 700.f };
+	cameraLimitRect = { 0.f,5500.f,-500.f, 700.f };
 	currentCameraLimitRect = cameraLimitRect;
 
 	Scene::Init();
@@ -95,7 +96,7 @@ void Stage2::Enter()
 	// TimeManager::GetInstance().SetTimeScale(0.f);
 	// TileMapController* tileMapController = AddGameObject(new TileMapController("TileMapController"), LayerType::Default);
 	StartUIObject* startUIObject = AddGameObject(new StartUIObject(), LayerType::UI);
-	
+
 	InGameUIHub* uiHub = AddGameObject(new InGameUIHub("DungGeunMo", "UIHub"), LayerType::UI);
 
 	BackgroundColorBox* background = AddGameObject(new BackgroundColorBox(), LayerType::Default);
@@ -104,6 +105,11 @@ void Stage2::Enter()
 
 	LabberObject* laberObject = AddGameObject(new LabberObject({ 0, 8 * 16,16,16 }, "Items", "labber"), LayerType::Default);
 	laberObject->SetPosition({ 3746.f, 350.f });
+
+	TriggerObject* triggerObject = AddGameObject(new TriggerObject(), LayerType::Default);
+	triggerObject->SetPosition({ 4546.f, 350.f });
+	triggerObject->SetScale({ 10.f, 5000.f });
+
 
 	CollisitionCheck();
 
@@ -130,6 +136,16 @@ void Stage2::Enter()
 	uiHub->GetTextGameObject("WorldUI")->SetString("1-4");
 
 	GameManager::GetInstance().GameStartInit();
+
+
+	EndingCreditTimeLine* creadit = AddGameObject(new EndingCreditTimeLine("DungGeunMo", "Ending", 100), LayerType::UI);
+
+	creadit->SetPosition({ 960.f, 400.f });
+	creadit->SetOrigin(Origins::MiddleCenter);
+	creadit->SetString("THANK  YOU  MARIO!");
+
+	triggerObject->AddEnterEvenet(std::bind(&EndingCreditTimeLine::OnStartCreadit, creadit));
+	creadit->Start();
 }
 
 void Stage2::Exit()
@@ -150,8 +166,12 @@ void Stage2::Update(float dt)
 	{
 		ColliderManager::GetInstance().Clear();
 		GameManager::GetInstance().ReStart();
+		
 		if (GameManager::GetInstance().IsGameOver())
+		{
+			mainCamera->SetFollowTarget(nullptr);
 			return;
+		}
 
 		player = (Player*)GetObjectVector(LayerType::Player)[0];
 	}
@@ -166,6 +186,15 @@ void Stage2::Update(float dt)
 		GameManager::GetInstance().Update(dt);
 	}
 
+	if (player != nullptr)
+	{
+		if (currentCameraLimitRect.leftPosition < player->GetPosition().x - 800.f)
+		{
+			currentCameraLimitRect.leftPosition = player->GetPosition().x - 800.f;
+			mainCamera->SetCameraLimitRect(currentCameraLimitRect);
+		}
+
+	}
 }
 
 void Stage2::Render(sf::RenderWindow& window)
@@ -178,6 +207,13 @@ void Stage2::Save(const std::string& savePath)
 	SaveDataVC data;
 
 	data.playerData = ((Player*)FindGameObject("Player"))->GetPlayerSaveData();
+
+	currentCameraLimitRect = cameraLimitRect;
+	if (currentCameraLimitRect.leftPosition < player->GetPosition().x - 800.f)
+	{
+		currentCameraLimitRect.leftPosition = player->GetPosition().x - 800.f;
+		mainCamera->SetCameraLimitRect(currentCameraLimitRect);
+	}
 
 	for (auto& gameObjects : gameObjectVectors)
 	{

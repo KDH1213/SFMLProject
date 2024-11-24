@@ -41,3 +41,5 @@
 #include "LabberObject.h"
 #include "KooparHammerBullet.h"
 #include "StartUIObject.h"
+#include "EndingCreditTimeLine.h"
+#include "TriggerObject.h"

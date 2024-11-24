@@ -12,6 +12,7 @@
 #include "InGameUIHub.h"
 
 #include "FadeOutUI.h"
+#include "GameManager.h"
 
 void TitleScene::Init()
 {
@@ -72,11 +73,14 @@ void TitleScene::Enter()
 
 	Scene::Enter();
 
+	GameManager::GetInstance().Reset();
+
 	// fadeOutUI->SetActive(false);
 }
 
 void TitleScene::Exit()
 {
+	isStartGame = false;
 	Scene::Exit();
 }
 
