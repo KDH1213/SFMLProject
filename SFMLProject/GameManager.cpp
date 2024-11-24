@@ -212,7 +212,7 @@ void GameManager::ReStart()
 		background->sortingOrder = -1;
 		UITextGameObject* creadit = scene->AddGameObject(new UITextGameObject("DungGeunMo", "Ending", 80), LayerType::UI);
 		creadit->sortingOrder = -2;
-		creadit->SetPosition({ 960.f, 400.f });
+		creadit->SetPosition({ 960.f, 590.f });
 		creadit->SetOrigin(Origins::MiddleCenter);
 		creadit->SetString("GAME OVER!");
 		creadit->Start();
