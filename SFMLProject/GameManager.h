@@ -38,7 +38,7 @@ private:
 	bool			isPlaying;
 	bool			isGameOver;
 	bool			isGameOverCredit;
-	sf::Sound*		countDown;
+	sf::Sound		countDown;
 public:
 
 	bool IsGameOver() { return isGameOver; }

@@ -200,6 +200,7 @@ void SceneDev1::Load(const std::string& loadPath)
 		mainCamera->SetCameraLimitRect(currentCameraLimitRect);
 	}
 
+	mainCamera->SetCameraPosition(player->GetPosition());
 	for (const auto& data : data.blockSaveDatas)
 	{
 		BlockObject* newBlock = nullptr;

@@ -27,7 +27,6 @@ GameManager::GameManager()
 	, isGameOver(false)
 	, marioHP(1)
 	, isPlaying(false)
-	, countDown(nullptr)
 	, isGameClear(false)
 	, currentGameOverCreditTime(0.f)
 	, isGameOverCredit(false)
@@ -69,9 +68,9 @@ void GameManager::Update(float dt)
 		currentEventTime += dt;
 		if ((int)currentTimer == 0)
 		{
+			countDown.stop();
 			if (currentEventTime > waitTime)
 			{
-				countDown->stop();
 				isEndAdjustment = true;
 				isPlaying = false;
 				// SceneManager::GetInstance().ChangeScene(SceneIds::SceneDev1);
@@ -141,7 +140,10 @@ void GameManager::OnGameClearEvent()
 {
 	isStartClearEvent = true;
 	currentTimer = (float)((int)currentTimer);
-	countDown = SoundManger::GetInstance().PlaySfxGet(("CountDown"));
+	countDown.setVolume(10.f);
+	countDown.setBuffer(ResourcesManager<sf::SoundBuffer>::GetInstance().Get("CountDown"));
+	countDown.setLoop(false);
+	countDown.play(); 
 }
 
 void GameManager::GameStartInit()

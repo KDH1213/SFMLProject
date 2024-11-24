@@ -293,6 +293,15 @@ void Stage2::Load(const std::string& loadPath)
 	mainCamera->SetFollowTarget(player, true);
 	mainCamera->SetCameraLimitRect(cameraLimitRect, true);
 
+
+	currentCameraLimitRect = cameraLimitRect;
+	if (currentCameraLimitRect.leftPosition < player->GetPosition().x - 800.f)
+	{
+		currentCameraLimitRect.leftPosition = player->GetPosition().x - 800.f;
+		mainCamera->SetCameraLimitRect(currentCameraLimitRect);
+	}
+
+	mainCamera->SetCameraPosition(player->GetPosition());
 	for (const auto& data : data.blockSaveDatas)
 	{
 		BlockObject* newBlock = nullptr;
