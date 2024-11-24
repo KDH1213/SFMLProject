@@ -170,6 +170,7 @@ void Stage2::Update(float dt)
 		if (GameManager::GetInstance().IsGameOver())
 		{
 			mainCamera->SetFollowTarget(nullptr);
+			player = nullptr;
 			return;
 		}
 

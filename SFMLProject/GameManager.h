@@ -22,6 +22,8 @@ private:
 	float			clearEvnetScoreUpTime;
 	float			currentEventTime;
 	float			waitTime;
+
+	float			currentGameOverCreditTime;
 	unsigned int	currentCoinCount;
 	unsigned int	currentScore;
 	int				life;
@@ -35,7 +37,7 @@ private:
 	bool			isEndAdjustment;
 	bool			isPlaying;
 	bool			isGameOver;
-	
+	bool			isGameOverCredit;
 	sf::Sound*		countDown;
 public:
 
@@ -44,6 +46,7 @@ public:
 	bool IsRestart() { return isRestart; }
 	bool IsEndAdjustment() { return isEndAdjustment; }
 	bool IsGamePlaying() { return isPlaying; }
+	bool IsGameOverCredit() { return isGameOverCredit; }
 	void Reset();
 
 	void OnClearAdjustment();

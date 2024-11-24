@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Camera.h"
 #include "UITextGameObject.h"
+#include "BackgroundColorBox.h"
 
 GameManager::GameManager()
 	: isRestart(false)
@@ -26,6 +27,10 @@ GameManager::GameManager()
 	, isGameOver(false)
 	, marioHP(1)
 	, isPlaying(false)
+	, countDown(nullptr)
+	, isGameClear(false)
+	, currentGameOverCreditTime(0.f)
+	, isGameOverCredit(false)
 {
 	  
 }
@@ -33,6 +38,19 @@ GameManager::GameManager()
 
 void GameManager::Update(float dt)
 {
+	if (isGameOverCredit)
+	{
+		currentGameOverCreditTime += TimeManager::GetInstance().GetUnScaleDeletaTime();
+
+		if (currentGameOverCreditTime > 5.f)
+		{
+			currentGameOverCreditTime = 0.f;
+			SceneManager::GetInstance().ChangeScene(SceneIds::TitleScene);
+		}
+		return;
+	}
+
+
 	if (!isGameClear)
 	{
 		currentTimer -= dt;
@@ -76,6 +94,8 @@ void GameManager::Reset()
 	isEndAdjustment = false;
 	isGameOver = false;
 	isPlaying = false;
+	currentGameOverCreditTime = 0.f;
+	isGameOverCredit = false;
 }
 
 void GameManager::OnClearAdjustment()
@@ -183,11 +203,29 @@ void GameManager::ReStart()
 {	
 	if (life == 0)
 	{
-		SceneManager::GetInstance().ChangeScene(SceneIds::TitleScene);
+		Scene* scene = SceneManager::GetInstance().GetCurrentScene();
+		BackgroundColorBox* background = scene->AddGameObject(new BackgroundColorBox(), LayerType::UI);
+		background->SetScale({ 2000.f, 1300.f });
+		background->SetColor(sf::Color::Black);
+		background->Start();
+
+		background->sortingOrder = -1;
+		UITextGameObject* creadit = scene->AddGameObject(new UITextGameObject("DungGeunMo", "Ending", 80), LayerType::UI);
+		creadit->sortingOrder = -2;
+		creadit->SetPosition({ 960.f, 400.f });
+		creadit->SetOrigin(Origins::MiddleCenter);
+		creadit->SetString("GAME OVER!");
+		creadit->Start();
+
+		SoundManger::GetInstance().PlayBgm("GameOver", false);
+		// SceneManager::GetInstance().ChangeScene(SceneIds::TitleScene);
+		isRestart = false;
 		isGameOver = true;
+		isGameOverCredit = true;
 	}
 	else
 	{
+		isPlayerDead = false;
 		SceneManager::GetInstance().ChangeScene(SceneManager::GetInstance().GetCurrentSceneId());
 		SceneManager::GetInstance().GetCurrentScene()->Load(restartPath);
 		isRestart = false;
@@ -201,6 +239,8 @@ void GameManager::ReStart()
 
 void GameManager::PlayerDie()
 {
+	if(isPlayerDead)
+		return;
 	isPlayerDead = true;
 	OnRestart();
 }
