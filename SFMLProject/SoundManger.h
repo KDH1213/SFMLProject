@@ -37,6 +37,8 @@ public:
 	void PlayBgm(sf::SoundBuffer& buffer, bool loop = true);
 	void StopBgm();
 
+	float GetSfxVolum() { return sfxVolume; }
+	float GetBgmVolume() { return bgmVolume; }
 
 	sf::Sound* PlaySfxGet(std::string id, bool loop = false);
 	sf::Sound* PlaySfxGet(sf::SoundBuffer& buffer, bool loop = false);

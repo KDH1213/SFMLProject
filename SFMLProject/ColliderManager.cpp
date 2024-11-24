@@ -8,7 +8,7 @@
 #include "CollisionRectangle.h"
 
 ColliderManager::ColliderManager()
-    : isCollisionRender(true)
+    : isCollisionRender(false)
 {
     collisionCheckVector.clear();
     colliderVectors.clear();

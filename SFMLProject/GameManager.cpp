@@ -140,7 +140,7 @@ void GameManager::OnGameClearEvent()
 {
 	isStartClearEvent = true;
 	currentTimer = (float)((int)currentTimer);
-	countDown.setVolume(10.f);
+	countDown.setVolume(SoundManger::GetInstance().GetSfxVolum());
 	countDown.setBuffer(ResourcesManager<sf::SoundBuffer>::GetInstance().Get("CountDown"));
 	countDown.setLoop(false);
 	countDown.play(); 
