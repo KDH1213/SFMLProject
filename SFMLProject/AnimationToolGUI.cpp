@@ -185,7 +185,7 @@ void AnimationToolGUI::TextureLoad()
     OPENFILENAME ofn = {};       // common dialog box structure
     wchar_t szFile[260] = { 0 };       // if using TCHAR macros
 
-    std::wstring wstrFilePath = L"\.";
+    std::wstring wstrFilePath = L"/.";
     wstrFilePath += L"animations\\";
 
     // Initialize OPENFILENAME	
@@ -224,7 +224,7 @@ void AnimationToolGUI::AnimationLoad()
     wchar_t szFile[260] = { 0 };       // if using TCHAR macros
 
 
-    std::wstring wstrFilePath = L"\.";
+    std::wstring wstrFilePath = L"/.";
     wstrFilePath += L"animations\\";
 
     // Initialize OPENFILENAME	
@@ -253,7 +253,7 @@ void AnimationToolGUI::AnimationLoad()
         animInfoVector = animation.GetFrameInfo();
         animationName = animation.GetAnimationName();
         rectSize = animInfoVector[0].rectSize;
-        iAnimIndexSize = animInfoVector.size();
+        iAnimIndexSize = (int)animInfoVector.size();
 
         int size = (int)textureVector.size();
 

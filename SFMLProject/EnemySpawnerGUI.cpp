@@ -55,7 +55,7 @@ void EnemySpawnerGUI::Update()
 	}
 
 	auto& spawnPositions = enemySpawner->GetSpawnPositions();
-	int count = spawnPositions.size();
+	int count = (int)spawnPositions.size();
 
 	for (int i = 0; i < count; ++i)
 	{
