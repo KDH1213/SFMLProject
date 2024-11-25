@@ -73,7 +73,7 @@ void BrickBlockObject::OnCollisionEnter(Collider* target)
 
 		Rectangle rect(collider->GetPosition(), collider->GetScale());
 		Rectangle targetRect(targetPosition, target->GetScale());
-		float prevPositionY = player->GetRigidbody()->GetCurrentVelocity().y * TimeManager::GetInstance().GetFixedDeletaTime();
+		float prevPositionY = player->GetRigidbody()->GetPrevDropSpeed();
 
 		if (rect.topPosition > targetRect.bottomPosition - prevPositionY)
 		{
@@ -85,7 +85,7 @@ void BrickBlockObject::OnCollisionEnter(Collider* target)
 			player->SetPosition({ player->GetPosition().x, rect.bottomPosition + target->GetScale().y * 0.5f });
 			player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x , 0.f });
 
-			if (abs(position.x - player->GetPosition().x) < 56.f)
+			if (abs(position.x - player->GetPosition().x) < 28.f)
 			{
 				auto targets = collider->GetCollisionTargets();
 

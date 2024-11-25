@@ -107,7 +107,7 @@ void WallCollisionObject::OnCollisionStay(Collider * target)
 
 		Rectangle rect(collider->GetPosition(), collider->GetScale());
 		Rectangle targetRect(target->GetPosition(), target->GetScale());
-
+		
 		if (rect.topPosition == targetRect.bottomPosition)
 		{
 			if (rect.leftPosition > targetRect.leftPosition && rect.leftPosition < targetRect.rightPosition)
@@ -117,19 +117,27 @@ void WallCollisionObject::OnCollisionStay(Collider * target)
 		}
 		else
 		{
-			if (rect.bottomPosition > targetRect.topPosition)
+
+ 			if (rect.bottomPosition > targetRect.topPosition)
 			{
 				if (rect.leftPosition > targetRect.leftPosition &&  rect.leftPosition < targetRect.rightPosition)
 				{
 					object->SetPosition({ rect.leftPosition - target->GetScale().x * 0.5f, object->GetPosition().y });
 					targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
 				}
-				else if (rect.rightPosition < targetRect.rightPosition && rect.rightPosition > (targetRect.leftPosition))
+				else if (rect.rightPosition < targetRect.rightPosition && rect.rightPosition > targetRect.leftPosition)
 				{
 					object->SetPosition({ rect.rightPosition + target->GetScale().x * 0.5f, object->GetPosition().y });
 					targetRigidbody->SetVelocity({ 0.f, targetRigidbody->GetCurrentVelocity().y });
 				}
+				else if (rect.rightPosition > targetRect.rightPosition && rect.leftPosition < targetRect.leftPosition
+					&& rect.topPosition < targetRect.bottomPosition && !object->GetRigidbody()->IsGround())
+				{
+					object->GetRigidbody()->SetGround(true);
+					object->SetPosition({ target->GetPosition().x , rect.topPosition - target->GetScale().y * 0.5f });
+				}
 			}
+			
 		}
 
 	}

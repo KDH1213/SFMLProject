@@ -35,7 +35,6 @@ private:
 	std::unordered_map<sf::Keyboard::Key, KeyState> keyboardInputMap;
 	std::unordered_map<sf::Mouse::Button, KeyState> mouseInputMap;
 	std::unordered_map<Axis, AxisInfo>				axisInfoMap;
-	//std::unordered_map<, KeyState> mouseInputMap;
 
 	std::vector<sf::Keyboard::Key>					keyUpDownStateVector;
 	std::vector<sf::Mouse::Button>					mouseUpDownStateVector;

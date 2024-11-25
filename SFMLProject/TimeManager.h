@@ -35,7 +35,6 @@ public:
 	float GetFixedDeletaTime() const { return fixedDeltaTime * timeScale; }
 	float GetTime() const 	{ return time; }
 	float GetRealTime() const { return realTime; }
-	float GetRealDeltatime() const { return realDeltatime; }
 	float GetTimeScale() const { return timeScale; }
 	sf::Time& GetTime() { return sfTime; }
 

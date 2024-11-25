@@ -44,7 +44,7 @@ void StartUIObject::Start()
 
 void StartUIObject::Update(const float& deltaTime)
 {
-    currentLifeTime += TimeManager::GetInstance().GetRealDeltatime();
+    currentLifeTime += TimeManager::GetInstance().GetUnScaleDeletaTime();
 
     if (currentLifeTime >= lifeTime)
     {

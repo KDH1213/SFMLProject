@@ -97,7 +97,7 @@ void PlayerHitState::Exit()
 
 void PlayerHitState::Update(float deltaTime)
 {
-	currentTime += TimeManager::GetInstance().GetRealDeltatime();
+	currentTime += TimeManager::GetInstance().GetUnScaleDeletaTime();
 
 	if (currentTime >= 1.f)
 	{

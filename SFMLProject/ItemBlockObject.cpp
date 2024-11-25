@@ -156,7 +156,7 @@ void ItemBlockObject::OnCollisionEnter(Collider* target)
 
 		Rectangle rect(collider->GetPosition(), collider->GetScale());
 		Rectangle targetRect(targetPosition, target->GetScale());
-		float prevPositionY = player->GetRigidbody()->GetCurrentVelocity().y * TimeManager::GetInstance().GetFixedDeletaTime();
+		float prevPositionY = player->GetRigidbody()->GetPrevDropSpeed();
 
 		if (rect.topPosition > targetRect.bottomPosition - prevPositionY)
 		{
@@ -165,30 +165,34 @@ void ItemBlockObject::OnCollisionEnter(Collider* target)
 		}
 		else if (rect.bottomPosition < targetRect.topPosition - prevPositionY)
 		{
-			if (itemCount != 0)
+			if (abs(position.x - player->GetPosition().x) < 28.f)
 			{
-				CreateItem();
-				OnHitMove();
-				// SoundManger::GetInstance().PlaySfx("Bump");
-				
 				player->SetPosition({ player->GetPosition().x, rect.bottomPosition + target->GetScale().y * 0.5f });
 				player->GetRigidbody()->SetVelocity({ player->GetRigidbody()->GetCurrentVelocity().x , 0.f });
 
-				auto targets = collider->GetCollisionTargets();
-
-				for (auto& target : targets)
+				if (itemCount != 0)
 				{
-					if (target->GetColliderLayer() == ColliderLayer::Enemy)
-					{
-						Enemy* enemy = (Enemy*)target->GetOwner();
-						enemy->SetHitDirection(enemy->GetPosition().x < position.x ? sf::Vector2f::left : sf::Vector2f::right);
-						enemy->TakeDamage();
-					}
-				}
+					CreateItem();
+					OnHitMove();
+					// SoundManger::GetInstance().PlaySfx("Bump");
 
+
+					auto targets = collider->GetCollisionTargets();
+
+					for (auto& target : targets)
+					{
+						if (target->GetColliderLayer() == ColliderLayer::Enemy)
+						{
+							Enemy* enemy = (Enemy*)target->GetOwner();
+							enemy->SetHitDirection(enemy->GetPosition().x < position.x ? sf::Vector2f::left : sf::Vector2f::right);
+							enemy->TakeDamage();
+						}
+					}
+
+				}
+				if (itemCount == 0)
+					OnChangetRectUV();
 			}
-			if(itemCount == 0)
-				OnChangetRectUV();
 		}
 	}
 	else if (target->GetColliderLayer() == ColliderLayer::Enemy || target->GetColliderLayer() == ColliderLayer::Item)

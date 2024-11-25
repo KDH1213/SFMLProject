@@ -187,13 +187,13 @@ void Scene::Update(float deltaTime)
 			cameraSpeed = 500.f;
 
 		if (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Left))
-			freeCamera->SetCameraPosition(freeCamera->GetCameraPosition() + sf::Vector2f::left * cameraSpeed * TimeManager::GetInstance().GetRealDeltatime());
+			freeCamera->SetCameraPosition(freeCamera->GetCameraPosition() + sf::Vector2f::left * cameraSpeed * TimeManager::GetInstance().GetUnScaleDeletaTime());
 		if (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Right))
-			freeCamera->SetCameraPosition(freeCamera->GetCameraPosition() + sf::Vector2f::right * cameraSpeed * TimeManager::GetInstance().GetRealDeltatime());
+			freeCamera->SetCameraPosition(freeCamera->GetCameraPosition() + sf::Vector2f::right * cameraSpeed * TimeManager::GetInstance().GetUnScaleDeletaTime());
 		if (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Up))
-			freeCamera->SetCameraPosition(freeCamera->GetCameraPosition() + sf::Vector2f::up * cameraSpeed * TimeManager::GetInstance().GetRealDeltatime());
+			freeCamera->SetCameraPosition(freeCamera->GetCameraPosition() + sf::Vector2f::up * cameraSpeed * TimeManager::GetInstance().GetUnScaleDeletaTime());
 		if (InputManager::GetInstance().GetKeyPressed(sf::Keyboard::Down))
-			freeCamera->SetCameraPosition(freeCamera->GetCameraPosition() + sf::Vector2f::down * cameraSpeed * TimeManager::GetInstance().GetRealDeltatime());
+			freeCamera->SetCameraPosition(freeCamera->GetCameraPosition() + sf::Vector2f::down * cameraSpeed * TimeManager::GetInstance().GetUnScaleDeletaTime());
 	}
 
 	mainCamera->Update(deltaTime);

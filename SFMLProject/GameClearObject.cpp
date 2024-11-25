@@ -70,7 +70,7 @@ void GameClearObject::SetOrigin(const sf::Vector2f& newOrigin)
 
 void GameClearObject::StartMove()
 {
-	currentFlagMoveTime += TimeManager::GetInstance().GetRealDeltatime();
+	currentFlagMoveTime += TimeManager::GetInstance().GetUnScaleDeletaTime();
 	sf::Vector2f currentPos = player->GetPosition();
 	currentPos.y = Utils::Lerp(startPosition.y, destinationPosition.y, currentTime);
 	sf::Vector2f currentFlagPos = flagSprite.getPosition();

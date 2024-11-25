@@ -169,7 +169,7 @@ void Animation::Update(float deltaTime)
 		return;
 
 	if (isUnscale)
-		currentAnimationTime += TimeManager::GetInstance().GetRealDeltatime() * animationSpeed;
+		currentAnimationTime += TimeManager::GetInstance().GetUnScaleDeletaTime() * animationSpeed;
 	else
 		currentAnimationTime += deltaTime * animationSpeed;
 
