@@ -174,8 +174,6 @@ void ItemBlockObject::OnCollisionEnter(Collider* target)
 				{
 					CreateItem();
 					OnHitMove();
-					// SoundManger::GetInstance().PlaySfx("Bump");
-
 
 					auto targets = collider->GetCollisionTargets();
 
